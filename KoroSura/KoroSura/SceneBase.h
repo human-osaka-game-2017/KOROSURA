@@ -3,7 +3,17 @@
 
 class SceneBase{
 public:
-	SceneBase();
-	virtual ~SceneBase();
+	enum SCENE_ID {
+		TITLE,
+		STAGESELECT,
+		MAIN,
+		RESULT
+	};
+
+	SceneBase() {};
+	virtual ~SceneBase() {};
+
+	virtual SCENE_ID Update() = 0;
+	virtual void Draw() = 0;
 };
 #endif

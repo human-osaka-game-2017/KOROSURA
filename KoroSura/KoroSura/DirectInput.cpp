@@ -347,6 +347,9 @@ int DirectInput::DikCheck(KEY_KIND keyKind) {
 	case KEY_KIND::ESC:
 		DIK = DIK_ESCAPE;
 		break;
+	case KEY_KIND::ENTER:
+		DIK = DIK_RETURN;
+		break;
 	}
 	return DIK;
 }

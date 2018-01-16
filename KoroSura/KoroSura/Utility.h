@@ -65,6 +65,7 @@ namespace Utility {
 		LCONTROL,
 		RCONTROL,
 		ESC,
+		ENTER,
 		MAX
 	};
 
