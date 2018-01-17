@@ -103,3 +103,9 @@ void Utility::OutputDebug_Number(float outputNum, HWND hWnd) {
 	OutputDebugString(buff);
 	SetWindowText(hWnd, buff);
 }
+
+void Utility::OutputDebug_Number(float outputNum) {
+	TCHAR buff[256];
+	_stprintf_s(buff, 256, _T("%f\n"), outputNum);
+	OutputDebugString(buff);
+}

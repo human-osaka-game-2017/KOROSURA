@@ -1,7 +1,10 @@
 #ifndef TITLESCENE_H
 #define TITLESCENE_H
 
+#include <vector>
 #include "SceneBase.h"
+
+class ObjectBase;
 
 class TitleScene :public SceneBase{
 public:
@@ -12,8 +15,12 @@ public:
 	virtual void Draw();
 
 private:
+	std::vector<ObjectBase*> m_PtrObjects;
 	int m_FrCnt = 0;
 	bool m_WasPushedKey = false;
+	bool m_CanPushKey = false;
+
+	void CanPushKey();
 
 	const int kNextSceneInterval = 180;
 };

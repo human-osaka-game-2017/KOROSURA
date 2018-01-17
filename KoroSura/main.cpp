@@ -1,7 +1,6 @@
 #include"Lib.h"
-
-#define WINDOW_WIDTH	1600
-#define WINDOW_HEIGHT	1900
+#include"Common.h"
+#include"SceneManager.h"
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp) {
 	switch (msg)
@@ -75,6 +74,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	ShowCursor(false);
 
 	Lib::CreateInstance(hWnd, hInstance);
+	SceneManager game;
 
 	MSG msg;
 	ZeroMemory(&msg, sizeof(msg));
@@ -97,11 +97,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 			if (currentTime - prevTime >= 1000 / 60) {
 				++frCnt;
 				Lib::GetInstance().UpdateKey();
+				game.Run();
 			}
 		}
 
 		if (currentTime - prevTime >= 1000) {
-			Utility::OutputDebug_Number((float)frCnt, hWnd);
+			//Utility::OutputDebug_Number((float)frCnt, hWnd);
 			frCnt = 0;
 			prevTime = currentTime;
 		}

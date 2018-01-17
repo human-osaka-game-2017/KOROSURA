@@ -62,6 +62,24 @@
     <ClCompile Include="MainScene.cpp">
       <Filter>Application\Scene\Main</Filter>
     </ClCompile>
+    <ClCompile Include="TeamLogo.cpp">
+      <Filter>Application\Scene\Title\TeamLogo</Filter>
+    </ClCompile>
+    <ClCompile Include="Selection.cpp">
+      <Filter>Application\Selection</Filter>
+    </ClCompile>
+    <ClCompile Include="Fader.cpp">
+      <Filter>Application\Fader</Filter>
+    </ClCompile>
+    <ClCompile Include="Scaler.cpp">
+      <Filter>Application\Scaler</Filter>
+    </ClCompile>
+    <ClCompile Include="Fonts.cpp">
+      <Filter>Application\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleBackground.cpp">
+      <Filter>Application\Scene\Title\Background</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">
@@ -108,6 +126,27 @@
     </Filter>
     <Filter Include="Application\Scene\Main">
       <UniqueIdentifier>{3d09c07a-cbd8-4520-9643-548c3022ddb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\Title\TeamLogo">
+      <UniqueIdentifier>{6f6174ef-f09f-4e7b-a23a-f86bc8fc5292}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Fader">
+      <UniqueIdentifier>{21bf3ef0-0d3f-493a-926a-a5849a2363c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scaler">
+      <UniqueIdentifier>{97b92b93-4587-4cf2-a330-3b7c47f99ff1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Selection">
+      <UniqueIdentifier>{793e83e1-e489-4739-b097-3069f660f901}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Fonts">
+      <UniqueIdentifier>{28c98d3d-37ac-4193-ab56-c9e0096a3837}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\Title\Background">
+      <UniqueIdentifier>{f4f82eea-98ac-465a-8926-92681efe5413}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\StaffRoll">
+      <UniqueIdentifier>{fc1c7cea-4ac2-484e-aefa-befa26039223}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -176,6 +215,25 @@
     </ClInclude>
     <ClInclude Include="MainScene.h">
       <Filter>Application\Scene\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="TeamLogo.h">
+      <Filter>Application\Scene\Title\TeamLogo</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectBase.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="Selection.h">
+      <Filter>Application\Selection</Filter>
+    </ClInclude>
+    <ClInclude Include="Fader.h">
+      <Filter>Application\Fader</Filter>
+    </ClInclude>
+    <ClInclude Include="Scaler.h">
+      <Filter>Application\Scaler</Filter>
+    </ClInclude>
+    <ClInclude Include="Common.h" />
+    <ClInclude Include="TitleBackground.h">
+      <Filter>Application\Scene\Title\Background</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
