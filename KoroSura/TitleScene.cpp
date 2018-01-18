@@ -30,10 +30,7 @@ SceneBase::SCENE_ID TitleScene::Update()
 		retSceneId = STAGESELECT;
 	}
 
-	
-
-	for (auto itr = m_PtrObjects.begin(); itr != m_PtrObjects.end(); ++itr)
-	{
+	for (auto itr = m_PtrObjects.begin(); itr != m_PtrObjects.end(); ++itr){
 		(*itr)->Update();
 	}
 
