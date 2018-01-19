@@ -8,18 +8,6 @@
     <ClCompile Include="Utility.cpp">
       <Filter>Lib</Filter>
     </ClCompile>
-    <ClCompile Include="CircleCollidercpp.cpp">
-      <Filter>Lib\Collider</Filter>
-    </ClCompile>
-    <ClCompile Include="ColliderBase.cpp">
-      <Filter>Lib\Collider</Filter>
-    </ClCompile>
-    <ClCompile Include="ColliderManager.cpp">
-      <Filter>Lib\Collider</Filter>
-    </ClCompile>
-    <ClCompile Include="SquareCollider.cpp">
-      <Filter>Lib\Collider</Filter>
-    </ClCompile>
     <ClCompile Include="DirectGraphics.cpp">
       <Filter>Lib\DX9</Filter>
     </ClCompile>
@@ -79,6 +67,16 @@
     </ClCompile>
     <ClCompile Include="TitleBackground.cpp">
       <Filter>Application\Scene\Title\Background</Filter>
+    </ClCompile>
+    <ClCompile Include="ColliderManager.cpp">
+      <Filter>Lib\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="ColliderBase.cpp">
+      <Filter>Lib\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxCollider.cpp" />
+    <ClCompile Include="Shape.cpp">
+      <Filter>Lib\Shape</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +146,9 @@
     <Filter Include="Application\Scene\StaffRoll">
       <UniqueIdentifier>{fc1c7cea-4ac2-484e-aefa-befa26039223}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Lib\Shape">
+      <UniqueIdentifier>{b0733fa1-1775-4f61-8b51-602c9bd6f78d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Lib.h">
@@ -155,18 +156,6 @@
     </ClInclude>
     <ClInclude Include="Utility.h">
       <Filter>Lib</Filter>
-    </ClInclude>
-    <ClInclude Include="CircleCollider.h">
-      <Filter>Lib\Collider</Filter>
-    </ClInclude>
-    <ClInclude Include="ColliderBase.h">
-      <Filter>Lib\Collider</Filter>
-    </ClInclude>
-    <ClInclude Include="ColliderManager.h">
-      <Filter>Lib\Collider</Filter>
-    </ClInclude>
-    <ClInclude Include="SquareCollider.h">
-      <Filter>Lib\Collider</Filter>
     </ClInclude>
     <ClInclude Include="DirectGraphics.h">
       <Filter>Lib\DX9</Filter>
@@ -219,9 +208,6 @@
     <ClInclude Include="TeamLogo.h">
       <Filter>Application\Scene\Title\TeamLogo</Filter>
     </ClInclude>
-    <ClInclude Include="ObjectBase.h">
-      <Filter>Application</Filter>
-    </ClInclude>
     <ClInclude Include="Selection.h">
       <Filter>Application\Selection</Filter>
     </ClInclude>
@@ -234,6 +220,19 @@
     <ClInclude Include="Common.h" />
     <ClInclude Include="TitleBackground.h">
       <Filter>Application\Scene\Title\Background</Filter>
+    </ClInclude>
+    <ClInclude Include="ColliderManager.h">
+      <Filter>Lib\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="ColliderBase.h">
+      <Filter>Lib\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectBase.h">
+      <Filter>Lib</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxCollider.h" />
+    <ClInclude Include="Shape.h">
+      <Filter>Lib\Shape</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

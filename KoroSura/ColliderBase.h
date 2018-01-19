@@ -1,27 +1,40 @@
-#ifndef COLLIDER_H
-#define COLLIDER_H
+#ifndef COLLIDERBASE_H
+#define COLLIDERBASE_H
 
-#include<d3dx9.h>
-#include<string>
 #include<functional>
-#include<vector>
+#include<string>
+#include"Shape.h"
 
-class ColliderBase {
+class ObjectBase;
+
+class ColliderBase{
 public:
-	ColliderBase(const std::string className, const D3DXVECTOR3& pos, std::function<void()> function);
-	virtual ~ColliderBase();
+	struct ObjectData {
+		ObjectData(std::string className, ObjectBase* pArgObject):
+			ClassName(className),
+			pObject(pArgObject){}
 
-	void SetPos(const D3DXVECTOR3& pos);
-	void SetCollidedClassName(const std::vector<std::string>& classNames);
-	void Execute();
-	const std::vector<std::string>& GetCollidedClassNames();
-	const std::string& GetAffiliatedClassName();
-	const D3DXVECTOR3& GetPos();
+		const std::string ClassName;
 
-protected:
-	D3DXVECTOR3 m_Pos;
-	const std::string m_ClassName;
-	std::function<void()> m_Function;
-	std::vector<std::string> m_CollidedClassNames;
+		//çDÇ´Ç»ç\ë¢ëÃÇçÏÇ¡ÇƒãlÇﬂÇÈ
+		ObjectBase* pObject;
+	};
+
+	ColliderBase(const char* className, ObjectBase* pObject, std::function<void(ObjectData[])> function, unsigned long categoryBits, unsigned long maskBits, Shape::SHAPE_ID shapeId);
+	virtual ~ColliderBase() {};
+
+	Shape::SHAPE_ID GetShapeId();
+
+	void SetMaskBits(unsigned long maskBits);
+
+	virtual bool Collide(const ColliderBase& collider) = 0;
+
+private:
+	ObjectData m_ObjectData;
+	std::function<void(ObjectData[])> m_Function;
+	unsigned long m_MaskBits;
+
+	const unsigned long kCategoryBits;
+	const Shape::SHAPE_ID kShapeId;
 };
 #endif

@@ -1,37 +1,18 @@
 #include"ColliderBase.h"
+#include"ObjectBase.h"
 
-ColliderBase::ColliderBase(const std::string className, const D3DXVECTOR3& pos, std::function<void()> function) :
-	m_ClassName(className),
-	m_Pos(pos),
-	m_Function(function)
+ColliderBase::ColliderBase(const char* className, ObjectBase* pObject, std::function<void(ObjectData[])> function, unsigned long categoryBits, unsigned long maskBits, Shape::SHAPE_ID shapeId):
+	m_ObjectData(className,pObject), m_Function(function), kCategoryBits(categoryBits), m_MaskBits(maskBits), kShapeId(shapeId)
 {
 
 }
 
-ColliderBase::~ColliderBase() {
-
+Shape::SHAPE_ID ColliderBase::GetShapeId()
+{
+	return kShapeId;
 }
 
-void ColliderBase::Execute() {
-	m_Function();
-}
+void ColliderBase::SetMaskBits(unsigned long maskBits) 
+{
 
-void ColliderBase::SetCollidedClassName(const std::vector<std::string>& classNames) {
-	m_CollidedClassNames = classNames;
-}
-
-const D3DXVECTOR3& ColliderBase::GetPos() {
-	return m_Pos;
-}
-
-void ColliderBase::SetPos(const D3DXVECTOR3& pos) {
-	m_Pos = pos;
-}
-
-const std::string& ColliderBase::GetAffiliatedClassName() {
-	return m_ClassName;
-}
-
-const std::vector<std::string>& ColliderBase::GetCollidedClassNames() {
-	return m_CollidedClassNames;
 }

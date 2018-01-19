@@ -126,7 +126,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CircleCollidercpp.cpp" />
+    <ClCompile Include="BoxCollider.cpp" />
     <ClCompile Include="ColliderBase.cpp" />
     <ClCompile Include="ColliderManager.cpp" />
     <ClCompile Include="DirectGraphics.cpp" />
@@ -145,8 +145,8 @@
     <ClCompile Include="SceneFactory.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Selection.cpp" />
+    <ClCompile Include="Shape.cpp" />
     <ClCompile Include="SoundBufferManager.cpp" />
-    <ClCompile Include="SquareCollider.cpp" />
     <ClCompile Include="StageSelectScene.cpp" />
     <ClCompile Include="TeamLogo.cpp" />
     <ClCompile Include="TextureManager.cpp" />
@@ -155,7 +155,7 @@
     <ClCompile Include="Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CircleCollider.h" />
+    <ClInclude Include="BoxCollider.h" />
     <ClInclude Include="ColliderBase.h" />
     <ClInclude Include="ColliderManager.h" />
     <ClInclude Include="Common.h" />
@@ -176,8 +176,8 @@
     <ClInclude Include="SceneFactory.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Selection.h" />
+    <ClInclude Include="Shape.h" />
     <ClInclude Include="SoundBufferManager.h" />
-    <ClInclude Include="SquareCollider.h" />
     <ClInclude Include="StageSelectScene.h" />
     <ClInclude Include="TeamLogo.h" />
     <ClInclude Include="TextureManager.h" />
