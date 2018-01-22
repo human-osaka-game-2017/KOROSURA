@@ -74,9 +74,11 @@
     <ClCompile Include="ColliderBase.cpp">
       <Filter>Lib\Collider</Filter>
     </ClCompile>
-    <ClCompile Include="BoxCollider.cpp" />
     <ClCompile Include="Shape.cpp">
       <Filter>Lib\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxCollider.cpp">
+      <Filter>Lib\Collider</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -230,9 +232,11 @@
     <ClInclude Include="ObjectBase.h">
       <Filter>Lib</Filter>
     </ClInclude>
-    <ClInclude Include="BoxCollider.h" />
     <ClInclude Include="Shape.h">
       <Filter>Lib\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxCollider.h">
+      <Filter>Lib\Collider</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

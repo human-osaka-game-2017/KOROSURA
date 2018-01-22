@@ -3,27 +3,33 @@
 
 #include <vector>
 
-class Collider;
+class ColliderBase;
 
 class ColliderManager{
 public:
-	static ColliderManager& GetInstance();
+	static ColliderManager& GetInstance()
+	{
+		if (m_pInstance == nullptr) {
+			m_pInstance = new ColliderManager;
+		}
+		return *m_pInstance;
+	}
 
 	void Collide();
 
-	void AddGroup();
+	void FormGroup();
 
 	void DeleteGroup(int groupIndex);
 
-	void Register(Collider* pCollider,int groupIndex);
+	void Register(ColliderBase* pCollider,int groupIndex);
 
-	void Cancel(Collider* pCollider);
+	void Remove(ColliderBase* pCollider);
 
 private:
 	static ColliderManager* m_pInstance;
 	ColliderManager();
 	~ColliderManager();
 
-	std::vector<std::vector<Collider*>> m_PtrColliders;
+	std::vector<std::vector<ColliderBase*>> m_PtrColliders;
 };
 #endif

@@ -14,16 +14,14 @@ using Utility::BUTTON_STATE;
 using Utility::KEY_KIND;
 using Utility::MOUSE_DATA;
 
-/*!
- * ダイレクトインプットクラス
- */
+/*** ダイレクトインプットクラス*/
 class DirectInput{
 public:
 	/*!
-	* インスタンスの生成と取得
-	* @param hWnd ウィンドウのハンドル
-	* @param hInstance  インスタンスハンドル
-	*/
+	 * インスタンスの生成と取得
+	 * @param	hWnd		ウィンドウのハンドル
+	 * @param	hInstance	インスタンスハンドル
+	 */
 	static void CrateInstance(HWND hWnd, HINSTANCE hInstance);
 
 	static DirectInput& GetInstance();

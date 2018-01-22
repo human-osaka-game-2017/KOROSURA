@@ -58,18 +58,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	SetProcessDPIAware();
 
 	//resize
-	RECT rw, rc;
-	GetWindowRect(hWnd, &rw);
-	GetClientRect(hWnd, &rc);
+	RECT rextWindow, rectClient;
+	GetWindowRect(hWnd, &rextWindow);
+	GetClientRect(hWnd, &rectClient);
 
-	int new_width = (rw.right - rw.left) - (rc.right - rc.left) + WINDOW_WIDTH;
-	int new_height = (rw.bottom - rw.top) - (rc.bottom - rc.top) + WINDOW_HEIGHT;
+	int newWidth = (rextWindow.right - rextWindow.left) - (rectClient.right - rectClient.left) + WINDOW_WIDTH;
+	int newHeight = (rextWindow.bottom - rextWindow.top) - (rectClient.bottom - rectClient.top) + WINDOW_HEIGHT;
 
-	SetWindowPos(hWnd, NULL, 0, 0, new_width, new_height, SWP_NOMOVE | SWP_NOZORDER);
-
-	GetWindowRect(hWnd, &rw);
-	GetClientRect(hWnd, &rc);
-
+	SetWindowPos(hWnd, NULL, 0, 0, newWidth, newHeight, SWP_NOMOVE | SWP_NOZORDER);
 	ShowWindow(hWnd, SW_SHOW);
 	ShowCursor(false);
 

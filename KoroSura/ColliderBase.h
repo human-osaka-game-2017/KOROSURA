@@ -1,9 +1,15 @@
+/**
+ * @file	ColliderBase.h
+ * @brief	簡単なクラスの説明
+ * @author	作成者の名前
+ */
 #ifndef COLLIDERBASE_H
 #define COLLIDERBASE_H
 
-#include<functional>
-#include<string>
-#include"Shape.h"
+#include <functional>
+#include <string>
+#include <vector>
+#include "Shape.h"
 
 class ObjectBase;
 
@@ -16,22 +22,47 @@ public:
 
 		const std::string ClassName;
 
-		//好きな構造体を作って詰める
 		ObjectBase* pObject;
 	};
 
-	ColliderBase(const char* className, ObjectBase* pObject, std::function<void(ObjectData[])> function, unsigned long categoryBits, unsigned long maskBits, Shape::SHAPE_ID shapeId);
+	ColliderBase(const char* className, ObjectBase* pObject, std::function<void(std::vector<ObjectData*>*)> function, unsigned long categoryBits, unsigned long maskBits, Shape::SHAPE_ID shapeId);
 	virtual ~ColliderBase() {};
 
-	Shape::SHAPE_ID GetShapeId();
+	Shape::SHAPE_ID GetShapeId() const 
+	{
+		return kShapeId;
+	}
 
-	void SetMaskBits(unsigned long maskBits);
+	unsigned long GetMaskBits()
+	{
+		return m_MaskBits;
+	}
 
-	virtual bool Collide(const ColliderBase& collider) = 0;
+	void SetMaskBits(unsigned long maskBits)
+	{
+		m_MaskBits = maskBits;
+	}
+
+	unsigned long GetCategoryBits()
+	{
+		return kCategoryBits;
+	}
+
+	ObjectData* GetObjectData()
+	{
+		return &m_ObjectData;
+	}
+
+	void Do(std::vector<ObjectData*>* collidedObjects)
+	{
+		m_Function(collidedObjects);
+	}
+
+	virtual bool Collide(const ColliderBase& collider)const = 0;
 
 private:
 	ObjectData m_ObjectData;
-	std::function<void(ObjectData[])> m_Function;
+	std::function<void(std::vector<ObjectData*>*)> m_Function;
 	unsigned long m_MaskBits;
 
 	const unsigned long kCategoryBits;
