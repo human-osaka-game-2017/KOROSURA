@@ -38,9 +38,6 @@
     <ClCompile Include="SceneFactory.cpp">
       <Filter>Application\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="StageSelectScene.cpp">
-      <Filter>Application\Scene\Stage</Filter>
-    </ClCompile>
     <ClCompile Include="TitleScene.cpp">
       <Filter>Application\Scene\Title</Filter>
     </ClCompile>
@@ -83,6 +80,12 @@
     <ClCompile Include="PushEnterKeyLogo.cpp">
       <Filter>Application\Scene\Title\PushEnterKeyLogo</Filter>
     </ClCompile>
+    <ClCompile Include="StageInfo.cpp">
+      <Filter>Application\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="StageSelectScene.cpp">
+      <Filter>Application\Scene\StageSelectScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">
@@ -117,9 +120,6 @@
     </Filter>
     <Filter Include="Lib\DX9\Renderer">
       <UniqueIdentifier>{674a1ea8-6f7f-4f0b-a73a-b52f1603287c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Application\Scene\Stage">
-      <UniqueIdentifier>{593dc0eb-5f0f-4ff7-ace8-0c93b2300229}</UniqueIdentifier>
     </Filter>
     <Filter Include="Application\Scene\Result">
       <UniqueIdentifier>{d448e4f7-6ce2-4ce7-ac3d-c594a403eeb5}</UniqueIdentifier>
@@ -156,6 +156,12 @@
     </Filter>
     <Filter Include="Application\Scene\Title\PushEnterKeyLogo">
       <UniqueIdentifier>{d30dd1cc-142c-4200-9448-af9133f1af70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\StageSelectScene">
+      <UniqueIdentifier>{ea6d15cc-33a8-48dc-a9d1-5a5e043c0483}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Stage">
+      <UniqueIdentifier>{593dc0eb-5f0f-4ff7-ace8-0c93b2300229}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -200,9 +206,6 @@
     </ClInclude>
     <ClInclude Include="SceneFactory.h">
       <Filter>Application\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="StageSelectScene.h">
-      <Filter>Application\Scene\Stage</Filter>
     </ClInclude>
     <ClInclude Include="TitleScene.h">
       <Filter>Application\Scene\Title</Filter>
@@ -249,6 +252,12 @@
     </ClInclude>
     <ClInclude Include="PushEnterKeyLogo.h">
       <Filter>Application\Scene\Title\PushEnterKeyLogo</Filter>
+    </ClInclude>
+    <ClInclude Include="StageInfo.h">
+      <Filter>Application\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="StageSelectScene.h">
+      <Filter>Application\Scene\StageSelectScene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

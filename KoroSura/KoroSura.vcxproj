@@ -148,6 +148,7 @@
     <ClCompile Include="Selection.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="SoundBufferManager.cpp" />
+    <ClCompile Include="StageInfo.cpp" />
     <ClCompile Include="StageSelectScene.cpp" />
     <ClCompile Include="TeamLogo.cpp" />
     <ClCompile Include="TextureManager.cpp" />
@@ -181,6 +182,7 @@
     <ClInclude Include="Selection.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="SoundBufferManager.h" />
+    <ClInclude Include="StageInfo.h" />
     <ClInclude Include="StageSelectScene.h" />
     <ClInclude Include="TeamLogo.h" />
     <ClInclude Include="TextureManager.h" />
