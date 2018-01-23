@@ -10,14 +10,14 @@ namespace Utility {
 		FLOAT	tu, tv;
 	};
 
-	enum BUTTON_STATE {
+	enum struct BUTTON_STATE{
 		OFF,	//!< 前フレームから離されている状態
 		ON,		//!< 前フレームから押されている状態
 		PUSH,	//!< 現フレームから押された状態
 		RELEASE	//!< 現フレームから離された状態
 	};
 
-	enum KEY_KIND
+	enum struct KEY_KIND
 	{
 		LEFT,
 		RIGHT,
@@ -69,10 +69,8 @@ namespace Utility {
 		MAX
 	};
 
-	struct MOUSE_DATA {
-		int Dim_x;					//!< マウスのXの移動量
-		int Dim_y;					//!< マウスのYの移動量
-		int Dim_z;					//!< マウスのZの移動量
+	struct MouseData {
+		D3DXVECTOR3 Movement;
 		BUTTON_STATE LeftMouse;		//!< マウスの左クリックの状態
 		BUTTON_STATE RightMouse;	//!< マウスの右クリックの状態
 	};

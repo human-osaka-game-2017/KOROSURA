@@ -56,7 +56,7 @@ BUTTON_STATE Lib::GetKeyState(KEY_KIND keyKind) {
 	return m_pDirectInput->GetKeyState(keyKind);
 }
 
-const MOUSE_DATA* Lib::GetMouseData() {
+const Utility::MouseData* Lib::GetMouseData() {
 	return m_pDirectInput->GetMouseData();
 }
 

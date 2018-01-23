@@ -17,12 +17,19 @@ public:
 		return m_Color;
 	}
 
+	void SetMaxInterval(int interval) {
+		m_MaxInterval = interval;
+	}
+
+	void SetStoppingInterval(int interval) {
+		m_StoppingInterval = interval;
+	}
+
 private:
+	DWORD m_Color = 0x00000000;
 	int m_FrCnt = 0;
 	int m_StoppingFrCnt = 0;
-	DWORD m_Color = 0x00000000;
-
-	const int kMaxInterval;
-	const int kStoppingInterval;
+	int m_MaxInterval;
+	int m_StoppingInterval;
 };
 #endif

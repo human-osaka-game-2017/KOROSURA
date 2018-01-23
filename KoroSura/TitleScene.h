@@ -21,7 +21,8 @@ private:
 	bool m_CanPushKey = false;
 
 	void CanPushKey();
+	void WasPushedKey();
 
-	const int kNextSceneInterval = 180;
+	const int kNextSceneInterval = 120;
 };
 #endif

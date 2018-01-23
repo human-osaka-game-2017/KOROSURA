@@ -139,6 +139,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainScene.cpp" />
     <ClCompile Include="ModelManager.cpp" />
+    <ClCompile Include="PushEnterKeyLogo.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ResultScene.cpp" />
     <ClCompile Include="Scaler.cpp" />
@@ -165,10 +166,12 @@
     <ClInclude Include="Fader.h" />
     <ClInclude Include="FBX.h" />
     <ClInclude Include="Font.h" />
+    <ClInclude Include="Fonts.h" />
     <ClInclude Include="Lib.h" />
     <ClInclude Include="MainScene.h" />
     <ClInclude Include="ModelManager.h" />
     <ClInclude Include="ObjectBase.h" />
+    <ClInclude Include="PushEnterKeyLogo.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="ResultScene.h" />
     <ClInclude Include="Scaler.h" />

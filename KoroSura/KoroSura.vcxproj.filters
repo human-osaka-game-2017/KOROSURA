@@ -80,6 +80,9 @@
     <ClCompile Include="BoxCollider.cpp">
       <Filter>Lib\Collider</Filter>
     </ClCompile>
+    <ClCompile Include="PushEnterKeyLogo.cpp">
+      <Filter>Application\Scene\Title\PushEnterKeyLogo</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">
@@ -150,6 +153,9 @@
     </Filter>
     <Filter Include="Lib\Shape">
       <UniqueIdentifier>{b0733fa1-1775-4f61-8b51-602c9bd6f78d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\Title\PushEnterKeyLogo">
+      <UniqueIdentifier>{d30dd1cc-142c-4200-9448-af9133f1af70}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -237,6 +243,12 @@
     </ClInclude>
     <ClInclude Include="BoxCollider.h">
       <Filter>Lib\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="Fonts.h">
+      <Filter>Application\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="PushEnterKeyLogo.h">
+      <Filter>Application\Scene\Title\PushEnterKeyLogo</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

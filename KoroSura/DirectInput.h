@@ -10,10 +10,6 @@
 #include<dinput.h>
 #include"Utility.h"
 
-using Utility::BUTTON_STATE;
-using Utility::KEY_KIND;
-using Utility::MOUSE_DATA;
-
 /*** ダイレクトインプットクラス*/
 class DirectInput{
 public:
@@ -41,15 +37,15 @@ public:
 	* @param keyKind キーボード識別ID
 	* @return キーボードのボタンの状態
 	*/
-	BUTTON_STATE GetKeyState(KEY_KIND keyKind) {
-		return m_CurrentKey[keyKind];
+	Utility::BUTTON_STATE GetKeyState(Utility::KEY_KIND keyKind) {
+		return m_CurrentKey[static_cast<int>(keyKind)];
 	}
 
 	/*!
 	* マウスの状態を取得
 	* @return マウスの状態
 	*/
-	const MOUSE_DATA* GetMouseData() {
+	const Utility::MouseData* GetMouseData() {
 		return &m_Mouse;
 	}
 
@@ -75,11 +71,11 @@ private:
 	LPDIRECTINPUTDEVICE8 m_pKeyDevice;
 	LPDIRECTINPUTDEVICE8 m_pMouseDevise;
 	
-	BUTTON_STATE m_CurrentKey[KEY_KIND::MAX];
-	MOUSE_DATA m_Mouse;
+	Utility::BUTTON_STATE m_CurrentKey[static_cast<int>(Utility::KEY_KIND::MAX)];
+	Utility::MouseData m_Mouse;
 
-	int DikCheck(KEY_KIND keyKind);
-	void KeyCheck(KEY_KIND keyKind, BYTE* pDiks);
+	int DikCheck(Utility::KEY_KIND keyKind);
+	void KeyCheck(Utility::KEY_KIND keyKind, BYTE* pDiks);
 	void MouseCheck(const DIMOUSESTATE& dims);
 
 	DirectInput(const DirectInput&);

@@ -4,6 +4,8 @@
 
 DirectInput* DirectInput::pInstance = nullptr;
 
+using namespace Utility;
+
 void DirectInput::CrateInstance(HWND hWnd, HINSTANCE hInstance){
 	if (pInstance == nullptr) {
 		pInstance = new DirectInput(hWnd, hInstance);
@@ -102,8 +104,8 @@ void DirectInput::UpdateKey() {
 	if (false != m_pKeyDevice->Acquire()) {
 		BYTE diks[256] = { 0 };
 		m_pKeyDevice->GetDeviceState(sizeof(diks), diks);
-		for (int i = 0; i < KEY_KIND::MAX; i++) {
-			KeyCheck((KEY_KIND)i, diks);
+		for (int i = 0; i < static_cast<int>(Utility::KEY_KIND::MAX); i++) {
+			KeyCheck(static_cast<KEY_KIND>(i), diks);
 		}
 	}
 }
@@ -116,35 +118,36 @@ void DirectInput::UpdateMouse() {
 	}
 }
 
-void DirectInput::KeyCheck(KEY_KIND keyKind, BYTE* pDiks) {
+void DirectInput::KeyCheck(Utility::KEY_KIND keyKind, BYTE* pDiks) {
 
 	int DIK = DikCheck(keyKind);
-	static BUTTON_STATE preKey[KEY_KIND::MAX] = { BUTTON_STATE::OFF };
+	int iKeyKind = static_cast<int>(keyKind);
+	static BUTTON_STATE preKey[static_cast<int>(KEY_KIND::MAX)] = { BUTTON_STATE::OFF };
 
 	if (pDiks[DIK] & 0x80)
 	{
-		if (preKey[keyKind] == BUTTON_STATE::OFF)
+		if (preKey[iKeyKind] == BUTTON_STATE::OFF)
 		{
-			m_CurrentKey[keyKind] = BUTTON_STATE::PUSH;
-			preKey[keyKind] = BUTTON_STATE::ON;
+			m_CurrentKey[iKeyKind] = BUTTON_STATE::PUSH;
+			preKey[iKeyKind] = BUTTON_STATE::ON;
 		}
 		else
 		{
-			m_CurrentKey[keyKind] = BUTTON_STATE::ON;
-			preKey[keyKind] = BUTTON_STATE::ON;
+			m_CurrentKey[iKeyKind] = BUTTON_STATE::ON;
+			preKey[iKeyKind] = BUTTON_STATE::ON;
 		}
 	}
 	else
 	{
-		if (preKey[keyKind] == BUTTON_STATE::ON)
+		if (preKey[iKeyKind] == BUTTON_STATE::ON)
 		{
-			m_CurrentKey[keyKind] = BUTTON_STATE::RELEASE;
-			preKey[keyKind] = BUTTON_STATE::OFF;
+			m_CurrentKey[iKeyKind] = BUTTON_STATE::RELEASE;
+			preKey[iKeyKind] = BUTTON_STATE::OFF;
 		}
 		else
 		{
-			m_CurrentKey[keyKind] = BUTTON_STATE::OFF;
-			preKey[keyKind] = BUTTON_STATE::OFF;
+			m_CurrentKey[iKeyKind] = BUTTON_STATE::OFF;
+			preKey[iKeyKind] = BUTTON_STATE::OFF;
 		}
 	}
 }
@@ -199,11 +202,11 @@ void DirectInput::MouseCheck(const DIMOUSESTATE& dims) {
 		}
 	}
 
-	m_Mouse.Dim_x = dims.lX;
+	m_Mouse.Movement.x = dims.lX;
 	
-	m_Mouse.Dim_y = dims.lY;
+	m_Mouse.Movement.y = dims.lY;
 	
-	m_Mouse.Dim_z = dims.lZ;
+	m_Mouse.Movement.z = dims.lZ;
 }
 
 int DirectInput::DikCheck(KEY_KIND keyKind) {

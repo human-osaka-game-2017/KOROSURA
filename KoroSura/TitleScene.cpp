@@ -1,10 +1,13 @@
-#include "TitleScene.h"
+#include"TitleScene.h"
 #include"Lib.h"
 #include"TeamLogo.h"
-#include "TitleBackground.h"
+#include"TitleBackground.h"
+#include"PushEnterKeyLogo.h"
+#include"Fonts.h"
 
 TitleScene::TitleScene()
 {
+	Lib::GetInstance().LoadPictureFile("Picture\\UI.png", Fonts::g_PngSize, Fonts::g_PngSize);
 	ObjectBase* pTeamLogo = new TeamLogo(std::bind(&TitleScene::CanPushKey, this));
 
 	m_PtrObjects.push_back(pTeamLogo);
@@ -12,6 +15,8 @@ TitleScene::TitleScene()
 
 TitleScene::~TitleScene()
 {
+	Lib::GetInstance().CancelTexture("Picture\\UI.png");
+
 	for (auto itr = m_PtrObjects.begin(); itr != m_PtrObjects.end(); itr++)
 	{
 		delete *itr;
@@ -37,6 +42,7 @@ SceneBase::SCENE_ID TitleScene::Update()
 	static bool hasBackground = m_CanPushKey;
 	if (hasBackground != m_CanPushKey) {
 		m_PtrObjects.push_back(new TitleBackground);
+		m_PtrObjects.push_back(new PushEnterKeyLogo(std::bind(&TitleScene::WasPushedKey, this)));
 		hasBackground = m_CanPushKey;
 	}
 
@@ -61,4 +67,9 @@ void TitleScene::Draw()
 void TitleScene::CanPushKey() 
 {
 	m_CanPushKey = true;
+}
+
+void TitleScene::WasPushedKey()
+{
+	m_WasPushedKey = true;
 }

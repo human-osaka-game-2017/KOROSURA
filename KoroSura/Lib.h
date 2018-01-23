@@ -32,7 +32,7 @@ public:
 	* マウスの状態を取得
 	* @return マウスの状態
 	*/
-	const Utility::MOUSE_DATA* GetMouseData();
+	const Utility::MouseData* GetMouseData();
 
 	/*!
 	* 登録されているモデルデータの削除
