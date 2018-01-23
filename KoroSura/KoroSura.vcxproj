@@ -146,6 +146,7 @@
     <ClCompile Include="SceneFactory.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Selection.cpp" />
+    <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="SoundBufferManager.cpp" />
     <ClCompile Include="StageInfo.cpp" />
@@ -180,6 +181,7 @@
     <ClInclude Include="SceneFactory.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Selection.h" />
+    <ClInclude Include="Shader.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="SoundBufferManager.h" />
     <ClInclude Include="StageInfo.h" />
@@ -189,6 +191,18 @@
     <ClInclude Include="TitleBackground.h" />
     <ClInclude Include="TitleScene.h" />
     <ClInclude Include="Utility.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Shader\BasicShader.fx">
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">2.0</ShaderModel>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">/fx</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">2.0</ShaderModel>
+    </FxCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

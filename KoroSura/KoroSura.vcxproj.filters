@@ -86,6 +86,9 @@
     <ClCompile Include="StageSelectScene.cpp">
       <Filter>Application\Scene\StageSelectScene</Filter>
     </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Shader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">
@@ -162,6 +165,9 @@
     </Filter>
     <Filter Include="Application\Stage">
       <UniqueIdentifier>{593dc0eb-5f0f-4ff7-ace8-0c93b2300229}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader">
+      <UniqueIdentifier>{9c4e1ac7-f169-4c61-950b-e126e1c60cb1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -259,5 +265,13 @@
     <ClInclude Include="StageSelectScene.h">
       <Filter>Application\Scene\StageSelectScene</Filter>
     </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Shader</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Shader\BasicShader.fx">
+      <Filter>Shader</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
