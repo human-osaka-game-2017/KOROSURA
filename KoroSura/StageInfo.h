@@ -74,6 +74,8 @@ private:
 	void Load();
 	void Save();
 
+	const char* fileName;
+
 	StageInfo* m_pInstance;
 	int m_CurrentStageBits = STAGE_1;
 	int m_StageUnLockBits;
