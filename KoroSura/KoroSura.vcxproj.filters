@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Lib.cpp">
+      <Filter>Lib</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility.cpp">
+      <Filter>Lib</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectGraphics.cpp">
+      <Filter>Lib\DX9</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectInput.cpp">
+      <Filter>Lib\DX9</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectSound.cpp">
+      <Filter>Lib\DX9</Filter>
+    </ClCompile>
+    <ClCompile Include="Font.cpp">
+      <Filter>Lib\DX9\Font</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelManager.cpp">
+      <Filter>Lib\DX9\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundBufferManager.cpp">
+      <Filter>Lib\DX9\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>Lib\DX9\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Lib\DX9\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Application\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneFactory.cpp">
+      <Filter>Application\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleScene.cpp">
+      <Filter>Application\Scene\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="ResultScene.cpp">
+      <Filter>Application\Scene\Result</Filter>
+    </ClCompile>
+    <ClCompile Include="MainScene.cpp">
+      <Filter>Application\Scene\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="TeamLogo.cpp">
+      <Filter>Application\Scene\Title\TeamLogo</Filter>
+    </ClCompile>
+    <ClCompile Include="Selection.cpp">
+      <Filter>Application\Selection</Filter>
+    </ClCompile>
+    <ClCompile Include="Fader.cpp">
+      <Filter>Application\Fader</Filter>
+    </ClCompile>
+    <ClCompile Include="Fonts.cpp">
+      <Filter>Application\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleBackground.cpp">
+      <Filter>Application\Scene\Title\Background</Filter>
+    </ClCompile>
+    <ClCompile Include="ColliderManager.cpp">
+      <Filter>Lib\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="ColliderBase.cpp">
+      <Filter>Lib\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape.cpp">
+      <Filter>Lib\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxCollider.cpp">
+      <Filter>Lib\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="PushEnterKeyLogo.cpp">
+      <Filter>Application\Scene\Title\PushEnterKeyLogo</Filter>
+    </ClCompile>
+    <ClCompile Include="StageInfo.cpp">
+      <Filter>Application\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="StageSelectScene.cpp">
+      <Filter>Application\Scene\StageSelectScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Description.cpp">
+      <Filter>Application\Scene\StageSelectScene\Description</Filter>
+    </ClCompile>
+    <ClCompile Include="Enlarger.cpp">
+      <Filter>Application\Enlarger</Filter>
+    </ClCompile>
+    <ClCompile Include="StageLogo.cpp">
+      <Filter>Application\Scene\StageSelectScene\StageLogo</Filter>
+    </ClCompile>
+    <ClCompile Include="StageSelectBackground.cpp">
+      <Filter>Application\Scene\StageSelectScene\BackGround</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Application">
+      <UniqueIdentifier>{cd0a8438-f25c-42fb-8411-5a1422b55220}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene">
+      <UniqueIdentifier>{31cf2f69-5992-4960-963d-98263bab7d18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib">
+      <UniqueIdentifier>{e9d9fe08-fcb6-4bef-a364-0760295c29d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\Collider">
+      <UniqueIdentifier>{1a08347d-24f1-4b0a-8aa2-4efceca6f763}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\DX9">
+      <UniqueIdentifier>{31434885-3557-497b-8117-e90348e68263}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\DX9\Font">
+      <UniqueIdentifier>{c37d0ddd-4bd4-4ddc-84ae-00e40a4a0ea4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\DX9\Model">
+      <UniqueIdentifier>{e0d5a7aa-1a52-4c2a-9cb6-6ddcb497fd8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\DX9\Sound">
+      <UniqueIdentifier>{d0d1c533-43b5-4c84-9274-12f9bc033393}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\DX9\Texture">
+      <UniqueIdentifier>{38438f6f-4dd4-457f-8aef-16a4fa2054a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\DX9\FBX">
+      <UniqueIdentifier>{5079a6be-4c3c-4ffc-9b0a-b0bd4d18137c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\DX9\Renderer">
+      <UniqueIdentifier>{674a1ea8-6f7f-4f0b-a73a-b52f1603287c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\Result">
+      <UniqueIdentifier>{d448e4f7-6ce2-4ce7-ac3d-c594a403eeb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\Title">
+      <UniqueIdentifier>{20d5f0f0-08c3-43b9-9f15-7fba61ce8b5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\Main">
+      <UniqueIdentifier>{3d09c07a-cbd8-4520-9643-548c3022ddb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\Title\TeamLogo">
+      <UniqueIdentifier>{6f6174ef-f09f-4e7b-a23a-f86bc8fc5292}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Fader">
+      <UniqueIdentifier>{21bf3ef0-0d3f-493a-926a-a5849a2363c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Selection">
+      <UniqueIdentifier>{793e83e1-e489-4739-b097-3069f660f901}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Fonts">
+      <UniqueIdentifier>{28c98d3d-37ac-4193-ab56-c9e0096a3837}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\Title\Background">
+      <UniqueIdentifier>{f4f82eea-98ac-465a-8926-92681efe5413}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\StaffRoll">
+      <UniqueIdentifier>{fc1c7cea-4ac2-484e-aefa-befa26039223}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\Shape">
+      <UniqueIdentifier>{b0733fa1-1775-4f61-8b51-602c9bd6f78d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\Title\PushEnterKeyLogo">
+      <UniqueIdentifier>{d30dd1cc-142c-4200-9448-af9133f1af70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\StageSelectScene">
+      <UniqueIdentifier>{ea6d15cc-33a8-48dc-a9d1-5a5e043c0483}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Stage">
+      <UniqueIdentifier>{593dc0eb-5f0f-4ff7-ace8-0c93b2300229}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\StageSelectScene\Description">
+      <UniqueIdentifier>{bd3f3cb8-d9f1-404a-8007-55bdbdd9261e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Enlarger">
+      <UniqueIdentifier>{97b92b93-4587-4cf2-a330-3b7c47f99ff1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\StageSelectScene\StageLogo">
+      <UniqueIdentifier>{33d3a48e-d8fc-4658-a606-3737353659fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\StageSelectScene\BackGround">
+      <UniqueIdentifier>{8ece5b3d-fdd9-44c6-a42c-a2b2a0fd525d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Lib.h">
+      <Filter>Lib</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility.h">
+      <Filter>Lib</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectGraphics.h">
+      <Filter>Lib\DX9</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectInput.h">
+      <Filter>Lib\DX9</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectSound.h">
+      <Filter>Lib\DX9</Filter>
+    </ClInclude>
+    <ClInclude Include="Font.h">
+      <Filter>Lib\DX9\Font</Filter>
+    </ClInclude>
+    <ClInclude Include="FBX.h">
+      <Filter>Lib\DX9\FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelManager.h">
+      <Filter>Lib\DX9\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundBufferManager.h">
+      <Filter>Lib\DX9\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureManager.h">
+      <Filter>Lib\DX9\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Lib\DX9\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneBase.h">
+      <Filter>Application\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Application\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneFactory.h">
+      <Filter>Application\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleScene.h">
+      <Filter>Application\Scene\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultScene.h">
+      <Filter>Application\Scene\Result</Filter>
+    </ClInclude>
+    <ClInclude Include="MainScene.h">
+      <Filter>Application\Scene\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="TeamLogo.h">
+      <Filter>Application\Scene\Title\TeamLogo</Filter>
+    </ClInclude>
+    <ClInclude Include="Selection.h">
+      <Filter>Application\Selection</Filter>
+    </ClInclude>
+    <ClInclude Include="Fader.h">
+      <Filter>Application\Fader</Filter>
+    </ClInclude>
+    <ClInclude Include="Common.h" />
+    <ClInclude Include="TitleBackground.h">
+      <Filter>Application\Scene\Title\Background</Filter>
+    </ClInclude>
+    <ClInclude Include="ColliderManager.h">
+      <Filter>Lib\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="ColliderBase.h">
+      <Filter>Lib\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectBase.h">
+      <Filter>Lib</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape.h">
+      <Filter>Lib\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxCollider.h">
+      <Filter>Lib\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="Fonts.h">
+      <Filter>Application\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="PushEnterKeyLogo.h">
+      <Filter>Application\Scene\Title\PushEnterKeyLogo</Filter>
+    </ClInclude>
+    <ClInclude Include="StageInfo.h">
+      <Filter>Application\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="StageSelectScene.h">
+      <Filter>Application\Scene\StageSelectScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Description.h">
+      <Filter>Application\Scene\StageSelectScene\Description</Filter>
+    </ClInclude>
+    <ClInclude Include="StageSelectBase.h">
+      <Filter>Application\Scene\StageSelectScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Enlarger.h">
+      <Filter>Application\Enlarger</Filter>
+    </ClInclude>
+    <ClInclude Include="StageLogo.h">
+      <Filter>Application\Scene\StageSelectScene\StageLogo</Filter>
+    </ClInclude>
+    <ClInclude Include="StageSelectBackground.h">
+      <Filter>Application\Scene\StageSelectScene\BackGround</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
