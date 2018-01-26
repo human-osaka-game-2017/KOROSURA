@@ -23,8 +23,8 @@ namespace Fonts {
 	 */
 	Utility::CUSTOMVERTEX* GetUV(const char ch, Utility::CUSTOMVERTEX* vertex);
 
-	extern const int g_Width;
-	extern const int g_Height;
-	extern const int g_PngSize;
+	extern const int g_Width;	//56
+	extern const int g_Height;	//98
+	extern const int g_PngSize;	//1024
 }
 #endif

@@ -129,6 +129,7 @@
     <ClCompile Include="BoxCollider.cpp" />
     <ClCompile Include="ColliderBase.cpp" />
     <ClCompile Include="ColliderManager.cpp" />
+    <ClCompile Include="Description.cpp" />
     <ClCompile Include="DirectGraphics.cpp" />
     <ClCompile Include="DirectInput.cpp" />
     <ClCompile Include="DirectSound.cpp" />
@@ -142,13 +143,15 @@
     <ClCompile Include="PushEnterKeyLogo.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ResultScene.cpp" />
-    <ClCompile Include="Scaler.cpp" />
+    <ClCompile Include="Enlarger.cpp" />
     <ClCompile Include="SceneFactory.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Selection.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="SoundBufferManager.cpp" />
     <ClCompile Include="StageInfo.cpp" />
+    <ClCompile Include="StageLogo.cpp" />
+    <ClCompile Include="StageSelectBackground.cpp" />
     <ClCompile Include="StageSelectScene.cpp" />
     <ClCompile Include="TeamLogo.cpp" />
     <ClCompile Include="TextureManager.cpp" />
@@ -161,6 +164,7 @@
     <ClInclude Include="ColliderBase.h" />
     <ClInclude Include="ColliderManager.h" />
     <ClInclude Include="Common.h" />
+    <ClInclude Include="Description.h" />
     <ClInclude Include="DirectGraphics.h" />
     <ClInclude Include="DirectInput.h" />
     <ClInclude Include="DirectSound.h" />
@@ -175,7 +179,7 @@
     <ClInclude Include="PushEnterKeyLogo.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="ResultScene.h" />
-    <ClInclude Include="Scaler.h" />
+    <ClInclude Include="Enlarger.h" />
     <ClInclude Include="SceneBase.h" />
     <ClInclude Include="SceneFactory.h" />
     <ClInclude Include="SceneManager.h" />
@@ -183,6 +187,9 @@
     <ClInclude Include="Shape.h" />
     <ClInclude Include="SoundBufferManager.h" />
     <ClInclude Include="StageInfo.h" />
+    <ClInclude Include="StageLogo.h" />
+    <ClInclude Include="StageSelectBackground.h" />
+    <ClInclude Include="StageSelectBase.h" />
     <ClInclude Include="StageSelectScene.h" />
     <ClInclude Include="TeamLogo.h" />
     <ClInclude Include="TextureManager.h" />

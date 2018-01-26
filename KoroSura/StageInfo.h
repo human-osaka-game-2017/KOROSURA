@@ -6,15 +6,6 @@
 #ifndef STAGEINFO_H
 #define STAGEINFO_H
 
-#define STAGE_1		0x80000000
-#define STAGE_2		0x40000000
-#define STAGE_3		0x20000000
-#define STAGE_4		0x10000000
-#define STAGE_5		0x08000000
-#define STAGE_6		0x04000000
-#define STAGE_7		0x02000000
-#define STAGE_8		0x01000000
-
  /**
   * @brief		StageInfoクラス(シングルトン)
   * @details	StageSelectSceneクラスからステージ番号を受け取り、Loaderに渡すクラス。ステージがロックされているかどうかも管理する
@@ -25,7 +16,7 @@ public:
 	 * @brief	インスタンスを返す関数
 	 * @return	StageInfo&	StageInfoクラスのインスタンス
 	 */
-	StageInfo& GetInstance()
+	static StageInfo& GetInstance()
 	{
 		if (m_pInstance == nullptr) {
 			m_pInstance = new StageInfo;
@@ -36,29 +27,29 @@ public:
 
 	/**
 	 * @brief		現在のステージ番号を取得
-	 * @return int	現在のステージ番号が立っているビット
+	 * @return int	現在のステージ番号
 	 */
-	int GetStageBits()
+	int GetCurrentStage()
 	{
-		return m_CurrentStageBits;
+		return m_CurrentStage;
 	}
 
 	/**
 	 * @brief		現在のステージ番号を設定
-	 * @param[in]	CurrentStageNum	設定したいステージ番号のビット
+	 * @param[in]	CurrentStageNum	設定したいステージ番号
 	 */
-	void SetStageBits(int CurrentStageBits)
+	void SetSelectStage(int selectStage)
 	{
-		m_CurrentStageBits = CurrentStageBits;
+		m_CurrentStage = selectStage;
 	}
 
 	/**
-	 * @brief		どのステージUnLockされているか取得
-	 * @return		int	UnLockされていたら立っているビット
+	 * @brief		現在どのステージまでアンロックされているかを取得
+	 * @return		int	UnLockされている最大ステージ番号
 	 */
-	int GetStageUnLockBits()
+	int GetUnLockingStage()
 	{
-		return m_StageUnLockBits;
+		return m_UnLockingNum;
 	}
 
 	/**
@@ -67,6 +58,8 @@ public:
 	 */
 	void UnLock();
 
+	static const int kStageMax = 8;
+
 private:
 	StageInfo();
 	~StageInfo();
@@ -74,10 +67,8 @@ private:
 	void Load();
 	void Save();
 
-	const char* fileName;
-
-	StageInfo* m_pInstance;
-	int m_CurrentStageBits = STAGE_1;
-	int m_StageUnLockBits;
+	static StageInfo* m_pInstance;
+	int m_CurrentStage = 1;
+	int m_UnLockingNum = 1;
 };
 #endif

@@ -98,7 +98,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		}
 
 		if (currentTime - prevTime >= 1000) {
-			//Utility::OutputDebug_Number((float)frCnt, hWnd);
+			Utility::OutputDebug_Number((float)frCnt, hWnd);
 			frCnt = 0;
 			prevTime = currentTime;
 		}

@@ -2,19 +2,17 @@
 #define SELECTION_H
 
 #include<functional>
-#include"ObjectBase.h"
 
-class Selection :public ObjectBase {
+class Selecter{
 public:
-	Selection(int MaxChoices, std::function<void(int selectPoint)> function);
-	virtual ~Selection();
+	Selecter(int MaxChoices, std::function<void(int selectPoint)> function);
+	~Selecter();
 
 	int GetCurrentSelection() {
 		return m_SelectPoint;
 	}
 
-	virtual void Update();
-	virtual void Draw() {};
+	void Update();
 
 private:
 	//Œˆ’èƒL[‚ª‰Ÿ‚³‚ê‚½‚çŒÄ‚Î‚ê‚é

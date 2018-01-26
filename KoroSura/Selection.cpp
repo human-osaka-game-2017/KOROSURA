@@ -1,19 +1,19 @@
 #include "Selection.h"
 #include "Lib.h"
 
-Selection::Selection(int MaxChoices, std::function<void(int selectPoint)> function):
+Selecter::Selecter(int MaxChoices, std::function<void(int selectPoint)> function):
 	m_MaxChoices(MaxChoices),
 	m_Function(function)
 {
 }
 
-Selection::~Selection()
+Selecter::~Selecter()
 {
 }
 
-void Selection::Update()
+void Selecter::Update()
 {
-	if (Lib::GetInstance().GetKeyState(Utility::KEY_KIND::UP) == Utility::BUTTON_STATE::PUSH) {
+	if (Lib::GetInstance().GetKeyState(Utility::KEY_KIND::DOWN) == Utility::BUTTON_STATE::PUSH) {
 
 		if (m_SelectPoint == m_MaxChoices - 1) {
 			m_SelectPoint = 0;
@@ -23,7 +23,7 @@ void Selection::Update()
 		}
 	}
 
-	if (Lib::GetInstance().GetKeyState(Utility::KEY_KIND::DOWN) == Utility::BUTTON_STATE::PUSH) {
+	if (Lib::GetInstance().GetKeyState(Utility::KEY_KIND::UP) == Utility::BUTTON_STATE::PUSH) {
 
 		if (m_SelectPoint == 0) {
 			m_SelectPoint = m_MaxChoices - 1;

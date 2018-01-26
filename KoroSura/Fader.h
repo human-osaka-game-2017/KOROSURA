@@ -1,17 +1,15 @@
 #ifndef FADER_H
 #define FADER_H
 
-#include "ObjectBase.h"
 #include<Windows.h>
 
-class Fader :public ObjectBase{
+class Fader{
 public:
 	//フェードインとアウトの総フレーム数
 	Fader(int maxInterval, int stoppingInterval = 0);
-	virtual ~Fader();
+	~Fader();
 
-	virtual void Update();
-	virtual void Draw() {};
+	void Update();
 
 	DWORD GetCurrentColor() {
 		return m_Color;

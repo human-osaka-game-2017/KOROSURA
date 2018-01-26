@@ -13,7 +13,7 @@ public:
 	void Run();
 
 private:
-	SceneBase::SCENE_ID m_PreSceneID;
+	SceneBase::SCENE_ID m_PrevSceneID;
 	SceneBase* m_pScene;
 	SceneFactory* m_pSceneFactory;
 };

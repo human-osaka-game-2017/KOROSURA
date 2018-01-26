@@ -15,14 +15,14 @@ public:
 	virtual void Draw();
 
 private:
-	std::vector<ObjectBase*> m_PtrObjects;
-	int m_FrCnt = 0;
-	bool m_WasPushedKey = false;
-	bool m_CanPushKey = false;
-
 	void CanPushKey();
 	void WasPushedKey();
 
 	const int kNextSceneInterval = 120;
+
+	std::vector<ObjectBase*> m_PtrObjects;
+	int m_FrCnt = 0;
+	bool m_WasPushedKey	= false;
+	bool m_CanPushKey	= false;
 };
 #endif

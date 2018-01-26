@@ -1,10 +1,12 @@
-#include"StageInfo.h"
 #include<Windows.h>
 #include<string>
+#include"StageInfo.h"
+#include"Common.h"
+
+StageInfo* StageInfo::m_pInstance = nullptr;
 
 StageInfo::StageInfo()
 {
-	fileName = "Property\\StageLock.ini";
 	Load();
 }
 
@@ -15,18 +17,18 @@ StageInfo::~StageInfo()
 
 void StageInfo::UnLock()
 {
-
+	++m_UnLockingNum;
+	Save();
 }
 
 void StageInfo::Load()
 {
-	char buff[256];
-
-	ZeroMemory(buff, sizeof(buff));
-	GetPrivateProfileString("Locking", "Stage01", "", buff, sizeof(buff), fileName);
+	m_UnLockingNum = GetPrivateProfileInt("Locking", "UnLockStage", 1, PROPERTY_FILENAME);
 }
 
 void StageInfo::Save()
 {
-
+	if (WritePrivateProfileString("Locking", "UnLockStage", std::to_string(m_UnLockingNum).c_str(), PROPERTY_FILENAME)) {
+		MessageBox(0, "ÉZÅ[ÉuÇ…é∏îsÇµÇ‹ÇµÇΩ", "", MB_OK);
+	}
 }

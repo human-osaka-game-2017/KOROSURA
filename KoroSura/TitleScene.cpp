@@ -25,20 +25,21 @@ TitleScene::~TitleScene()
 
 SceneBase::SCENE_ID TitleScene::Update()
 {
-	SCENE_ID retSceneId = TITLE;
+	SCENE_ID retSceneId = SCENE_ID::TITLE;
 
 	if (m_WasPushedKey) {
 		++m_FrCnt;
 	}
 
 	if (m_FrCnt == kNextSceneInterval) {
-		retSceneId = STAGESELECT;
+		retSceneId = SCENE_ID::STAGESELECT;
 	}
 
 	for (auto itr = m_PtrObjects.begin(); itr != m_PtrObjects.end(); ++itr){
 		(*itr)->Update();
 	}
 
+	//‚P“x‚¾‚¯‚Å‚¢‚¢‚Ì‚Å‘OƒtƒŒ‚Æ”äŠr
 	static bool hasBackground = m_CanPushKey;
 	if (hasBackground != m_CanPushKey) {
 		m_PtrObjects.push_back(new TitleBackground);

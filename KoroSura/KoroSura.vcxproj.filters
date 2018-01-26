@@ -56,9 +56,6 @@
     <ClCompile Include="Fader.cpp">
       <Filter>Application\Fader</Filter>
     </ClCompile>
-    <ClCompile Include="Scaler.cpp">
-      <Filter>Application\Scaler</Filter>
-    </ClCompile>
     <ClCompile Include="Fonts.cpp">
       <Filter>Application\Fonts</Filter>
     </ClCompile>
@@ -85,6 +82,18 @@
     </ClCompile>
     <ClCompile Include="StageSelectScene.cpp">
       <Filter>Application\Scene\StageSelectScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Description.cpp">
+      <Filter>Application\Scene\StageSelectScene\Description</Filter>
+    </ClCompile>
+    <ClCompile Include="Enlarger.cpp">
+      <Filter>Application\Enlarger</Filter>
+    </ClCompile>
+    <ClCompile Include="StageLogo.cpp">
+      <Filter>Application\Scene\StageSelectScene\StageLogo</Filter>
+    </ClCompile>
+    <ClCompile Include="StageSelectBackground.cpp">
+      <Filter>Application\Scene\StageSelectScene\BackGround</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -136,9 +145,6 @@
     <Filter Include="Application\Fader">
       <UniqueIdentifier>{21bf3ef0-0d3f-493a-926a-a5849a2363c7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Application\Scaler">
-      <UniqueIdentifier>{97b92b93-4587-4cf2-a330-3b7c47f99ff1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Application\Selection">
       <UniqueIdentifier>{793e83e1-e489-4739-b097-3069f660f901}</UniqueIdentifier>
     </Filter>
@@ -162,6 +168,18 @@
     </Filter>
     <Filter Include="Application\Stage">
       <UniqueIdentifier>{593dc0eb-5f0f-4ff7-ace8-0c93b2300229}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\StageSelectScene\Description">
+      <UniqueIdentifier>{bd3f3cb8-d9f1-404a-8007-55bdbdd9261e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Enlarger">
+      <UniqueIdentifier>{97b92b93-4587-4cf2-a330-3b7c47f99ff1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\StageSelectScene\StageLogo">
+      <UniqueIdentifier>{33d3a48e-d8fc-4658-a606-3737353659fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\StageSelectScene\BackGround">
+      <UniqueIdentifier>{8ece5b3d-fdd9-44c6-a42c-a2b2a0fd525d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -225,9 +243,6 @@
     <ClInclude Include="Fader.h">
       <Filter>Application\Fader</Filter>
     </ClInclude>
-    <ClInclude Include="Scaler.h">
-      <Filter>Application\Scaler</Filter>
-    </ClInclude>
     <ClInclude Include="Common.h" />
     <ClInclude Include="TitleBackground.h">
       <Filter>Application\Scene\Title\Background</Filter>
@@ -258,6 +273,21 @@
     </ClInclude>
     <ClInclude Include="StageSelectScene.h">
       <Filter>Application\Scene\StageSelectScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Description.h">
+      <Filter>Application\Scene\StageSelectScene\Description</Filter>
+    </ClInclude>
+    <ClInclude Include="StageSelectBase.h">
+      <Filter>Application\Scene\StageSelectScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Enlarger.h">
+      <Filter>Application\Enlarger</Filter>
+    </ClInclude>
+    <ClInclude Include="StageLogo.h">
+      <Filter>Application\Scene\StageSelectScene\StageLogo</Filter>
+    </ClInclude>
+    <ClInclude Include="StageSelectBackground.h">
+      <Filter>Application\Scene\StageSelectScene\BackGround</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

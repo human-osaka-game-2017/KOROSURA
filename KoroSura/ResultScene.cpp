@@ -10,7 +10,7 @@ ResultScene::~ResultScene()
 
 SceneBase::SCENE_ID ResultScene::Update()
 {
-	SceneBase::SCENE_ID retSceneId = RESULT;
+	SceneBase::SCENE_ID retSceneId = SCENE_ID::RESULT;
 
 	return retSceneId;
 }

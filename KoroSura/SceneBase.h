@@ -3,9 +3,10 @@
 
 class SceneBase{
 public:
-	enum SCENE_ID {
+	enum struct SCENE_ID {
 		TITLE,
 		STAGESELECT,
+		LOAD,
 		MAIN,
 		RESULT
 	};

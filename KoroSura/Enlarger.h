@@ -2,18 +2,21 @@
 #define SCALER_H
 
 #include <functional>
-#include "ObjectBase.h"
 
-class Scaler :public ObjectBase{
+class Enlarger{
 public:
-	Scaler(float maxScale, float initScale, int maxInterval);
-	virtual ~Scaler();
+	Enlarger(float maxScale, int maxInterval, float initScale = 0);
+	~Enlarger();
 
-	virtual void Update();
-	virtual void Draw() {};
+	void Update();
 
 	float GetScale() {
 		return m_Scale;
+	}
+
+	void Reset() {
+		m_Scale = kInitScale;
+		m_FrCnt = 0;
 	}
 
 private:

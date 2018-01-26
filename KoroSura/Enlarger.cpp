@@ -1,7 +1,7 @@
-#include "Scaler.h"
+#include "Enlarger.h"
 #include<Windows.h>
 
-Scaler::Scaler(float maxScale, float initScale, int maxInterval):
+Enlarger::Enlarger(float maxScale, int maxInterval, float initScale):
 	m_Scale(initScale),
 	kMaxScale(maxScale),
 	kInitScale(initScale),
@@ -14,11 +14,11 @@ Scaler::Scaler(float maxScale, float initScale, int maxInterval):
 	}
 }
 
-Scaler::~Scaler()
+Enlarger::~Enlarger()
 {
 }
 
-void Scaler::Update() 
+void Enlarger::Update() 
 {
 	if (m_FrCnt <= kMaxInterval) {
 
