@@ -17,7 +17,8 @@ int Utility::Random(int min, int max)
 	return min + rand() % (max-min + 1);
 }
 
-bool Utility::JudgeCollisionCircle(const D3DXVECTOR2& pos1, float r1, const D3DXVECTOR2& pos2, float r2) {
+bool Utility::JudgeCollisionCircle(const D3DXVECTOR2& pos1, float r1, const D3DXVECTOR2& pos2, float r2)
+{
 	float sumR = r1 + r2;
 
 	float L = (float)pow(pos1.x - pos2.x, 2) + (float)pow(pos1.y - pos2.y, 2);
@@ -29,7 +30,8 @@ bool Utility::JudgeCollisionCircle(const D3DXVECTOR2& pos1, float r1, const D3DX
 	return false;
 }
 
-bool Utility::JudgeCollisionSquare(const D3DXVECTOR2& pos1, float width1, float height1, const D3DXVECTOR2& pos2, float width2, float height2){
+bool Utility::JudgeCollisionSquare(const D3DXVECTOR2& pos1, float width1, float height1, const D3DXVECTOR2& pos2, float width2, float height2)
+{
 	D3DXVECTOR2 LeftTop1;
 	D3DXVECTOR2 RightTop1;
 	D3DXVECTOR2 LeftBottom1;
@@ -58,7 +60,8 @@ bool Utility::JudgeCollisionSquare(const D3DXVECTOR2& pos1, float width1, float 
 	return false;
 }
 
-double Utility::CalculateRad(float x1, float y1, float x2, float y2) {
+double Utility::CalculateRad(float x1, float y1, float x2, float y2)
+{
 	double rad;
 
 	double lengthX = x2 - x1;
@@ -89,23 +92,44 @@ double Utility::CalculateRad(float x1, float y1, float x2, float y2) {
 	return rad;
 }
 
-float Utility::CalculateDeg(float x1, float y1, float x2, float y2) {
+float Utility::CalculateDeg(float x1, float y1, float x2, float y2) 
+{
 	return (float)D3DXToDegree(CalculateRad(x1, y1, x2, y2));
 }
 
-float Utility::CalculateDistance(float x1, float y1, float x2, float y2) {
+float Utility::CalculateDistance(float x1, float y1, float x2, float y2) 
+{
 	return (float)sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2));
 }
 
-void Utility::OutputDebug_Number(float outputNum, HWND hWnd) {
+void Utility::OutputDebug_Number(float outputNum, HWND hWnd) 
+{
 	TCHAR buff[256];
 	_stprintf_s(buff, 256, _T("%f\n"), outputNum);
 	OutputDebugString(buff);
 	SetWindowText(hWnd, buff);
 }
 
-void Utility::OutputDebug_Number(float outputNum) {
+void Utility::OutputDebug_Number(float outputNum) 
+{
 	TCHAR buff[256];
 	_stprintf_s(buff, 256, _T("%f\n"), outputNum);
 	OutputDebugString(buff);
+}
+
+D3DXVECTOR3* Utility::Tilt(D3DXVECTOR3* vector, float deg)
+{
+	float rad;
+	rad = D3DXToRadian(deg);
+
+	float length = D3DXVec3Length(vector);
+
+	float theta1 = asin(vector->y / length);
+	float theta2 = acos(vector->x / length*cos(theta1));
+
+	vector->x += length*(float)cos(theta1 + rad)*(float)cos(theta2);
+	vector->y += length*(float)sin(theta1 + rad);
+	vector->z += length*(float)cos(theta1 + rad)*(float)sin(theta2);
+
+	return vector;
 }

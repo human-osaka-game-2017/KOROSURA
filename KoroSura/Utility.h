@@ -94,6 +94,8 @@ namespace Utility {
 	void OutputDebug_Number(float outputNum, HWND hWnd);
 	void OutputDebug_Number(float outputNum);
 
+	D3DXVECTOR3* Tilt(D3DXVECTOR3* vector, float deg);
+
 	//min<= random <= max
 	int Random(int min, int max);
 }
