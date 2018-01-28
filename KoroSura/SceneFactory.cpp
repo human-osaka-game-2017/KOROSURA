@@ -3,6 +3,7 @@
 #include"StageSelectScene.h"
 #include"MainScene.h"
 #include"ResultScene.h"
+#include"Loading.h"
 
 SceneFactory::SceneFactory()
 {
@@ -23,6 +24,10 @@ SceneBase* SceneFactory::Create(SceneBase::SCENE_ID sceneID)
 
 	case SceneBase::SCENE_ID::STAGESELECT:
 		retScene = new StageSelectScene;
+		break;
+
+	case SceneBase::SCENE_ID::LOAD:
+		retScene = new Loading;
 		break;
 
 	case SceneBase::SCENE_ID::MAIN:

@@ -27,7 +27,7 @@ void StageLogo::Draw()
 	//選ばれているステージ番号に枠を表示する
 	//枠の座標
 	D3DXVECTOR2 FramePos = D3DXVECTOR2(300.0f, m_Pos.y + (m_SelectPoint*kFontHeight));
-	Lib::GetInstance().Draw(FramePos, "Picture\\Frame.png", kFrameWidth, kFrameHeight);
+	Lib::GetInstance().Draw(FramePos, "Picture\\Frame.png", static_cast<float>(kFrameWidth), static_cast<float>(kFrameHeight));
 }
 
 void StageLogo::DrawStageFonts(int num)
@@ -59,7 +59,7 @@ void StageLogo::DrawStageFonts(int num)
 	Lib::GetInstance().Draw(vertex, "Picture\\UI.png");
 	NextCharPos(vertex);
 
-	Fonts::GetUV(TransformChar(num), vertex);
+	Fonts::GetUV(TransformChar(num + 1), vertex);
 	Lib::GetInstance().Draw(vertex, "Picture\\UI.png");
 }
 

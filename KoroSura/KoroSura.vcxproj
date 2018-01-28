@@ -137,6 +137,7 @@
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="Fonts.cpp" />
     <ClCompile Include="Lib.cpp" />
+    <ClCompile Include="Loading.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainScene.cpp" />
     <ClCompile Include="ModelManager.cpp" />
@@ -173,6 +174,7 @@
     <ClInclude Include="Font.h" />
     <ClInclude Include="Fonts.h" />
     <ClInclude Include="Lib.h" />
+    <ClInclude Include="Loading.h" />
     <ClInclude Include="MainScene.h" />
     <ClInclude Include="ModelManager.h" />
     <ClInclude Include="ObjectBase.h" />

@@ -95,6 +95,9 @@
     <ClCompile Include="StageSelectBackground.cpp">
       <Filter>Application\Scene\StageSelectScene\BackGround</Filter>
     </ClCompile>
+    <ClCompile Include="Loading.cpp">
+      <Filter>Application\Scene\Loading</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">
@@ -180,6 +183,9 @@
     </Filter>
     <Filter Include="Application\Scene\StageSelectScene\BackGround">
       <UniqueIdentifier>{8ece5b3d-fdd9-44c6-a42c-a2b2a0fd525d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\Loading">
+      <UniqueIdentifier>{46049e5d-e148-4d79-a739-59d5bfc14bf2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -288,6 +294,9 @@
     </ClInclude>
     <ClInclude Include="StageSelectBackground.h">
       <Filter>Application\Scene\StageSelectScene\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="Loading.h">
+      <Filter>Application\Scene\Loading</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

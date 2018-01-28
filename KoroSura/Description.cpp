@@ -48,7 +48,7 @@ void Description::Draw()
 	Lib::GetInstance().TrimingVertex(
 		txtVertex,
 		leftTopTu, 550.0f,
-		static_cast<float>(kStagePicWidth), static_cast<float>(kStagePicHeight),
+		static_cast<float>(kStageTxtWidth), static_cast<float>(kStageTxtHeight),
 		static_cast<float>(kPngWidth), static_cast<float>(kPngHeight));
 
 	Lib::GetInstance().Draw(txtVertex, "Picture\\StageImg.png");
@@ -59,7 +59,7 @@ float Description::GetLeftTopTu()
 	int ret = 0;
 
 	//アンロックされていなければ灰色画像
-	if (StageInfo::GetInstance().GetUnLockingStage() < m_SelectPoint) {
+	if (StageInfo::GetInstance().GetUnLockingStage() <= m_SelectPoint) {
 
 		ret = kStagePicWidth * 8;
 	}
