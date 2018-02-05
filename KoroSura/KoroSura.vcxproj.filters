@@ -98,6 +98,12 @@
     <ClCompile Include="Loading.cpp">
       <Filter>Application\Scene\Loading</Filter>
     </ClCompile>
+    <ClCompile Include="Loader.cpp">
+      <Filter>Application\Scene\Loading</Filter>
+    </ClCompile>
+    <ClCompile Include="NowLoadingLogo.cpp">
+      <Filter>Application\Scene\Loading</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">
@@ -296,6 +302,12 @@
       <Filter>Application\Scene\StageSelectScene\BackGround</Filter>
     </ClInclude>
     <ClInclude Include="Loading.h">
+      <Filter>Application\Scene\Loading</Filter>
+    </ClInclude>
+    <ClInclude Include="Loader.h">
+      <Filter>Application\Scene\Loading</Filter>
+    </ClInclude>
+    <ClInclude Include="NowLoadingLogo.h">
       <Filter>Application\Scene\Loading</Filter>
     </ClInclude>
   </ItemGroup>

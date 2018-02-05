@@ -137,10 +137,12 @@
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="Fonts.cpp" />
     <ClCompile Include="Lib.cpp" />
+    <ClCompile Include="Loader.cpp" />
     <ClCompile Include="Loading.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainScene.cpp" />
     <ClCompile Include="ModelManager.cpp" />
+    <ClCompile Include="NowLoadingLogo.cpp" />
     <ClCompile Include="PushEnterKeyLogo.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ResultScene.cpp" />
@@ -174,9 +176,11 @@
     <ClInclude Include="Font.h" />
     <ClInclude Include="Fonts.h" />
     <ClInclude Include="Lib.h" />
+    <ClInclude Include="Loader.h" />
     <ClInclude Include="Loading.h" />
     <ClInclude Include="MainScene.h" />
     <ClInclude Include="ModelManager.h" />
+    <ClInclude Include="NowLoadingLogo.h" />
     <ClInclude Include="ObjectBase.h" />
     <ClInclude Include="PushEnterKeyLogo.h" />
     <ClInclude Include="Renderer.h" />

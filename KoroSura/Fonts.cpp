@@ -7,6 +7,12 @@ namespace Fonts {
 	const int g_PngSize = 1024;
 }
 
+Utility::CUSTOMVERTEX* Fonts::GetSlimeUV(Utility::CUSTOMVERTEX* vertex)
+{
+	Renderer::GetInstance().TrimingVertex(vertex, 0.0f,490.0f, g_Width, g_Height, g_PngSize, g_PngSize);
+	return vertex;
+}
+
 Utility::CUSTOMVERTEX* Fonts::GetUV(const char ch, Utility::CUSTOMVERTEX* vertex)
 {
 	switch (ch) {
