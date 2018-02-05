@@ -133,6 +133,8 @@
     <ClCompile Include="DirectInput.cpp" />
     <ClCompile Include="DirectSound.cpp" />
     <ClCompile Include="Fader.cpp" />
+    <ClCompile Include="FBX.cpp" />
+    <ClCompile Include="FBXModel.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="Fonts.cpp" />
     <ClCompile Include="Lib.cpp" />
@@ -149,6 +151,7 @@
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="SoundBufferManager.cpp" />
+    <ClCompile Include="Source.cpp" />
     <ClCompile Include="StageInfo.cpp" />
     <ClCompile Include="StageSelectScene.cpp" />
     <ClCompile Include="TeamLogo.cpp" />
@@ -167,6 +170,7 @@
     <ClInclude Include="DirectSound.h" />
     <ClInclude Include="Fader.h" />
     <ClInclude Include="FBX.h" />
+    <ClInclude Include="FBXModel.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="Fonts.h" />
     <ClInclude Include="Lib.h" />

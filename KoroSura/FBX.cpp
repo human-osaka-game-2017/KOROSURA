@@ -1,33 +1,24 @@
-#include <fbxsdk.h>
-#include<iostream>
-#include<d3dx9.h>
-#include<vector>
-#include<string>
-#include<list>
+#include "FBX.h"
 
-const char* filePath = "ball_ex_test.fbx";
+FBXLoader* FBXLoader::FBXpInstance = nullptr;
 
-struct Color_RGB {
-	float red, green, blue;
-};
+void FBXLoader::CreateFBXInstance() {
+	if (FBXpInstance == nullptr) {
+		FBXpInstance = new FBXLoader();
+	}
+}
+FBXLoader& FBXLoader::FBXGetInstance() {
+	if (FBXpInstance == nullptr) {
+		MessageBox(0, "FBXのインスタンスが生成されていません", "", MB_OK);
+	}
+	return *FBXpInstance;
+}
 
-struct ModelDataFBX {
-	int PolygonNum;//総ポリゴン数
-	int PolygonVertexNum;//ポリゴン頂点インデックス数
-	int* IndexAry;//ポリゴン頂点インデックス配列
-	D3DXVECTOR4* Positions;//頂点座標配列
-	std::vector<D3DXVECTOR3*> NormalVector;//法線ベクトル配列
-	std::vector<std::string> uvSetName;
-	std::vector<std::string> textures;
-	std::vector<D3DXVECTOR2> uvBuffer;
-	int MaterialCount;
-	Color_RGB Ambient;
-	Color_RGB Diffuse;
-	Color_RGB Emissive;
-};
-
-void GetTextureNames(FbxSurfaceLambert* lambert, const FbxProperty& prop, ModelDataFBX* pMeshData) {
-
+void FBXLoader::GetTextureNames(
+	FbxSurfaceLambert* lambert,
+	const FbxProperty& prop,
+	ModelDataFBX* pMeshData)
+{
 	//FbxLayeredTexture の数を取得
 	int layeredTextureCount = prop.GetSrcObjectCount();
 
@@ -103,8 +94,8 @@ void GetTextureNames(FbxSurfaceLambert* lambert, const FbxProperty& prop, ModelD
 	}
 }
 
-void GetTexture(FbxMesh* pMesh, ModelDataFBX* pMeshData) {
-
+void FBXLoader::GetTexture(FbxMesh* pMesh, ModelDataFBX* pMeshData)
+{
 	//ノードの取得
 	FbxNode* node = pMesh->GetNode();
 	if (node == 0) {
@@ -130,7 +121,7 @@ void GetTexture(FbxMesh* pMesh, ModelDataFBX* pMeshData) {
 
 				// Lambertにダウンキャスト
 				FbxSurfaceLambert* lambert = (FbxSurfaceLambert*)material;
-				
+
 				// アンビエント
 				FbxProperty property = lambert->FindProperty(FbxSurfaceMaterial::sAmbient);
 				pMeshData->Ambient.red = (float)lambert->Ambient.Get().mData[0];
@@ -146,11 +137,11 @@ void GetTexture(FbxMesh* pMesh, ModelDataFBX* pMeshData) {
 				GetTextureNames(lambert, property, pMeshData);
 
 				// エミッシブ
-				pMeshData->Emissive.red = (float)lambert->Emissive.Get().mData[0];
+				/*pMeshData->Emissive.red = (float)lambert->Emissive.Get().mData[0];
 				pMeshData->Emissive.green = (float)lambert->Emissive.Get().mData[1];
 				pMeshData->Emissive.blue = (float)lambert->Emissive.Get().mData[2];
 				property = lambert->FindProperty(FbxSurfaceMaterial::sEmissive);
-				GetTextureNames(lambert, property, pMeshData);
+				GetTextureNames(lambert, property, pMeshData);*/
 
 				//// バンプ
 				//bump_.x = (float)lambert->GetBump().Get()[0];
@@ -167,13 +158,13 @@ void GetTexture(FbxMesh* pMesh, ModelDataFBX* pMeshData) {
 			//	FbxSurfacePhong* phong = (FbxSurfacePhong*)material;
 			//}
 
-			
+
 		}
 	}
 }
 
-void GetVertexUV(FbxMesh* pMesh, ModelDataFBX* pMeshData) {
-
+void FBXLoader::GetVertexUV(FbxMesh* pMesh, ModelDataFBX* pMeshData)
+{
 	int UVLayerCount = pMesh->GetElementUVCount();
 
 	for (int i = 0; UVLayerCount > i; i++) {
@@ -239,8 +230,8 @@ void GetVertexUV(FbxMesh* pMesh, ModelDataFBX* pMeshData) {
 	}
 }
 
-void GetVertexNormal(FbxMesh* pMesh, ModelDataFBX* pMeshData) {
-
+void FBXLoader::GetVertexNormal(FbxMesh* pMesh, ModelDataFBX* pMeshData)
+{
 	int normalLayerCount = pMesh->GetElementNormalCount();
 
 	for (int i = 0; normalLayerCount > i; i++) {
@@ -275,8 +266,8 @@ void GetVertexNormal(FbxMesh* pMesh, ModelDataFBX* pMeshData) {
 				}
 				break;
 
-			//case FbxGeometryElement::eIndexToDirect:
-			//	break;
+				//case FbxGeometryElement::eIndexToDirect:
+				//	break;
 			}
 			break;
 
@@ -288,8 +279,8 @@ void GetVertexNormal(FbxMesh* pMesh, ModelDataFBX* pMeshData) {
 	}
 }
 
-
-void GetPosition(FbxMesh* pMesh, ModelDataFBX* pMeshData) {
+void FBXLoader::GetPosition(FbxMesh* pMesh, ModelDataFBX* pMeshData)
+{
 	//総ポリゴン数の取得
 	pMeshData->PolygonNum = pMesh->GetPolygonCount();
 
@@ -297,15 +288,15 @@ void GetPosition(FbxMesh* pMesh, ModelDataFBX* pMeshData) {
 	pMeshData->PolygonVertexNum = pMesh->GetPolygonVertexCount();
 
 	// 頂点数
-	int controlNum = pMesh->GetControlPointsCount();
+	pMeshData->controlNum = pMesh->GetControlPointsCount();
 
 	// 頂点座標配列
 	FbxVector4* src = pMesh->GetControlPoints();
 
 	// コピー
-	pMeshData->Positions = new D3DXVECTOR4[controlNum];
+	pMeshData->Positions = new D3DXVECTOR4[pMeshData->controlNum];
 
-	for (int i = 0; i < controlNum; ++i) {
+	for (int i = 0; i < pMeshData->controlNum; ++i) {
 		pMeshData->Positions[i].x = src[i][0];
 		pMeshData->Positions[i].y = src[i][1];
 		pMeshData->Positions[i].z = src[i][2];
@@ -314,6 +305,8 @@ void GetPosition(FbxMesh* pMesh, ModelDataFBX* pMeshData) {
 
 	//ポリゴン頂点インデックス配列の取得
 	pMeshData->IndexAry = pMesh->GetPolygonVertices();
+	pMeshData->IndexAry = new int [pMeshData->PolygonVertexNum];
+	memcpy(pMeshData->IndexAry, pMesh->GetPolygonVertices(), sizeof(int) * pMeshData->PolygonVertexNum);
 
 	//総ポリゴン数回す
 	for (int p = 0; p < pMeshData->PolygonNum; p++) {
@@ -329,7 +322,7 @@ void GetPosition(FbxMesh* pMesh, ModelDataFBX* pMeshData) {
 	}
 }
 
-void GetMesh(FbxNode* node,ModelDataFBX* p) {
+void FBXLoader::GetMesh(FbxNode* node, ModelDataFBX* pMeshData) {
 
 	//--- ノードの属性を取得 ---//
 	FbxNodeAttribute* attr = node->GetNodeAttribute();
@@ -343,10 +336,10 @@ void GetMesh(FbxNode* node,ModelDataFBX* p) {
 		case FbxNodeAttribute::eMesh:
 			//メッシュの取得
 			FbxMesh* pMesh = node->GetMesh();
-			GetPosition(pMesh,p);
-			GetVertexNormal(pMesh, p);
-			GetVertexUV(pMesh, p);
-			GetTexture(pMesh, p);
+			GetPosition(pMesh, pMeshData);
+			GetVertexNormal(pMesh, pMeshData);
+			GetVertexUV(pMesh, pMeshData);
+			GetTexture(pMesh, pMeshData);
 
 			break;
 		}
@@ -355,7 +348,59 @@ void GetMesh(FbxNode* node,ModelDataFBX* p) {
 	//--- 子ノードの再帰探査 ---//
 	int childCount = node->GetChildCount();
 	for (int i = 0; i < childCount; i++) {
-		GetMesh(node->GetChild(i), p);
+		GetMesh(node->GetChild(i), pMeshData);
 	}
 }
 
+void FBXLoader::FBXLoad(ModelDataFBX* pMeshData, char* filePath) {
+
+	FbxManager* manager = NULL;
+	FbxScene* scene = NULL;
+
+	manager = FbxManager::Create();
+
+	if (NULL != manager) {
+
+		//インポータの作成
+		FbxImporter* importer = FbxImporter::Create(manager, "");
+
+		if (NULL != importer) {
+
+			//シーンの作成（受け取る人)
+			scene = FbxScene::Create(manager, "");
+
+			if (NULL != scene) {
+
+				//インポータの初期化
+				bool result = importer->Initialize(filePath);
+
+				if (result) {
+
+					//インポート！
+					result = importer->Import(scene);
+					FbxGeometryConverter GeometryConverter(manager);
+					GeometryConverter.Triangulate(scene, true);
+					std::cout << "準備完了！" << std::endl;
+				}
+			}
+		}
+
+		//インポータの削除
+		importer->Destroy();
+
+		//ルートノードを取得
+		FbxNode* rootNode = scene->GetRootNode();
+
+		if (NULL != rootNode) {
+			//ルートノードの子ノード数を取得
+			int childCount = rootNode->GetChildCount();
+
+			//子ノードの数だけ探査をする
+			for (int i = 0; childCount > i; i++) {
+				GetMesh(rootNode->GetChild(i), pMeshData);
+			}
+		}
+
+		manager->Destroy();
+	}
+}

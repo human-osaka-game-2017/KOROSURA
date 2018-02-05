@@ -89,6 +89,15 @@
     <ClCompile Include="Shader.cpp">
       <Filter>Shader</Filter>
     </ClCompile>
+    <ClCompile Include="Source.cpp">
+      <Filter>Lib\DX9\FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="FBX.cpp">
+      <Filter>Lib\DX9\FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="FBXModel.cpp">
+      <Filter>Lib\DX9\FBX</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">
@@ -267,6 +276,9 @@
     </ClInclude>
     <ClInclude Include="Shader.h">
       <Filter>Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="FBXModel.h">
+      <Filter>Lib\DX9\FBX</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
