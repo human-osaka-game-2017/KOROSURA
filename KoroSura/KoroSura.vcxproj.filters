@@ -104,6 +104,9 @@
     <ClCompile Include="NowLoadingLogo.cpp">
       <Filter>Application\Scene\Loading</Filter>
     </ClCompile>
+    <ClCompile Include="Slime.cpp">
+      <Filter>Application\Scene\Main\Material\Character\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">
@@ -192,6 +195,21 @@
     </Filter>
     <Filter Include="Application\Scene\Loading">
       <UniqueIdentifier>{46049e5d-e148-4d79-a739-59d5bfc14bf2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\Main\Material">
+      <UniqueIdentifier>{847c944f-bf8a-40b7-a630-bfbaef49507f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\Main\Material\Character">
+      <UniqueIdentifier>{f400a5dc-19b7-4b1e-8894-28509cccbb37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\Main\Material\Character\Enemy">
+      <UniqueIdentifier>{8354d909-778a-4e75-a9ed-5e022f2fcbf6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\Main\Material\Character\Player">
+      <UniqueIdentifier>{a2f61f5d-e7ef-4102-9803-d851ee439520}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\Main\Material\Gimmick">
+      <UniqueIdentifier>{58f420de-aa0d-4667-95e2-8a339ecfa4e5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -309,6 +327,21 @@
     </ClInclude>
     <ClInclude Include="NowLoadingLogo.h">
       <Filter>Application\Scene\Loading</Filter>
+    </ClInclude>
+    <ClInclude Include="MaterialBase.h">
+      <Filter>Application\Scene\Main\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterBase.h">
+      <Filter>Application\Scene\Main\Material\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyBase.h">
+      <Filter>Application\Scene\Main\Material\Character\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Slime.h">
+      <Filter>Application\Scene\Main\Material\Character\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="GimmickBase.h">
+      <Filter>Application\Scene\Main\Material\Gimmick</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

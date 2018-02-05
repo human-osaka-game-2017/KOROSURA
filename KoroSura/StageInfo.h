@@ -68,6 +68,7 @@ private:
 	void Save();
 
 	static StageInfo* m_pInstance;
+	int* m_Map = nullptr;
 	int m_CurrentStage = 1;
 	int m_UnLockingNum = 1;
 };
