@@ -24,6 +24,12 @@ public:
 		float tv;			// テクスチャ座標y
 	};
 
+	struct UserTexture
+	{
+		std::string TextureName;
+		LPDIRECT3DTEXTURE9 pTexture;
+	};
+
 	struct ModelDataFBX {
 		int PolygonNum;//総ポリゴン数
 		int PolygonVertexNum;//ポリゴン頂点インデックス数
@@ -32,7 +38,7 @@ public:
 		D3DXVECTOR4* Positions;//頂点座標配列	
 		std::vector<D3DXVECTOR3*> NormalVector;//法線ベクトル配列
 		std::vector<std::string> uvSetName;
-		std::vector<std::string> textures;
+		std::vector<UserTexture> textures;
 		std::vector<D3DXVECTOR2> uvBuffer;
 		int MaterialCount;
 		Color_RGB Ambient;

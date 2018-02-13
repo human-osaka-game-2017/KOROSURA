@@ -11,7 +11,7 @@ void FBXModel::Init(char* filepath)
 		tmpPos.x = m_FBXModelDate.Positions[m_FBXModelDate.IndexAry[i]].x;
 		tmpPos.y = m_FBXModelDate.Positions[m_FBXModelDate.IndexAry[i]].y;
 		tmpPos.z = m_FBXModelDate.Positions[m_FBXModelDate.IndexAry[i]].z;
-		D3DVECTOR tmpNormal;
+		//D3DVECTOR tmpNormal;
 		/*tmpNormal.x = m_FBXModelDate.NormalVector[i]->x;
 		tmpNormal.y = m_FBXModelDate.NormalVector[i]->y;
 		tmpNormal.z = m_FBXModelDate.NormalVector[i]->z;*/
@@ -33,11 +33,12 @@ void FBXModel::Destroy()
 
 void FBXModel::Draw()
 {
-	///@todo fvf‚ÌÝ’è‚Í•ª‚¯‚Æ‚«‚½‚¢‚©‚È
 	(*DirectGraphics::GetInstance().GetDevice())->SetFVF(USERVERTEX_FVF);
-
-	(*DirectGraphics::GetInstance().GetDevice())->SetTexture(0, NULL);
-
+	for (unsigned int n = 0; n < m_FBXModelDate.textures.size(); n++)
+	{
+		(*DirectGraphics::GetInstance().GetDevice())->
+			SetTexture(n, m_FBXModelDate.textures[n].pTexture);
+	}
 	(*DirectGraphics::GetInstance().GetDevice())->DrawPrimitiveUP(
 		D3DPT_TRIANGLELIST,
 		m_FBXModelDate.PolygonNum,

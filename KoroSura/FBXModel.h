@@ -4,7 +4,7 @@
 #include "FBX.h"
 
 using std::string;
-#define USERVERTEX_FVF (D3DFVF_XYZ | D3DFVF_TEX1)
+#define USERVERTEX_FVF (D3DFVF_XYZ | D3DFVF_NORMAL | D3DFVF_TEX1)
 
 class FBXModel {
 public:

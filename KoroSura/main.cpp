@@ -77,7 +77,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	SceneManager game;
 
-	ModelManager::GetInstance().LoadFBXFile("FBXModel/SURAKORO.fbx");
+	ModelManager::GetInstance().LoadFBXFile("FBXModel/fence_2.fbx");
 
 	MSG msg;
 	ZeroMemory(&msg, sizeof(msg));
@@ -103,33 +103,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 				++frCnt;
 				Lib::GetInstance().UpdateKey();
 				//ワールドトランスフォーム（絶対座標変換）
-				D3DXMATRIXA16 matWorld, matPosition;
-				D3DXMatrixIdentity(&matWorld);
-				D3DXMatrixTranslation(&matPosition, 0,0,
-					0);
-				D3DXMatrixMultiply(&matWorld, &matWorld, &matPosition);
-				(*DirectGraphics::GetInstance().GetDevice())->SetTransform(D3DTS_WORLD, &matWorld);
-				//別の関数に入れたほうがいいビューとプロジェクションは一緒の関数のほうがいい
-				// ビュートランスフォーム（視点座標変換）
-				D3DXMATRIXA16 matView, matCameraPosition, matHeading, matPitch;
-				tmp -= 0.1f;
-				D3DXVECTOR3 vecEyePt(0, tmp, -50); //カメラ（視点）位置
-				D3DXVECTOR3 vecLookatPt(0, 0, 0);//注視位置
-				
-				D3DXVECTOR3 vecUpVec(0.0f, 1.0f, 0.0f);//上方位置
-				D3DXMatrixIdentity(&matView);
-				D3DXMatrixRotationY(&matHeading, 0);
-				D3DXMatrixRotationX(&matPitch, 0);
-				D3DXMatrixLookAtLH(&matCameraPosition, &vecEyePt, &vecLookatPt, &vecUpVec);
-				D3DXMatrixMultiply(&matView, &matView, &matHeading);
-				D3DXMatrixMultiply(&matView, &matView, &matPitch);
-				D3DXMatrixMultiply(&matView, &matView, &matCameraPosition);
-				(*DirectGraphics::GetInstance().GetDevice())->SetTransform(D3DTS_VIEW, &matView);
-				//*/
-				// プロジェクショントランスフォーム（射影変換）
-				D3DXMATRIXA16 matProj;
-				D3DXMatrixPerspectiveFovLH(&matProj, D3DX_PI / 4.0f, 1.0f, 1.0f, 100.0f);
-				(*DirectGraphics::GetInstance().GetDevice())->SetTransform(D3DTS_PROJECTION, &matProj);
+				Lib::GetInstance().TransformWorld(D3DXVECTOR3(0, 0, 0));
+				Lib::GetInstance().TransformView(D3DXVECTOR3(0, 0, 200), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(0, 1, 0));
+				Lib::GetInstance().TransformProjection(45.0f,1.0f,1.0f,1000.0f);
+
 				// ライトをあてる 白色で鏡面反射ありに設定
 				D3DXVECTOR3 vecDirection(1, 1, 1);
 				D3DLIGHT9 light;

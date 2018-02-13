@@ -1,4 +1,5 @@
 #include "FBX.h"
+#include"DirectGraphics.h"
 
 FBXLoader* FBXLoader::FBXpInstance = nullptr;
 
@@ -44,7 +45,8 @@ void FBXLoader::GetTextureNames(
 				if (texture) {
 
 					//テクスチャ名を取得
-					std::string textureName = texture->GetRelativeFileName();
+					UserTexture tmp;
+					tmp.TextureName = texture->GetRelativeFileName();
 
 					//UVSet名を取得
 					std::string UVSetName = texture->UVSet.Get().Buffer();
@@ -52,7 +54,14 @@ void FBXLoader::GetTextureNames(
 					//UVSet名を比較し対応しているテクスチャなら保持
 					for (int k = 0; k < pMeshData->uvSetName.size(); ++k) {
 						if (pMeshData->uvSetName[k] == UVSetName) {
-							pMeshData->textures.push_back(textureName);
+							D3DXCreateTextureFromFile(
+								(*DirectGraphics::GetInstance().GetDevice()),
+								pMeshData->uvSetName[k].c_str(),
+								&tmp.pTexture);
+							{
+								tmp.pTexture = NULL;
+							}
+							pMeshData->textures.push_back(tmp);
 							break;
 						}
 					}
@@ -75,8 +84,8 @@ void FBXLoader::GetTextureNames(
 				if (texture) {
 
 					//テクスチャ名を取得
-					//std::string textureName = texture->GetName();
-					std::string textureName = texture->GetRelativeFileName();
+					UserTexture tmp;
+					tmp.TextureName = texture->GetRelativeFileName();
 
 					//UVSet名を取得
 					std::string UVSetName = texture->UVSet.Get().Buffer();
@@ -84,7 +93,14 @@ void FBXLoader::GetTextureNames(
 					//UVSet名を比較し対応しているテクスチャなら保持
 					for (int k = 0; k < pMeshData->uvSetName.size(); ++k) {
 						if (pMeshData->uvSetName[k] == UVSetName) {
-							pMeshData->textures.push_back(textureName);
+							D3DXCreateTextureFromFile(
+								(*DirectGraphics::GetInstance().GetDevice()),
+								pMeshData->uvSetName[k].c_str(),
+								&tmp.pTexture);
+							{
+								tmp.pTexture = NULL;
+							}
+							pMeshData->textures.push_back(tmp);
 							break;
 						}
 					}
@@ -152,11 +168,11 @@ void FBXLoader::GetTexture(FbxMesh* pMesh, ModelDataFBX* pMeshData)
 				//pMeshData->Transparency = (float)lambert->TransparentColor.Get().mData[0];
 
 			}
-			//else if (material->GetClassId().Is(FbxSurfacePhong::ClassId)) {
+			else if (material->GetClassId().Is(FbxSurfacePhong::ClassId)) {
 
-			//	// Phongにダウンキャスト
-			//	FbxSurfacePhong* phong = (FbxSurfacePhong*)material;
-			//}
+				// Phongにダウンキャスト
+				FbxSurfacePhong* phong = (FbxSurfacePhong*)material;
+			}
 
 
 		}
@@ -253,13 +269,14 @@ void FBXLoader::GetVertexNormal(FbxMesh* pMesh, ModelDataFBX* pMeshData)
 
 				//法線数を取得
 				int normalCount = normal->GetDirectArray().GetCount();
-				pMeshData->NormalVector.push_back(new D3DXVECTOR3);
 
 				//-----------------------------------------------------------------------
 				// eDirect の場合データは順番に格納されているのでそのまま保持
 				//-----------------------------------------------------------------------
+
 				for (int i = 0; normalCount > i; i++) {
-					//法線の取得
+					//法線の取得 
+					pMeshData->NormalVector.push_back(new D3DXVECTOR3);
 					pMeshData->NormalVector[i]->x = (float)normal->GetDirectArray().GetAt(i)[0];
 					pMeshData->NormalVector[i]->y = (float)normal->GetDirectArray().GetAt(i)[1];
 					pMeshData->NormalVector[i]->z = (float)normal->GetDirectArray().GetAt(i)[2];
