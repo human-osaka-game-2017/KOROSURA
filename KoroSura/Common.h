@@ -5,5 +5,6 @@
 #define WINDOW_HEIGHT	900
 
 #define PROPERTY_FILENAME	"Property\\Property.ini"
+#define MATERIAL_FILENAME	"Property\\Material.ini"
 
 #endif

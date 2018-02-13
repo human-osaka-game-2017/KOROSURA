@@ -136,6 +136,7 @@
     <ClCompile Include="Fader.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="Fonts.cpp" />
+    <ClCompile Include="InitProperty.cpp" />
     <ClCompile Include="Lib.cpp" />
     <ClCompile Include="Loader.cpp" />
     <ClCompile Include="Loading.cpp" />
@@ -179,6 +180,7 @@
     <ClInclude Include="Font.h" />
     <ClInclude Include="Fonts.h" />
     <ClInclude Include="GimmickBase.h" />
+    <ClInclude Include="InitProperty.h" />
     <ClInclude Include="Lib.h" />
     <ClInclude Include="Loader.h" />
     <ClInclude Include="Loading.h" />

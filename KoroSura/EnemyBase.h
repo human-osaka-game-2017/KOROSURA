@@ -9,9 +9,10 @@
 #include"CharacterBase.h"
 
 class EnemyBase :public CharacterBase {
-
+public:
 	enum struct ENEMY_KIND {
-		SPIDER
+		SPIDER,
+		MAX
 	};
 
 	EnemyBase(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level, ENEMY_KIND kind):

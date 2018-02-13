@@ -107,6 +107,9 @@
     <ClCompile Include="Slime.cpp">
       <Filter>Application\Scene\Main\Material\Character\Player</Filter>
     </ClCompile>
+    <ClCompile Include="InitProperty.cpp">
+      <Filter>Application\Property</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">
@@ -210,6 +213,9 @@
     </Filter>
     <Filter Include="Application\Scene\Main\Material\Gimmick">
       <UniqueIdentifier>{58f420de-aa0d-4667-95e2-8a339ecfa4e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Property">
+      <UniqueIdentifier>{294bf03e-13d7-4da7-8fb9-c19f3907621d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -342,6 +348,9 @@
     </ClInclude>
     <ClInclude Include="GimmickBase.h">
       <Filter>Application\Scene\Main\Material\Gimmick</Filter>
+    </ClInclude>
+    <ClInclude Include="InitProperty.h">
+      <Filter>Application\Property</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

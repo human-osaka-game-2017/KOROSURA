@@ -6,12 +6,31 @@
 #ifndef STAGEINFO_H
 #define STAGEINFO_H
 
+#include<d3dx9.h>
+
  /**
   * @brief		StageInfoクラス(シングルトン)
   * @details	StageSelectSceneクラスからステージ番号を受け取り、Loaderに渡すクラス。ステージがロックされているかどうかも管理する
   */
 class StageInfo{
 public:
+	struct MaterialData {
+		D3DXVECTOR3 pos;
+		float	angle;
+		int		level;
+		int		kind;
+	};
+
+	struct StageData {
+		MaterialData	slimeData;
+		MaterialData*	enemyData;
+		MaterialData*	gimmickData;
+		D3DXVECTOR3		mapSize;
+		int		enemyNum;
+		int		gimmickNum;
+		int*	map;
+	};
+
 	/**
 	 * @brief	インスタンスを返す関数
 	 * @return	StageInfo&	StageInfoクラスのインスタンス
@@ -27,7 +46,7 @@ public:
 
 	/**
 	 * @brief		現在のステージ番号を取得
-	 * @return int	現在のステージ番号
+	 * @return int	現在のステージ番号(0番始まり)
 	 */
 	int GetCurrentStage()
 	{
@@ -36,7 +55,7 @@ public:
 
 	/**
 	 * @brief		現在のステージ番号を設定
-	 * @param[in]	CurrentStageNum	設定したいステージ番号
+	 * @param[in]	CurrentStageNum	設定したいステージ番号(０～７)
 	 */
 	void SetSelectStage(int selectStage)
 	{
@@ -58,6 +77,23 @@ public:
 	 */
 	void UnLock();
 
+	void SetStageData(const StageData& stageData) 
+	{
+		m_StageData = stageData;
+	}
+
+	StageData* GetStageData()
+	{
+		return &m_StageData;
+	}
+
+	void DeleteStageData()
+	{
+		delete[] m_StageData.enemyData;
+		delete[] m_StageData.gimmickData;
+		delete[] m_StageData.map;
+	}
+
 	static const int kStageMax = 8;
 
 private:
@@ -68,7 +104,7 @@ private:
 	void Save();
 
 	static StageInfo* m_pInstance;
-	int* m_Map = nullptr;
+	StageData m_StageData;
 	int m_CurrentStage = 1;
 	int m_UnLockingNum = 1;
 };

@@ -12,6 +12,7 @@ class GimmickBase :public MaterialBase {
 public:
 	enum struct GIMMICK_KIND {
 		FENCE, //!çÚ
+		MAX
 	};
 
 	GimmickBase(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, GIMMICK_KIND kind):

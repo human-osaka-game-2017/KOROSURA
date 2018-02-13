@@ -31,6 +31,7 @@ SceneBase::SCENE_ID Loading::Update()
 	SceneBase::SCENE_ID retSceneId = SCENE_ID::LOAD;
 
 	DWORD loadResult;
+
 	//スレッドが終了しているかチェック
 	GetExitCodeThread(m_hThread, &loadResult);
 	if (loadResult != STILL_ACTIVE) {
