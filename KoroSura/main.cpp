@@ -77,7 +77,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	SceneManager game;
 
-	ModelManager::GetInstance().LoadFBXFile("FBXModel/fence_2.fbx");
+	ModelManager::GetInstance().LoadFBXFile("FBXModel/house_red.fbx");
 
 	MSG msg;
 	ZeroMemory(&msg, sizeof(msg));
@@ -104,11 +104,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 				Lib::GetInstance().UpdateKey();
 				//ワールドトランスフォーム（絶対座標変換）
 				Lib::GetInstance().TransformWorld(D3DXVECTOR3(0, 0, 0));
-				Lib::GetInstance().TransformView(D3DXVECTOR3(0, 0, 200), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(0, 1, 0));
-				Lib::GetInstance().TransformProjection(45.0f,1.0f,1.0f,1000.0f);
+				Lib::GetInstance().TransformView(D3DXVECTOR3(0, 500, 1000), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(0, 1, 0));
+				Lib::GetInstance().TransformProjection(45.0f, WINDOW_WIDTH / WINDOW_HEIGHT,1.0f,5000.0f);
 
 				// ライトをあてる 白色で鏡面反射ありに設定
-				D3DXVECTOR3 vecDirection(1, 1, 1);
+				D3DXVECTOR3 vecDirection(0, -1, 0);
 				D3DLIGHT9 light;
 				ZeroMemory(&light, sizeof(D3DLIGHT9));
 				light.Type = D3DLIGHT_DIRECTIONAL;
@@ -119,9 +119,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 				light.Specular.g = 1.0f;
 				light.Specular.b = 1.0f;
 				D3DXVec3Normalize((D3DXVECTOR3*)&light.Direction, &vecDirection);
-				light.Range = 200.0f;
+				light.Range = 5000.0f;
 				(*DirectGraphics::GetInstance().GetDevice())->SetLight(0, &light);
 				(*DirectGraphics::GetInstance().GetDevice())->LightEnable(0, TRUE);
+				(*DirectGraphics::GetInstance().GetDevice())->SetRenderState(D3DRS_LIGHTING, TRUE);
+				(*DirectGraphics::GetInstance().GetDevice())->SetRenderState(D3DRS_AMBIENT, 0xff050505);
 				Renderer::GetInstance().StartRender();
 				ModelManager::GetInstance().Draw();
 				Renderer::GetInstance().EndRender();

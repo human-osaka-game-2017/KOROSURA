@@ -21,7 +21,7 @@ void FBXLoader::GetTextureNames(
 	ModelDataFBX* pMeshData)
 {
 	//FbxLayeredTexture の数を取得
-	int layeredTextureCount = prop.GetSrcObjectCount();
+	int layeredTextureCount = prop.GetSrcObjectCount<FbxLayeredTexture>();
 
 	//アタッチされたテクスチャが FbxLayeredTexture の場合
 	if (0 < layeredTextureCount) {
@@ -54,11 +54,10 @@ void FBXLoader::GetTextureNames(
 					//UVSet名を比較し対応しているテクスチャなら保持
 					for (int k = 0; k < pMeshData->uvSetName.size(); ++k) {
 						if (pMeshData->uvSetName[k] == UVSetName) {
-							D3DXCreateTextureFromFile(
+							if (FAILED(D3DXCreateTextureFromFile(
 								(*DirectGraphics::GetInstance().GetDevice()),
-								pMeshData->uvSetName[k].c_str(),
-								&tmp.pTexture);
-							{
+								tmp.TextureName.c_str(),
+								&tmp.pTexture))) {
 								tmp.pTexture = NULL;
 							}
 							pMeshData->textures.push_back(tmp);
@@ -93,11 +92,10 @@ void FBXLoader::GetTextureNames(
 					//UVSet名を比較し対応しているテクスチャなら保持
 					for (int k = 0; k < pMeshData->uvSetName.size(); ++k) {
 						if (pMeshData->uvSetName[k] == UVSetName) {
-							D3DXCreateTextureFromFile(
+							if (FAILED (D3DXCreateTextureFromFile(
 								(*DirectGraphics::GetInstance().GetDevice()),
-								pMeshData->uvSetName[k].c_str(),
-								&tmp.pTexture);
-							{
+								tmp.TextureName.c_str(),
+								&tmp.pTexture))){
 								tmp.pTexture = NULL;
 							}
 							pMeshData->textures.push_back(tmp);
@@ -217,9 +215,9 @@ void FBXLoader::GetVertexUV(FbxMesh* pMesh, ModelDataFBX* pMeshData)
 				D3DXVECTOR2 temp;
 				for (int j = 0; j < uvIndexCount; ++j) {
 
-					temp.x = (float)UV->GetDirectArray().GetAt(uvIndex->GetAt(i))[0];
+					temp.x = (float)UV->GetDirectArray().GetAt(uvIndex->GetAt(j))[0];
 
-					temp.y = 1.0f - (float)UV->GetDirectArray().GetAt(uvIndex->GetAt(i))[1];
+					temp.y = 1.0f - (float)UV->GetDirectArray().GetAt(uvIndex->GetAt(j))[1];
 
 					pMeshData->uvBuffer.push_back(temp);
 				}
@@ -344,7 +342,7 @@ void FBXLoader::GetMesh(FbxNode* node, ModelDataFBX* pMeshData) {
 	//--- ノードの属性を取得 ---//
 	FbxNodeAttribute* attr = node->GetNodeAttribute();
 
-	if (NULL != attr) {
+	if (nullptr != attr) {
 
 		//--- 属性の判別 ---//
 		switch (attr->GetAttributeType()) {
@@ -381,12 +379,12 @@ void FBXLoader::FBXLoad(ModelDataFBX* pMeshData, char* filePath) {
 		//インポータの作成
 		FbxImporter* importer = FbxImporter::Create(manager, "");
 
-		if (NULL != importer) {
+		if (nullptr != importer) {
 
 			//シーンの作成（受け取る人)
 			scene = FbxScene::Create(manager, "");
 
-			if (NULL != scene) {
+			if (nullptr != scene) {
 
 				//インポータの初期化
 				bool result = importer->Initialize(filePath);
@@ -408,7 +406,7 @@ void FBXLoader::FBXLoad(ModelDataFBX* pMeshData, char* filePath) {
 		//ルートノードを取得
 		FbxNode* rootNode = scene->GetRootNode();
 
-		if (NULL != rootNode) {
+		if (nullptr != rootNode) {
 			//ルートノードの子ノード数を取得
 			int childCount = rootNode->GetChildCount();
 
