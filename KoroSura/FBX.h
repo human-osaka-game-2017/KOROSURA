@@ -19,7 +19,7 @@ public:
 	struct UserVertex
 	{
 		D3DVECTOR Vec;		// 頂点データ
-		//D3DVECTOR Normal;	// 法線データ
+		D3DVECTOR Normal;	// 法線データ
 		float tu;			// テクスチャ座標x
 		float tv;			// テクスチャ座標y
 	};

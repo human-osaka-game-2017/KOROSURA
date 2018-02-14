@@ -287,7 +287,20 @@ void FBXLoader::GetVertexNormal(FbxMesh* pMesh, ModelDataFBX* pMeshData)
 			break;
 
 		case FbxGeometryElement::eByPolygonVertex:
-			break;
+			switch (reference) {
+			case FbxGeometryElement::eDirect:
+				//–@ü”‚ðŽæ“¾
+				int normalCount = normal->GetDirectArray().GetCount();
+
+				for (int i = 0; normalCount > i; i++) {
+					//–@ü‚ÌŽæ“¾ 
+					pMeshData->NormalVector.push_back(new D3DXVECTOR3);
+					pMeshData->NormalVector[i]->x = (float)normal->GetDirectArray().GetAt(i)[0];
+					pMeshData->NormalVector[i]->y = (float)normal->GetDirectArray().GetAt(i)[1];
+					pMeshData->NormalVector[i]->z = (float)normal->GetDirectArray().GetAt(i)[2];
+				}
+				break;
+			}
 		default:
 			break;
 		}

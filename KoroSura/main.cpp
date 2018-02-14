@@ -108,21 +108,24 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 				Lib::GetInstance().TransformProjection(45.0f, WINDOW_WIDTH / WINDOW_HEIGHT,1.0f,5000.0f);
 
 				// ƒ‰ƒCƒg‚ð‚ ‚Ä‚é ”’F‚Å‹¾–Ê”½ŽË‚ ‚è‚ÉÝ’è
-				D3DXVECTOR3 vecDirection(0, -1, 0);
+				D3DXVECTOR3 vecDirection(0, 0, 1);
 				D3DLIGHT9 light;
 				ZeroMemory(&light, sizeof(D3DLIGHT9));
 				light.Type = D3DLIGHT_DIRECTIONAL;
 				light.Diffuse.r = 1.0f;
 				light.Diffuse.g = 1.0f;
 				light.Diffuse.b = 1.0f;
-				light.Specular.r = 1.0f;
-				light.Specular.g = 1.0f;
-				light.Specular.b = 1.0f;
+				light.Attenuation0 = 0.f;
+				light.Attenuation1 = 1.f;
+				light.Attenuation2 = 0.f;
+				light.Position.x = 0.f;
+				light.Position.y = 100.f;
+				light.Position.z = 1000.f;
 				D3DXVec3Normalize((D3DXVECTOR3*)&light.Direction, &vecDirection);
 				light.Range = 5000.0f;
 				(*DirectGraphics::GetInstance().GetDevice())->SetLight(0, &light);
-				(*DirectGraphics::GetInstance().GetDevice())->LightEnable(0, TRUE);
-				(*DirectGraphics::GetInstance().GetDevice())->SetRenderState(D3DRS_LIGHTING, TRUE);
+				(*DirectGraphics::GetInstance().GetDevice())->LightEnable(0, FALSE);
+				(*DirectGraphics::GetInstance().GetDevice())->SetRenderState(D3DRS_LIGHTING, FALSE);
 				(*DirectGraphics::GetInstance().GetDevice())->SetRenderState(D3DRS_AMBIENT, 0xff050505);
 				Renderer::GetInstance().StartRender();
 				ModelManager::GetInstance().Draw();
