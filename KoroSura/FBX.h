@@ -46,7 +46,7 @@ public:
 	};
 
 	static void CreateFBXInstance();
-	static FBXLoader& FBXGetInstance();
+	static FBXLoader& GetInstance();
 
 	void GetTextureNames(
 		FbxSurfaceLambert* lambert,

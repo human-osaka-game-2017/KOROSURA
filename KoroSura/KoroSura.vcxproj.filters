@@ -98,6 +98,12 @@
     <ClCompile Include="FBXModel.cpp">
       <Filter>Lib\DX9\FBX</Filter>
     </ClCompile>
+    <ClCompile Include="DirLightSource.cpp">
+      <Filter>Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect.cpp">
+      <Filter>Shader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">
@@ -279,6 +285,12 @@
     </ClInclude>
     <ClInclude Include="FBXModel.h">
       <Filter>Lib\DX9\FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="DirLightSource.h">
+      <Filter>Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>Shader</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

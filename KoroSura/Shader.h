@@ -3,23 +3,33 @@
  * @brief	シェーダーを使った描画
  * @author	北川　翔馬
  */
-//
-//#ifndef SHADER_H
-//#define SHADER_H
-//
-//#include <string>
-//#include <map>
-//
-//#define INK_SIZE (0.008f) //! インクのサイズ
-//#define INK_COLOR (D3DXCOLOR(0.0f, 0.0f, 0.0f, 0.0f)) //! インクの色
-//
-//#define BASIC_SHADER_NAME ("Shader/BasicShader.fx") //! fxファイルの読み込み
-//
-//class ShaderManager {
-//public:
-//	bool LoadingShader(std::string file_name);
-//	LPD3DXEFFECT GetEffect(std::string key) { return m_ShaderList[key]; }
-//private:
-//	std::map < std::string, LPD3DXEFFECT> m_ShaderList;
-//};
-//#endif
+#ifndef SHADER_H
+#define SHADER_H
+
+#include <string>
+#include <map>
+#include <d3dx9.h>
+
+#include "Effect.h"
+
+//Effectクラスを管理するクラス
+class FxManager {
+public:
+	static void CreateInstance();
+	static FxManager& GetpInstance() {return *pInstance;}
+	//Effectを返す
+	Effect* GetEffect(std::string EffectPath) { return m_FxEffect[EffectPath]; }
+	//Effectの解放処理
+	void ReleaseEffect(std::string EffectPath);
+	//Effectの生成
+	void CreateEffect(std::string EffectPath);
+	
+private:
+	FxManager();
+	~FxManager() {};
+	static FxManager* pInstance;
+	//Effectクラスを持つ
+	std::map<std::string,Effect*> m_FxEffect;
+
+};
+#endif

@@ -8,7 +8,7 @@ void FBXLoader::CreateFBXInstance() {
 		FBXpInstance = new FBXLoader();
 	}
 }
-FBXLoader& FBXLoader::FBXGetInstance() {
+FBXLoader& FBXLoader::GetInstance() {
 	if (FBXpInstance == nullptr) {
 		MessageBox(0, "FBXのインスタンスが生成されていません", "", MB_OK);
 	}
@@ -83,6 +83,7 @@ void FBXLoader::GetTextureNames(
 				if (texture) {
 
 					//テクスチャ名を取得
+
 					UserTexture tmp;
 					tmp.TextureName = texture->GetRelativeFileName();
 
@@ -91,6 +92,7 @@ void FBXLoader::GetTextureNames(
 
 					//UVSet名を比較し対応しているテクスチャなら保持
 					for (int k = 0; k < pMeshData->uvSetName.size(); ++k) {
+					/*	std::string textureName = "FBX\\FBXTexture\\" + tmp.TextureName;*/
 						if (pMeshData->uvSetName[k] == UVSetName) {
 							if (FAILED (D3DXCreateTextureFromFile(
 								(*DirectGraphics::GetInstance().GetDevice()),

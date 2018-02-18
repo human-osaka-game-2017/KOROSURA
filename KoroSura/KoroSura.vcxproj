@@ -132,6 +132,8 @@
     <ClCompile Include="DirectGraphics.cpp" />
     <ClCompile Include="DirectInput.cpp" />
     <ClCompile Include="DirectSound.cpp" />
+    <ClCompile Include="DirLightSource.cpp" />
+    <ClCompile Include="Effect.cpp" />
     <ClCompile Include="Fader.cpp" />
     <ClCompile Include="FBX.cpp" />
     <ClCompile Include="FBXModel.cpp" />
@@ -168,6 +170,8 @@
     <ClInclude Include="DirectGraphics.h" />
     <ClInclude Include="DirectInput.h" />
     <ClInclude Include="DirectSound.h" />
+    <ClInclude Include="DirLightSource.h" />
+    <ClInclude Include="Effect.h" />
     <ClInclude Include="Fader.h" />
     <ClInclude Include="FBX.h" />
     <ClInclude Include="FBXModel.h" />
