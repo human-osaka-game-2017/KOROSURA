@@ -37,12 +37,12 @@ void ColliderManager::Collide()
 
 void ColliderManager::FormGroup()
 {
-
+	m_PtrColliders.emplace_back();
 }
 
 void ColliderManager::DeleteGroup(int groupIndex)
 {
-
+	m_PtrColliders.erase(m_PtrColliders.begin() + groupIndex);
 }
 
 void ColliderManager::Register(ColliderBase* pCollider, int groupIndex)

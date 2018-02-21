@@ -9,6 +9,8 @@
 #include "ColliderBase.h"
 #include "Shape.h"
 
+class SphereCollider;
+
  /**
   * @brief		直方体あたり判定クラス
   * @details	直方体であたり判定したいときは、ObjectBaseクラスを継承し、OBBクラスを作って、このクラスを作る。
@@ -48,6 +50,7 @@ public:
 
 private:
 	bool CollideOBBToOBB(const BoxCollider& collider) const;
+	bool CollideOBBToSphere(const SphereCollider& collider) const;
 	FLOAT LenSegOnSeparateAxis(const D3DXVECTOR3& Sep, const D3DXVECTOR3& e1, const D3DXVECTOR3& e2, const D3DXVECTOR3* e3 = nullptr) const;
 	Shape::OBB* m_pObb;
 };

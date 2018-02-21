@@ -1,6 +1,8 @@
 #include "InitProperty.h"
 #include"Common.h"
 
+InitProperty* InitProperty::m_pInstance = nullptr;
+
 InitProperty::InitProperty()
 {
 	LoadSlime();
@@ -44,8 +46,14 @@ void InitProperty::LoadPhysics()
 {
 	m_InitialData.gravity = GetPrivateProfileInt("PhysicalVal", "Gravity", 1, PROPERTY_FILENAME) / 100.0f;
 
-	m_InitialData.coefficientOfFriction = 
-		GetPrivateProfileInt("PhysicalVal", "ñÄéCåWêî", 1, PROPERTY_FILENAME) / 100.0f;
+	m_InitialData.dynamicCoefficientOfFriction = 
+		GetPrivateProfileInt("PhysicalVal", "ìÆñÄéCåWêî", 1, PROPERTY_FILENAME) / 100.0f;
+
+	m_InitialData.staticCoefficientOfFriction =
+		GetPrivateProfileInt("PhysicalVal", "ê√é~ñÄéCåWêî", 1, PROPERTY_FILENAME) / 100.0f;
+
+	m_InitialData.deg =
+		GetPrivateProfileInt("PhysicalVal", "åXÇØÇÈäpìx", 1, PROPERTY_FILENAME) / 100.0f;
 }
 
 void InitProperty::LoadSpider()

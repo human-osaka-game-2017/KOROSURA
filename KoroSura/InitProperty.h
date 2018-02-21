@@ -39,7 +39,9 @@ public:
 		MaterialInitialData	enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::MAX)];
 		MaterialInitialData	gimmickInitialData[static_cast<int>(GimmickBase::GIMMICK_KIND::MAX)];
 		float gravity;
-		float coefficientOfFriction; //!	–€CŒW”
+		float dynamicCoefficientOfFriction; //!	“®–€CŒW”
+		float staticCoefficientOfFriction; //!	Ã~–€CŒW”
+		float deg; //ƒ}ƒCƒtƒŒ[ƒ€ŒX‚¯‚éŠp“x ƒŠƒl[ƒ€‚·‚é
 	};
 
 	const InitialData& GetInitialData() {

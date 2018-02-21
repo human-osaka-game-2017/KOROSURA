@@ -44,7 +44,6 @@ void Renderer::TransformWorld(const D3DXVECTOR3& pos, float degHeading, float de
 	//行列の初期化
 	D3DXMatrixIdentity(&matWorld);
 	D3DXMatrixIdentity(&matRotation);
-	D3DXMatrixIdentity(&matRotation);
 
 	//ワールドトランスフォーム（絶対座標変換）
 	//拡縮

@@ -110,6 +110,21 @@
     <ClCompile Include="InitProperty.cpp">
       <Filter>Application\Property</Filter>
     </ClCompile>
+    <ClCompile Include="Physics.cpp">
+      <Filter>Application\Scene\Main\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsManager.cpp">
+      <Filter>Application\Scene\Main\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Application\Scene\Main\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix.cpp">
+      <Filter>Lib</Filter>
+    </ClCompile>
+    <ClCompile Include="SphereCollider.cpp">
+      <Filter>Lib\Collider</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">
@@ -216,6 +231,12 @@
     </Filter>
     <Filter Include="Application\Property">
       <UniqueIdentifier>{294bf03e-13d7-4da7-8fb9-c19f3907621d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\Main\Physics">
+      <UniqueIdentifier>{669efed6-a372-4c21-8d43-ec35043bd113}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\Main\Camera">
+      <UniqueIdentifier>{e144554a-67db-455c-9b64-7055abd13d5e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -351,6 +372,21 @@
     </ClInclude>
     <ClInclude Include="InitProperty.h">
       <Filter>Application\Property</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics.h">
+      <Filter>Application\Scene\Main\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsManager.h">
+      <Filter>Application\Scene\Main\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Application\Scene\Main\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix.h">
+      <Filter>Lib</Filter>
+    </ClInclude>
+    <ClInclude Include="SphereCollider.h">
+      <Filter>Lib\Collider</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

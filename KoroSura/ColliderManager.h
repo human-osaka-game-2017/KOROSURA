@@ -5,6 +5,7 @@
 
 class ColliderBase;
 
+//コライダーをグループに分類し、さらにフィルターをかけて判定したい奴と判定する
 class ColliderManager{
 public:
 	static ColliderManager& GetInstance()
@@ -15,6 +16,7 @@ public:
 		return *m_pInstance;
 	}
 
+	//当たったやつに登録されている関数を呼んでいます
 	void Collide();
 
 	void FormGroup();

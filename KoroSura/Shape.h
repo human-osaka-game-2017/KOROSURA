@@ -25,6 +25,52 @@ namespace Shape {
 		SPHERE,	//! 3D 球
 	};
 
+	class Sphere {
+	public:
+		Sphere() {}
+		~Sphere() {}
+
+		/**
+		* @brief		位置を取得
+		* @return		D3DXVECTOR3&	位置ベクトル
+		*/
+		D3DXVECTOR3& GetPos()
+		{
+			return m_Pos;
+		}
+
+		/**
+		 * @brief		位置を設定
+		 * @param[in]	pos	位置
+		 */
+		void SetPos(const D3DXVECTOR3& pos)
+		{
+			m_Pos = pos;
+		}
+
+		/**
+		 * @brief		半径を取得
+		 * @return		float	半径
+		 */
+		float GetRadius()
+		{
+			return m_Radius;
+		}
+
+		/**
+		 * @brief		半径を設定
+		 * @param[in]	radius	半径
+		 */
+		void SetPos(float radius)
+		{
+			m_Radius = radius;
+		}
+
+	private:
+		D3DXVECTOR3 m_Pos;				//! 位置
+		float m_Radius;					//! 半径
+	};
+
 	/**
 	 * @brief	直方体クラス
 	 * @details 位置、方向ベクトル３つ、長さ３つを持ち、BoxColliderクラスが保持するクラス
@@ -32,10 +78,10 @@ namespace Shape {
 	class OBB {
 	public:
 		/*** @brief OBBクラスのコンストラクタ*/
-		OBB() {};
+		OBB() {}
 
 		/*** @brief OBBクラスのデストラクタ*/
-		virtual ~OBB() {};
+		virtual ~OBB() {}
 
 		/**
 		 * @brief		位置を取得
@@ -68,7 +114,7 @@ namespace Shape {
 		/**
 		 * @brief		方向ベクトルを設定
 		 * @param[in]	index	設定したい方向ベクトル軸番号
-		 * @param[in]	direct	方向ベクトル(単位ベクトルのため長さは１にする)
+		 * @param[in]	direct	方向ベクトル(単位ベクトルのため長さは１にすること)
 		 */
 		void SetDirect(int index, const D3DXVECTOR3& direct)
 		{
@@ -95,6 +141,7 @@ namespace Shape {
 			m_Length[index] = length;
 		}
 
+		//todo
 		/**
 		 * @brief		直方体を回転させる関数
 		 * @param[in]	axisIndex	回転させる際の中心になる軸番号

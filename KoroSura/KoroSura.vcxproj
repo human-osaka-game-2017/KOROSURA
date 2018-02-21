@@ -127,6 +127,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BoxCollider.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="SphereCollider.cpp" />
     <ClCompile Include="ColliderBase.cpp" />
     <ClCompile Include="ColliderManager.cpp" />
     <ClCompile Include="Description.cpp" />
@@ -142,8 +144,11 @@
     <ClCompile Include="Loading.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainScene.cpp" />
+    <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="ModelManager.cpp" />
     <ClCompile Include="NowLoadingLogo.cpp" />
+    <ClCompile Include="Physics.cpp" />
+    <ClCompile Include="PhysicsManager.cpp" />
     <ClCompile Include="PushEnterKeyLogo.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ResultScene.cpp" />
@@ -166,7 +171,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BoxCollider.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="CharacterBase.h" />
+    <ClInclude Include="SphereCollider.h" />
     <ClInclude Include="ColliderBase.h" />
     <ClInclude Include="ColliderManager.h" />
     <ClInclude Include="Common.h" />
@@ -186,9 +193,12 @@
     <ClInclude Include="Loading.h" />
     <ClInclude Include="MainScene.h" />
     <ClInclude Include="MaterialBase.h" />
+    <ClInclude Include="Matrix.h" />
     <ClInclude Include="ModelManager.h" />
     <ClInclude Include="NowLoadingLogo.h" />
     <ClInclude Include="ObjectBase.h" />
+    <ClInclude Include="Physics.h" />
+    <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="PushEnterKeyLogo.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="ResultScene.h" />

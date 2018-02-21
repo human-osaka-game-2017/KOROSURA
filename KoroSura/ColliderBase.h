@@ -60,6 +60,9 @@ public:
 
 	virtual bool Collide(const ColliderBase& collider)const = 0;
 
+protected:
+	float GetLengthOBBToPoint(Shape::OBB &obb, D3DXVECTOR3 &pos);
+
 private:
 	ObjectData m_ObjectData;
 	std::function<void(std::vector<ObjectData*>*)> m_Function;

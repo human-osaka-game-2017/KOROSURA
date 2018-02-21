@@ -1,4 +1,5 @@
-#include "BoxCollider.h"
+#include"BoxCollider.h"
+#include"SphereCollider.h"
 
 BoxCollider::BoxCollider(const char* className, ObjectBase* pObject, Shape::OBB* pObb, std::function<void(std::vector<ObjectData*>*)> function, unsigned long categoryBits, unsigned long maskBits):
 	ColliderBase(className,pObject,function,categoryBits,maskBits,Shape::SHAPE_ID::BOX),
@@ -27,7 +28,12 @@ bool BoxCollider::Collide(const ColliderBase& collider) const
 	return ret;
 }
 
-bool BoxCollider::CollideOBBToOBB(const BoxCollider& collider)const
+bool BoxCollider::CollideOBBToSphere(const SphereCollider& collider) const
+{
+	//GetLengthOBBToPoint()
+}
+
+bool BoxCollider::CollideOBBToOBB(const BoxCollider& collider) const
 {
 	Shape::OBB	obb = collider.GetObb();
 
