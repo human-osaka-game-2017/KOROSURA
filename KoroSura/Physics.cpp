@@ -10,7 +10,7 @@ Physics::~Physics()
 {
 }
 
-D3DXVECTOR3* Physics::GetFallVec(D3DXVECTOR3* fallVec, const D3DXVECTOR3& currentPos)
+D3DXVECTOR3* Physics::GetRollVec(D3DXVECTOR3* rollVec, const D3DXVECTOR3& currentPos)
 {
 	//ñ@ê¸
 	D3DXVECTOR3 normalVec = PhysicsManager::GetInstance().GetNormalVector();
@@ -33,14 +33,34 @@ D3DXVECTOR3* Physics::GetFallVec(D3DXVECTOR3* fallVec, const D3DXVECTOR3& curren
 		(normalVec.x*(pow(normalVec.z, 2) + pow(normalVec.x, 2))) + pos.z - (pos.x*normalVec.z) / normalVec.x;
 
 	if (pos.y < 0) {
-		*fallVec = pos - crossPos;
+		*rollVec = pos - crossPos;
 	}
 	else {
-		*fallVec = crossPos - pos;
+		*rollVec = crossPos - pos;
 	}
 
 	//ê≥ãKâª
-	D3DXVec3Normalize(fallVec, fallVec);
+	D3DXVec3Normalize(rollVec, rollVec);
 
-	return fallVec;
+	return rollVec;
+}
+
+float Physics::GetRollVelocity()
+{
+	//ñ@ê¸
+	D3DXVECTOR3 normalVec = PhysicsManager::GetInstance().GetNormalVector();
+
+	//ínñ ÇÃx-zÇÃåXÇ´
+	float rad = D3DX_PI - acos(normalVec.y / D3DXVec3Length(&normalVec));
+
+	//if sinÉ∆ < É cosÉ∆
+	if (sin(rad) < PhysicsManager::GetInstance().GetStaticCoefficientOfFriction()*cos(rad)) {
+		m_Velocity = 0;
+	}
+	else {
+		float gravity = PhysicsManager::GetInstance().GetGravity();
+		m_Velocity += gravity*sin(rad) - PhysicsManager::GetInstance().GetDynamicCoefficientOfFriction()*gravity*cos(rad);
+	}
+
+	return m_Velocity;
 }

@@ -29,7 +29,22 @@ public:
 		return m_Slope;
 	}
 
-	//入力で平面を傾けている
+	float GetGravity() 
+	{
+		return kGravity;
+	}
+
+	float GetDynamicCoefficientOfFriction()
+	{
+		return kDynamicCoefficientOfFriction;
+	}
+
+	float GetStaticCoefficientOfFriction()
+	{
+		return kStaticCoefficientOfFriction;
+	}
+
+	//入力で平面を傾け、法線を更新
 	void Update();
 
 private:
