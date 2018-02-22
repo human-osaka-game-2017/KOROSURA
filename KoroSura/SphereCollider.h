@@ -19,7 +19,22 @@ public:
 
 	virtual ~SphereCollider();
 
+	const Shape::Sphere& GetSphere() const
+	{
+		return *m_pSphere;
+	}
+
+	/**
+	 * @brief		‚ ‚½‚è”»’èŠÖ”
+	 * @param[in]	collider	‚ ‚½‚è”»’è‚·‚é‘Šècollider
+	 * @return		bool		“–‚½‚Á‚Ä‚¢‚½‚çtrue‚»‚¤‚Å‚È‚©‚Á‚½‚çfalse
+	 * @details		OBB‚ÆSphere‚ğ¯•Ê‚µA‚ ‚½‚è”»’è‚·‚éB
+	 */
+	virtual bool Collide(const ColliderBase& collider) const;
+
 private:
+	bool CollideOBBToOBB(const BoxCollider& collider) const;
+	bool CollideOBBToSphere(const SphereCollider& collider) const;
 	Shape::Sphere* m_pSphere;
 };
 #endif
