@@ -92,11 +92,11 @@ void FBXLoader::GetTextureNames(
 
 					//UVSet名を比較し対応しているテクスチャなら保持
 					for (int k = 0; k < pMeshData->uvSetName.size(); ++k) {
-					/*	std::string textureName = "FBX\\FBXTexture\\" + tmp.TextureName;*/
+						std::string textureName = "FBX\\FBXTexture\\" + tmp.TextureName;
 						if (pMeshData->uvSetName[k] == UVSetName) {
 							if (FAILED (D3DXCreateTextureFromFile(
 								(*DirectGraphics::GetInstance().GetDevice()),
-								tmp.TextureName.c_str(),
+								textureName.c_str(),
 								&tmp.pTexture))){
 								tmp.pTexture = NULL;
 							}

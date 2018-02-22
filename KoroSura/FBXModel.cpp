@@ -3,7 +3,7 @@
 
 void FBXModel::Init(char* filepath)
 {
-	FBXLoader::FBXGetInstance().FBXLoad(&m_FBXModelDate,filepath);
+	FBXLoader::GetInstance().FBXLoad(&m_FBXModelDate,filepath);
 	m_VertexNum = m_FBXModelDate.PolygonNum / 3;
 	m_Vertex = new FBXLoader::UserVertex[m_FBXModelDate.PolygonVertexNum];
 	for (int i = 0; i < m_FBXModelDate.PolygonVertexNum; i++) {

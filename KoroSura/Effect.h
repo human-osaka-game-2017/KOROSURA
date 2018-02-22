@@ -8,11 +8,12 @@ class Effect {
 public:
 	//Fxファイルの読み込み
 	Effect(std::string FxPath);
-	~Effect();
+	~Effect() {};
 	//Shaderの開始
 	void BeginPass();
 	//Shaderの終わり
 	void EndPass();
+	LPD3DXEFFECT GetEffect() { return m_Effect; }
 private:
 	void LoadingFx(std::string fxfilePath);
 	LPD3DXEFFECT m_Effect;
