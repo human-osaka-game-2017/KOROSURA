@@ -31,6 +31,7 @@ bool BoxCollider::Collide(const ColliderBase& collider) const
 bool BoxCollider::CollideOBBToSphere(const SphereCollider& collider) const
 {
 	//GetLengthOBBToPoint()
+	return true;
 }
 
 bool BoxCollider::CollideOBBToOBB(const BoxCollider& collider) const

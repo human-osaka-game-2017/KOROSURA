@@ -3,6 +3,8 @@
 
 #include"ColliderBase.h"
 
+class BoxCollider;
+
 class SphereCollider :public ColliderBase{
 public:
 	/**
