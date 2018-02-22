@@ -4,6 +4,8 @@
 #include<map>
 #include<d3dx9.h>
 
+#include"FBXModel.h"
+
 using std::string;
 
 class ModelManager {
@@ -23,15 +25,21 @@ public:
 
 	//Xファイルからデータを読み込みます
 	//第一引数 ファイルへのパス
-	//第二引数 そのメッシュのID
 	HRESULT LoadXFile(const char* fileName);
 
+	HRESULT LoadFBXFile(char* fileName);
+
+	const FBXModel& GetFBXDate(char* fileName){return m_FBXDate[fileName];}
+
+	void Draw();
 private:
 	static ModelManager* pInstance;
 	ModelManager();
 	~ModelManager();
 
 	std::map<string, ModelData> m_MeshData;
+
+	std::map<string, FBXModel> m_FBXDate;
 
 	ModelManager(const ModelManager&);
 	void operator =(const ModelManager&);

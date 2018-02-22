@@ -1,5 +1,6 @@
 #include"ModelManager.h"
 #include"DirectGraphics.h"
+#include"FBXModel.h"
 
 ModelManager* ModelManager::pInstance = nullptr;
 
@@ -73,4 +74,18 @@ void ModelManager::CancelMesh(const char* fileName) {
 	delete m_MeshData[fileName].pMeshTextures;
 	SAFE_RELEASE(m_MeshData[fileName].pMesh);
 	m_MeshData.erase(fileName);
+}
+
+HRESULT ModelManager::LoadFBXFile(char* fileName)
+{
+	m_FBXDate[fileName] = FBXModel();
+	m_FBXDate[fileName].Init(fileName);
+	return S_OK;
+}
+
+void ModelManager::Draw()
+{
+	m_FBXDate["FBX\\FBXModel\\sky.fbx"].Draw();
+	/*m_FBXDate["FBX\\FBXModel\\house_red.fbx"].Draw();
+	m_FBXDate["FBX\\FBXModel\\fence.fbx"].Draw();*/
 }

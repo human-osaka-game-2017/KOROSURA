@@ -1,6 +1,16 @@
 #include"Lib.h"
 #include"Common.h"
 #include"SceneManager.h"
+#include "FBXModel.h"
+#include "DirectGraphics.h"
+#include "Renderer.h"
+#include "ModelManager.h"
+#include "Shader.h"
+#include "Effect.h"
+
+//PlayerやEnemyごとに一つ持たせる
+D3DXHANDLE		g_Technique;	//!< テクニックハンドル.
+
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wp, LPARAM lp) {
 	switch (msg)
@@ -70,7 +80,31 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	ShowCursor(false);
 
 	Lib::CreateInstance(hWnd, hInstance);
+	FBXLoader::CreateFBXInstance();
+	FxManager::CreateInstance();
+
+
 	SceneManager game;
+
+	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\house_red.fbx");
+	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\sky.fbx");
+
+	D3DXHANDLE World;
+	D3DXHANDLE View;
+	D3DXHANDLE Proj;
+	D3DXHANDLE Light;
+	//////////////////////////////////////////////////////////////////////////////////
+	//sampleで置いている
+	//////////////////////////////////////////////////////////////////////////////////
+	FxManager::GetpInstance().CreateEffect("Shader\\BasicShader.fx");
+	//テクニックハンドルの取得
+	//Effectごとにやればいい
+	g_Technique = FxManager::GetpInstance().GetFxEffect("Shader\\BasicShader.fx")->GetEffect()->GetTechniqueByName("Basic");
+	World = FxManager::GetpInstance().GetFxEffect("Shader\\BasicShader.fx")->GetEffect()->GetParameterByName(NULL,"World");
+	View = FxManager::GetpInstance().GetFxEffect("Shader\\BasicShader.fx")->GetEffect()->GetParameterByName(NULL, "View");
+	Proj = FxManager::GetpInstance().GetFxEffect("Shader\\BasicShader.fx")->GetEffect()->GetParameterByName(NULL, "Proj");
+	Light = FxManager::GetpInstance().GetFxEffect("Shader\\BasicShader.fx")->GetEffect()->GetParameterByName(NULL, "Light");
+
 
 	MSG msg;
 	ZeroMemory(&msg, sizeof(msg));
@@ -80,6 +114,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	timeBeginPeriod(1);
 	int frCnt = 0;
+
+	float tmp = 0;
 
 	while (msg.message != WM_QUIT) {
 
@@ -93,7 +129,46 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 			if (currentTime - prevTime >= 1000 / 60) {
 				++frCnt;
 				Lib::GetInstance().UpdateKey();
-				game.Run();
+				//ワールドトランスフォーム（絶対座標変換）
+				Lib::GetInstance().TransformWorld(D3DXVECTOR3(0, 0, 0));
+				Lib::GetInstance().TransformView(D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(1, 1, 2), D3DXVECTOR3(0, 1, 0));
+				Lib::GetInstance().TransformProjection(45.0f, WINDOW_WIDTH / WINDOW_HEIGHT,1.0f,20000.0f);
+				//変換行列の取得
+				//Effectごとにやればいい
+				D3DXMATRIX WorldMatrix;
+				(*DirectGraphics::GetInstance().GetDevice())->GetTransform(D3DTS_WORLD, &WorldMatrix);
+				Lib::GetInstance().TransformWorld(D3DXVECTOR3(200, 0, 0));
+				D3DXMATRIX WorldMatrix2;
+				(*DirectGraphics::GetInstance().GetDevice())->GetTransform(D3DTS_WORLD, &WorldMatrix2);
+				D3DXMATRIX ViewMatrix;
+				(*DirectGraphics::GetInstance().GetDevice())->GetTransform(D3DTS_VIEW, &ViewMatrix);
+				D3DXMATRIX ProjMatrix;
+				(*DirectGraphics::GetInstance().GetDevice())->GetTransform(D3DTS_PROJECTION, &ProjMatrix);
+
+				// 定数の設定
+				//Effectごとにやればいい
+				FxManager::GetpInstance().GetFxEffect("Shader\\BasicShader.fx")->GetEffect()->SetMatrix(World, &WorldMatrix);
+				FxManager::GetpInstance().GetFxEffect("Shader\\BasicShader.fx")->GetEffect()->SetMatrix(View, &ViewMatrix);
+				FxManager::GetpInstance().GetFxEffect("Shader\\BasicShader.fx")->GetEffect()->SetMatrix(Proj, &ProjMatrix);
+				//ライトの向き
+				static D3DXVECTOR4 LightDir = D3DXVECTOR4(1, 0, 0, 0);
+				LightDir.x -= 0.01f;
+				LightDir.y -= 0.02f;
+
+				//定数の設定
+				//Effectごとにやればいい
+				FxManager::GetpInstance().GetFxEffect("Shader\\BasicShader.fx")->GetEffect()->SetVector(Light, &LightDir);
+				Renderer::GetInstance().StartRender();
+				// シェーダーパスの開始.
+				FxManager::GetpInstance().GetFxEffect("Shader\\BasicShader.fx")->BeginPass();
+				ModelManager::GetInstance().Draw();
+				FxManager::GetpInstance().GetFxEffect("Shader\\BasicShader.fx")->EndPass();
+				FxManager::GetpInstance().GetFxEffect("Shader\\BasicShader.fx")->GetEffect()->SetMatrix(World, &WorldMatrix2);
+				FxManager::GetpInstance().GetFxEffect("Shader\\BasicShader.fx")->BeginPass();
+				//ModelManager::GetInstance().Draw();
+				FxManager::GetpInstance().GetFxEffect("Shader\\BasicShader.fx")->EndPass();
+				Renderer::GetInstance().EndRender();
+				//game.Run();
 			}
 		}
 
@@ -104,6 +179,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		}
 	}
 	timeEndPeriod(1);
+	FxManager::GetpInstance().ReleaseEffect("Shader\\BasicShader.fx");
 
 	return (int)msg.wParam;
 }

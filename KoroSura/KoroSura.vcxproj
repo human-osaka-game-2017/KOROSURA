@@ -135,7 +135,11 @@
     <ClCompile Include="DirectGraphics.cpp" />
     <ClCompile Include="DirectInput.cpp" />
     <ClCompile Include="DirectSound.cpp" />
+    <ClCompile Include="DirLightSource.cpp" />
+    <ClCompile Include="Effect.cpp" />
     <ClCompile Include="Fader.cpp" />
+    <ClCompile Include="FBX.cpp" />
+    <ClCompile Include="FBXModel.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="Fonts.cpp" />
     <ClCompile Include="InitProperty.cpp" />
@@ -156,9 +160,11 @@
     <ClCompile Include="SceneFactory.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Selection.cpp" />
+    <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="Slime.cpp" />
     <ClCompile Include="SoundBufferManager.cpp" />
+    <ClCompile Include="Source.cpp" />
     <ClCompile Include="StageInfo.cpp" />
     <ClCompile Include="StageLogo.cpp" />
     <ClCompile Include="StageSelectBackground.cpp" />
@@ -182,8 +188,11 @@
     <ClInclude Include="DirectInput.h" />
     <ClInclude Include="DirectSound.h" />
     <ClInclude Include="EnemyBase.h" />
+    <ClInclude Include="DirLightSource.h" />
+    <ClInclude Include="Effect.h" />
     <ClInclude Include="Fader.h" />
     <ClInclude Include="FBX.h" />
+    <ClInclude Include="FBXModel.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="Fonts.h" />
     <ClInclude Include="GimmickBase.h" />
@@ -207,6 +216,7 @@
     <ClInclude Include="SceneFactory.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Selection.h" />
+    <ClInclude Include="Shader.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="Slime.h" />
     <ClInclude Include="SoundBufferManager.h" />
@@ -220,6 +230,18 @@
     <ClInclude Include="TitleBackground.h" />
     <ClInclude Include="TitleScene.h" />
     <ClInclude Include="Utility.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Shader\BasicShader.fx">
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">2.0</ShaderModel>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">/fx</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">2.0</ShaderModel>
+    </FxCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

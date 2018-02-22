@@ -125,6 +125,24 @@
     <ClCompile Include="SphereCollider.cpp">
       <Filter>Lib\Collider</Filter>
     </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Source.cpp">
+      <Filter>Lib\DX9\FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="FBX.cpp">
+      <Filter>Lib\DX9\FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="FBXModel.cpp">
+      <Filter>Lib\DX9\FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="DirLightSource.cpp">
+      <Filter>Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect.cpp">
+      <Filter>Shader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">
@@ -237,6 +255,9 @@
     </Filter>
     <Filter Include="Application\Scene\Main\Camera">
       <UniqueIdentifier>{e144554a-67db-455c-9b64-7055abd13d5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader">
+      <UniqueIdentifier>{9c4e1ac7-f169-4c61-950b-e126e1c60cb1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -388,5 +409,22 @@
     <ClInclude Include="SphereCollider.h">
       <Filter>Lib\Collider</Filter>
     </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="FBXModel.h">
+      <Filter>Lib\DX9\FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="DirLightSource.h">
+      <Filter>Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>Shader</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Shader\BasicShader.fx">
+      <Filter>Shader</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
