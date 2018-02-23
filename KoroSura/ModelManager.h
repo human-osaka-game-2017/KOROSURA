@@ -29,7 +29,7 @@ public:
 
 	HRESULT LoadFBXFile(char* fileName);
 
-	const FBXModel& GetFBXDate(char* fileName){return m_FBXDate[fileName];}
+	FBXModel& GetFBXDate(char* fileName){return m_FBXDate[fileName];}
 
 	void Draw();
 private:

@@ -11,7 +11,8 @@
 
 class Slime :public CharacterBase{
 public:
-	Slime(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level);
+	//, D3DXVECTOR3& normalVec, int level
+	Slime(D3DXVECTOR3& pos);
 	virtual ~Slime();
 
 	virtual void Update();

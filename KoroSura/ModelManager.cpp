@@ -85,7 +85,7 @@ HRESULT ModelManager::LoadFBXFile(char* fileName)
 
 void ModelManager::Draw()
 {
-	m_FBXDate["FBX\\FBXModel\\sky.fbx"].Draw();
+	m_FBXDate["FBX\\FBXModel\\fence.fbx"].Draw();
 	/*m_FBXDate["FBX\\FBXModel\\house_red.fbx"].Draw();
 	m_FBXDate["FBX\\FBXModel\\fence.fbx"].Draw();*/
 }

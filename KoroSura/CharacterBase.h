@@ -14,6 +14,7 @@ public:
 		MaterialBase(pos,normalVec),
 		m_Level(level)
 	{}
+	CharacterBase(D3DXVECTOR3& pos) : MaterialBase(pos){ m_Pos = pos; }
 
 	virtual ~CharacterBase() {};
 
