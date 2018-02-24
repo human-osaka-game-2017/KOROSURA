@@ -6,10 +6,15 @@
 
 class DirLightSource {
 public:
-	DirLightSource();
-	~DirLightSource();
+	static void CreateInstance();
+	static DirLightSource& GetpInstance() { return *pInstance; }
 	D3DXVECTOR4 GetlightDir() {return m_LightDir;}
+	void Update();
 private:
+	static DirLightSource* pInstance;
+
+	DirLightSource();
+	~DirLightSource() {};
 	D3DXVECTOR4 m_LightDir;
 };
 
