@@ -1,12 +1,13 @@
 #include"Lib.h"
 #include"Common.h"
 #include"SceneManager.h"
-#include "FBXModel.h"
-#include "DirectGraphics.h"
-#include "Renderer.h"
-#include "ModelManager.h"
-#include "Shader.h"
-#include "Effect.h"
+#include"FBXModel.h"
+#include"DirectGraphics.h"
+#include"Renderer.h"
+#include"ModelManager.h"
+#include"Shader.h"
+#include"Effect.h"
+#include"Terrain.h"
 
 //PlayerやEnemyごとに一つ持たせる
 D3DXHANDLE		g_Technique;	//!< テクニックハンドル.
@@ -115,7 +116,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	timeBeginPeriod(1);
 	int frCnt = 0;
 
-	float tmp = 0;
+	Terrain terrain;
 
 	while (msg.message != WM_QUIT) {
 
@@ -131,7 +132,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 				Lib::GetInstance().UpdateKey();
 				//ワールドトランスフォーム（絶対座標変換）
 				Lib::GetInstance().TransformWorld(D3DXVECTOR3(0, 0, 0));
-				Lib::GetInstance().TransformView(D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(1, 1, 2), D3DXVECTOR3(0, 1, 0));
+				Lib::GetInstance().TransformView(D3DXVECTOR3(350, -500, 500), D3DXVECTOR3(0, 0, 0), D3DXVECTOR3(0, 1, 0));
 				Lib::GetInstance().TransformProjection(45.0f, WINDOW_WIDTH / WINDOW_HEIGHT,1.0f,20000.0f);
 				//変換行列の取得
 				//Effectごとにやればいい
@@ -159,13 +160,16 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 				//Effectごとにやればいい
 				FxManager::GetpInstance().GetFxEffect("Shader\\BasicShader.fx")->GetEffect()->SetVector(Light, &LightDir);
 				Renderer::GetInstance().StartRender();
+
+				terrain.Draw();
+
 				// シェーダーパスの開始.
 				FxManager::GetpInstance().GetFxEffect("Shader\\BasicShader.fx")->BeginPass();
-				ModelManager::GetInstance().Draw();
+				ModelManager::GetInstance().Draw("FBX\\FBXModel\\house_red.fbx");
 				FxManager::GetpInstance().GetFxEffect("Shader\\BasicShader.fx")->EndPass();
 				FxManager::GetpInstance().GetFxEffect("Shader\\BasicShader.fx")->GetEffect()->SetMatrix(World, &WorldMatrix2);
 				FxManager::GetpInstance().GetFxEffect("Shader\\BasicShader.fx")->BeginPass();
-				//ModelManager::GetInstance().Draw();
+				ModelManager::GetInstance().Draw("FBX\\FBXModel\\sky.fbx");
 				FxManager::GetpInstance().GetFxEffect("Shader\\BasicShader.fx")->EndPass();
 				Renderer::GetInstance().EndRender();
 				//game.Run();

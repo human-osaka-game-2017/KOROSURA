@@ -143,6 +143,9 @@
     <ClCompile Include="Effect.cpp">
       <Filter>Shader</Filter>
     </ClCompile>
+    <ClCompile Include="Terrain.cpp">
+      <Filter>Application\Scene\Main\Material\Terrain</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">
@@ -258,6 +261,9 @@
     </Filter>
     <Filter Include="Shader">
       <UniqueIdentifier>{9c4e1ac7-f169-4c61-950b-e126e1c60cb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\Main\Material\Terrain">
+      <UniqueIdentifier>{8c5aef13-23c4-4cc4-aaa9-bc035cf3edc4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -420,6 +426,9 @@
     </ClInclude>
     <ClInclude Include="Effect.h">
       <Filter>Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Terrain.h">
+      <Filter>Application\Scene\Main\Material\Terrain</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

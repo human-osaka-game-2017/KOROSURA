@@ -170,6 +170,7 @@
     <ClCompile Include="StageSelectBackground.cpp" />
     <ClCompile Include="StageSelectScene.cpp" />
     <ClCompile Include="TeamLogo.cpp" />
+    <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="TitleBackground.cpp" />
     <ClCompile Include="TitleScene.cpp" />
@@ -226,6 +227,7 @@
     <ClInclude Include="StageSelectBase.h" />
     <ClInclude Include="StageSelectScene.h" />
     <ClInclude Include="TeamLogo.h" />
+    <ClInclude Include="Terrain.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="TitleBackground.h" />
     <ClInclude Include="TitleScene.h" />

@@ -42,7 +42,7 @@ void Loader::LoadMap(StageInfo::StageData* pStageData, std::string iniFileName, 
 	pStageData->mapSize.z=
 		GetPrivateProfileInt("Size", "Z", 1, iniFileName.c_str());
 
-	pStageData->map = new int[pStageData->mapSize.x*pStageData->mapSize.z];
+	pStageData->terrainData = new int[pStageData->mapSize.x*pStageData->mapSize.z];
 
 	//csvì«Ç›çûÇ›
 	FILE* pFile;
@@ -53,7 +53,7 @@ void Loader::LoadMap(StageInfo::StageData* pStageData, std::string iniFileName, 
 		for (int j = 0; j < pStageData->mapSize.z; j++)
 		{
 			//É|ÉCÉìÉ^Ç∏ÇÁÇµÇƒÇ‹Ç∑
-			fscanf_s(pFile, "%d,", (pStageData->map + static_cast<int>(j + i*pStageData->mapSize.x)));
+			fscanf_s(pFile, "%d,", (pStageData->terrainData + static_cast<int>(j + i*pStageData->mapSize.x)));
 		}
 	}
 	fclose(pFile);

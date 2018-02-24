@@ -3,6 +3,7 @@
 
 #include<d3dx9.h>
 
+//’n–Ê‚Ì‘€ì
 class PhysicsManager{
 public:
 	static PhysicsManager& GetInstance()

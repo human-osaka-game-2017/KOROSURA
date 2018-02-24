@@ -31,7 +31,8 @@ public:
 
 	const FBXModel& GetFBXDate(char* fileName){return m_FBXDate[fileName];}
 
-	void Draw();
+	void Draw(const char* fileName);
+
 private:
 	static ModelManager* pInstance;
 	ModelManager();
