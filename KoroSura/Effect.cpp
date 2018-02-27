@@ -13,6 +13,7 @@ void Effect::LoadingFx(std::string fxfilePath)
 	LPD3DXEFFECT effect = NULL;
 	LPD3DXBUFFER error;
 
+
 	D3DXCreateEffectFromFileA(
 		*pDXDevice,
 		fxfilePath.c_str(),
