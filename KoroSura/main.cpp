@@ -92,7 +92,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	SceneManager game;
 
 	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\sky.fbx");
-	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\ball.fbx");
+	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\fence.fbx");
 
 	MSG msg;
 	ZeroMemory(&msg, sizeof(msg));

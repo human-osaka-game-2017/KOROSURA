@@ -54,6 +54,6 @@ void Slime::Draw()
 	FxManager::GetpInstance().GetFxEffect("Shader\\BasicShader.fx")->EndPass();
 
 	FxManager::GetpInstance().GetFxEffect("Shader\\BasicShader.fx")->BeginPass();
-	ModelManager::GetInstance().GetFBXDate("FBX\\FBXModel\\ball.fbx").Draw();
+	ModelManager::GetInstance().GetFBXDate("FBX\\FBXModel\\fence.fbx").Draw();
 	FxManager::GetpInstance().GetFxEffect("Shader\\BasicShader.fx")->EndPass();
 }
