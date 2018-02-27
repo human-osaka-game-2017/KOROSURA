@@ -11,11 +11,13 @@
 #include <d3dx9.h>
 
 class Effect;
+
 //Effectクラスを管理するクラス
 class FxManager {
 public:
 	static void CreateInstance();
 	static FxManager& GetpInstance() {return *pInstance;}
+
 	//Effectクラスを返す
 	Effect* GetFxEffect(std::string EffectPath) { return m_FxEffect[EffectPath]; }
 	//Effectの解放処理
@@ -25,7 +27,10 @@ public:
 	
 private:
 	FxManager() {};
-	~FxManager() {};
+	~FxManager() 
+	{
+		FxManager::GetpInstance().ReleaseEffect("Shader\\BasicShader.fx");
+	};
 	static FxManager* pInstance;
 	//Effectクラスを持つ
 	std::map<std::string,Effect*> m_FxEffect;

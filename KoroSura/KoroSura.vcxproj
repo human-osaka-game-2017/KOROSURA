@@ -129,6 +129,7 @@
     <ClCompile Include="BoxCollider.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="FontUI.cpp" />
+    <ClCompile Include="Sky.cpp" />
     <ClCompile Include="SphereCollider.cpp" />
     <ClCompile Include="ColliderBase.cpp" />
     <ClCompile Include="ColliderManager.cpp" />
@@ -165,7 +166,6 @@
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="Slime.cpp" />
     <ClCompile Include="SoundBufferManager.cpp" />
-    <ClCompile Include="Source.cpp" />
     <ClCompile Include="StageInfo.cpp" />
     <ClCompile Include="StageLogo.cpp" />
     <ClCompile Include="StageSelectBackground.cpp" />
@@ -183,6 +183,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CharacterBase.h" />
     <ClInclude Include="FontUI.h" />
+    <ClInclude Include="Sky.h" />
     <ClInclude Include="SphereCollider.h" />
     <ClInclude Include="ColliderBase.h" />
     <ClInclude Include="ColliderManager.h" />

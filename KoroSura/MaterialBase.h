@@ -27,10 +27,8 @@ protected:
 	D3DXVECTOR3 m_NormalVec;	//!方向ベクトル
 
 	D3DXHANDLE m_World;
-	D3DXHANDLE m_View;
-	D3DXHANDLE m_Proj;
-	D3DXHANDLE m_Light;
+
 	//PlayerやEnemyごとに一つ持たせる
-	D3DXHANDLE		m_Technique;	//!< テクニックハンドル.
+	D3DXHANDLE m_Technique;	//!< テクニックハンドル.
 };
 #endif

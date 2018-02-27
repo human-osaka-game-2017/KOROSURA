@@ -1,6 +1,7 @@
 #include"Loader.h"
 #include<string>
 #include"Common.h"
+#include"ModelManager.h"
 
 Loader::Loader()
 {
@@ -30,6 +31,10 @@ void WINAPI Loader::ExecThread()
 	LoadSlime(&stageData, iniFileName);
 	
 	StageInfo::GetInstance().SetStageData(stageData);
+
+	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\sky.fbx");
+	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\board.fbx");
+	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\fence.fbx");
 
 	OutputDebugString("loadèIóπ");
 }

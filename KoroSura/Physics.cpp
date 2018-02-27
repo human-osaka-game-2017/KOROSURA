@@ -22,11 +22,11 @@ D3DXVECTOR3* Physics::GetRollVec(D3DXVECTOR3* rollVec, const D3DXVECTOR3& curren
 	//currentPosÇí ÇÈÅ™ÇÃíºê¸ÇÃêÇê¸
 	//ÇÃåç∑Ç∑ÇÈç¿ïW
 	D3DXVECTOR3 crossPos;
-	crossPos.x = ((pos.z*normalVec.z*normalVec.x) - pow(normalVec.z, 2)*pos.x)
-		/ (pow(normalVec.x, 2) - pow(normalVec.z, 2));
+	crossPos.x = (pow(normalVec.z, 2)*pos.x - normalVec.x*normalVec.z*pos.z) /
+		(pow(normalVec.x, 2) + pow(normalVec.z, 2));
 	crossPos.y = 0.0f;
-	crossPos.z = (normalVec.x / normalVec.z)*((pos.z*normalVec.z*normalVec.x) - pow(normalVec.z, 2)*pos.x)
-		/ (pow(normalVec.x, 2) - pow(normalVec.z, 2));
+	crossPos.z = -(normalVec.x / normalVec.z)*(pow(normalVec.z, 2)*pos.x - normalVec.x*normalVec.z*pos.z) /
+		(pow(normalVec.x, 2) + pow(normalVec.z, 2));
 
 	if (pos.y < 0) {
 		*rollVec = pos - crossPos;

@@ -38,5 +38,5 @@ void Camera::Update()
 	Lib::GetInstance().TransformView(m_Pos, lookAtPos, D3DXVECTOR3(0, 1, 0));
 	Lib::GetInstance().TransformProjection(45.0f, WINDOW_WIDTH / WINDOW_HEIGHT, 1.0f, 20000.0f);
 
-	PhysicsManager::GetInstance().SetCameraVec(m_LookatPos - m_Pos);
+	PhysicsManager::GetInstance().SetCameraVec(*m_LookatPos - m_Pos);
 }

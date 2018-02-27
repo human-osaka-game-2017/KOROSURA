@@ -32,6 +32,15 @@ public:
 
 	const D3DXVECTOR3& GetNormalVector() {return m_NormalVector;}
 
+	//傾きがあるかどうか
+	bool CanRoll()
+	{
+		if (m_NormalVector.z == 0.0) {
+			return false;
+		}
+		return true;
+	}
+
 	//入力で平面を傾け、法線を更新
 	void Update();
 

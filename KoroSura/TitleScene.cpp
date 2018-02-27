@@ -27,6 +27,8 @@ SceneBase::SCENE_ID TitleScene::Update()
 {
 	SCENE_ID retSceneId = SCENE_ID::TITLE;
 
+	Lib::GetInstance().UpdateKey();
+
 	if (m_WasPushedKey) {
 		++m_FrCnt;
 	}
@@ -39,7 +41,8 @@ SceneBase::SCENE_ID TitleScene::Update()
 		(*itr)->Update();
 	}
 
-	//１度だけでいいので前フレと比較
+	//１度だけでいい
+	//前フレと比較
 	static bool hasBackground = m_CanPushKey;
 	if (hasBackground != m_CanPushKey) {
 		m_PtrObjects.push_back(new TitleBackground);

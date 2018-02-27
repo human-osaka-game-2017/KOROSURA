@@ -128,14 +128,11 @@
     <ClCompile Include="Shader.cpp">
       <Filter>Shader</Filter>
     </ClCompile>
-    <ClCompile Include="Source.cpp">
-      <Filter>Lib\DX9\FBX</Filter>
-    </ClCompile>
     <ClCompile Include="FBX.cpp">
-      <Filter>Lib\DX9\FBX</Filter>
+      <Filter>Lib\FBX</Filter>
     </ClCompile>
     <ClCompile Include="FBXModel.cpp">
-      <Filter>Lib\DX9\FBX</Filter>
+      <Filter>Lib\FBX</Filter>
     </ClCompile>
     <ClCompile Include="DirLightSource.cpp">
       <Filter>Shader</Filter>
@@ -145,12 +142,15 @@
     </ClCompile>
     <ClCompile Include="Terrain.cpp">
       <Filter>Application\Scene\Main\Material\Terrain</Filter>
-      </ClCompile>
+    </ClCompile>
     <ClCompile Include="UIBase.cpp">
       <Filter>Application\Scene\Main\UIBase</Filter>
     </ClCompile>
     <ClCompile Include="FontUI.cpp">
       <Filter>Application\Scene\Main\UIBase\FontUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Sky.cpp">
+      <Filter>Application\Scene\Main\Material\Sky</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -180,9 +180,6 @@
     </Filter>
     <Filter Include="Lib\DX9\Texture">
       <UniqueIdentifier>{38438f6f-4dd4-457f-8aef-16a4fa2054a9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Lib\DX9\FBX">
-      <UniqueIdentifier>{5079a6be-4c3c-4ffc-9b0a-b0bd4d18137c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Lib\DX9\Renderer">
       <UniqueIdentifier>{674a1ea8-6f7f-4f0b-a73a-b52f1603287c}</UniqueIdentifier>
@@ -277,6 +274,12 @@
     <Filter Include="Application\Scene\Main\UIBase\FontUI">
       <UniqueIdentifier>{26188fb9-6695-4f2c-abec-489d54977d64}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Lib\FBX">
+      <UniqueIdentifier>{5079a6be-4c3c-4ffc-9b0a-b0bd4d18137c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\Main\Material\Sky">
+      <UniqueIdentifier>{1d122505-ef66-4097-8a89-efffe7cdab7c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Lib.h">
@@ -298,7 +301,7 @@
       <Filter>Lib\DX9\Font</Filter>
     </ClInclude>
     <ClInclude Include="FBX.h">
-      <Filter>Lib\DX9\FBX</Filter>
+      <Filter>Lib\FBX</Filter>
     </ClInclude>
     <ClInclude Include="ModelManager.h">
       <Filter>Lib\DX9\Model</Filter>
@@ -422,7 +425,7 @@
       <Filter>Shader</Filter>
     </ClInclude>
     <ClInclude Include="FBXModel.h">
-      <Filter>Lib\DX9\FBX</Filter>
+      <Filter>Lib\FBX</Filter>
     </ClInclude>
     <ClInclude Include="DirLightSource.h">
       <Filter>Shader</Filter>
@@ -442,11 +445,14 @@
     <ClInclude Include="UIBase.h">
       <Filter>Application\Scene\Main\UIBase</Filter>
     </ClInclude>
-    <ClInclude Include="CharacterBase.h">
-      <Filter>Application\Scene\Main\Material\Gimmick</Filter>
-    </ClInclude>
     <ClInclude Include="FontUI.h">
       <Filter>Application\Scene\Main\UIBase\FontUI</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterBase.h">
+      <Filter>Application\Scene\Main\Material\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Sky.h">
+      <Filter>Application\Scene\Main\Material\Sky</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

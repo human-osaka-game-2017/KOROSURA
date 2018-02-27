@@ -37,6 +37,8 @@ SceneBase::SCENE_ID StageSelectScene::Update()
 {
 	SCENE_ID retSceneId = SCENE_ID::STAGESELECT;
 
+	Lib::GetInstance().UpdateKey();
+
 	m_pSelecter->Update();
 	int selectPoint = m_pSelecter->GetCurrentSelection();
 	for (auto itr = m_PtrObjects.begin(); itr != m_PtrObjects.end(); ++itr) {

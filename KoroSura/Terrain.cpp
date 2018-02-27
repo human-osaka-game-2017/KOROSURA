@@ -18,9 +18,6 @@ Terrain::Terrain():
 	//Effectごとにやればいい
 	m_Technique = FxManager::GetpInstance().GetFxEffect("Shader\\BasicShader.fx")->GetEffect()->GetTechniqueByName("Basic");
 	m_World = FxManager::GetpInstance().GetFxEffect("Shader\\BasicShader.fx")->GetEffect()->GetParameterByName(NULL, "World");
-	m_View = FxManager::GetpInstance().GetFxEffect("Shader\\BasicShader.fx")->GetEffect()->GetParameterByName(NULL, "View");
-	m_Proj = FxManager::GetpInstance().GetFxEffect("Shader\\BasicShader.fx")->GetEffect()->GetParameterByName(NULL, "Proj");
-	m_Light = FxManager::GetpInstance().GetFxEffect("Shader\\BasicShader.fx")->GetEffect()->GetParameterByName(NULL, "Light");
 }
 
 Terrain::~Terrain() 
@@ -38,19 +35,11 @@ void Terrain::Draw()
 	//Effectごとにやればいい
 	D3DXMATRIX WorldMatrix;
 	(*DirectGraphics::GetInstance().GetDevice())->GetTransform(D3DTS_WORLD, &WorldMatrix);
-	D3DXMATRIX ViewMatrix;
-	(*DirectGraphics::GetInstance().GetDevice())->GetTransform(D3DTS_VIEW, &ViewMatrix);
-	D3DXMATRIX ProjMatrix;
-	(*DirectGraphics::GetInstance().GetDevice())->GetTransform(D3DTS_PROJECTION, &ProjMatrix);
 	// 定数の設定
 	//Effectごとにやればいい
 	FxManager::GetpInstance().GetFxEffect("Shader\\BasicShader.fx")->GetEffect()->SetMatrix(m_World, &WorldMatrix);
-	FxManager::GetpInstance().GetFxEffect("Shader\\BasicShader.fx")->GetEffect()->SetMatrix(m_View, &ViewMatrix);
-	FxManager::GetpInstance().GetFxEffect("Shader\\BasicShader.fx")->GetEffect()->SetMatrix(m_Proj, &ProjMatrix);
-	FxManager::GetpInstance().GetFxEffect("Shader\\BasicShader.fx")->GetEffect()->SetVector(m_Light, &DirLightSource::GetpInstance().GetlightDir());
 	// シェーダーパスの開始.
 	FxManager::GetpInstance().GetFxEffect("Shader\\BasicShader.fx")->BeginPass();
 	ModelManager::GetInstance().GetFBXDate("FBX\\FBXModel\\board.fbx").Draw();
-
 	FxManager::GetpInstance().GetFxEffect("Shader\\BasicShader.fx")->EndPass();
 }
