@@ -1,7 +1,5 @@
 #include"DirectGraphics.h"
 
-#define D3DFVF_CUSTOMVERTEX (D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1)
-
 DirectGraphics* DirectGraphics::pInstance = nullptr;
 
 void DirectGraphics::CreateInstance(HWND hWnd) {

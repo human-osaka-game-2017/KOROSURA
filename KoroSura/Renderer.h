@@ -57,6 +57,7 @@ public:
 	void TrimingVertex(CUSTOMVERTEX vertex[], float leftTopTu, float leftTopTv, float width, float height, float pngWidth, float pngHeight);
 	void Rotation(CUSTOMVERTEX vertex[], float deg);
 
+	LPDIRECT3DDEVICE9* GetDXDevice() { return m_pDXDevice; }
 private:
 	static Renderer* pInstance;
 	Renderer();

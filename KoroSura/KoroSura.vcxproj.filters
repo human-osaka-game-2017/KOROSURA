@@ -143,6 +143,12 @@
     <ClCompile Include="Effect.cpp">
       <Filter>Shader</Filter>
     </ClCompile>
+    <ClCompile Include="UIBase.cpp">
+      <Filter>Application\Scene\Main\UIBase</Filter>
+    </ClCompile>
+    <ClCompile Include="FontUI.cpp">
+      <Filter>Application\Scene\Main\UIBase\FontUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">
@@ -258,6 +264,12 @@
     </Filter>
     <Filter Include="Shader">
       <UniqueIdentifier>{9c4e1ac7-f169-4c61-950b-e126e1c60cb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\Main\UIBase">
+      <UniqueIdentifier>{1f67d07a-e055-4013-b761-e73adb4c43a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\Main\UIBase\FontUI">
+      <UniqueIdentifier>{26188fb9-6695-4f2c-abec-489d54977d64}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -379,9 +391,6 @@
     <ClInclude Include="MaterialBase.h">
       <Filter>Application\Scene\Main\Material</Filter>
     </ClInclude>
-    <ClInclude Include="CharacterBase.h">
-      <Filter>Application\Scene\Main\Material\Character</Filter>
-    </ClInclude>
     <ClInclude Include="EnemyBase.h">
       <Filter>Application\Scene\Main\Material\Character\Enemy</Filter>
     </ClInclude>
@@ -420,6 +429,15 @@
     </ClInclude>
     <ClInclude Include="Effect.h">
       <Filter>Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="UIBase.h">
+      <Filter>Application\Scene\Main\UIBase</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterBase.h">
+      <Filter>Application\Scene\Main\Material\Gimmick</Filter>
+    </ClInclude>
+    <ClInclude Include="FontUI.h">
+      <Filter>Application\Scene\Main\UIBase\FontUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
