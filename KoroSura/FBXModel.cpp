@@ -24,6 +24,7 @@ void FBXModel::Init(char* filepath)
 		m_Vertex[i].tu = m_FBXModelDate.uvBuffer[i].x;
 		m_Vertex[i].tv = m_FBXModelDate.uvBuffer[i].y;
 	}
+	int a = 0;
 }
 
 void FBXModel::Destroy()

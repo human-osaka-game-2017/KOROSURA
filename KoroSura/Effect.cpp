@@ -1,18 +1,24 @@
-#include "Effect.h"
-
-
+#include"Effect.h"
+#include"DirectGraphics.h"
+#include"DirLightSource.h"
 
 Effect::Effect(std::string FxPath)
 {
-	Effect::LoadingFx(FxPath);
+	Effect::LoadFxFile(FxPath);
+
+	m_Technique = m_Effect->GetParameterByName(NULL, "Basic");
+	m_World		= m_Effect->GetParameterByName(NULL, "World");
+	m_View		= m_Effect->GetParameterByName(NULL, "View");
+	m_Proj		= m_Effect->GetParameterByName(NULL, "Proj");
+	m_Light		= m_Effect->GetParameterByName(NULL, "Light");
 }
-void Effect::LoadingFx(std::string fxfilePath)
+
+void Effect::LoadFxFile(std::string fxfilePath)
 {
 	LPDIRECT3DDEVICE9* pDXDevice = DirectGraphics::GetInstance().GetDevice();
 
 	LPD3DXEFFECT effect = NULL;
 	LPD3DXBUFFER error;
-
 
 	D3DXCreateEffectFromFileA(
 		*pDXDevice,
@@ -24,23 +30,46 @@ void Effect::LoadingFx(std::string fxfilePath)
 		&effect,
 		&error
 	);
+
 	// コンパイルエラーの場合はエラーを表示して終了
 	if (effect == NULL)
 	{
 		MessageBox(0, "Fxファイル読み込みで失敗しました", "", MB_OK);
 		MessageBoxA(NULL, (char*)error->GetBufferPointer(), "ERROR", MB_OK);
 	}
+
 	m_Effect = effect;
 }
 
-void Effect::BeginPass()
+void Effect::BeginPass(int technique)
 {
 	// シェーダーパスの開始.
 	m_Effect->Begin(NULL, 0);
-	m_Effect->BeginPass(0);
+	m_Effect->BeginPass(technique);
 }
+
 void Effect::EndPass()
 {
 	m_Effect->EndPass();
 	m_Effect->End();
+}
+
+void Effect::SetWorldMatrix(D3DXMATRIX* matrix)
+{
+	m_Effect->SetMatrix(m_World, matrix);
+}
+
+void Effect::SetViewMatrix(D3DXMATRIX* matrix)
+{
+	m_Effect->SetMatrix(m_View, matrix);
+}
+
+void Effect::SetProjMatrix(D3DXMATRIX* matrix)
+{
+	m_Effect->SetMatrix(m_Proj, matrix);
+}
+
+void Effect::SetLightVector()
+{
+	m_Effect->SetVector(m_Light, &DirLightSource::GetpInstance().GetlightDir());
 }

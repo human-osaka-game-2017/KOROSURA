@@ -18,6 +18,8 @@ public:
 
 	static DWORD WINAPI Load(LPVOID lpParameter);
 
+	bool WasComplete() { return m_WasComplete; }
+
 private:
 	void WINAPI ExecThread();
 
@@ -25,5 +27,7 @@ private:
 	void LoadEnemy(StageInfo::StageData* pStageData, std::string iniFileName);
 	void LoadGimmick(StageInfo::StageData* pStageData, std::string iniFileName);
 	void LoadSlime(StageInfo::StageData* pStageData, std::string iniFileName);
+
+	bool m_WasComplete = false;
 };
 #endif

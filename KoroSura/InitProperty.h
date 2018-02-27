@@ -42,6 +42,9 @@ public:
 		float dynamicCoefficientOfFriction; //!	動摩擦係数
 		float staticCoefficientOfFriction; //!	静止摩擦係数
 		float deg; //マイフレーム傾ける角度 リネームする
+		float cameraYPos;
+		float lookAtPosYOffset;
+		float cameraDistance;
 	};
 
 	const InitialData& GetInitialData() {
@@ -56,6 +59,7 @@ private:
 	void LoadEnemy();
 	void LoadGimmick();
 	void LoadPhysics();//!物理的値の読み込み
+	void LoadCamera();
 
 	void LoadSpider();
 

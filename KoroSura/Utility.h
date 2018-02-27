@@ -2,6 +2,7 @@
 #define UTILITY_H
 
 #include<d3dx9.h>
+#include"Matrix.h"
 
 namespace Utility {
 	struct CUSTOMVERTEX {
@@ -90,6 +91,10 @@ namespace Utility {
 	float CalculateDeg(float x1, float y1, float x2, float y2);
 
 	double CalculateRad(float x1, float y1, float x2, float y2);
+
+	Matrix* GetRotationXMatrix(Matrix* mat, float deg);
+	Matrix* GetRotationYMatrix(Matrix* mat, float deg);
+	Matrix* GetRotationZMatrix(Matrix* mat, float deg);
 
 	void OutputDebug_Number(float outputNum, HWND hWnd);
 	void OutputDebug_Number(float outputNum);

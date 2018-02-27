@@ -129,6 +129,7 @@
     <ClCompile Include="BoxCollider.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="FontUI.cpp" />
+    <ClCompile Include="Sky.cpp" />
     <ClCompile Include="SphereCollider.cpp" />
     <ClCompile Include="ColliderBase.cpp" />
     <ClCompile Include="ColliderManager.cpp" />
@@ -161,16 +162,16 @@
     <ClCompile Include="SceneFactory.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Selection.cpp" />
-    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="EffectManager.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="Slime.cpp" />
     <ClCompile Include="SoundBufferManager.cpp" />
-    <ClCompile Include="Source.cpp" />
     <ClCompile Include="StageInfo.cpp" />
     <ClCompile Include="StageLogo.cpp" />
     <ClCompile Include="StageSelectBackground.cpp" />
     <ClCompile Include="StageSelectScene.cpp" />
     <ClCompile Include="TeamLogo.cpp" />
+    <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="TitleBackground.cpp" />
     <ClCompile Include="TitleScene.cpp" />
@@ -182,6 +183,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CharacterBase.h" />
     <ClInclude Include="FontUI.h" />
+    <ClInclude Include="Sky.h" />
     <ClInclude Include="SphereCollider.h" />
     <ClInclude Include="ColliderBase.h" />
     <ClInclude Include="ColliderManager.h" />
@@ -219,7 +221,7 @@
     <ClInclude Include="SceneFactory.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Selection.h" />
-    <ClInclude Include="Shader.h" />
+    <ClInclude Include="EffectManager.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="Slime.h" />
     <ClInclude Include="SoundBufferManager.h" />
@@ -229,6 +231,7 @@
     <ClInclude Include="StageSelectBase.h" />
     <ClInclude Include="StageSelectScene.h" />
     <ClInclude Include="TeamLogo.h" />
+    <ClInclude Include="Terrain.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="TitleBackground.h" />
     <ClInclude Include="TitleScene.h" />

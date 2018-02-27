@@ -1,7 +1,6 @@
 #ifndef DIRLIGHTSOURCE_H
 #define DIRLIGHTSOURCE_H
 
-#include "Shader.h"
 #include "Effect.h"
 
 class DirLightSource {

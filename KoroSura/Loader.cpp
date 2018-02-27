@@ -1,6 +1,7 @@
 #include"Loader.h"
 #include<string>
 #include"Common.h"
+#include"ModelManager.h"
 
 Loader::Loader()
 {
@@ -28,9 +29,14 @@ void WINAPI Loader::ExecThread()
 	LoadEnemy(&stageData, iniFileName);
 	LoadGimmick(&stageData, iniFileName);
 	LoadSlime(&stageData, iniFileName);
-	
+
 	StageInfo::GetInstance().SetStageData(stageData);
 
+	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\sky.fbx");
+	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\board.fbx");
+	//ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\fence.fbx");
+
+	m_WasComplete = true;
 	OutputDebugString("load終了");
 }
 
@@ -42,7 +48,7 @@ void Loader::LoadMap(StageInfo::StageData* pStageData, std::string iniFileName, 
 	pStageData->mapSize.z=
 		GetPrivateProfileInt("Size", "Z", 1, iniFileName.c_str());
 
-	pStageData->map = new int[pStageData->mapSize.x*pStageData->mapSize.z];
+	pStageData->terrainData = new int[pStageData->mapSize.x*pStageData->mapSize.z];
 
 	//csv読み込み
 	FILE* pFile;
@@ -53,7 +59,7 @@ void Loader::LoadMap(StageInfo::StageData* pStageData, std::string iniFileName, 
 		for (int j = 0; j < pStageData->mapSize.z; j++)
 		{
 			//ポインタずらしてます
-			fscanf_s(pFile, "%d,", (pStageData->map + static_cast<int>(j + i*pStageData->mapSize.x)));
+			fscanf_s(pFile, "%d,", (pStageData->terrainData + static_cast<int>(j + i*pStageData->mapSize.x)));
 		}
 	}
 	fclose(pFile);

@@ -128,6 +128,20 @@ void Matrix::InitGaussDistribution(double avg,double standardDeviation) {
 	}
 }
 
+void Matrix::Initialize(){
+	m_Mat = vector<vector<double>>(m_Column, vector<double>(m_Row));
+	for (int i = 0; i < m_Row; ++i) {
+		for (int j = 0; j < m_Column; ++j) {
+			if (i == j) {
+				m_Mat[i][j] = 1.0;
+			}
+			else {
+				m_Mat[i][j] = 0;
+			}
+		}
+	}
+}
+
 Matrix& Matrix::operator *= (const Matrix& mat) {
 	*this = *this * mat;
 	return *this;

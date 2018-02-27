@@ -28,7 +28,7 @@ public:
 		D3DXVECTOR3		mapSize;
 		int		enemyNum;
 		int		gimmickNum;
-		int*	map;
+		int*	terrainData;
 	};
 
 	/**
@@ -91,7 +91,7 @@ public:
 	{
 		delete[] m_StageData.enemyData;
 		delete[] m_StageData.gimmickData;
-		delete[] m_StageData.map;
+		delete[] m_StageData.terrainData;
 	}
 
 	static const int kStageMax = 8;

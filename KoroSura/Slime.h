@@ -9,18 +9,19 @@
 
 #include"CharacterBase.h"
 
+class Physics;
+
 class Slime :public CharacterBase{
 public:
-	//, D3DXVECTOR3& normalVec, int level
-	D3DXVECTOR3* GetPos() { return &m_Pos; }
-	Slime(D3DXVECTOR3& pos);
-
-
+	Slime(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level);
 	virtual ~Slime();
+
+	D3DXVECTOR3* GetPos() { return &m_Pos; }
 
 	virtual void Update();
 	virtual void Draw();
+
 private:
-	D3DXVECTOR3 LookPos;
+	Physics* m_pPhysics;
 };
 #endif

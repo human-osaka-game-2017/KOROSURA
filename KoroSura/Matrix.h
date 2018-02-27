@@ -26,6 +26,7 @@ struct Matrix {
 	void SetSize(unsigned int row, unsigned int column);
 	void SetSize();
 	void InitGaussDistribution(double avg = 0, double standardDeviation = 1);
+	void Initialize();
 
 	// assignment operators
 	Matrix& operator *= (const Matrix&);

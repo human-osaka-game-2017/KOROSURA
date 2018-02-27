@@ -67,27 +67,29 @@ double Utility::CalculateRad(float x1, float y1, float x2, float y2)
 	double lengthX = x2 - x1;
 	double lengthY = y2 - y1;
 
-	if (0 < lengthX) {
+	if (lengthX == 0 && lengthY == 0) {
+		return 0;
+	}
+
+	if (lengthX > 0) {
 		if (lengthY < 0) {
 			rad = atan(lengthY / lengthX);
 		}
 		else {
-			rad = atan(lengthY / lengthX) + (2 * D3DX_PI);
+			rad = atan(lengthY / lengthX);
 		}
 	}
 	else if (lengthX < 0) {
 		rad = atan(lengthY / lengthX) + D3DX_PI;
 	}
 	else if (lengthX == 0) {
-		if (0 < lengthY) {
-			rad = 3 / 2 * D3DX_PI;
-		}
-		else {
+		if (lengthY < 0) {
 			rad = D3DX_PI / 2;
 		}
+		else {
+			rad = 3 / 2 * D3DX_PI;
+		}
 	}
-
-	rad = (2 * D3DX_PI) - rad;
 
 	return rad;
 }
@@ -115,6 +117,39 @@ void Utility::OutputDebug_Number(float outputNum)
 	TCHAR buff[256];
 	_stprintf_s(buff, 256, _T("%f\n"), outputNum);
 	OutputDebugString(buff);
+}
+
+Matrix* Utility::GetRotationXMatrix(Matrix* mat, float deg)
+{
+	float rad = D3DXToRadian(deg);
+	*mat = Matrix(3, 3,
+		1.0, 0.0, 0.0,
+		0.0, cos(rad), -sin(rad),
+		0.0, sin(rad), cos(rad));
+
+	return mat;
+}
+
+Matrix* Utility::GetRotationYMatrix(Matrix* mat, float deg)
+{
+	float rad = D3DXToRadian(deg);
+	*mat = Matrix(3, 3,
+		cos(rad), 0.0, sin(rad),
+		0.0, 1.0, 0.0,
+		-sin(rad), 0.0, cos(rad));
+
+	return mat;
+}
+
+Matrix* Utility::GetRotationZMatrix(Matrix* mat, float deg)
+{
+	float rad = D3DXToRadian(deg);
+	*mat = Matrix(3, 3,
+		cos(rad), -sin(rad), 0.0,
+		sin(rad), cos(rad), 0.0,
+		0.0, 0.0, 1.0);
+
+	return mat;
 }
 
 D3DXVECTOR3* Utility::Tilt(D3DXVECTOR3* vector, float deg)

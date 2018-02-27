@@ -3,6 +3,7 @@
 
 #include<d3dx9.h>
 
+//地面の操作
 class PhysicsManager{
 public:
 	static PhysicsManager& GetInstance()
@@ -14,34 +15,30 @@ public:
 		return *m_pInstance;
 	}
 
+	//引数： 注視点からカメラの座標を引いたもの
 	void SetCameraVec(const D3DXVECTOR3& cameraVec)
 	{
 		m_CameraVec = cameraVec;
+		D3DXVec3Normalize(&m_CameraVec, &m_CameraVec);
 	}
 
-	const D3DXVECTOR3& GetNormalVector()
-	{
-		return m_NormalVector;
-	}
+	float GetGravity() {return kGravity;}
 
-	const D3DXVECTOR3* GetSlope()
-	{
-		return m_Slope;
-	}
+	float GetDynamicCoefficientOfFriction() {return kDynamicCoefficientOfFriction;}
 
-	float GetGravity() 
-	{
-		return kGravity;
-	}
+	float GetStaticCoefficientOfFriction() {return kStaticCoefficientOfFriction;}
 
-	float GetDynamicCoefficientOfFriction()
-	{
-		return kDynamicCoefficientOfFriction;
-	}
+	float* GetSlopeDeg() {return m_SlopeDeg;}
 
-	float GetStaticCoefficientOfFriction()
+	const D3DXVECTOR3& GetNormalVector() {return m_NormalVector;}
+
+	//傾きがあるかどうか
+	bool CanRoll()
 	{
-		return kStaticCoefficientOfFriction;
+		if (m_NormalVector.z == 0.0) {
+			return false;
+		}
+		return true;
 	}
 
 	//入力で平面を傾け、法線を更新
@@ -51,16 +48,14 @@ private:
 	PhysicsManager();
 	~PhysicsManager();
 
-	void CalNormalVec();
-
 	const float kSlopingDeg;
 	const float kGravity;
 	const float kDynamicCoefficientOfFriction;//動摩擦係数
 	const float kStaticCoefficientOfFriction;//静止摩擦係数
 
 	static PhysicsManager* m_pInstance;
-	D3DXVECTOR3 m_Slope[2];	//!傾き方向ベクトル(平面上のx,z方向)
-	D3DXVECTOR3 m_NormalVector;//法線
+	D3DXVECTOR3 m_NormalVector;
 	D3DXVECTOR3 m_CameraVec;//カメラの向いている向き
+	float m_SlopeDeg[2];
 };
 #endif

@@ -9,6 +9,7 @@ InitProperty::InitProperty()
 	LoadEnemy();
 	LoadGimmick();
 	LoadPhysics();
+	LoadCamera();
 }
 
 InitProperty::~InitProperty()
@@ -42,6 +43,7 @@ void InitProperty::LoadGimmick()
 {
 	LoadFence();
 }
+
 void InitProperty::LoadPhysics()
 {
 	m_InitialData.gravity = GetPrivateProfileInt("PhysicalVal", "Gravity", 1, PROPERTY_FILENAME) / 100.0f;
@@ -54,6 +56,18 @@ void InitProperty::LoadPhysics()
 
 	m_InitialData.deg =
 		GetPrivateProfileInt("PhysicalVal", "ŒX‚¯‚éŠp“x", 1, PROPERTY_FILENAME) / 100.0f;
+}
+
+void InitProperty::LoadCamera()
+{
+	m_InitialData.cameraYPos =
+		GetPrivateProfileInt("Camera", "Y", 1, PROPERTY_FILENAME);
+
+	m_InitialData.lookAtPosYOffset =
+		GetPrivateProfileInt("Camera", "lookAtPosYOffset", 1, PROPERTY_FILENAME);
+
+	m_InitialData.cameraDistance=
+		GetPrivateProfileInt("Camera", "Distance", 1, PROPERTY_FILENAME);
 }
 
 void InitProperty::LoadSpider()
