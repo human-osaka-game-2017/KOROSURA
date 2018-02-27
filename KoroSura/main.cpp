@@ -8,6 +8,7 @@
 #include"Shader.h"
 #include"Effect.h"
 #include"Terrain.h"
+#include"PhysicsManager.h"
 #include"Camera.h"
 #include"Slime.h"
 #include"DirLightSource.h"
@@ -88,16 +89,15 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	FxManager::CreateInstance();
 	DirLightSource::CreateInstance();
 
-	Slime slime(D3DXVECTOR3(0, 0, 0));
-	Camera camera(D3DXVECTOR3(300,300,300), D3DXVECTOR3 (0,0,0));
-
+	Slime slime(D3DXVECTOR3(100, 0, 100));
+	Camera camera(D3DXVECTOR3(0,0,500), D3DXVECTOR3 (0,0,0));
+	Terrain terrain;
 
 	SceneManager game;
 
 	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\fence.fbx");
 	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\sky.fbx");
-
-
+	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\board.fbx");
 
 	MSG msg;
 	ZeroMemory(&msg, sizeof(msg));
@@ -107,8 +107,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	timeBeginPeriod(1);
 	int frCnt = 0;
-
-	Terrain terrain;
 
 	while (msg.message != WM_QUIT) {
 
@@ -121,12 +119,18 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		else {
 			if (currentTime - prevTime >= 1000 / 60) {
 				++frCnt;
+
 				Lib::GetInstance().UpdateKey();
+
 				DirLightSource::GetpInstance().Update();
+
+				PhysicsManager::GetInstance().Update();
 				slime.Update();
 				camera.Update();
+
 				Renderer::GetInstance().StartRender();
 				slime.Draw();
+				terrain.Draw();
 				Renderer::GetInstance().EndRender();
 				//game.Run();
 			}

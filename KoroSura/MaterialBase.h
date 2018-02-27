@@ -13,8 +13,8 @@ class MaterialBase :public ObjectBase{
 public:
 	MaterialBase(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec):
 		m_Pos(pos),
-		m_NormalVec(normalVec)
-	{}
+		m_NormalVec(normalVec){}
+
 	MaterialBase(D3DXVECTOR3& pos) { m_Pos = pos; }
 
 	virtual ~MaterialBase() {};

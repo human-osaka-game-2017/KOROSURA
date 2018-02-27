@@ -5,6 +5,7 @@
 #include"Effect.h"
 #include"DirLightSource.h"
 #include"ModelManager.h"
+#include"Physics.h"
 
 Slime::Slime(D3DXVECTOR3& pos):
 	CharacterBase(pos)
@@ -17,6 +18,8 @@ Slime::Slime(D3DXVECTOR3& pos):
 	m_View = FxManager::GetpInstance().GetFxEffect("Shader\\BasicShader.fx")->GetEffect()->GetParameterByName(NULL, "View");
 	m_Proj = FxManager::GetpInstance().GetFxEffect("Shader\\BasicShader.fx")->GetEffect()->GetParameterByName(NULL, "Proj");
 	m_Light = FxManager::GetpInstance().GetFxEffect("Shader\\BasicShader.fx")->GetEffect()->GetParameterByName(NULL, "Light");
+
+	m_pPhysics = new Physics();
 }
 
 Slime::~Slime()
@@ -25,6 +28,12 @@ Slime::~Slime()
 
 void Slime::Update()
 {
+	D3DXVECTOR3 rollVec;
+	m_pPhysics->GetRollVec(&rollVec, m_Pos);
+	rollVec *= m_pPhysics->GetRollVelocity();
+
+	m_Pos += rollVec;
+
 	Lib::GetInstance().TransformWorld(m_Pos);
 }
 

@@ -1,12 +1,15 @@
 #ifndef TERRAIN_H
 #define TERRAIN_H
 
-class Terrain {
+#include"MaterialBase.h"
+
+class Terrain :public MaterialBase{
 public:
 	Terrain();
-	~Terrain();
+	virtual ~Terrain();
 
-	void Draw();
+	virtual void Update() {};
+	virtual void Draw();
 
 private:
 	const float kSize = 200.0f;

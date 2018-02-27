@@ -9,69 +9,60 @@ PhysicsManager::PhysicsManager():
 	kGravity(InitProperty::GetInstance().GetInitialData().gravity),
 	kSlopingDeg(InitProperty::GetInstance().GetInitialData().deg),
 	kDynamicCoefficientOfFriction(InitProperty::GetInstance().GetInitialData().dynamicCoefficientOfFriction),
-	kStaticCoefficientOfFriction(InitProperty::GetInstance().GetInitialData().staticCoefficientOfFriction)
+	kStaticCoefficientOfFriction(InitProperty::GetInstance().GetInitialData().staticCoefficientOfFriction),
+	m_NormalVector(D3DXVECTOR3(1e-3f,1.0f, 1e-3f))
 {
-	m_Slope[0] = D3DXVECTOR3(1.0f, 0.0f, 0.0f);
-	m_Slope[1] = D3DXVECTOR3(0.0f, 0.0f, 1.0f);
-	CalNormalVec();
+	m_SlopeDeg[0] = 0.0f;
+	m_SlopeDeg[1] = 0.0f;
 }
 
 PhysicsManager::~PhysicsManager()
 {
 }
 
+
 void PhysicsManager::Update()
 {
-	float radX = 0.0f;
-	float radZ = 0.0f;
-
 	if (Lib::GetInstance().GetKeyState(Utility::KEY_KIND::W) == Utility::BUTTON_STATE::ON ||
 		Lib::GetInstance().GetKeyState(Utility::KEY_KIND::UP) == Utility::BUTTON_STATE::ON) {
-
-		radX += D3DXToRadian((m_CameraVec.x * kSlopingDeg) / (m_CameraVec.x + m_CameraVec.z));
-		radZ += D3DXToRadian((m_CameraVec.z * kSlopingDeg) / (m_CameraVec.x + m_CameraVec.z));
+		m_SlopeDeg[0] += kSlopingDeg;
 	}
 
 	if (Lib::GetInstance().GetKeyState(Utility::KEY_KIND::A) == Utility::BUTTON_STATE::ON ||
 		Lib::GetInstance().GetKeyState(Utility::KEY_KIND::LEFT) == Utility::BUTTON_STATE::ON) {
-
-		radX += D3DXToRadian((m_CameraVec.x * kSlopingDeg) / (m_CameraVec.x + -m_CameraVec.z));
-		radZ += D3DXToRadian((-m_CameraVec.z * kSlopingDeg) / (m_CameraVec.x + -m_CameraVec.z));
+		m_SlopeDeg[1] += kSlopingDeg;
 	}
 
 	if (Lib::GetInstance().GetKeyState(Utility::KEY_KIND::S) == Utility::BUTTON_STATE::ON ||
 		Lib::GetInstance().GetKeyState(Utility::KEY_KIND::DOWN) == Utility::BUTTON_STATE::ON) {
-
-		radX += D3DXToRadian((-m_CameraVec.x * kSlopingDeg) / (-m_CameraVec.x + m_CameraVec.z));
-		radZ += D3DXToRadian((m_CameraVec.z * kSlopingDeg) / (-m_CameraVec.x + m_CameraVec.z));
+		m_SlopeDeg[0] -= kSlopingDeg;
 	}
 
 	if (Lib::GetInstance().GetKeyState(Utility::KEY_KIND::D) == Utility::BUTTON_STATE::ON ||
 		Lib::GetInstance().GetKeyState(Utility::KEY_KIND::RIGHT) == Utility::BUTTON_STATE::ON) {
-
-		radX += D3DXToRadian((-m_CameraVec.x * kSlopingDeg) / (-m_CameraVec.x + -m_CameraVec.z));
-		radZ += D3DXToRadian((-m_CameraVec.z * kSlopingDeg) / (-m_CameraVec.x + -m_CameraVec.z));
+		m_SlopeDeg[1] -= kSlopingDeg;
 	}
 
-	D3DXVECTOR3 tmp[2] = { m_Slope[0] ,m_Slope[1] };
+	//âÒì]ópçsóÒ
+	Matrix mat(1, 3,
+		m_NormalVector.x,
+		m_NormalVector.y,
+		m_NormalVector.z);
 
-	m_Slope[0].x += tmp[0].x * cos(radX)
-		- tmp[0].y * sin(radX);
-	m_Slope[0].y += tmp[0].x * sin(radX)
-		+ tmp[0].y * cos(radX);
+	Matrix matRotation;
+	Matrix tmp;
 
-	m_Slope[1].z += tmp[1].z * cos(radZ)
-		- tmp[1].y * sin(radZ);
-	m_Slope[1].y += tmp[1].z * sin(radZ)
-		+ tmp[1].y * cos(radZ);
+	matRotation.m_Row = 3;
+	matRotation.m_Column = 3;
+	matRotation.Initialize();
 
-	CalNormalVec();
-}
+	Utility::GetRotationXMatrix(&tmp, m_SlopeDeg[0]);
+	matRotation *= tmp;
+	Utility::GetRotationZMatrix(&tmp, m_SlopeDeg[1]);
+	matRotation *= tmp;
 
-void PhysicsManager::CalNormalVec()
-{
-	//ñ@ê¸åvéZ
-	m_NormalVector.x = m_Slope[0].y * m_Slope[1].z - m_Slope[0].z * m_Slope[1].y;
-	m_NormalVector.y = m_Slope[0].z * m_Slope[1].x - m_Slope[0].x * m_Slope[1].z;
-	m_NormalVector.z = m_Slope[0].x * m_Slope[1].y - m_Slope[0].y * m_Slope[1].x;
+	mat *= matRotation;
+	m_NormalVector.x = mat.m_Mat[0][0];
+	m_NormalVector.y = mat.m_Mat[0][1];
+	m_NormalVector.z = mat.m_Mat[0][2];
 }
