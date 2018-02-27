@@ -145,6 +145,12 @@
     </ClCompile>
     <ClCompile Include="Terrain.cpp">
       <Filter>Application\Scene\Main\Material\Terrain</Filter>
+      </ClCompile>
+    <ClCompile Include="UIBase.cpp">
+      <Filter>Application\Scene\Main\UIBase</Filter>
+    </ClCompile>
+    <ClCompile Include="FontUI.cpp">
+      <Filter>Application\Scene\Main\UIBase\FontUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -265,6 +271,12 @@
     <Filter Include="Application\Scene\Main\Material\Terrain">
       <UniqueIdentifier>{8c5aef13-23c4-4cc4-aaa9-bc035cf3edc4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Application\Scene\Main\UIBase">
+      <UniqueIdentifier>{1f67d07a-e055-4013-b761-e73adb4c43a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\Main\UIBase\FontUI">
+      <UniqueIdentifier>{26188fb9-6695-4f2c-abec-489d54977d64}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Lib.h">
@@ -382,9 +394,6 @@
     <ClInclude Include="MaterialBase.h">
       <Filter>Application\Scene\Main\Material</Filter>
     </ClInclude>
-    <ClInclude Include="CharacterBase.h">
-      <Filter>Application\Scene\Main\Material\Character</Filter>
-    </ClInclude>
     <ClInclude Include="EnemyBase.h">
       <Filter>Application\Scene\Main\Material\Character\Enemy</Filter>
     </ClInclude>
@@ -429,6 +438,15 @@
     </ClInclude>
     <ClInclude Include="PhysicsManager.h">
       <Filter>Application\Scene\Main\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="UIBase.h">
+      <Filter>Application\Scene\Main\UIBase</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterBase.h">
+      <Filter>Application\Scene\Main\Material\Gimmick</Filter>
+    </ClInclude>
+    <ClInclude Include="FontUI.h">
+      <Filter>Application\Scene\Main\UIBase\FontUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

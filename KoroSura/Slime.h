@@ -17,10 +17,13 @@ public:
 	Slime(D3DXVECTOR3& pos);
 	virtual ~Slime();
 
+	D3DXVECTOR3* GetPos() { return &m_Pos; }
+
 	virtual void Update();
 	virtual void Draw();
 
 private:
 	Physics* m_pPhysics;
+	D3DXVECTOR3 LookPos;
 };
 #endif

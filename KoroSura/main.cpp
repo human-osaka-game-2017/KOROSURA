@@ -12,6 +12,7 @@
 #include"Camera.h"
 #include"Slime.h"
 #include"DirLightSource.h"
+#include"FontUI.h"
 
 //PlayerやEnemyごとに一つ持たせる
 D3DXHANDLE		g_Technique;	//!< テクニックハンドル.
@@ -88,6 +89,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	FBXLoader::CreateFBXInstance();
 	FxManager::CreateInstance();
 	DirLightSource::CreateInstance();
+	FontUI scene(D3DXVECTOR2 (100.f,100.f), D3DXVECTOR2 (20,30));
 
 	Slime slime(D3DXVECTOR3(100, 0, 100));
 	Camera camera(D3DXVECTOR3(0,0,500), D3DXVECTOR3 (0,0,0));
@@ -95,9 +97,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	SceneManager game;
 
-	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\fence.fbx");
 	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\sky.fbx");
 	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\board.fbx");
+	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\fence.fbx");
 
 	MSG msg;
 	ZeroMemory(&msg, sizeof(msg));
@@ -121,9 +123,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 				++frCnt;
 
 				Lib::GetInstance().UpdateKey();
-
+				Lib::GetInstance().UpdateMouse();
+				//ワールドトランスフォーム（絶対座標変換）
 				DirLightSource::GetpInstance().Update();
-
 				PhysicsManager::GetInstance().Update();
 				slime.Update();
 				camera.Update();
@@ -131,6 +133,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 				Renderer::GetInstance().StartRender();
 				slime.Draw();
 				terrain.Draw();
+				scene.Draw();
 				Renderer::GetInstance().EndRender();
 				//game.Run();
 			}

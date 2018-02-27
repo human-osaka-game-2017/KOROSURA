@@ -128,6 +128,7 @@
   <ItemGroup>
     <ClCompile Include="BoxCollider.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="FontUI.cpp" />
     <ClCompile Include="SphereCollider.cpp" />
     <ClCompile Include="ColliderBase.cpp" />
     <ClCompile Include="ColliderManager.cpp" />
@@ -174,12 +175,14 @@
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="TitleBackground.cpp" />
     <ClCompile Include="TitleScene.cpp" />
+    <ClCompile Include="UIBase.cpp" />
     <ClCompile Include="Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BoxCollider.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CharacterBase.h" />
+    <ClInclude Include="FontUI.h" />
     <ClInclude Include="SphereCollider.h" />
     <ClInclude Include="ColliderBase.h" />
     <ClInclude Include="ColliderManager.h" />
@@ -231,6 +234,7 @@
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="TitleBackground.h" />
     <ClInclude Include="TitleScene.h" />
+    <ClInclude Include="UIBase.h" />
     <ClInclude Include="Utility.h" />
   </ItemGroup>
   <ItemGroup>
@@ -241,8 +245,16 @@
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">2.0</ShaderModel>
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </EntryPointName>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">/fx</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Effect</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">2.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">2.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">2.0</ShaderModel>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </EntryPointName>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </EntryPointName>
     </FxCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
