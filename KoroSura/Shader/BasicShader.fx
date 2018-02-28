@@ -25,7 +25,7 @@ void BasicVS (
 
 	// í∏ì_êF
 	float3 normal = normalize(mul(in_normal, (float3x3)World));
-	out_col = max(0.25, dot(normal, -Light.xyz));
+	out_col = max(1.0, dot(normal, -Light.xyz));
 	out_col.a = 1;
 }
 
