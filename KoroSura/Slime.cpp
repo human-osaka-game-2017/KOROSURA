@@ -20,24 +20,32 @@ Slime::~Slime()
 void Slime::Update()
 {
 	D3DXVECTOR3 rollVec;
-	if (PhysicsManager::GetInstance().CanRoll()) {
-		m_pPhysics->GetRollVec(&rollVec, m_Pos);
-		rollVec *= m_pPhysics->GetRollVelocity();
-		m_Pos += rollVec;
-	}
+	//if (PhysicsManager::GetInstance().CanRoll()) {
+	//	m_pPhysics->GetRollVec(&rollVec,m_Pos);
+	//	rollVec *= m_pPhysics->GetRollVelocity();
+	//	m_Pos += rollVec;
+	//}
 
-	Lib::GetInstance().TransformWorld(m_Pos);
+	m_pPhysics->GetRollVec(&rollVec);
+	rollVec *= m_pPhysics->GetRollVelocity();
+	m_Pos += rollVec;
+
+
 }
 
 void Slime::DrawPreparation()
 {
-	D3DXMATRIX WorldMatrix;
-	(*DirectGraphics::GetInstance().GetDevice())->GetTransform(D3DTS_WORLD, &WorldMatrix);
-	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->SetWorldMatrix(&WorldMatrix);
+
 }
 
 void Slime::Draw()
 {
+	Lib::GetInstance().TransformWorld(m_Pos);
+
+	D3DXMATRIX WorldMatrix;
+	(*DirectGraphics::GetInstance().GetDevice())->GetTransform(D3DTS_WORLD, &WorldMatrix);
+	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->SetWorldMatrix(&WorldMatrix);
+
 	// シェーダーパスの開始.
 	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->BeginPass(0);
 	ModelManager::GetInstance().GetFBXDate("FBX\\FBXModel\\fence.fbx").Draw();

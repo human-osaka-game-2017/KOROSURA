@@ -21,22 +21,22 @@ Terrain::~Terrain()
 
 void Terrain::Update()
 {
-	Lib::GetInstance().TransformWorld(m_Pos);
 }
 
 void Terrain::DrawPreparation()
 {
-	float* slopeDeg = PhysicsManager::GetInstance().GetSlopeDeg();
-
-	Lib::GetInstance().TransformWorld(m_Pos, 0.0f, slopeDeg[0], slopeDeg[1] + 90.0f);
-
-	D3DXMATRIX WorldMatrix;
-	(*DirectGraphics::GetInstance().GetDevice())->GetTransform(D3DTS_WORLD, &WorldMatrix);
-	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->SetWorldMatrix(&WorldMatrix);
 }
 
 void Terrain::Draw()
 {
+	const float* slopeDeg = PhysicsManager::GetInstance().GetSlopeDeg();
+
+	Lib::GetInstance().TransformWorld(m_Pos, 0.0f, slopeDeg[0] + 90.0f, slopeDeg[1]);
+
+	D3DXMATRIX WorldMatrix;
+	(*DirectGraphics::GetInstance().GetDevice())->GetTransform(D3DTS_WORLD, &WorldMatrix);
+	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->SetWorldMatrix(&WorldMatrix);
+
 	// シェーダーパスの開始.
 	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->BeginPass(0);
 	ModelManager::GetInstance().GetFBXDate("FBX\\FBXModel\\board.fbx").Draw();

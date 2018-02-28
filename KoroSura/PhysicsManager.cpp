@@ -6,7 +6,7 @@
 PhysicsManager* PhysicsManager::m_pInstance = nullptr;
 
 PhysicsManager::PhysicsManager():
-	kGravity(InitProperty::GetInstance().GetInitialData().gravity),
+	kGravity(D3DXVECTOR3(0.0f, -InitProperty::GetInstance().GetInitialData().gravity, 0.0f)),
 	kSlopingDeg(InitProperty::GetInstance().GetInitialData().deg),
 	kDynamicCoefficientOfFriction(InitProperty::GetInstance().GetInitialData().dynamicCoefficientOfFriction),
 	kStaticCoefficientOfFriction(InitProperty::GetInstance().GetInitialData().staticCoefficientOfFriction),
@@ -44,10 +44,10 @@ void PhysicsManager::Update()
 	}
 
 	//âÒì]ópçsóÒ
-	Matrix mat(1, 3,
-		m_NormalVector.x,
-		m_NormalVector.y,
-		m_NormalVector.z);
+	Matrix mat(3, 1,
+		0.0f,
+		1.0f,
+		0.0f);
 
 	Matrix matRotation;
 	Matrix tmp;
@@ -61,8 +61,15 @@ void PhysicsManager::Update()
 	Utility::GetRotationZMatrix(&tmp, m_SlopeDeg[1]);
 	matRotation *= tmp;
 
-	mat *= matRotation;
+	mat = matRotation * mat;
 	m_NormalVector.x = mat.m_Mat[0][0];
-	m_NormalVector.y = mat.m_Mat[0][1];
-	m_NormalVector.z = mat.m_Mat[0][2];
+	m_NormalVector.y = mat.m_Mat[1][0];
+	m_NormalVector.z = mat.m_Mat[2][0];
+
+	OutputDebugString("x=");
+	Utility::OutputDebug_Number(m_NormalVector.x);
+	OutputDebugString("y=");
+	Utility::OutputDebug_Number(m_NormalVector.y);
+	OutputDebugString("z=");
+	Utility::OutputDebug_Number(m_NormalVector.z);
 }

@@ -24,6 +24,8 @@ public:
 	 */
 	float GetRollVelocity();
 
+	D3DXVECTOR3* GetRollVec(D3DXVECTOR3* rollVec);
+
 private:
 	float m_Velocity = 0;
 };

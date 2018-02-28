@@ -9,6 +9,7 @@
 #include"DirectGraphics.h"
 #include"DirLightSource.h"
 #include"PhysicsManager.h"
+#include"Common.h"
 
 MainScene::MainScene()
 {
@@ -20,9 +21,15 @@ MainScene::MainScene()
 	Terrain* pTerrain	= new Terrain();
 	m_pCamera			= new Camera(pSlime->GetPos());
 
-	m_PtrMaterials.push_back(pSlime);
 	m_PtrMaterials.push_back(pSky);
+	m_PtrMaterials.push_back(pSlime);
 	m_PtrMaterials.push_back(pTerrain);
+
+	Lib::GetInstance().TransformProjection(45.0f, WINDOW_WIDTH / WINDOW_HEIGHT, 1.0f, 20000.0f);
+
+	D3DXMATRIX ProjMatrix;
+	(*DirectGraphics::GetInstance().GetDevice())->GetTransform(D3DTS_PROJECTION, &ProjMatrix);
+	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->SetProjMatrix(&ProjMatrix);
 }
 
 MainScene::~MainScene()
@@ -49,8 +56,6 @@ SceneBase::SCENE_ID MainScene::Update()
 		(*ite)->Update();
 	}
 
-	m_pCamera->Update();
-
 	return retSceneId;
 }
 
@@ -58,17 +63,16 @@ void MainScene::Draw()
 {
 	Lib::GetInstance().StartRender();
 
-	for (auto ite = m_PtrMaterials.begin(); ite != m_PtrMaterials.end(); ++ite) {
-		(*ite)->DrawPreparation();
-	}
+	//for (auto ite = m_PtrMaterials.begin(); ite != m_PtrMaterials.end(); ++ite) {
+	//	(*ite)->DrawPreparation();
+	//}
+
+	m_pCamera->Update();
 
 	D3DXMATRIX ViewMatrix;
 	(*DirectGraphics::GetInstance().GetDevice())->GetTransform(D3DTS_VIEW, &ViewMatrix);
-	D3DXMATRIX ProjMatrix;
-	(*DirectGraphics::GetInstance().GetDevice())->GetTransform(D3DTS_PROJECTION, &ProjMatrix);
-
 	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->SetViewMatrix(&ViewMatrix);
-	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->SetProjMatrix(&ProjMatrix);
+
 	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->SetLightVector();
 
 	for (auto ite = m_PtrMaterials.begin(); ite != m_PtrMaterials.end(); ++ite) {
