@@ -8,19 +8,21 @@
 #include"EffectManager.h"
 #include"DirectGraphics.h"
 #include"DirLightSource.h"
+#include"PhysicsManager.h"
 
 MainScene::MainScene()
 {
-	//ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\fence.fbx");
 	EffectManager::GetpInstance().CreateEffect("Shader\\BasicShader.fx");
 
 	StageInfo::StageData* pStageData = StageInfo::GetInstance().GetStageData();
 	Slime*	pSlime		= new Slime(pStageData->slimeData.pos, D3DXVECTOR3(0.0f, 1.0f, 0.0f), pStageData->slimeData.level);
-	Sky* pSky = new Sky();
+	Sky* pSky			= new Sky();
+	Terrain* pTerrain	= new Terrain();
 	m_pCamera			= new Camera(pSlime->GetPos());
 
 	m_PtrMaterials.push_back(pSlime);
 	m_PtrMaterials.push_back(pSky);
+	m_PtrMaterials.push_back(pTerrain);
 }
 
 MainScene::~MainScene()
@@ -40,6 +42,8 @@ SceneBase::SCENE_ID MainScene::Update()
 	Lib::GetInstance().UpdateMouse();
 
 	DirLightSource::GetpInstance().Update();
+
+	PhysicsManager::GetInstance().Update();
 
 	for (auto ite = m_PtrMaterials.begin(); ite != m_PtrMaterials.end(); ++ite) {
 		(*ite)->Update();
