@@ -129,6 +129,7 @@
     <ClCompile Include="BoxCollider.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="FontUI.cpp" />
+    <ClCompile Include="GameFonts.cpp" />
     <ClCompile Include="Sky.cpp" />
     <ClCompile Include="SphereCollider.cpp" />
     <ClCompile Include="ColliderBase.cpp" />
@@ -183,6 +184,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CharacterBase.h" />
     <ClInclude Include="FontUI.h" />
+    <ClInclude Include="GameFonts.h" />
     <ClInclude Include="Sky.h" />
     <ClInclude Include="SphereCollider.h" />
     <ClInclude Include="ColliderBase.h" />

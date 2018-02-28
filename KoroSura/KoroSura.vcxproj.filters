@@ -152,6 +152,7 @@
     <ClCompile Include="EffectManager.cpp">
       <Filter>Shader</Filter>
     </ClCompile>
+    <ClCompile Include="GameFonts.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">
@@ -210,9 +211,6 @@
     </Filter>
     <Filter Include="Application\Scene\StaffRoll">
       <UniqueIdentifier>{fc1c7cea-4ac2-484e-aefa-befa26039223}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Lib\Shape">
-      <UniqueIdentifier>{b0733fa1-1775-4f61-8b51-602c9bd6f78d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Application\Scene\Title\PushEnterKeyLogo">
       <UniqueIdentifier>{d30dd1cc-142c-4200-9448-af9133f1af70}</UniqueIdentifier>
@@ -279,6 +277,12 @@
     </Filter>
     <Filter Include="Application\Scene\Main\Material\Sky">
       <UniqueIdentifier>{1d122505-ef66-4097-8a89-efffe7cdab7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\Shape">
+      <UniqueIdentifier>{b0733fa1-1775-4f61-8b51-602c9bd6f78d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\Main\GameFont">
+      <UniqueIdentifier>{8c89ccdf-9e4d-4b0b-a04b-d7b6aa5b665b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -454,6 +458,7 @@
     <ClInclude Include="EffectManager.h">
       <Filter>Shader</Filter>
     </ClInclude>
+    <ClInclude Include="GameFonts.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shader\BasicShader.fx">
