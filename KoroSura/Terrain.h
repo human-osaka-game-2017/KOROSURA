@@ -8,7 +8,8 @@ public:
 	Terrain();
 	virtual ~Terrain();
 
-	virtual void Update() {};
+	virtual void Update();
+	virtual void DrawPreparation();
 	virtual void Draw();
 
 private:

@@ -64,7 +64,7 @@ void InitProperty::LoadCamera()
 		GetPrivateProfileInt("Camera", "Y", 1, PROPERTY_FILENAME);
 
 	m_InitialData.lookAtPosYOffset =
-		GetPrivateProfileInt("Camera", "lookAtPosYOffset", 1, PROPERTY_FILENAME);
+		GetPrivateProfileInt("Camera", "SlimeYOffset", 1, PROPERTY_FILENAME);
 
 	m_InitialData.cameraDistance=
 		GetPrivateProfileInt("Camera", "Distance", 1, PROPERTY_FILENAME);

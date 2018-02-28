@@ -22,13 +22,13 @@ public:
 		D3DXVec3Normalize(&m_CameraVec, &m_CameraVec);
 	}
 
-	float GetGravity() {return kGravity;}
+	const D3DXVECTOR3 GetGravity() {return kGravity;}
 
 	float GetDynamicCoefficientOfFriction() {return kDynamicCoefficientOfFriction;}
 
 	float GetStaticCoefficientOfFriction() {return kStaticCoefficientOfFriction;}
 
-	float* GetSlopeDeg() {return m_SlopeDeg;}
+	const float* GetSlopeDeg() {return m_SlopeDeg;}
 
 	const D3DXVECTOR3& GetNormalVector() {return m_NormalVector;}
 
@@ -49,7 +49,7 @@ private:
 	~PhysicsManager();
 
 	const float kSlopingDeg;
-	const float kGravity;
+	const D3DXVECTOR3 kGravity;
 	const float kDynamicCoefficientOfFriction;//“®–€CŒW”
 	const float kStaticCoefficientOfFriction;//Ã~–€CŒW”
 
