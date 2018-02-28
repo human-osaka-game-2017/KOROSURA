@@ -29,27 +29,17 @@ void Slime::Update()
 	Lib::GetInstance().TransformWorld(m_Pos);
 }
 
-void Slime::Draw()
+void Slime::DrawPreparation()
 {
-	//変換行列の取得
-	//Effectごとにやればいい
 	D3DXMATRIX WorldMatrix;
 	(*DirectGraphics::GetInstance().GetDevice())->GetTransform(D3DTS_WORLD, &WorldMatrix);
-	//Effectごとにやればいい
-	D3DXMATRIX ViewMatrix;
-	(*DirectGraphics::GetInstance().GetDevice())->GetTransform(D3DTS_VIEW, &ViewMatrix);
-	D3DXMATRIX ProjMatrix;
-	(*DirectGraphics::GetInstance().GetDevice())->GetTransform(D3DTS_PROJECTION, &ProjMatrix);
-
-	// 定数の設定
-	//Effectごとにやればいい
 	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->SetWorldMatrix(&WorldMatrix);
-	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->SetViewMatrix(&ViewMatrix);
-	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->SetProjMatrix(&ProjMatrix);
-	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->SetLightVector();
+}
 
+void Slime::Draw()
+{
 	// シェーダーパスの開始.
 	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->BeginPass(0);
-	ModelManager::GetInstance().GetFBXDate("FBX\\FBXModel\\sky.fbx").Draw();
+	ModelManager::GetInstance().GetFBXDate("FBX\\FBXModel\\fence.fbx").Draw();
 	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->EndPass();
 }

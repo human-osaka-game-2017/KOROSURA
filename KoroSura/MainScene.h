@@ -5,7 +5,7 @@
 #include<d3dx9.h>
 #include<vector>
 
-class ObjectBase;
+class MaterialBase;
 class Camera;
 
 class MainScene :public SceneBase{
@@ -18,7 +18,7 @@ public:
 	virtual void Draw();
 
 private:
-	std::vector<ObjectBase*> m_PtrObjBases;
+	std::vector<MaterialBase*> m_PtrMaterials;
 	Camera* m_pCamera;
 };
 #endif

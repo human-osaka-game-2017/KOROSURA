@@ -4,8 +4,8 @@
  * @author	shiraishi
  */
 
-#ifndef SLIME_H
-#define SLIME_H
+#ifndef SKY_H
+#define SKY_H
 
 #include"MaterialBase.h"
 
@@ -16,7 +16,8 @@ public:
 	{};
 	virtual ~Sky() {};
 
-	virtual void Update() {};
+	virtual void Update();
+	virtual void DrawPreparation();
 	virtual void Draw();
 };
 #endif

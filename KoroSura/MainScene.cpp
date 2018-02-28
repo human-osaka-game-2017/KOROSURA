@@ -3,6 +3,7 @@
 #include"StageInfo.h"
 #include"Slime.h"
 #include"Terrain.h"
+#include"Sky.h"
 #include"Camera.h"
 #include"EffectManager.h"
 #include"DirectGraphics.h"
@@ -15,14 +16,16 @@ MainScene::MainScene()
 
 	StageInfo::StageData* pStageData = StageInfo::GetInstance().GetStageData();
 	Slime*	pSlime		= new Slime(pStageData->slimeData.pos, D3DXVECTOR3(0.0f, 1.0f, 0.0f), pStageData->slimeData.level);
+	Sky* pSky = new Sky();
 	m_pCamera			= new Camera(pSlime->GetPos());
 
-	m_PtrObjBases.push_back(pSlime);
+	m_PtrMaterials.push_back(pSlime);
+	m_PtrMaterials.push_back(pSky);
 }
 
 MainScene::~MainScene()
 {
-	for (auto ite = m_PtrObjBases.begin(); ite != m_PtrObjBases.end(); ++ite) {
+	for (auto ite = m_PtrMaterials.begin(); ite != m_PtrMaterials.end(); ++ite) {
 		delete *ite;
 	}
 
@@ -31,13 +34,14 @@ MainScene::~MainScene()
 
 SceneBase::SCENE_ID MainScene::Update()
 {
+	SceneBase::SCENE_ID retSceneId = SCENE_ID::MAIN;
+
 	Lib::GetInstance().UpdateKey();
 	Lib::GetInstance().UpdateMouse();
-	SceneBase::SCENE_ID retSceneId = SCENE_ID::MAIN;
 
 	DirLightSource::GetpInstance().Update();
 
-	for (auto ite = m_PtrObjBases.begin(); ite != m_PtrObjBases.end(); ++ite) {
+	for (auto ite = m_PtrMaterials.begin(); ite != m_PtrMaterials.end(); ++ite) {
 		(*ite)->Update();
 	}
 
@@ -50,19 +54,22 @@ void MainScene::Draw()
 {
 	Lib::GetInstance().StartRender();
 
-	for (auto ite = m_PtrObjBases.begin(); ite != m_PtrObjBases.end(); ++ite) {
-		(*ite)->Draw();
+	for (auto ite = m_PtrMaterials.begin(); ite != m_PtrMaterials.end(); ++ite) {
+		(*ite)->DrawPreparation();
 	}
 
-	////Effect‚²‚Æ‚É‚â‚ê‚Î‚¢‚¢
-	//D3DXMATRIX ViewMatrix;
-	//(*DirectGraphics::GetInstance().GetDevice())->GetTransform(D3DTS_VIEW, &ViewMatrix);
-	//D3DXMATRIX ProjMatrix;
-	//(*DirectGraphics::GetInstance().GetDevice())->GetTransform(D3DTS_PROJECTION, &ProjMatrix);
+	D3DXMATRIX ViewMatrix;
+	(*DirectGraphics::GetInstance().GetDevice())->GetTransform(D3DTS_VIEW, &ViewMatrix);
+	D3DXMATRIX ProjMatrix;
+	(*DirectGraphics::GetInstance().GetDevice())->GetTransform(D3DTS_PROJECTION, &ProjMatrix);
 
-	//EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->SetViewMatrix(&ViewMatrix);
-	//EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->SetProjMatrix(&ProjMatrix);
-	//EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->SetLightVector();
+	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->SetViewMatrix(&ViewMatrix);
+	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->SetProjMatrix(&ProjMatrix);
+	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->SetLightVector();
+
+	for (auto ite = m_PtrMaterials.begin(); ite != m_PtrMaterials.end(); ++ite) {
+		(*ite)->Draw();
+	}
 
 	Lib::GetInstance().EndRender();
 }

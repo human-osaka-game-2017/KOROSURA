@@ -20,6 +20,7 @@ public:
 
 	virtual void Update();
 	virtual void Draw();
+	virtual void DrawPreparation();
 
 private:
 	Physics* m_pPhysics;

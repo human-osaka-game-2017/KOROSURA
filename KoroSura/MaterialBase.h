@@ -21,6 +21,7 @@ public:
 
 	virtual void Update() = 0;
 	virtual void Draw() = 0;
+	virtual void DrawPreparation() = 0;
 
 protected:
 	D3DXVECTOR3 m_Pos;

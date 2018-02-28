@@ -13,7 +13,7 @@ Camera::Camera(D3DXVECTOR3* lookatpos) :
 	m_pLookatPos(lookatpos),
 	m_MovementMouse(D3DXVECTOR3(0.0f,0.0f,0.0f)),
 	kDistance(InitProperty::GetInstance().GetInitialData().cameraDistance),
-	kLookAtPosYOffset(InitProperty::GetInstance().GetInitialData().cameraYPos)
+	kLookAtPosYOffset(InitProperty::GetInstance().GetInitialData().lookAtPosYOffset)
 {
 }
 
