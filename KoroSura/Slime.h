@@ -23,6 +23,7 @@ public:
 	virtual void DrawPreparation();
 
 private:
+	const D3DXVECTOR3 kInitialPos;
 	Physics* m_pPhysics;
 };
 #endif

@@ -19,6 +19,7 @@ D3DXVECTOR3* Physics::GetRollVec(D3DXVECTOR3* rollVec)
 
 	//滑りベクトル S=L-(N * L)/(|N|^2)*N
 	*rollVec = gravity - ((D3DXVec3Dot(&normalVec, &gravity)) / (pow(D3DXVec3Length(&normalVec), 2))) * normalVec;
+	//*rollVec = normalVec + gravity;
 
 	//正規化
 	D3DXVec3Normalize(rollVec, rollVec);
@@ -70,19 +71,43 @@ float Physics::GetRollVelocity()
 	}
 	float rad = tmp;
 
-	static float a = 0.0f;
-
 	//if sinθ < μcosθ
 	if (sin(rad) < PhysicsManager::GetInstance().GetStaticCoefficientOfFriction()*cos(rad)) {
-		a = 0;
+		m_Velocity = 0;
 	}
 	else {
 		//絶対値
 		float gravity = fabs(PhysicsManager::GetInstance().GetGravity().y);
-		a += gravity*sin(rad) - PhysicsManager::GetInstance().GetDynamicCoefficientOfFriction()*gravity*cos(rad);
+		m_Velocity += gravity*sin(rad) - PhysicsManager::GetInstance().GetDynamicCoefficientOfFriction()*gravity*cos(rad);
 	}
 
-	m_Velocity = a;
+	//m_Velocity = a;
 
 	return m_Velocity;
+}
+
+float Physics::GetYLength(const D3DXVECTOR3& currentPos)
+{
+	////法線
+	//D3DXVECTOR3 normalVec = PhysicsManager::GetInstance().GetNormalVector();
+
+	////地面のx-zの傾き
+	//float tmp = acos(normalVec.y / D3DXVec3Length(&normalVec));
+	//if (tmp > D3DXToRadian(90.0f)) {
+	//	tmp = D3DXToRadian(180.0f) - tmp;
+	//}
+	//float rad = tmp;
+
+	//static float preRad = 0.0f;
+
+	//float distanceRad = preRad - rad;
+
+	//preRad = rad;
+
+	////float ret = sqrt(pow(currentPos.x,2)+ pow(currentPos.z, 2)) * sin(rad)
+	////	+ currentPos.y * cos(rad);
+	//float ret = D3DXVec3Length(&currentPos)*sin(distanceRad);
+
+	//return ret;
+	return 0;
 }

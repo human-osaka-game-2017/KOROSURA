@@ -7,7 +7,8 @@
 #include"EffectManager.h"
 
 Slime::Slime(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level):
-	CharacterBase(pos, normalVec, level)
+	CharacterBase(pos, normalVec, level),
+	kInitialPos(pos)
 {
 	m_pPhysics = new Physics();
 }
@@ -20,16 +21,29 @@ Slime::~Slime()
 void Slime::Update()
 {
 	D3DXVECTOR3 rollVec;
-	//if (PhysicsManager::GetInstance().CanRoll()) {
-	//	m_pPhysics->GetRollVec(&rollVec,m_Pos);
-	//	rollVec *= m_pPhysics->GetRollVelocity();
-	//	m_Pos += rollVec;
-	//}
+	static D3DXVECTOR3 prevPos = kInitialPos;
+	static D3DXVECTOR3 prevVec = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 
 	m_pPhysics->GetRollVec(&rollVec);
-	rollVec *= m_pPhysics->GetRollVelocity();
-	m_Pos += rollVec;
 
+	static float prevLength = D3DXVec3Length(&kInitialPos);
+	D3DXVECTOR3 currentOnBoardPos;
+	if (rollVec != prevVec) {
+		currentOnBoardPos = rollVec*prevLength;
+	}
+	else {
+		currentOnBoardPos = m_Pos;
+	}
+
+	float length = m_pPhysics->GetRollVelocity();
+	rollVec *= length;
+	//rollVec += prevVec;
+
+	m_Pos = rollVec + (currentOnBoardPos);
+
+	prevVec = rollVec;
+	prevLength = D3DXVec3Length(&m_Pos);
+	prevPos = m_Pos;
 
 }
 

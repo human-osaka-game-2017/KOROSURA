@@ -65,11 +65,4 @@ void PhysicsManager::Update()
 	m_NormalVector.x = mat.m_Mat[0][0];
 	m_NormalVector.y = mat.m_Mat[1][0];
 	m_NormalVector.z = mat.m_Mat[2][0];
-
-	OutputDebugString("x=");
-	Utility::OutputDebug_Number(m_NormalVector.x);
-	OutputDebugString("y=");
-	Utility::OutputDebug_Number(m_NormalVector.y);
-	OutputDebugString("z=");
-	Utility::OutputDebug_Number(m_NormalVector.z);
 }
