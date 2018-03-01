@@ -23,6 +23,7 @@ void Slime::Update()
 	D3DXVECTOR3 currentOnBoardPos;
 	currentOnBoardPos = m_PosXZ;
 	PhysicsManager::GetInstance().TranceformOnBoard(currentOnBoardPos, &currentOnBoardPos);
+	currentOnBoardPos.y += kInitialPos.y;
 
 	D3DXVECTOR3 rollVec;
 	m_pPhysics->GetRollVec(&rollVec);
