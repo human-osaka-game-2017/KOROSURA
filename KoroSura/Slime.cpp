@@ -23,6 +23,7 @@ void Slime::Update()
 	D3DXVECTOR3 currentOnBoardPos;
 	currentOnBoardPos = m_PosXZ;
 	PhysicsManager::GetInstance().TranceformOnBoard(currentOnBoardPos, &currentOnBoardPos);
+	currentOnBoardPos.y += kInitialPos.y;
 
 	D3DXVECTOR3 rollVec;
 	m_pPhysics->GetRollVec(&rollVec);
@@ -50,6 +51,6 @@ void Slime::Draw()
 
 	// シェーダーパスの開始.
 	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->BeginPass(0);
-	ModelManager::GetInstance().GetFBXDate("FBX\\FBXModel\\test.fbx").Draw();
+	ModelManager::GetInstance().GetFBXDate("FBX\\FBXModel\\fence.fbx").Draw();
 	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->EndPass();
 }
