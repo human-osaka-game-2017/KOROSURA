@@ -40,6 +40,7 @@ DirectGraphics::DirectGraphics(HWND hWnd) {
 	d3dpp.Windowed = TRUE;
 	d3dpp.EnableAutoDepthStencil = TRUE;
 	d3dpp.AutoDepthStencilFormat = D3DFMT_D24S8;
+	d3dpp.Flags = D3DPRESENTFLAG_DISCARD_DEPTHSTENCIL;
 
 	if (FAILED(m_pDirect3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd,
 		D3DCREATE_MIXED_VERTEXPROCESSING,
@@ -77,6 +78,7 @@ void DirectGraphics::SetRenderState3D(){
 	m_pDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);  //SRCの設定
 	m_pDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 	m_pDevice->SetRenderState(D3DRS_DIFFUSEMATERIALSOURCE, D3DMCS_COLOR1);
+	m_pDevice->SetRenderState(D3DRS_CULLMODE,D3DCULL_NONE); // カリングする
 	// Zバッファー処理を有効にする
 	m_pDevice->SetRenderState(D3DRS_ZENABLE, true);
 	// ライトを有効にする

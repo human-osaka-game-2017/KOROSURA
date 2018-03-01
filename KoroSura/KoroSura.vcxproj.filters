@@ -152,7 +152,12 @@
     <ClCompile Include="EffectManager.cpp">
       <Filter>Shader</Filter>
     </ClCompile>
-    <ClCompile Include="GameFonts.cpp" />
+    <ClCompile Include="LimitTime.cpp">
+      <Filter>Application\Scene\Main\GameFont</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerLevel.cpp">
+      <Filter>Application\Scene\Main\GameFont</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">
@@ -458,7 +463,12 @@
     <ClInclude Include="EffectManager.h">
       <Filter>Shader</Filter>
     </ClInclude>
-    <ClInclude Include="GameFonts.h" />
+    <ClInclude Include="LimitTime.h">
+      <Filter>Application\Scene\Main\GameFont</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerLevel.h">
+      <Filter>Application\Scene\Main\GameFont</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shader\BasicShader.fx">
