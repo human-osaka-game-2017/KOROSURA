@@ -86,28 +86,28 @@ float Physics::GetRollVelocity()
 	return m_Velocity;
 }
 
-float Physics::GetYLength(const D3DXVECTOR3& currentPos)
-{
-	////–@ü
-	//D3DXVECTOR3 normalVec = PhysicsManager::GetInstance().GetNormalVector();
-
-	////’n–Ê‚Ìx-z‚ÌŒX‚«
-	//float tmp = acos(normalVec.y / D3DXVec3Length(&normalVec));
-	//if (tmp > D3DXToRadian(90.0f)) {
-	//	tmp = D3DXToRadian(180.0f) - tmp;
-	//}
-	//float rad = tmp;
-
-	//static float preRad = 0.0f;
-
-	//float distanceRad = preRad - rad;
-
-	//preRad = rad;
-
-	////float ret = sqrt(pow(currentPos.x,2)+ pow(currentPos.z, 2)) * sin(rad)
-	////	+ currentPos.y * cos(rad);
-	//float ret = D3DXVec3Length(&currentPos)*sin(distanceRad);
-
-	//return ret;
-	return 0;
-}
+//float Physics::GetYLength(const D3DXVECTOR3& currentPos)
+//{
+//	////–@ü
+//	//D3DXVECTOR3 normalVec = PhysicsManager::GetInstance().GetNormalVector();
+//
+//	////’n–Ê‚Ìx-z‚ÌŒX‚«
+//	//float tmp = acos(normalVec.y / D3DXVec3Length(&normalVec));
+//	//if (tmp > D3DXToRadian(90.0f)) {
+//	//	tmp = D3DXToRadian(180.0f) - tmp;
+//	//}
+//	//float rad = tmp;
+//
+//	//static float preRad = 0.0f;
+//
+//	//float distanceRad = preRad - rad;
+//
+//	//preRad = rad;
+//
+//	////float ret = sqrt(pow(currentPos.x,2)+ pow(currentPos.z, 2)) * sin(rad)
+//	////	+ currentPos.y * cos(rad);
+//	//float ret = D3DXVec3Length(&currentPos)*sin(distanceRad);
+//
+//	//return ret;
+//	return 0;
+//}

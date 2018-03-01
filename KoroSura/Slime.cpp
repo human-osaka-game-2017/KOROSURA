@@ -20,31 +20,19 @@ Slime::~Slime()
 
 void Slime::Update()
 {
-	D3DXVECTOR3 rollVec;
-	static D3DXVECTOR3 prevPos = kInitialPos;
-	static D3DXVECTOR3 prevVec = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-
-	m_pPhysics->GetRollVec(&rollVec);
-
-	static float prevLength = D3DXVec3Length(&kInitialPos);
 	D3DXVECTOR3 currentOnBoardPos;
-	if (rollVec != prevVec) {
-		currentOnBoardPos = rollVec*prevLength;
-	}
-	else {
-		currentOnBoardPos = m_Pos;
-	}
+	currentOnBoardPos = m_PosXZ;
+	PhysicsManager::GetInstance().TranceformOnBoard(currentOnBoardPos, &currentOnBoardPos);
 
+	D3DXVECTOR3 rollVec;
+	m_pPhysics->GetRollVec(&rollVec);
 	float length = m_pPhysics->GetRollVelocity();
 	rollVec *= length;
-	//rollVec += prevVec;
 
 	m_Pos = rollVec + (currentOnBoardPos);
 
-	prevVec = rollVec;
-	prevLength = D3DXVec3Length(&m_Pos);
-	prevPos = m_Pos;
-
+	m_PosXZ.x += rollVec.x;
+	m_PosXZ.z += rollVec.z;
 }
 
 void Slime::DrawPreparation()

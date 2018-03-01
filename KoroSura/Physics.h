@@ -26,8 +26,6 @@ public:
 
 	D3DXVECTOR3* GetRollVec(D3DXVECTOR3* rollVec);
 
-	float GetYLength(const D3DXVECTOR3& currentPos);//todo: ƒŠƒl[ƒ€
-
 private:
 	float m_Velocity = 0;
 };
