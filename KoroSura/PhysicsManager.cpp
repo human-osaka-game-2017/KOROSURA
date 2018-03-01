@@ -43,11 +43,16 @@ void PhysicsManager::Update()
 		m_SlopeDeg[1] -= kSlopingDeg;
 	}
 
+	TranceformOnBoard(D3DXVECTOR3(0.0f, 1.0f, 0.0f), &m_NormalVector);
+}
+
+D3DXVECTOR3* PhysicsManager::TranceformOnBoard(const D3DXVECTOR3& in, D3DXVECTOR3* out)
+{
 	//‰ñ“]—ps—ñ
 	Matrix mat(3, 1,
-		0.0f,
-		1.0f,
-		0.0f);
+		in.x,
+		in.y,
+		in.z);
 
 	Matrix matRotation;
 	Matrix tmp;
@@ -62,14 +67,8 @@ void PhysicsManager::Update()
 	matRotation *= tmp;
 
 	mat = matRotation * mat;
-	m_NormalVector.x = mat.m_Mat[0][0];
-	m_NormalVector.y = mat.m_Mat[1][0];
-	m_NormalVector.z = mat.m_Mat[2][0];
-
-	OutputDebugString("x=");
-	Utility::OutputDebug_Number(m_NormalVector.x);
-	OutputDebugString("y=");
-	Utility::OutputDebug_Number(m_NormalVector.y);
-	OutputDebugString("z=");
-	Utility::OutputDebug_Number(m_NormalVector.z);
+	out->x = mat.m_Mat[0][0];
+	out->y = mat.m_Mat[1][0];
+	out->z = mat.m_Mat[2][0];
+	return out;
 }

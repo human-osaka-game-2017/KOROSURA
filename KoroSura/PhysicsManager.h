@@ -15,6 +15,8 @@ public:
 		return *m_pInstance;
 	}
 
+	D3DXVECTOR3* TranceformOnBoard(const D3DXVECTOR3& in,D3DXVECTOR3* out);
+
 	//引数： 注視点からカメラの座標を引いたもの
 	void SetCameraVec(const D3DXVECTOR3& cameraVec)
 	{

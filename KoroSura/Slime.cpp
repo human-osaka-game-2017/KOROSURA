@@ -7,7 +7,8 @@
 #include"EffectManager.h"
 
 Slime::Slime(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level):
-	CharacterBase(pos, normalVec, level)
+	CharacterBase(pos, normalVec, level),
+	kInitialPos(pos)
 {
 	m_pPhysics = new Physics();
 }
@@ -19,18 +20,19 @@ Slime::~Slime()
 
 void Slime::Update()
 {
+	D3DXVECTOR3 currentOnBoardPos;
+	currentOnBoardPos = m_PosXZ;
+	PhysicsManager::GetInstance().TranceformOnBoard(currentOnBoardPos, &currentOnBoardPos);
+
 	D3DXVECTOR3 rollVec;
-	//if (PhysicsManager::GetInstance().CanRoll()) {
-	//	m_pPhysics->GetRollVec(&rollVec,m_Pos);
-	//	rollVec *= m_pPhysics->GetRollVelocity();
-	//	m_Pos += rollVec;
-	//}
-
 	m_pPhysics->GetRollVec(&rollVec);
-	rollVec *= m_pPhysics->GetRollVelocity();
-	m_Pos += rollVec;
+	float length = m_pPhysics->GetRollVelocity();
+	rollVec *= length;
 
+	m_Pos = rollVec + (currentOnBoardPos);
 
+	m_PosXZ.x += rollVec.x;
+	m_PosXZ.z += rollVec.z;
 }
 
 void Slime::DrawPreparation()

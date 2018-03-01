@@ -13,7 +13,11 @@ class MaterialBase :public ObjectBase{
 public:
 	MaterialBase(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec):
 		m_Pos(pos),
-		m_NormalVec(normalVec){}
+		m_NormalVec(normalVec),
+		m_PosXZ(pos)
+	{
+		m_PosXZ.y = 0.0f;
+	}
 
 	MaterialBase(D3DXVECTOR3& pos) { m_Pos = pos; }
 
@@ -25,6 +29,7 @@ public:
 
 protected:
 	D3DXVECTOR3 m_Pos;
+	D3DXVECTOR3 m_PosXZ;
 	D3DXVECTOR3 m_NormalVec;	//!•ûŒüƒxƒNƒgƒ‹
 };
 #endif
