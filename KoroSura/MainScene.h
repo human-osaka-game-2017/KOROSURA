@@ -7,6 +7,8 @@
 
 class MaterialBase;
 class Camera;
+class LimitTime;
+class PlayerLevel;
 
 class MainScene :public SceneBase{
 public:
@@ -20,5 +22,7 @@ public:
 private:
 	std::vector<MaterialBase*> m_PtrMaterials;
 	Camera* m_pCamera;
+	LimitTime* m_pLimitTime;
+	PlayerLevel* m_pPlayerLevel;
 };
 #endif

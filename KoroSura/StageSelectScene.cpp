@@ -7,10 +7,13 @@
 #include"StageSelectBackground.h"
 #include"Fonts.h"
 #include"Lib.h"
+#include"SoundBufferManager.h"
 
 StageSelectScene::StageSelectScene()
 {
 	Lib::GetInstance().LoadPictureFile("Picture\\UI.png", Fonts::g_PngSize, Fonts::g_PngSize);
+
+	SoundBufferManager::GetInstance().LoadWaveFile("BGM\\StageSelectBgm.wav");
 
 	m_pSelecter = new Selecter(StageInfo::kStageMax, std::bind(&StageSelectScene::WasSelected, this));
 
@@ -27,6 +30,8 @@ StageSelectScene::~StageSelectScene()
 {
 	Lib::GetInstance().CancelTexture("Picture\\UI.png");
 
+	SoundBufferManager::GetInstance().CancelSound("BGM\\StageSelectBgm.wav");
+
 	delete m_pSelecter;
 	for (auto itr = m_PtrObjects.begin(); itr != m_PtrObjects.end(); ++itr) {
 		delete *itr;
@@ -38,6 +43,8 @@ SceneBase::SCENE_ID StageSelectScene::Update()
 	SCENE_ID retSceneId = SCENE_ID::STAGESELECT;
 
 	Lib::GetInstance().UpdateKey();
+
+	SoundBufferManager::GetInstance().PlayBackSound("BGM\\StageSelectBgm.wav",true);
 
 	m_pSelecter->Update();
 	int selectPoint = m_pSelecter->GetCurrentSelection();
@@ -53,7 +60,6 @@ SceneBase::SCENE_ID StageSelectScene::Update()
 	if (m_FrCnt >= kNextSceneInterval) {
 		retSceneId = SCENE_ID::LOAD;
 	}
-
 	return retSceneId;
 }
 

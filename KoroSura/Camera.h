@@ -3,7 +3,7 @@
 
 #include<d3dx9.h>
 
-class Camera{
+class Camera {
 public:
 	Camera(D3DXVECTOR3* lookatpos);
 	~Camera();

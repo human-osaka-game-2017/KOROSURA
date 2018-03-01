@@ -10,15 +10,18 @@
 #include"DirLightSource.h"
 #include"PhysicsManager.h"
 #include"Common.h"
+#include"LimitTime.h"
+#include"PlayerLevel.h"
 
 MainScene::MainScene()
 {
-	EffectManager::GetpInstance().CreateEffect("Shader\\BasicShader.fx");
-
+	EffectManager::GetpInstance().CreateEffect("Shader\\BasicShader.fx"); 
 	StageInfo::StageData* pStageData = StageInfo::GetInstance().GetStageData();
 	Slime*	pSlime		= new Slime(pStageData->slimeData.pos, D3DXVECTOR3(0.0f, 1.0f, 0.0f), pStageData->slimeData.level);
 	Sky* pSky			= new Sky();
 	Terrain* pTerrain	= new Terrain();
+	m_pLimitTime = new LimitTime();
+	m_pPlayerLevel = new PlayerLevel();
 	m_pCamera			= new Camera(pSlime->GetPos());
 
 	m_PtrMaterials.push_back(pSky);
@@ -62,7 +65,7 @@ SceneBase::SCENE_ID MainScene::Update()
 void MainScene::Draw()
 {
 	Lib::GetInstance().StartRender();
-
+	DirectGraphics::GetInstance().SetRenderState3D();
 	//for (auto ite = m_PtrMaterials.begin(); ite != m_PtrMaterials.end(); ++ite) {
 	//	(*ite)->DrawPreparation();
 	//}
@@ -79,5 +82,15 @@ void MainScene::Draw()
 		(*ite)->Draw();
 	}
 
+	Lib::GetInstance().SetRenderState2D();
+
+	m_pLimitTime->Draw();
+	m_pPlayerLevel->Draw();
+
 	Lib::GetInstance().EndRender();
+
+	//Lib::GetInstance().SetRenderState2D();
+
+	//m_pLimitTime->Draw();
+
 }

@@ -16,7 +16,6 @@ public:
 	void PlayBackSound(std::string fileName, bool isLoop);
 
 	void StopSound(std::string fileName);
-
 private:
 	static SoundBufferManager* m_pInstance;
 	SoundBufferManager();
