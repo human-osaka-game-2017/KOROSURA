@@ -60,30 +60,34 @@ bool Utility::JudgeCollisionSquare(const D3DXVECTOR2& pos1, float width1, float 
 	return false;
 }
 
-double Utility::CalculateRad(float x1, float y1, float x2, float y2)
+double Utility::CalculateDegree(float x1, float y1, float x2, float y2)
 {
-	double rad;
+	D3DXVECTOR2 tmp = D3DXVECTOR2(x2 - x1, y2 - y1);
 
-	double lengthX = x2 - x1;
-	double lengthY = y2 - y1;
+	return MyAtanDeg(tmp);
+}
 
-	if (lengthX == 0 && lengthY == 0) {
+float Utility::MyAtanDeg(const D3DXVECTOR2& vec)
+{
+	float rad;
+
+	if (vec.x == 0 && vec.y == 0) {
 		return 0;
 	}
 
-	if (lengthX > 0) {
-		if (lengthY < 0) {
-			rad = atan(lengthY / lengthX);
+	if (vec.x > 0) {
+		if (vec.y < 0) {
+			rad = atan(vec.y / vec.x);
 		}
 		else {
-			rad = atan(lengthY / lengthX);
+			rad = atan(vec.y / vec.x);
 		}
 	}
-	else if (lengthX < 0) {
-		rad = atan(lengthY / lengthX) + D3DX_PI;
+	else if (vec.x < 0) {
+		rad = atan(vec.y / vec.x) + D3DX_PI;
 	}
-	else if (lengthX == 0) {
-		if (lengthY < 0) {
+	else if (vec.x == 0) {
+		if (vec.y < 0) {
 			rad = D3DX_PI / 2;
 		}
 		else {
@@ -91,12 +95,12 @@ double Utility::CalculateRad(float x1, float y1, float x2, float y2)
 		}
 	}
 
-	return rad;
+	return D3DXToDegree(rad);
 }
 
 float Utility::CalculateDeg(float x1, float y1, float x2, float y2) 
 {
-	return (float)D3DXToDegree(CalculateRad(x1, y1, x2, y2));
+	return (float)D3DXToDegree(CalculateDegree(x1, y1, x2, y2));
 }
 
 float Utility::CalculateDistance(float x1, float y1, float x2, float y2) 

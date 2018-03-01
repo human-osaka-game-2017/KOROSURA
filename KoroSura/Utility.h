@@ -90,7 +90,7 @@ namespace Utility {
 
 	float CalculateDeg(float x1, float y1, float x2, float y2);
 
-	double CalculateRad(float x1, float y1, float x2, float y2);
+	double CalculateDegree(float x1, float y1, float x2, float y2);
 
 	Matrix* GetRotationXMatrix(Matrix* mat, float deg);
 	Matrix* GetRotationYMatrix(Matrix* mat, float deg);
@@ -103,5 +103,7 @@ namespace Utility {
 
 	//min<= random <= max
 	int Random(int min, int max);
+
+	float MyAtanDeg(const D3DXVECTOR2& vec);
 }
 #endif

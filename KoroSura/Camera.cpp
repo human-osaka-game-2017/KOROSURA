@@ -15,6 +15,9 @@ Camera::Camera(D3DXVECTOR3* lookatpos) :
 	kDistance(InitProperty::GetInstance().GetInitialData().cameraDistance),
 	kLookAtPosYOffset(InitProperty::GetInstance().GetInitialData().lookAtPosYOffset)
 {
+	D3DXVECTOR3 lookAtPos = *m_pLookatPos;
+	lookAtPos.y += kLookAtPosYOffset;
+	PhysicsManager::GetInstance().SetCameraVec(lookAtPos - m_Pos);
 }
 
 Camera::~Camera()

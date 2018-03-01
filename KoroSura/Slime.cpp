@@ -32,6 +32,7 @@ void Slime::Update()
 	Utility::OutputDebug_Number(length);
 
 	static D3DXVECTOR3 acceleration = rollVec;
+	if (rollVec == D3DXVECTOR3(0.0f, 0.0f, 0.0f))acceleration = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	acceleration += rollVec;
 	m_Pos = acceleration + (currentOnBoardPos);
 
