@@ -78,7 +78,7 @@ float Physics::GetRollVelocity()
 	else {
 		//ê‚ëŒíl
 		float gravity = fabs(PhysicsManager::GetInstance().GetGravity().y);
-		m_Velocity += gravity*sin(rad) - PhysicsManager::GetInstance().GetDynamicCoefficientOfFriction()*gravity*cos(rad);
+		m_Velocity = gravity*sin(rad) - PhysicsManager::GetInstance().GetDynamicCoefficientOfFriction()*gravity*cos(rad);
 	}
 
 	//m_Velocity = a;

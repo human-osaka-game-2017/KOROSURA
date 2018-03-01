@@ -29,11 +29,14 @@ void Slime::Update()
 	m_pPhysics->GetRollVec(&rollVec);
 	float length = m_pPhysics->GetRollVelocity();
 	rollVec *= length;
+	Utility::OutputDebug_Number(length);
 
-	m_Pos = rollVec + (currentOnBoardPos);
+	static D3DXVECTOR3 acceleration = rollVec;
+	acceleration += rollVec;
+	m_Pos = acceleration + (currentOnBoardPos);
 
-	m_PosXZ.x += rollVec.x;
-	m_PosXZ.z += rollVec.z;
+	m_PosXZ.x += acceleration.x;
+	m_PosXZ.z += acceleration.z;
 }
 
 void Slime::DrawPreparation()
