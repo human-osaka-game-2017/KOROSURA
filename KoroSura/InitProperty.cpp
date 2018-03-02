@@ -36,7 +36,10 @@ void InitProperty::LoadSlime()
 
 void InitProperty::LoadEnemy()
 {
-	LoadSpider();
+	LoadMushroom();
+	LoadGoblin();
+	LoadTrent();
+	LoadCerberus();
 }
 
 void InitProperty::LoadGimmick()
@@ -70,28 +73,133 @@ void InitProperty::LoadCamera()
 		GetPrivateProfileInt("Camera", "Distance", 1, PROPERTY_FILENAME);
 }
 
-void InitProperty::LoadSpider()
+void InitProperty::LoadMushroom()
 {
-	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::SPIDER)].colliderOffset.x =
-		GetPrivateProfileInt("クモ", "ColliderOffsetX", 1, MATERIAL_FILENAME);
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::MUSHROOM_RED)].colliderOffset.x =
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::MUSHROOM_BLUE)].colliderOffset.x =
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::MUSHROOM_PURPLE)].colliderOffset.x =
+		GetPrivateProfileInt("キノコ", "ColliderOffsetX", 1, MATERIAL_FILENAME);
 
-	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::SPIDER)].colliderOffset.y =
-		GetPrivateProfileInt("クモ", "ColliderOffsetY", 1, MATERIAL_FILENAME);
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::MUSHROOM_RED)].colliderOffset.y =
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::MUSHROOM_BLUE)].colliderOffset.y =
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::MUSHROOM_PURPLE)].colliderOffset.y =
+		GetPrivateProfileInt("キノコ", "ColliderOffsetY", 1, MATERIAL_FILENAME);
 
-	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::SPIDER)].colliderOffset.z =
-		GetPrivateProfileInt("クモ", "ColliderOffsetZ", 1, MATERIAL_FILENAME);
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::MUSHROOM_RED)].colliderOffset.z =
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::MUSHROOM_BLUE)].colliderOffset.z =
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::MUSHROOM_PURPLE)].colliderOffset.z =
+		GetPrivateProfileInt("キノコ", "ColliderOffsetZ", 1, MATERIAL_FILENAME);
 
-	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::SPIDER)].colliderSize.x =
-		GetPrivateProfileInt("クモ", "ColliderSizeX", 1, MATERIAL_FILENAME);
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::MUSHROOM_RED)].colliderSize.x =
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::MUSHROOM_BLUE)].colliderSize.x =
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::MUSHROOM_PURPLE)].colliderSize.x =
+		GetPrivateProfileInt("キノコ", "ColliderSizeX", 1, MATERIAL_FILENAME);
 
-	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::SPIDER)].colliderSize.y =
-		GetPrivateProfileInt("クモ", "ColliderSizeY", 1, MATERIAL_FILENAME);
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::MUSHROOM_RED)].colliderSize.y =
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::MUSHROOM_BLUE)].colliderSize.y =
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::MUSHROOM_PURPLE)].colliderSize.y =
+		GetPrivateProfileInt("キノコ", "ColliderSizeY", 1, MATERIAL_FILENAME);
 
-	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::SPIDER)].colliderSize.z =
-		GetPrivateProfileInt("クモ", "ColliderSizeZ", 1, MATERIAL_FILENAME);
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::MUSHROOM_RED)].colliderSize.z =
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::MUSHROOM_BLUE)].colliderSize.z =
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::MUSHROOM_PURPLE)].colliderSize.z =
+		GetPrivateProfileInt("キノコ", "ColliderSizeZ", 1, MATERIAL_FILENAME);
 
-	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::SPIDER)].modelOffset =
-		GetPrivateProfileInt("クモ", "ModelOffset", 1, MATERIAL_FILENAME);
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::MUSHROOM_RED)].modelOffset =
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::MUSHROOM_BLUE)].modelOffset =
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::MUSHROOM_PURPLE)].modelOffset =
+		GetPrivateProfileInt("キノコ", "ModelOffset", 1, MATERIAL_FILENAME);
+}
+
+void InitProperty::LoadGoblin()
+{
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::GOBLIN)].colliderOffset.x =
+		m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::GOBLIN_PURPLE)].colliderOffset.x =
+		GetPrivateProfileInt("ゴブリン", "ColliderOffsetX", 1, MATERIAL_FILENAME);
+
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::GOBLIN)].colliderOffset.y =
+		m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::GOBLIN_PURPLE)].colliderOffset.y =
+		GetPrivateProfileInt("ゴブリン", "ColliderOffsetY", 1, MATERIAL_FILENAME);
+
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::GOBLIN)].colliderOffset.z =
+		m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::GOBLIN_PURPLE)].colliderOffset.z =
+		GetPrivateProfileInt("ゴブリン", "ColliderOffsetZ", 1, MATERIAL_FILENAME);
+
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::GOBLIN)].colliderSize.x =
+		m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::GOBLIN_PURPLE)].colliderSize.x =
+		GetPrivateProfileInt("ゴブリン", "ColliderSizeX", 1, MATERIAL_FILENAME);
+
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::GOBLIN)].colliderSize.y =
+		m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::GOBLIN_PURPLE)].colliderSize.y =
+		GetPrivateProfileInt("ゴブリン", "ColliderSizeY", 1, MATERIAL_FILENAME);
+
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::GOBLIN)].colliderSize.z =
+		m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::GOBLIN_PURPLE)].colliderSize.z =
+		GetPrivateProfileInt("ゴブリン", "ColliderSizeZ", 1, MATERIAL_FILENAME);
+
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::GOBLIN)].modelOffset =
+		m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::GOBLIN_PURPLE)].modelOffset =
+		GetPrivateProfileInt("ゴブリン", "ModelOffset", 1, MATERIAL_FILENAME);
+}
+void InitProperty::LoadTrent()
+{
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::TRENT_GREEN)].colliderOffset.x =
+		m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::TRENT_YELLOW)].colliderOffset.x =
+		m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::TRENT_PINK)].colliderOffset.x =
+		GetPrivateProfileInt("トレント", "ColliderOffsetX", 1, MATERIAL_FILENAME);
+
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::TRENT_GREEN)].colliderOffset.y =
+		m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::TRENT_YELLOW)].colliderOffset.y =
+		m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::TRENT_PINK)].colliderOffset.y =
+		GetPrivateProfileInt("トレント", "ColliderOffsetY", 1, MATERIAL_FILENAME);
+
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::TRENT_GREEN)].colliderOffset.z =
+		m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::TRENT_YELLOW)].colliderOffset.z =
+		m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::TRENT_PINK)].colliderOffset.z =
+		GetPrivateProfileInt("トレント", "ColliderOffsetZ", 1, MATERIAL_FILENAME);
+
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::TRENT_GREEN)].colliderSize.x =
+		m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::TRENT_YELLOW)].colliderSize.x =
+		m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::TRENT_PINK)].colliderSize.x =
+		GetPrivateProfileInt("トレント", "ColliderSizeX", 1, MATERIAL_FILENAME);
+
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::TRENT_GREEN)].colliderSize.y =
+		m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::TRENT_YELLOW)].colliderSize.y =
+		m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::TRENT_PINK)].colliderSize.y =
+		GetPrivateProfileInt("トレント", "ColliderSizeY", 1, MATERIAL_FILENAME);
+
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::TRENT_GREEN)].colliderSize.z =
+		m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::TRENT_YELLOW)].colliderSize.z =
+		m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::TRENT_PINK)].colliderSize.z =
+		GetPrivateProfileInt("トレント", "ColliderSizeZ", 1, MATERIAL_FILENAME);
+
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::TRENT_GREEN)].modelOffset =
+		m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::TRENT_YELLOW)].modelOffset =
+		m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::TRENT_PINK)].modelOffset =
+		GetPrivateProfileInt("トレント", "ModelOffset", 1, MATERIAL_FILENAME);
+}
+void InitProperty::LoadCerberus()
+{
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::CERBERUS)].colliderOffset.x =
+		GetPrivateProfileInt("ケロべロス", "ColliderOffsetX", 1, MATERIAL_FILENAME);
+
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::CERBERUS)].colliderOffset.y =
+		GetPrivateProfileInt("ケロべロス", "ColliderOffsetY", 1, MATERIAL_FILENAME);
+
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::CERBERUS)].colliderOffset.z =
+		GetPrivateProfileInt("ケロべロス", "ColliderOffsetZ", 1, MATERIAL_FILENAME);
+
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::CERBERUS)].colliderSize.x =
+		GetPrivateProfileInt("ケロべロス", "ColliderSizeX", 1, MATERIAL_FILENAME);
+
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::CERBERUS)].colliderSize.y =
+		GetPrivateProfileInt("ケロべロス", "ColliderSizeY", 1, MATERIAL_FILENAME);
+
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::CERBERUS)].colliderSize.z =
+		GetPrivateProfileInt("ケロべロス", "ColliderSizeZ", 1, MATERIAL_FILENAME);
+
+	m_InitialData.enemyInitialData[static_cast<int>(EnemyBase::ENEMY_KIND::CERBERUS)].modelOffset =
+		GetPrivateProfileInt("ケロべロス", "ModelOffset", 1, MATERIAL_FILENAME);
 }
 
 void InitProperty::LoadFence()

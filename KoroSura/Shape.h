@@ -28,6 +28,9 @@ namespace Shape {
 	class Sphere {
 	public:
 		Sphere() {}
+		Sphere(const D3DXVECTOR3& pos,float radius) :
+		m_Pos(pos),
+		m_Radius(radius){}
 		~Sphere() {}
 
 		/**
@@ -79,6 +82,17 @@ namespace Shape {
 	public:
 		/*** @brief OBBクラスのコンストラクタ*/
 		OBB() {}
+
+		OBB(const D3DXVECTOR3& pos, const D3DXVECTOR3& directX, const D3DXVECTOR3& directY, const D3DXVECTOR3& directZ, const D3DXVECTOR3& length):
+			m_Pos(pos)
+			{
+				m_NormaDirect[0] = directX;
+				m_NormaDirect[1] = directY;
+				m_NormaDirect[2] = directZ;
+				m_Length[0] = length.x;
+				m_Length[1] = length.y;
+				m_Length[2] = length.z;
+			}
 
 		/*** @brief OBBクラスのデストラクタ*/
 		virtual ~OBB() {}

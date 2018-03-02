@@ -8,13 +8,11 @@ GameClear::GameClear()
 {
 	Lib::GetInstance().LoadPictureFile("Picture\\Select.png", kPngWidth, kPngHeight);
 	SoundBufferManager::GetInstance().LoadWaveFile("BGM\\ClearBgm.wav");
-	SoundBufferManager::GetInstance().PlayBackSound("BGM\\ClearBgm.wav", false);
 }
 
 GameClear::~GameClear()
 {
 	Lib::GetInstance().CancelTexture("Picture\\Select.png");
-	SoundBufferManager::GetInstance().StopSound("BGM\\ClearBgm.wav");
 	SoundBufferManager::GetInstance().CancelSound("BGM\\ClearBgm.wav");
 }
 
@@ -57,4 +55,29 @@ void GameClear::Draw()
 		static_cast<float>(kPngWidth), static_cast<float>(kPngHeight));
 
 	Lib::GetInstance().Draw(NextVertex, "Picture\\Select.png");
+
+	//select‰æ‘œ‚Ì•\Ž¦
+	Utility::CUSTOMVERTEX StageSelectVertex[] = {
+		{ kStageSelectPos.x - kStageSelectWidth / 2,kStageSelectPos.y - kStageSelectHeight / 2 ,1.0f,1.0f,0xffffffff ,0.0f,0.0f },
+		{ kStageSelectPos.x + kStageSelectWidth / 2,kStageSelectPos.y - kStageSelectHeight / 2 ,1.0f,1.0f,0xffffffff ,1.0f,0.0f },
+		{ kStageSelectPos.x + kStageSelectWidth / 2,kStageSelectPos.y + kStageSelectHeight / 2 ,1.0f,1.0f,0xffffffff ,1.0f,1.0f },
+		{ kStageSelectPos.x - kStageSelectWidth / 2,kStageSelectPos.y + kStageSelectHeight / 2 ,1.0f,1.0f,0xffffffff ,0.0f,1.0f }
+	};
+
+	Lib::GetInstance().TrimingVertex(
+		StageSelectVertex,
+		2300.0f, 700.0f,
+		static_cast<float>(kStageSelectWidth), static_cast<float>(kStageSelectHeight),
+		static_cast<float>(kPngWidth), static_cast<float>(kPngHeight));
+
+	Lib::GetInstance().Draw(StageSelectVertex, "Picture\\Select.png");
+}
+
+void GameClear::StartMusic()
+{
+	SoundBufferManager::GetInstance().PlayBackSound("BGM\\ClearBgm.wav", false);
+}
+void GameClear::EndMusic()
+{
+	SoundBufferManager::GetInstance().StopSound("BGM\\ClearBgm.wav");
 }

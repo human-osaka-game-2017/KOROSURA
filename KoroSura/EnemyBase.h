@@ -7,25 +7,45 @@
 #define ENEMYBASE_H
 
 #include"CharacterBase.h"
+#include"Shape.h"
+#include"ColliderBase.h"
+
+class BoxCollider;
+class Physics;
 
 class EnemyBase :public CharacterBase {
 public:
 	enum struct ENEMY_KIND {
-		SPIDER,
+		SLIME,
+		MUSHROOM_RED,
+		MUSHROOM_BLUE,
+		MUSHROOM_PURPLE,
+		GOBLIN,
+		GOBLIN_PURPLE,//murasaki
+		TRENT_GREEN,
+		TRENT_YELLOW,
+		TRENT_PINK,
+		CERBERUS,
+		TIGER,
+		MINOTAUR,
 		MAX
 	};
 
-	EnemyBase(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level, ENEMY_KIND kind):
-		CharacterBase(pos,normalVec,level),
-		m_Kind(kind)
-	{}
+	EnemyBase(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level, ENEMY_KIND kind, float angleDeg);
 
 	virtual ~EnemyBase() {}
 
-	virtual void Update() = 0;
-	virtual void Draw() = 0;
+	virtual void Update() {};
+	virtual void Draw();
 
 protected:
-	const ENEMY_KIND m_Kind;
+	const ENEMY_KIND kKind;
+
+	Physics* m_pPhysics;
+	Shape::OBB m_OBB;
+	BoxCollider* m_pCollider;
+
+private:
+	void Collided(std::vector<ColliderBase::ObjectData*>* collidedObjects);
 };
 #endif

@@ -13,25 +13,36 @@
 #include"LimitTime.h"
 #include"PlayerLevel.h"
 #include"SoundBufferManager.h"
-
+#include"GameClear.h"
+#include"GameOver.h"
+#include"InitProperty.h"
+#include"ColliderManager.h"
 
 MainScene::MainScene()
 {
-	EffectManager::GetpInstance().CreateEffect("Shader\\BasicShader.fx");
-
+	ColliderManager::GetInstance().FormGroup();
+	EffectManager::GetpInstance().CreateEffect("Shader\\BasicShader.fx"); 
 	SoundBufferManager::GetInstance().LoadWaveFile("BGM\\MainBgm.wav");
 	SoundBufferManager::GetInstance().PlayBackSound("BGM\\MainBgm.wav", true);
 
 	StageInfo::StageData* pStageData = StageInfo::GetInstance().GetStageData();
-	Slime*	pSlime		= new Slime(pStageData->slimeData.pos, D3DXVECTOR3(0.0f, 1.0f, 0.0f), pStageData->slimeData.level);
+
+	D3DXVECTOR3 slimePos = pStageData->slimeData.pos;
+	slimePos.y += InitProperty::GetInstance().GetInitialData().slimeInitialData.modelOffset;
+	Slime*	pSlime		= new Slime(slimePos, D3DXVECTOR3(0.0f, 1.0f, 0.0f), pStageData->slimeData.level);
 	Sky* pSky			= new Sky();
 	Terrain* pTerrain	= new Terrain();
 
 	m_pLimitTime = new LimitTime();
 	m_pCamera	= new Camera(pSlime->GetPos());
 
-
 	m_ClearFlg = true;
+	int enemyNum = pStageData->enemyNum;
+	for (int i = 0; i < enemyNum; ++i) {
+		EnemyBase* pEnemy = new EnemyBase(pStageData->enemyData[i].pos, D3DXVECTOR3(0.0f, 1.0f, 0.0f), pStageData->enemyData[i].level,
+			static_cast<EnemyBase::ENEMY_KIND>(pStageData->enemyData[i].kind), pStageData->enemyData[i].angle);
+		m_PtrMaterials.push_back(pEnemy);
+	}
 
 	m_PtrMaterials.push_back(pSky);
 	m_PtrMaterials.push_back(pSlime);
@@ -60,7 +71,7 @@ SceneBase::SCENE_ID MainScene::Update()
 
 	Lib::GetInstance().UpdateKey();
 	if (m_ClearFlg != false) {
-		m_PtrObject.push_back(pGameClear);
+		m_PtrObject.push_back(m_pGameClear);
 	}
 	else {
 
@@ -68,11 +79,11 @@ SceneBase::SCENE_ID MainScene::Update()
 
 		DirLightSource::GetpInstance().Update();
 
-		PhysicsManager::GetInstance().Update();
-
 		for (auto ite = m_PtrMaterials.begin(); ite != m_PtrMaterials.end(); ++ite) {
 			(*ite)->Update();
 		}
+
+		PhysicsManager::GetInstance().Update();
 	}
 
 	return retSceneId;
@@ -92,9 +103,6 @@ void MainScene::Draw()
 	Lib::GetInstance().StartRender();
 	
 		DirectGraphics::GetInstance().SetRenderState3D();
-		//for (auto ite = m_PtrMaterials.begin(); ite != m_PtrMaterials.end(); ++ite) {
-		//	(*ite)->DrawPreparation();
-		//}
 
 		m_pCamera->Update();
 
@@ -111,12 +119,7 @@ void MainScene::Draw()
 		Lib::GetInstance().SetRenderState2D();
 
 		m_pLimitTime->Draw();
-		//m_pPlayerLevel->Draw();
 
 		Lib::GetInstance().EndRender();
 	}
-	//Lib::GetInstance().SetRenderState2D();
-
-	//m_pLimitTime->Draw();
-
 }

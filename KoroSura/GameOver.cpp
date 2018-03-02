@@ -8,7 +8,7 @@ GameOver::GameOver()
 {
 	Lib::GetInstance().LoadPictureFile("Picture\\Select.png", kPngWidth, kPngHeight);
 	SoundBufferManager::GetInstance().LoadWaveFile("BGM\\EndingBgm.wav");
-	SoundBufferManager::GetInstance().PlayBackSound("BGM\\EndingBgm.wav", true);
+	SoundBufferManager::GetInstance().PlayBackSound("BGM\\EndingBgm.wav", false);
 }
 
 
@@ -37,7 +37,7 @@ void GameOver::Draw()
 
 	Lib::GetInstance().TrimingVertex(
 		OverVertex,
-		650.0f, 875.0f,
+		650.0f, 700.0f,
 		static_cast<float>(kStageOverWidth), static_cast<float>(kStageOverHeight),
 		static_cast<float>(kPngWidth), static_cast<float>(kPngHeight));
 
@@ -54,11 +54,28 @@ void GameOver::Draw()
 
 	Lib::GetInstance().TrimingVertex(
 		RetryVertex,
-		1800.0f, 850.0f,
+		1800.0f, 700.0f,
 		static_cast<float>(kStageRetryWidth), static_cast<float>(kStageRetryHeight),
 		static_cast<float>(kPngWidth), static_cast<float>(kPngHeight));
 
-	Lib::GetInstance().Draw(OverVertex, "Picture\\Select.png");
+	Lib::GetInstance().Draw(RetryVertex, "Picture\\Select.png");
+
+	//select‰æ‘œ‚Ì•\Ž¦
+	Utility::CUSTOMVERTEX StageSelectVertex[] = {
+		{ kStageSelectPos.x - kStageSelectWidth / 2,kStageSelectPos.y - kStageSelectHeight / 2 ,1.0f,1.0f,0xffffffff ,0.0f,0.0f },
+		{ kStageSelectPos.x + kStageSelectWidth / 2,kStageSelectPos.y - kStageSelectHeight / 2 ,1.0f,1.0f,0xffffffff ,1.0f,0.0f },
+		{ kStageSelectPos.x + kStageSelectWidth / 2,kStageSelectPos.y + kStageSelectHeight / 2 ,1.0f,1.0f,0xffffffff ,1.0f,1.0f },
+		{ kStageSelectPos.x - kStageSelectWidth / 2,kStageSelectPos.y + kStageSelectHeight / 2 ,1.0f,1.0f,0xffffffff ,0.0f,1.0f }
+	};
+
+	Lib::GetInstance().TrimingVertex(
+		StageSelectVertex,
+		2300.0f, 700.0f,
+		static_cast<float>(kStageSelectWidth), static_cast<float>(kStageSelectHeight),
+		static_cast<float>(kPngWidth), static_cast<float>(kPngHeight));
+
+	Lib::GetInstance().Draw(StageSelectVertex, "Picture\\Select.png");
+
 }
 
 

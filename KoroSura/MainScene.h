@@ -28,8 +28,8 @@ private:
 	std::vector<ObjectBase*> m_PtrObject;
 	Camera* m_pCamera;
 	LimitTime* m_pLimitTime;
-	GameClear* pGameClear = new GameClear();
-	GameOver* pGameOver = new GameOver();
+	GameClear* m_pGameClear = new GameClear();
+	GameOver* m_pGameOver = new GameOver();
 
 	bool m_ClearFlg;
 };

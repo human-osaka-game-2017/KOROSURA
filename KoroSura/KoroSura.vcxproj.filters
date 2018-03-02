@@ -164,6 +164,9 @@
     <ClCompile Include="GameOver.cpp">
       <Filter>Application\Scene\Main\ResultUI</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyBase.cpp">
+      <Filter>Application\Scene\Main\Material\Character\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">

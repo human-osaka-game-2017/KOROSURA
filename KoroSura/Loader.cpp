@@ -32,9 +32,20 @@ void WINAPI Loader::ExecThread()
 
 	StageInfo::GetInstance().SetStageData(stageData);
 
-	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\sky.fbx");
 	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\board.fbx");
-	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\goburin_H.fbx");
+	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\Cerberus_og2.fbx");
+	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\fence.fbx");
+	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\goblin.fbx");
+	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\goblin_p.fbx");
+	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\minotaur.fbx");
+	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\mushroom_b.fbx");
+	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\mushroom_p.fbx");
+	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\mushroom_r.fbx");
+	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\sky.fbx");
+	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\slime.fbx");
+	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\treant_mg.fbx");
+	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\treant_mp.fbx");
+	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\treant_my.fbx");
 
 	m_WasComplete = true;
 	OutputDebugString("loadèIóπ");
