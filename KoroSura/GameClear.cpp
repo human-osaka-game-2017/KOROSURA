@@ -6,13 +6,13 @@
 
 GameClear::GameClear()
 {
-	Lib::GetInstance().LoadPictureFile("Picture\\Select.png", kPngWidth, kPngHeight);
+	Lib::GetInstance().LoadPictureFile("Picture\\StageImg.png", kPngWidth, kPngHeight);
 	SoundBufferManager::GetInstance().LoadWaveFile("BGM\\ClearBgm.wav");
 }
 
 GameClear::~GameClear()
 {
-	Lib::GetInstance().CancelTexture("Picture\\Select.png");
+	Lib::GetInstance().CancelTexture("Picture\\StageImg.png");
 	SoundBufferManager::GetInstance().CancelSound("BGM\\ClearBgm.wav");
 }
 
@@ -38,7 +38,7 @@ void GameClear::Draw()
 		static_cast<float>(kStageClearWidth), static_cast<float>(kStageClearHeight),
 		static_cast<float>(kPngWidth), static_cast<float>(kPngHeight));
 
-	Lib::GetInstance().Draw(ClearVertex, "Picture\\Select.png");
+	Lib::GetInstance().Draw(ClearVertex, "Picture\\StageImg.png");
 
 	//next‰æ‘œ‚Ì•\Ž¦
 	Utility::CUSTOMVERTEX NextVertex[] = {
@@ -54,7 +54,7 @@ void GameClear::Draw()
 		static_cast<float>(kStageNextWidth), static_cast<float>(kStageNextHeight),
 		static_cast<float>(kPngWidth), static_cast<float>(kPngHeight));
 
-	Lib::GetInstance().Draw(NextVertex, "Picture\\Select.png");
+	Lib::GetInstance().Draw(NextVertex, "Picture\\StageImg.png");
 
 	//select‰æ‘œ‚Ì•\Ž¦
 	Utility::CUSTOMVERTEX StageSelectVertex[] = {
@@ -70,7 +70,7 @@ void GameClear::Draw()
 		static_cast<float>(kStageSelectWidth), static_cast<float>(kStageSelectHeight),
 		static_cast<float>(kPngWidth), static_cast<float>(kPngHeight));
 
-	Lib::GetInstance().Draw(StageSelectVertex, "Picture\\Select.png");
+	Lib::GetInstance().Draw(StageSelectVertex, "Picture\\StageImg.png");
 }
 
 void GameClear::StartMusic()

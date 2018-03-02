@@ -6,14 +6,14 @@
 
 GameOver::GameOver()
 {
-	Lib::GetInstance().LoadPictureFile("Picture\\Select.png", kPngWidth, kPngHeight);
+	Lib::GetInstance().LoadPictureFile("Picture\\StageImg.png", kPngWidth, kPngHeight);
 	SoundBufferManager::GetInstance().LoadWaveFile("BGM\\EndingBgm.wav");
 }
 
 
 GameOver::~GameOver()
 {
-	Lib::GetInstance().CancelTexture("Picture\\Select.png");
+	Lib::GetInstance().CancelTexture("Picture\\StageImg.png");
 	SoundBufferManager::GetInstance().StopSound("BGM\\EndingBgm.wav");
 	SoundBufferManager::GetInstance().CancelSound("BGM\\EndingBgm.wav");
 }
@@ -42,7 +42,8 @@ void GameOver::Draw()
 		static_cast<float>(kPngWidth), static_cast<float>(kPngHeight));
 
 
-	Lib::GetInstance().Draw(OverVertex, "Picture\\Select.png");
+
+	Lib::GetInstance().Draw(OverVertex, "Picture\\StageImg.png");
 
 	//retry‰æ‘œ‚Ì•\Ž¦
 	Utility::CUSTOMVERTEX RetryVertex[] = {
@@ -58,7 +59,7 @@ void GameOver::Draw()
 		static_cast<float>(kStageRetryWidth), static_cast<float>(kStageRetryHeight),
 		static_cast<float>(kPngWidth), static_cast<float>(kPngHeight));
 
-	Lib::GetInstance().Draw(RetryVertex, "Picture\\Select.png");
+	Lib::GetInstance().Draw(RetryVertex, "Picture\\StageImg.png");
 
 	//select‰æ‘œ‚Ì•\Ž¦
 	Utility::CUSTOMVERTEX StageSelectVertex[] = {
@@ -74,7 +75,7 @@ void GameOver::Draw()
 		static_cast<float>(kStageSelectWidth), static_cast<float>(kStageSelectHeight),
 		static_cast<float>(kPngWidth), static_cast<float>(kPngHeight));
 
-	Lib::GetInstance().Draw(StageSelectVertex, "Picture\\Select.png");
+	Lib::GetInstance().Draw(StageSelectVertex, "Picture\\StageImg.png");
 }
 
 void GameOver::StartMusic()

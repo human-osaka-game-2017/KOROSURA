@@ -36,7 +36,7 @@ MainScene::MainScene()
 	m_pLimitTime = new LimitTime();
 	m_pCamera	= new Camera(pSlime->GetPos());
 
-	m_ClearFlg = false;
+	m_ClearFlg = true;
 	int enemyNum = pStageData->enemyNum;
 	for (int i = 0; i < enemyNum; ++i) {
 		EnemyBase* pEnemy = new EnemyBase(pStageData->enemyData[i].pos, D3DXVECTOR3(0.0f, 1.0f, 0.0f), pStageData->enemyData[i].level,
