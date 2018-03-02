@@ -17,6 +17,7 @@
 #include"GameOver.h"
 #include"InitProperty.h"
 #include"ColliderManager.h"
+#include"EnemyManager.h"
 
 MainScene::MainScene()
 {
@@ -33,16 +34,9 @@ MainScene::MainScene()
 	Sky* pSky			= new Sky();
 	Terrain* pTerrain	= new Terrain();
 
+	m_pEnemyManager = new EnemyManager;
 	m_pLimitTime = new LimitTime();
 	m_pCamera	= new Camera(pSlime->GetPos());
-
-	m_ClearFlg = true;
-	int enemyNum = pStageData->enemyNum;
-	for (int i = 0; i < enemyNum; ++i) {
-		EnemyBase* pEnemy = new EnemyBase(pStageData->enemyData[i].pos, D3DXVECTOR3(0.0f, 1.0f, 0.0f), pStageData->enemyData[i].level,
-			static_cast<EnemyBase::ENEMY_KIND>(pStageData->enemyData[i].kind), pStageData->enemyData[i].angle, pStageData->enemyData[i].isBoss);
-		m_PtrMaterials.push_back(pEnemy);
-	}
 
 	m_PtrMaterials.push_back(pSky);
 	m_PtrMaterials.push_back(pSlime);
@@ -61,6 +55,9 @@ MainScene::~MainScene()
 	for (auto ite = m_PtrMaterials.begin(); ite != m_PtrMaterials.end(); ++ite) {
 		delete *ite;
 	}
+	delete m_pEnemyManager;
+	delete m_pLimitTime;
+	delete m_pCamera;
 
 	EffectManager::GetpInstance().ReleaseEffect("Shader\\BasicShader.fx");
 }
@@ -70,56 +67,43 @@ SceneBase::SCENE_ID MainScene::Update()
 	SceneBase::SCENE_ID retSceneId = SCENE_ID::MAIN;
 
 	Lib::GetInstance().UpdateKey();
-	if (m_ClearFlg != false) {
-		m_PtrObject.push_back(m_pGameClear);
+	Lib::GetInstance().UpdateMouse();
+
+	DirLightSource::GetpInstance().Update();
+
+	for (auto ite = m_PtrMaterials.begin(); ite != m_PtrMaterials.end(); ++ite) {
+		(*ite)->Update();
 	}
-	else {
 
-		Lib::GetInstance().UpdateMouse();
+	m_pEnemyManager->Update();
 
-		DirLightSource::GetpInstance().Update();
+	PhysicsManager::GetInstance().Update();
 
-		for (auto ite = m_PtrMaterials.begin(); ite != m_PtrMaterials.end(); ++ite) {
-			(*ite)->Update();
-		}
-
-		PhysicsManager::GetInstance().Update();
-	}
+	ColliderManager::GetInstance().Collide();
 
 	return retSceneId;
 }
 
 void MainScene::Draw()
 {
-	if (m_ClearFlg != false) {
-		Lib::GetInstance().StartRender();
-		Lib::GetInstance().SetRenderState2D();
-		for (auto ite = m_PtrObject.begin(); ite != m_PtrObject.end(); ++ite) {
-			(*ite)->Draw();
-		}
-		Lib::GetInstance().EndRender();
-	}
-	else {
 	Lib::GetInstance().StartRender();
-	
-		DirectGraphics::GetInstance().SetRenderState3D();
+	DirectGraphics::GetInstance().SetRenderState3D();
 
-		m_pCamera->Update();
+	m_pCamera->Update();
+	D3DXMATRIX ViewMatrix;
+	(*DirectGraphics::GetInstance().GetDevice())->GetTransform(D3DTS_VIEW, &ViewMatrix);
+	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->SetViewMatrix(&ViewMatrix);
 
-		D3DXMATRIX ViewMatrix;
-		(*DirectGraphics::GetInstance().GetDevice())->GetTransform(D3DTS_VIEW, &ViewMatrix);
-		EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->SetViewMatrix(&ViewMatrix);
+	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->SetLightVector();
 
-		EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->SetLightVector();
-
-		for (auto ite = m_PtrMaterials.begin(); ite != m_PtrMaterials.end(); ++ite) {
-			(*ite)->Draw();
-		}
-
-		Lib::GetInstance().SetRenderState2D();
-
-		m_pLimitTime->Draw();
-
-		Lib::GetInstance().EndRender();
+	for (auto ite = m_PtrMaterials.begin(); ite != m_PtrMaterials.end(); ++ite) {
+		(*ite)->Draw();
 	}
+	m_pEnemyManager->Draw();
+
+	Lib::GetInstance().SetRenderState2D();
+
+	m_pLimitTime->Draw();
+
+	Lib::GetInstance().EndRender();
 }

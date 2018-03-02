@@ -19,7 +19,7 @@ bool BoxCollider::Collide(const ColliderBase& collider) const
 
 	switch (collider.GetShapeId()) {
 	case Shape::SHAPE_ID::BOX:
-		ret = CollideOBBToOBB(dynamic_cast<const BoxCollider&>(collider));
+		ret = CollideOBBToOBB(/*dynamic_cast<const BoxCollider&>*/(const BoxCollider&)(collider));
 		break;
 
 	case Shape::SHAPE_ID::SPHERE:

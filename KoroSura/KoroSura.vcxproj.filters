@@ -170,6 +170,9 @@
     <ClCompile Include="GameOverScene.cpp">
       <Filter>Application\Scene\FinishScene</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyManager.cpp">
+      <Filter>Application\Scene\Main\Material\Character\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">
@@ -501,6 +504,9 @@
     </ClInclude>
     <ClInclude Include="GameOverScene.h">
       <Filter>Application\Scene\FinishScene</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyManager.h">
+      <Filter>Application\Scene\Main\Material\Character\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -82,6 +82,7 @@ void Slime::Collided(std::vector<ColliderBase::ObjectData*>* collidedObjects)
 				if (m_Level - pEnemy->GetLevel() < 3) {
 					++m_Level;
 				}
+				pEnemy->Dead();
 			}
 		}
 	}

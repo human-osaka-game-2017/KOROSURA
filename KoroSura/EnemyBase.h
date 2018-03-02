@@ -33,7 +33,7 @@ public:
 
 	EnemyBase(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level, ENEMY_KIND kind, float angleDeg, bool isBoss);
 
-	virtual ~EnemyBase() {}
+	virtual ~EnemyBase();
 
 	virtual void Update();
 	virtual void Draw();
