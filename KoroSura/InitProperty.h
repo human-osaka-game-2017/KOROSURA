@@ -61,7 +61,10 @@ private:
 	void LoadPhysics();//!•¨—“I’l‚Ì“Ç‚İ‚İ
 	void LoadCamera();
 
-	void LoadSpider();
+	void LoadMushroom();
+	void LoadGoblin();
+	void LoadTrent();
+	void LoadCerberus();
 
 	void LoadFence();
 
