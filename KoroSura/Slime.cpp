@@ -54,6 +54,6 @@ void Slime::Draw()
 
 	// シェーダーパスの開始.
 	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->BeginPass(0);
-	ModelManager::GetInstance().GetFBXDate("FBX\\FBXModel\\fence.fbx").Draw();
+	ModelManager::GetInstance().GetFBXDate("FBX\\FBXModel\\ball.fbx").Draw();
 	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->EndPass();
 }

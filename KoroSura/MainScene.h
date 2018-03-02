@@ -21,8 +21,10 @@ public:
 
 private:
 	std::vector<MaterialBase*> m_PtrMaterials;
+	std::vector<ObjectBase*> m_PtrObject;
 	Camera* m_pCamera;
 	LimitTime* m_pLimitTime;
-	PlayerLevel* m_pPlayerLevel;
+
+	bool m_ClearFlg;
 };
 #endif

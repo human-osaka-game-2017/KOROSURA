@@ -158,6 +158,12 @@
     <ClCompile Include="PlayerLevel.cpp">
       <Filter>Application\Scene\Main\GameFont</Filter>
     </ClCompile>
+    <ClCompile Include="GameClear.cpp">
+      <Filter>Application\Scene\Main\ResultUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOver.cpp">
+      <Filter>Application\Scene\Main\ResultUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">
@@ -288,6 +294,12 @@
     </Filter>
     <Filter Include="Application\Scene\Main\GameFont">
       <UniqueIdentifier>{8c89ccdf-9e4d-4b0b-a04b-d7b6aa5b665b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\Main\GameClear">
+      <UniqueIdentifier>{ce63a233-054a-4e50-bd60-af1de85ab6b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\Main\ResultUI">
+      <UniqueIdentifier>{5f5f75e5-1a18-4cb0-8930-f1e443b69bae}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -468,6 +480,12 @@
     </ClInclude>
     <ClInclude Include="PlayerLevel.h">
       <Filter>Application\Scene\Main\GameFont</Filter>
+    </ClInclude>
+    <ClInclude Include="GameClear.h">
+      <Filter>Application\Scene\Main\ResultUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOver.h">
+      <Filter>Application\Scene\Main\ResultUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

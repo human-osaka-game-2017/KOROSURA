@@ -267,21 +267,32 @@ void FBXLoader::GetVertexNormal(FbxMesh* pMesh, ModelDataFBX* pMeshData)
 			switch (reference) {
 			case FbxGeometryElement::eDirect:
 
-				//法線数を取得
-				int normalCount = normal->GetDirectArray().GetCount();
-
-				//-----------------------------------------------------------------------
-				// eDirect の場合データは順番に格納されているのでそのまま保持
-				//-----------------------------------------------------------------------
-
-				for (int i = 0; normalCount > i; i++) {
-					//法線の取得 
-					pMeshData->NormalVector.push_back(new D3DXVECTOR3);
-					pMeshData->NormalVector[i]->x = (float)normal->GetDirectArray().GetAt(i)[0];
-					pMeshData->NormalVector[i]->y = (float)normal->GetDirectArray().GetAt(i)[1];
-					pMeshData->NormalVector[i]->z = (float)normal->GetDirectArray().GetAt(i)[2];
+				for (DWORD i = 0; i < pMeshData->PolygonNum; i++) {
+					for (DWORD j = 0; j < 3; j++) {
+						fbxsdk::FbxVector4 normal;
+						//ポリゴン番号とポリゴン内頂点番号から法線情報を取り出す
+						pMesh->GetPolygonVertexNormal(i, j, normal);
+						pMeshData->NormalVector.push_back(new D3DXVECTOR3);
+						pMeshData->NormalVector[i]->x = (float)normal[0];
+						pMeshData->NormalVector[i]->y = (float)normal[1];
+						pMeshData->NormalVector[i]->z = (float)normal[2];
+					}
 				}
-				break;
+				////法線数を取得
+				//int normalCount = normal->GetDirectArray().GetCount();
+
+				////-----------------------------------------------------------------------
+				//// eDirect の場合データは順番に格納されているのでそのまま保持
+				////-----------------------------------------------------------------------
+
+				//for (int i = 0; normalCount > i; i++) {
+				//	//法線の取得 
+				//	pMeshData->NormalVector.push_back(new D3DXVECTOR3);
+				//	pMeshData->NormalVector[i]->x = (float)normal->GetDirectArray().GetAt(i)[0];
+				//	pMeshData->NormalVector[i]->y = (float)normal->GetDirectArray().GetAt(i)[1];
+				//	pMeshData->NormalVector[i]->z = (float)normal->GetDirectArray().GetAt(i)[2];
+				//}
+				//break;
 
 				//case FbxGeometryElement::eIndexToDirect:
 				//	break;

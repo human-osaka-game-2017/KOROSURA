@@ -4,10 +4,12 @@
 #include"TitleBackground.h"
 #include"PushEnterKeyLogo.h"
 #include"Fonts.h"
+#include"SoundBufferManager.h"
 
 TitleScene::TitleScene()
 {
 	Lib::GetInstance().LoadPictureFile("Picture\\UI.png", Fonts::g_PngSize, Fonts::g_PngSize);
+	SoundBufferManager::GetInstance().LoadWaveFile("BGM\\TitleBgm.wav");
 	ObjectBase* pTeamLogo = new TeamLogo(std::bind(&TitleScene::CanPushKey, this));
 
 	m_PtrObjects.push_back(pTeamLogo);
@@ -16,6 +18,7 @@ TitleScene::TitleScene()
 TitleScene::~TitleScene()
 {
 	Lib::GetInstance().CancelTexture("Picture\\UI.png");
+	SoundBufferManager::GetInstance().CancelSound("BGM\\TitleBgm.wav");
 
 	for (auto itr = m_PtrObjects.begin(); itr != m_PtrObjects.end(); itr++)
 	{
@@ -28,6 +31,8 @@ SceneBase::SCENE_ID TitleScene::Update()
 	SCENE_ID retSceneId = SCENE_ID::TITLE;
 
 	Lib::GetInstance().UpdateKey();
+
+	SoundBufferManager::GetInstance().PlayBackSound("BGM\\TitleBgm.wav", true);
 
 	if (m_WasPushedKey) {
 		++m_FrCnt;
