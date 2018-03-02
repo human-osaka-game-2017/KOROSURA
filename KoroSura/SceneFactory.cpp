@@ -2,7 +2,7 @@
 #include"TitleScene.h"
 #include"StageSelectScene.h"
 #include"MainScene.h"
-#include"ResultScene.h"
+#include"GameClearScene.h"
 #include"Loading.h"
 
 SceneFactory::SceneFactory()
@@ -34,8 +34,12 @@ SceneBase* SceneFactory::Create(SceneBase::SCENE_ID sceneID)
 		retScene = new MainScene;
 		break;
 
-	case SceneBase::SCENE_ID::RESULT:
-		retScene = new ResultScene;
+	case SceneBase::SCENE_ID::GAMECLEAR:
+		retScene = new GameClearScene;
+		break;
+
+	case SceneBase::SCENE_ID::GAMEOVER:
+		retScene = new GameClearScene;
 		break;
 	}
 

@@ -41,9 +41,6 @@
     <ClCompile Include="TitleScene.cpp">
       <Filter>Application\Scene\Title</Filter>
     </ClCompile>
-    <ClCompile Include="ResultScene.cpp">
-      <Filter>Application\Scene\Result</Filter>
-    </ClCompile>
     <ClCompile Include="MainScene.cpp">
       <Filter>Application\Scene\Main</Filter>
     </ClCompile>
@@ -166,6 +163,9 @@
     </ClCompile>
     <ClCompile Include="EnemyBase.cpp">
       <Filter>Application\Scene\Main\Material\Character\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="GameClearScene.cpp">
+      <Filter>Application\Scene\Result</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -351,9 +351,6 @@
     <ClInclude Include="TitleScene.h">
       <Filter>Application\Scene\Title</Filter>
     </ClInclude>
-    <ClInclude Include="ResultScene.h">
-      <Filter>Application\Scene\Result</Filter>
-    </ClInclude>
     <ClInclude Include="TeamLogo.h">
       <Filter>Application\Scene\Title\TeamLogo</Filter>
     </ClInclude>
@@ -489,6 +486,9 @@
     </ClInclude>
     <ClInclude Include="GameOver.h">
       <Filter>Application\Scene\Main\ResultUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GameClearScene.h">
+      <Filter>Application\Scene\Result</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

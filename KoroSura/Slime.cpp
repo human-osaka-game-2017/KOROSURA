@@ -49,6 +49,8 @@ void Slime::Update()
 
 	m_PosXZ.x += acceleration.x;
 	m_PosXZ.z += acceleration.z;
+
+	m_IsFall = true;
 }
 
 void Slime::Draw()
@@ -67,4 +69,20 @@ void Slime::Draw()
 
 void Slime::Collided(std::vector<ColliderBase::ObjectData*>* collidedObjects)
 {
+	for (auto ite = collidedObjects->begin(); ite != collidedObjects->end(); ++ite) {
+
+		if ((*ite)->ClassName == std::string("Terrain")) {
+			m_IsFall = false;
+		}
+
+		if ((*ite)->ClassName == std::string("EnemyBase")) {
+			EnemyBase* pEnemy = dynamic_cast<EnemyBase*>((*ite)->pObject);
+
+			if (m_Level >= pEnemy->GetLevel()) {
+				if (m_Level - pEnemy->GetLevel() < 3) {
+					++m_Level;
+				}
+			}
+		}
+	}
 }
