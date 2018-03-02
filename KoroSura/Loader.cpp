@@ -34,7 +34,7 @@ void WINAPI Loader::ExecThread()
 
 	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\sky.fbx");
 	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\board.fbx");
-	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\ball.fbx");
+	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\goburin_H.fbx");
 
 	m_WasComplete = true;
 	OutputDebugString("loadèIóπ");

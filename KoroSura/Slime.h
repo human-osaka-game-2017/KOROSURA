@@ -8,8 +8,12 @@
 #define SLIME_H
 
 #include"CharacterBase.h"
+#include"Shape.h"
+#include"ColliderBase.h"
+#include<vector>
 
 class Physics;
+class SphereCollider;
 
 class Slime :public CharacterBase{
 public:
@@ -20,10 +24,13 @@ public:
 
 	virtual void Update();
 	virtual void Draw();
-	virtual void DrawPreparation();
 
 private:
+	void Collided(std::vector<ColliderBase::ObjectData*>* collidedObjects);
+
 	const D3DXVECTOR3 kInitialPos;
 	Physics* m_pPhysics;
+	Shape::Sphere m_Sphere;
+	SphereCollider* m_pCollider;
 };
 #endif

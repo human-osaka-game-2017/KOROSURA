@@ -23,26 +23,42 @@ PhysicsManager::~PhysicsManager()
 
 void PhysicsManager::Update()
 {
+	D3DXVECTOR2 cameraXZ = D3DXVECTOR2(m_CameraVec.x, m_CameraVec.z);
+
+	//カメラのy軸中心の回転角度
+	float deg = Utility::MyAtanDeg(cameraXZ);
+	float rad = D3DXToRadian(deg);
+
 	if (Lib::GetInstance().GetKeyState(Utility::KEY_KIND::W) == Utility::BUTTON_STATE::ON ||
 		Lib::GetInstance().GetKeyState(Utility::KEY_KIND::UP) == Utility::BUTTON_STATE::ON) {
 		m_SlopeDeg[0] += kSlopingDeg;
+		//m_SlopeDeg[0] -= kSlopingDeg*sin(rad);
+		//m_SlopeDeg[1] -= kSlopingDeg*cos(rad);
 	}
 
 	if (Lib::GetInstance().GetKeyState(Utility::KEY_KIND::A) == Utility::BUTTON_STATE::ON ||
 		Lib::GetInstance().GetKeyState(Utility::KEY_KIND::LEFT) == Utility::BUTTON_STATE::ON) {
 		m_SlopeDeg[1] += kSlopingDeg;
+		//m_SlopeDeg[0] += kSlopingDeg*cos(rad);
+		//m_SlopeDeg[1] += kSlopingDeg*sin(rad);
 	}
 
 	if (Lib::GetInstance().GetKeyState(Utility::KEY_KIND::S) == Utility::BUTTON_STATE::ON ||
 		Lib::GetInstance().GetKeyState(Utility::KEY_KIND::DOWN) == Utility::BUTTON_STATE::ON) {
 		m_SlopeDeg[0] -= kSlopingDeg;
+		//m_SlopeDeg[0] += kSlopingDeg*sin(rad);
+		//m_SlopeDeg[1] += kSlopingDeg*cos(rad);
 	}
 
 	if (Lib::GetInstance().GetKeyState(Utility::KEY_KIND::D) == Utility::BUTTON_STATE::ON ||
 		Lib::GetInstance().GetKeyState(Utility::KEY_KIND::RIGHT) == Utility::BUTTON_STATE::ON) {
 		m_SlopeDeg[1] -= kSlopingDeg;
+		//m_SlopeDeg[0] -= kSlopingDeg*cos(rad);
+		//m_SlopeDeg[1] -= kSlopingDeg*sin(rad);
 	}
 
+	//todo :rename
+	//やってることは法線の更新
 	TranceformOnBoard(D3DXVECTOR3(0.0f, 1.0f, 0.0f), &m_NormalVector);
 }
 

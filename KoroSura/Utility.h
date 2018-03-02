@@ -3,6 +3,7 @@
 
 #include<d3dx9.h>
 #include"Matrix.h"
+#include"Shape.h"
 
 namespace Utility {
 	struct CUSTOMVERTEX {
@@ -90,7 +91,7 @@ namespace Utility {
 
 	float CalculateDeg(float x1, float y1, float x2, float y2);
 
-	double CalculateRad(float x1, float y1, float x2, float y2);
+	double CalculateDegree(float x1, float y1, float x2, float y2);
 
 	Matrix* GetRotationXMatrix(Matrix* mat, float deg);
 	Matrix* GetRotationYMatrix(Matrix* mat, float deg);
@@ -103,5 +104,9 @@ namespace Utility {
 
 	//min<= random <= max
 	int Random(int min, int max);
+
+	float MyAtanDeg(const D3DXVECTOR2& vec);
+
+	float GetLengthOBBToPoint(const Shape::OBB& obb, const D3DXVECTOR3& pos);
 }
 #endif

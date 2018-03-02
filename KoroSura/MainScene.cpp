@@ -14,6 +14,7 @@
 #include"PlayerLevel.h"
 #include"SoundBufferManager.h"
 #include"GameClear.h"
+#include"GameOver.h"
 
 MainScene::MainScene()
 {
@@ -26,6 +27,7 @@ MainScene::MainScene()
 	Terrain* pTerrain	= new Terrain();
 
 	GameClear* pGameClear = new GameClear();
+	GameOver* pGameOver = new GameOver();
 
 	m_pLimitTime = new LimitTime();
 	m_pCamera			= new Camera(pSlime->GetPos());
@@ -37,6 +39,7 @@ MainScene::MainScene()
 	m_PtrMaterials.push_back(pTerrain);
 
 	m_PtrObject.push_back(pGameClear);
+	m_PtrObject.push_back
 
 
 	Lib::GetInstance().TransformProjection(45.0f, WINDOW_WIDTH / WINDOW_HEIGHT, 1.0f, 20000.0f);

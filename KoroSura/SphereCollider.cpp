@@ -1,5 +1,6 @@
 #include"SphereCollider.h"
 #include"BoxCollider.h"
+#include"Utility.h"
 
 SphereCollider::SphereCollider(const char* className, ObjectBase* pObject, Shape::Sphere* pSphere, std::function<void(std::vector<ObjectData*>*)> function,
 	unsigned long categoryBits, unsigned long maskBits):
@@ -18,7 +19,7 @@ bool SphereCollider::Collide(const ColliderBase& collider) const
 
 	switch (collider.GetShapeId()) {
 	case Shape::SHAPE_ID::BOX:
-		ret = CollideOBBToOBB(dynamic_cast<const BoxCollider&>(collider));
+		ret = CollideSphereToOBB(dynamic_cast<const BoxCollider&>(collider));
 		break;
 
 	default:
@@ -29,12 +30,20 @@ bool SphereCollider::Collide(const ColliderBase& collider) const
 	return ret;
 }
 
-bool SphereCollider::CollideOBBToOBB(const BoxCollider& collider) const
+bool SphereCollider::CollideSphereToOBB(const BoxCollider& collider) const
 {
-	return true;
+	bool ret;
+	float distance = Utility::GetLengthOBBToPoint(collider.GetObb(), m_pSphere->GetPos());
+	if (distance < m_pSphere->GetRadius()) {
+		ret = true;
+	}
+	else {
+		ret = false;
+	}
+	return ret;
 }
 
-bool SphereCollider::CollideOBBToSphere(const SphereCollider& collider) const
+bool SphereCollider::CollideSphereToSphere(const SphereCollider& collider) const
 {
 	return true;
 }

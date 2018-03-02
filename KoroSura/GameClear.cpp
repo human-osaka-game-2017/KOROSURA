@@ -29,9 +29,9 @@ void GameClear::Draw()
 
 	Lib::GetInstance().TrimingVertex(
 		ClearVertex,
-		700.0f, 875.0f,
+		700.0f, 650.0f,
 		static_cast<float>(kStageClearWidth), static_cast<float>(kStageClearHeight),
 		static_cast<float>(kPngWidth), static_cast<float>(kPngHeight));
 
-	Lib::GetInstance().Draw(ClearVertex, "Picture\\Select.png.png");
+	Lib::GetInstance().Draw(ClearVertex, "Picture\\Select.png");
 }
