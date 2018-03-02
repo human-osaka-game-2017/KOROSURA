@@ -10,6 +10,8 @@
 #include"Common.h"
 #include"ColliderManager.h"
 #include"PlayerLevel.h"
+#include"StageInfo.h"
+>>>>>>> 51475be2f0e4730840d07f979ac731481c23f843
 
 Slime::Slime(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level):
 	CharacterBase(pos, normalVec, level),
@@ -34,27 +36,33 @@ Slime::~Slime()
 void Slime::Update()
 {
 	m_pPlayerLevel->Update();
+	static D3DXVECTOR3 acceleration = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	D3DXVECTOR3 boardSize = StageInfo::GetInstance().GetStageData()->mapSize;
 
-	D3DXVECTOR3 currentOnBoardPos;
-	currentOnBoardPos = m_PosXZ;
-	PhysicsManager::GetInstance().TranceformOnBoard(currentOnBoardPos, &currentOnBoardPos);
-	currentOnBoardPos.y += kInitialPos.y;
+	if (-boardSize.x / 2 < m_PosXZ.x&&m_PosXZ.x < boardSize.x / 2 &&
+		-boardSize.z / 2 < m_PosXZ.z&&m_PosXZ.z < boardSize.z / 2) {
 
-	D3DXVECTOR3 rollVec;
-	m_pPhysics->GetRollVec(&rollVec);
-	float length = m_pPhysics->GetRollVelocity();
-	rollVec *= length;
-	Utility::OutputDebug_Number(length);
+		D3DXVECTOR3 currentOnBoardPos = m_PosXZ;
+		PhysicsManager::GetInstance().TranceformOnBoard(currentOnBoardPos, &currentOnBoardPos);
+		currentOnBoardPos.y += kInitialPos.y;
 
-	static D3DXVECTOR3 acceleration = rollVec;
-	if (rollVec == D3DXVECTOR3(0.0f, 0.0f, 0.0f))acceleration = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	acceleration += rollVec;
-	m_Pos = acceleration + (currentOnBoardPos);
+		D3DXVECTOR3 rollVec;
+		m_pPhysics->GetRollVec(&rollVec);
+		float length = m_pPhysics->GetRollVelocity();
+		rollVec *= length;
+
+		if (rollVec == D3DXVECTOR3(0.0f, 0.0f, 0.0f))acceleration = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		acceleration += rollVec;
+
+		m_Pos = acceleration + (currentOnBoardPos);
+	}
+	else {
+		acceleration += PhysicsManager::GetInstance().GetGravity();
+		m_Pos += acceleration;
+	}
 
 	m_PosXZ.x += acceleration.x;
 	m_PosXZ.z += acceleration.z;
-
-	m_IsFall = true;
 }
 
 void Slime::Draw()
@@ -78,9 +86,9 @@ void Slime::Collided(std::vector<ColliderBase::ObjectData*>* collidedObjects)
 {
 	for (auto ite = collidedObjects->begin(); ite != collidedObjects->end(); ++ite) {
 
-		if ((*ite)->ClassName == std::string("Terrain")) {
-			m_IsFall = false;
-		}
+		//if ((*ite)->ClassName == std::string("Terrain")) {
+		//	m_IsFall = false;
+		//}
 
 		if ((*ite)->ClassName == std::string("EnemyBase")) {
 			EnemyBase* pEnemy = dynamic_cast<EnemyBase*>((*ite)->pObject);

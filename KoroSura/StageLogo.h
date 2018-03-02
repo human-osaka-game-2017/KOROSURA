@@ -35,7 +35,9 @@ private:
 
 	const int kFontWidth	= 33;
 	const int kFontHeight	= 98;
-	const int kFrameWidth	= 200;
-	const int kFrameHeight	= 100;
+	//const int kFrameWidth	= 200;
+	//const int kFrameHeight	= 100;
+	const int kFrameWidth = 350;
+	const int kFrameHeight = 100;
 };
 #endif

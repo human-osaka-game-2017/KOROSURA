@@ -20,14 +20,13 @@ void StageLogo::Update()
 
 void StageLogo::Draw()
 {
+	//選ばれているステージ番号に枠を表示する
+	//枠の座標
+	D3DXVECTOR2 FramePos = D3DXVECTOR2(240.0f, m_Pos.y + (m_SelectPoint*kFontHeight));
+	Lib::GetInstance().Draw(FramePos, "Picture\\Frame.png", static_cast<float>(kFrameWidth), static_cast<float>(kFrameHeight));
 	for (int i = 0; i < StageInfo::kStageMax; ++i) {
 		DrawStageFonts(i);
 	}
-
-	//選ばれているステージ番号に枠を表示する
-	//枠の座標
-	D3DXVECTOR2 FramePos = D3DXVECTOR2(300.0f, m_Pos.y + (m_SelectPoint*kFontHeight));
-	Lib::GetInstance().Draw(FramePos, "Picture\\Frame.png", static_cast<float>(kFrameWidth), static_cast<float>(kFrameHeight));
 }
 
 void StageLogo::DrawStageFonts(int num)
