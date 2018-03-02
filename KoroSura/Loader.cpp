@@ -83,7 +83,7 @@ void Loader::LoadEnemy(StageInfo::StageData* pStageData, std::string iniFileName
 
 	pStageData->enemyData = new StageInfo::MaterialData[pStageData->enemyNum];
 
-	for (int i = 1; i <= pStageData->enemyNum; ++i) {
+	for (int i = 1; i < pStageData->enemyNum; ++i) {
 		std::string tagName = "Enemy";
 		tagName += std::to_string(i);
 
