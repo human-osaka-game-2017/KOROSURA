@@ -83,48 +83,48 @@ void Loader::LoadEnemy(StageInfo::StageData* pStageData, std::string iniFileName
 
 	pStageData->enemyData = new StageInfo::MaterialData[pStageData->enemyNum];
 
-	for (int i = 1; i < pStageData->enemyNum; ++i) {
+	for (int i = 1; i <= pStageData->enemyNum; ++i) {
 		std::string tagName = "Enemy";
 		tagName += std::to_string(i);
 
-		pStageData->enemyData[i - 1].kind =
+		pStageData->enemyData[i].kind =
 			GetPrivateProfileInt(tagName.c_str(), "Kind", 0, iniFileName.c_str());
 
-		pStageData->enemyData[i - 1].pos.x =
+		pStageData->enemyData[i].pos.x =
 			GetPrivateProfileInt(tagName.c_str(), "X", 0, iniFileName.c_str());
 
-		pStageData->enemyData[i - 1].pos.y =
+		pStageData->enemyData[i].pos.y =
 			GetPrivateProfileInt(tagName.c_str(), "Y", 0, iniFileName.c_str());
 
-		pStageData->enemyData[i - 1].pos.z =
+		pStageData->enemyData[i].pos.z =
 			GetPrivateProfileInt(tagName.c_str(), "Z", 0, iniFileName.c_str());
 
-		pStageData->enemyData[i - 1].level =
+		pStageData->enemyData[i].level =
 			GetPrivateProfileInt(tagName.c_str(), "Level", 1, iniFileName.c_str());
 
-		pStageData->enemyData[i - 1].angle =
-			GetPrivateProfileInt(tagName.c_str(), "Angle", 0, iniFileName.c_str());
+		pStageData->enemyData[i].angle =
+			GetPrivateProfileInt(tagName.c_str(), "angle", 0, iniFileName.c_str());
 	}
 
-	pStageData->enemyData[pStageData->enemyNum].kind =
-		GetPrivateProfileInt("BOSS", "Kind", 0, iniFileName.c_str());
+	pStageData->enemyData[0].kind =
+		GetPrivateProfileInt("Boss", "Kind", 0, iniFileName.c_str());
 
-	pStageData->enemyData[pStageData->enemyNum].pos.x =
-		GetPrivateProfileInt("BOSS", "X", 0, iniFileName.c_str());
+	pStageData->enemyData[0].pos.x =
+		GetPrivateProfileInt("Boss", "X", 0, iniFileName.c_str());
 
-	pStageData->enemyData[pStageData->enemyNum].pos.y =
-		GetPrivateProfileInt("BOSS", "Y", 0, iniFileName.c_str());
+	pStageData->enemyData[0].pos.y =
+		GetPrivateProfileInt("Boss", "Y", 0, iniFileName.c_str());
 
-	pStageData->enemyData[pStageData->enemyNum].pos.z =
-		GetPrivateProfileInt("BOSS", "Z", 0, iniFileName.c_str());
+	pStageData->enemyData[0].pos.z =
+		GetPrivateProfileInt("Boss", "Z", 0, iniFileName.c_str());
 
-	pStageData->enemyData[pStageData->enemyNum].level =
-		GetPrivateProfileInt("BOSS", "Level", 1, iniFileName.c_str());
+	pStageData->enemyData[0].level =
+		GetPrivateProfileInt("Boss", "Level", 1, iniFileName.c_str());
 
-	pStageData->enemyData[pStageData->enemyNum].angle =
-		GetPrivateProfileInt("BOSS", "Angle", 0, iniFileName.c_str());
+	pStageData->enemyData[0].angle =
+		GetPrivateProfileInt("Boss", "angle", 0, iniFileName.c_str());
 
-	pStageData->enemyData[pStageData->enemyNum].isBoss = true;
+	pStageData->enemyData[0].isBoss = true;
 }
 
 void Loader::LoadGimmick(StageInfo::StageData* pStageData, std::string iniFileName)
@@ -135,7 +135,7 @@ void Loader::LoadGimmick(StageInfo::StageData* pStageData, std::string iniFileNa
 	pStageData->gimmickData = new StageInfo::MaterialData[pStageData->gimmickNum];
 
 	for (int i = 1; i <= pStageData->gimmickNum; ++i) {
-		std::string tagName = "Enemy";
+		std::string tagName = "Gimmick";
 		tagName += std::to_string(i);
 
 		pStageData->gimmickData[i - 1].kind =
@@ -151,7 +151,7 @@ void Loader::LoadGimmick(StageInfo::StageData* pStageData, std::string iniFileNa
 			GetPrivateProfileInt(tagName.c_str(), "Z", 0, iniFileName.c_str());
 
 		pStageData->gimmickData[i - 1].angle =
-			GetPrivateProfileInt(tagName.c_str(), "Angle", 0, iniFileName.c_str());
+			GetPrivateProfileInt(tagName.c_str(), "angle", 0, iniFileName.c_str());
 	}
 }
 
