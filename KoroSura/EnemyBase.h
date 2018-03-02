@@ -35,7 +35,7 @@ public:
 
 	virtual ~EnemyBase() {}
 
-	virtual void Update() {};
+	virtual void Update();
 	virtual void Draw();
 
 protected:
@@ -46,6 +46,7 @@ protected:
 	BoxCollider* m_pCollider;
 
 private:
+	const D3DXVECTOR3 kInitPos;//todo Šî’êƒNƒ‰ƒX‚É‚½‚¹‚é
 	void Collided(std::vector<ColliderBase::ObjectData*>* collidedObjects);
 };
 #endif
