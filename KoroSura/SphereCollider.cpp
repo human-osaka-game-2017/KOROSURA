@@ -48,10 +48,3 @@ bool SphereCollider::CollideSphereToSphere(const SphereCollider&
 {
 	return true;
 }
-/*
-Kind = 3
-X = 800
-Y = 0
-Z = 1000
-Level = 1
-angle = 180*/
