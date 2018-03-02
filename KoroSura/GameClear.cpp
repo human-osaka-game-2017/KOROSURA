@@ -27,7 +27,6 @@ void GameClear::Update()
 {
 	Lib::GetInstance().UpdateKey();
 	m_pSelecter->Update();
-	m_selectNum = m_pSelecter->GetCurrentSelection();
 	if (m_selectNum == 0) {
 		kSlimePos.y = kStageNextPos.y;
 	}
