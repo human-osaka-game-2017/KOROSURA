@@ -8,7 +8,6 @@ GameOver::GameOver()
 {
 	Lib::GetInstance().LoadPictureFile("Picture\\Select.png", kPngWidth, kPngHeight);
 	SoundBufferManager::GetInstance().LoadWaveFile("BGM\\EndingBgm.wav");
-	SoundBufferManager::GetInstance().PlayBackSound("BGM\\EndingBgm.wav", false);
 }
 
 
@@ -26,6 +25,7 @@ void GameOver::Update()
 
 void GameOver::Draw()
 {
+
 	(*DirectGraphics::GetInstance().GetDevice())->SetFVF(D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1);
 	//over‰æ‘œ‚Ì•\Ž¦
 	Utility::CUSTOMVERTEX OverVertex[] = {
@@ -77,4 +77,12 @@ void GameOver::Draw()
 	Lib::GetInstance().Draw(StageSelectVertex, "Picture\\Select.png");
 }
 
+void GameOver::StartMusic()
+{
+	SoundBufferManager::GetInstance().PlayBackSound("BGM\\EndingBgm.wav", false);
+}
 
+void GameOver::EndMusic()
+{
+	SoundBufferManager::GetInstance().StopSound("BGM\\EndingBgm.wav");
+}

@@ -93,6 +93,7 @@ void Loader::LoadEnemy(StageInfo::StageData* pStageData, std::string iniFileName
 		pStageData->enemyData[i].pos.x =
 			GetPrivateProfileInt(tagName.c_str(), "X", 0, iniFileName.c_str());
 
+
 		pStageData->enemyData[i].pos.y =
 			GetPrivateProfileInt(tagName.c_str(), "Y", 0, iniFileName.c_str());
 

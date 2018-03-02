@@ -12,6 +12,8 @@ public:
 
 	virtual void Update();
 	virtual void Draw();
+	void StartMusic();
+	void EndMusic();
 private:
 	const int kPngWidth = 8192;
 	const int kPngHeight = 1024;
