@@ -10,6 +10,7 @@
 #include"CharacterBase.h"
 #include"Shape.h"
 #include"ColliderBase.h"
+#include"SceneBase.h"
 #include<vector>
 
 class Physics;
@@ -18,7 +19,7 @@ class PlayerLevel;
 
 class Slime :public CharacterBase{
 public:
-	Slime(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level);
+	Slime(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level, std::function<void(SceneBase::SCENE_ID)> function);
 	virtual ~Slime();
 
 	D3DXVECTOR3* GetPos() { return &m_Pos; }
@@ -34,6 +35,7 @@ private:
 	Shape::Sphere m_Sphere;
 	SphereCollider* m_pCollider;
 	PlayerLevel* m_pPlayerLevel;
+	std::function<void(SceneBase::SCENE_ID)> m_Function;
 	bool m_IsFall = true;
 };
 #endif

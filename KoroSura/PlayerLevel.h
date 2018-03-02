@@ -11,7 +11,9 @@ public:
 
 	virtual void Update();
 
-	virtual void Draw();
+	void Draw(int level);
+	virtual void Draw() {}
+
 private:
 	void NextCharPos(Utility::CUSTOMVERTEX vertex[]);
 

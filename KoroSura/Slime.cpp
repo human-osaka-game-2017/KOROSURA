@@ -12,9 +12,10 @@
 #include"PlayerLevel.h"
 #include"StageInfo.h"
 
-Slime::Slime(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level):
+Slime::Slime(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level, std::function<void(SceneBase::SCENE_ID)> function):
 	CharacterBase(pos, normalVec, level),
-	kInitialPos(pos)
+	kInitialPos(pos),
+	m_Function(function)
 {
 	m_Pos.y += InitProperty::GetInstance().GetInitialData().slimeInitialData.modelOffset;
 	m_Sphere.SetPos(InitProperty::GetInstance().GetInitialData().slimeInitialData.colliderOffset + m_Pos);
@@ -58,6 +59,10 @@ void Slime::Update()
 	else {
 		acceleration += PhysicsManager::GetInstance().GetGravity();
 		m_Pos += acceleration;
+
+		if (m_Pos.y < -1000) {
+			m_Function(SceneBase::SCENE_ID::GAMEOVER);
+		}
 	}
 
 	m_PosXZ.x += acceleration.x;
@@ -76,7 +81,7 @@ void Slime::Draw()
 	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->BeginPass(0);
 	ModelManager::GetInstance().GetFBXDate("FBX\\FBXModel\\slime.fbx").Draw();
 	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->EndPass();
-	m_pPlayerLevel->Draw();
+	m_pPlayerLevel->Draw(m_Level);
 	DirectGraphics::GetInstance().SetRenderState3D();
 	(*DirectGraphics::GetInstance().GetDevice())->SetFVF(USERVERTEX_FVF);
 }
@@ -97,6 +102,10 @@ void Slime::Collided(std::vector<ColliderBase::ObjectData*>* collidedObjects)
 				if (m_Level - pEnemy->GetLevel() < 3) {
 					++m_Level;
 				}
+				if (pEnemy->IsBoss()) {
+					m_Function(SceneBase::SCENE_ID::GAMECLEAR);
+				}
+
 				pEnemy->Dead();
 			}
 		}

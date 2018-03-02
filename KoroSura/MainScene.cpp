@@ -30,7 +30,7 @@ MainScene::MainScene()
 
 	D3DXVECTOR3 slimePos = pStageData->slimeData.pos;
 	slimePos.y += InitProperty::GetInstance().GetInitialData().slimeInitialData.modelOffset;
-	Slime*	pSlime		= new Slime(slimePos, D3DXVECTOR3(0.0f, 1.0f, 0.0f), pStageData->slimeData.level);
+	Slime*	pSlime		= new Slime(slimePos, D3DXVECTOR3(0.0f, 1.0f, 0.0f), pStageData->slimeData.level, std::bind(&MainScene::SetRetSceneId, this, std::placeholders::_1));
 	Sky* pSky			= new Sky();
 	Terrain* pTerrain	= new Terrain();
 
@@ -64,8 +64,6 @@ MainScene::~MainScene()
 
 SceneBase::SCENE_ID MainScene::Update()
 {
-	SceneBase::SCENE_ID retSceneId = SCENE_ID::MAIN;
-
 	Lib::GetInstance().UpdateKey();
 	Lib::GetInstance().UpdateMouse();
 
@@ -81,7 +79,7 @@ SceneBase::SCENE_ID MainScene::Update()
 
 	ColliderManager::GetInstance().Collide();
 
-	return retSceneId;
+	return retId;
 }
 
 void MainScene::Draw()

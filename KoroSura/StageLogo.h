@@ -27,9 +27,6 @@ private:
 	void DrawStageFonts(int num);
 	void NextCharPos(Utility::CUSTOMVERTEX vertex[]);
 
-	//0`9‚Ü‚Å‚Ì”š‚ğƒLƒƒƒ‰Œ^‚É•ÏŠ·
-	char TransformChar(int val);
-
 	//Stage1‚Ì'S'‚Ì’†SÀ•W
 	const D3DXVECTOR2 m_Pos;
 
