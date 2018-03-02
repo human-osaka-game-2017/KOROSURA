@@ -58,6 +58,7 @@ public:
 	void Rotation(CUSTOMVERTEX vertex[], float deg);
 
 	LPDIRECT3DDEVICE9* GetDXDevice() { return m_pDXDevice; }
+
 private:
 	static Renderer* pInstance;
 	Renderer();

@@ -5,11 +5,20 @@
 #include"Physics.h"
 #include"PhysicsManager.h"
 #include"EffectManager.h"
+#include"SphereCollider.h"
+#include"InitProperty.h"
+#include"Common.h"
 
 Slime::Slime(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level):
 	CharacterBase(pos, normalVec, level),
 	kInitialPos(pos)
 {
+	m_Pos.y += InitProperty::GetInstance().GetInitialData().slimeInitialData.modelOffset;
+	m_Sphere.SetPos(InitProperty::GetInstance().GetInitialData().slimeInitialData.colliderOffset + m_Pos);
+	m_Sphere.SetRadius(InitProperty::GetInstance().GetInitialData().slimeInitialData.radius);
+	m_pCollider = new SphereCollider("Slime", this, &m_Sphere, std::bind(&Slime::Collided, this, std::placeholders::_1),
+		CATEGORY_BITS_SLIME, FOURBITE_ALLBITS);
+
 	m_pPhysics = new Physics();
 }
 
@@ -40,11 +49,6 @@ void Slime::Update()
 	m_PosXZ.z += acceleration.z;
 }
 
-void Slime::DrawPreparation()
-{
-
-}
-
 void Slime::Draw()
 {
 	Lib::GetInstance().TransformWorld(m_Pos);
@@ -55,6 +59,11 @@ void Slime::Draw()
 
 	// シェーダーパスの開始.
 	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->BeginPass(0);
-	ModelManager::GetInstance().GetFBXDate("FBX\\FBXModel\\fence.fbx").Draw();
+	ModelManager::GetInstance().GetFBXDate("FBX\\FBXModel\\goburin_H.fbx").Draw();
 	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->EndPass();
+}
+
+void Slime::Collided(std::vector<ColliderBase::ObjectData*>* collidedObjects)
+{
+
 }

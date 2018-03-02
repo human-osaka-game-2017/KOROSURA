@@ -1,5 +1,7 @@
 #include"BoxCollider.h"
 #include"SphereCollider.h"
+#include"Utility.h"
+#include"ColliderManager.h"
 
 BoxCollider::BoxCollider(const char* className, ObjectBase* pObject, Shape::OBB* pObb, std::function<void(std::vector<ObjectData*>*)> function, unsigned long categoryBits, unsigned long maskBits):
 	ColliderBase(className,pObject,function,categoryBits,maskBits,Shape::SHAPE_ID::BOX),
@@ -20,6 +22,10 @@ bool BoxCollider::Collide(const ColliderBase& collider) const
 		ret = CollideOBBToOBB(dynamic_cast<const BoxCollider&>(collider));
 		break;
 
+	case Shape::SHAPE_ID::SPHERE:
+		ret = CollideOBBToSphere(dynamic_cast<const SphereCollider&>(collider));
+		break;
+
 	default:
 		MessageBox(0, "‚»‚ÌŒ`“¯Žm‚Ì‚ ‚½‚è”»’è‚Í‚Å‚«‚Ü‚¹‚ñ", "", MB_OK);
 		ret = false;
@@ -30,8 +36,20 @@ bool BoxCollider::Collide(const ColliderBase& collider) const
 
 bool BoxCollider::CollideOBBToSphere(const SphereCollider& collider) const
 {
-	//GetLengthOBBToPoint()
-	return true;
+	bool ret;
+	Shape::Sphere tmp= collider.GetSphere();
+	D3DXVECTOR3 Point = tmp.GetPos();
+	//D3DXVECTOR3 point = collider.GetSphere().GetPos();
+
+	float distance = Utility::GetLengthOBBToPoint(*m_pObb, Point);
+
+	if (distance < tmp.GetRadius()) {
+		ret = true;
+	}
+	else {
+		ret = false;
+	}
+	return ret;
 }
 
 bool BoxCollider::CollideOBBToOBB(const BoxCollider& collider) const

@@ -34,7 +34,7 @@ namespace Shape {
 		* @brief		位置を取得
 		* @return		D3DXVECTOR3&	位置ベクトル
 		*/
-		D3DXVECTOR3& GetPos()
+		const D3DXVECTOR3& GetPos()
 		{
 			return m_Pos;
 		}
@@ -61,7 +61,7 @@ namespace Shape {
 		 * @brief		半径を設定
 		 * @param[in]	radius	半径
 		 */
-		void SetPos(float radius)
+		void SetRadius(float radius)
 		{
 			m_Radius = radius;
 		}
@@ -87,7 +87,7 @@ namespace Shape {
 		 * @brief		位置を取得
 		 * @return		D3DXVECTOR3&	位置ベクトル
 		 */
-		D3DXVECTOR3& GetPos()
+		const D3DXVECTOR3& GetPos() const
 		{
 			return m_Pos;
 		}
@@ -106,7 +106,7 @@ namespace Shape {
 		 * @param[in]	index			取得したい方向ベクトルの番号
 		 * @return		D3DXVECTOR3&	方向ベクトル
 		 */
-		D3DXVECTOR3& GetDirect(int index)
+		const D3DXVECTOR3& GetDirect(int index) const
 		{
 			return m_NormaDirect[index];
 		}
@@ -126,7 +126,7 @@ namespace Shape {
 		 * @param[in]	index			取得したい長さの番号
 		 * @return		float			指定軸方向の長さ
 		 */
-		FLOAT GetLength(int index)
+		FLOAT GetLength(int index) const
 		{
 			return m_Length[index];
 		}

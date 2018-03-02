@@ -35,8 +35,8 @@ public:
 	virtual bool Collide(const ColliderBase& collider) const;
 
 private:
-	bool CollideOBBToOBB(const BoxCollider& collider) const;
-	bool CollideOBBToSphere(const SphereCollider& collider) const;
+	bool CollideSphereToOBB(const BoxCollider& collider) const;
+	bool CollideSphereToSphere(const SphereCollider& collider) const;
 	Shape::Sphere* m_pSphere;
 };
 #endif

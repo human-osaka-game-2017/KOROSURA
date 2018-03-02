@@ -172,3 +172,23 @@ D3DXVECTOR3* Utility::Tilt(D3DXVECTOR3* vector, float deg)
 
 	return vector;
 }
+
+float Utility::GetLengthOBBToPoint(const Shape::OBB& obb, const D3DXVECTOR3& p)
+{
+	D3DXVECTOR3 Vec(0, 0, 0);   // 最終的に長さを求めるベクトル
+
+								// 各軸についてはみ出た部分のベクトルを算出
+	for (int i = 0; i<3; i++)
+	{
+		FLOAT L = obb.GetLength(i);
+		if (L <= 0) continue;  // L=0は計算できない
+		FLOAT s = D3DXVec3Dot(&(p - obb.GetPos()), &obb.GetDirect(i)) / L;
+
+		// sの値から、はみ出した部分があればそのベクトルを加算
+		s = fabs(s);
+		if (s > 1)
+			Vec += (1 - s)*L*obb.GetDirect(i);   // はみ出した部分のベクトル算出
+	}
+
+	return D3DXVec3Length(&Vec);   // 長さを出力
+}

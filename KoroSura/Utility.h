@@ -3,6 +3,7 @@
 
 #include<d3dx9.h>
 #include"Matrix.h"
+#include"Shape.h"
 
 namespace Utility {
 	struct CUSTOMVERTEX {
@@ -105,5 +106,7 @@ namespace Utility {
 	int Random(int min, int max);
 
 	float MyAtanDeg(const D3DXVECTOR2& vec);
+
+	float GetLengthOBBToPoint(const Shape::OBB& obb, const D3DXVECTOR3& pos);
 }
 #endif
