@@ -2,6 +2,7 @@
 #include<string>
 #include"Common.h"
 #include"ModelManager.h"
+#include"Lib.h"
 
 Loader::Loader()
 {
@@ -46,6 +47,8 @@ void WINAPI Loader::ExecThread()
 	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\treant_mg.fbx");
 	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\treant_mp.fbx");
 	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\treant_my.fbx");
+
+	Lib::GetInstance().LoadPictureFile("Picture\\UI.png", 1024, 1024);
 
 	m_WasComplete = true;
 	OutputDebugString("loadèIóπ");
