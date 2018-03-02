@@ -25,10 +25,12 @@ public:
 	virtual void Draw();
 
 private:
+	void SetRetSceneId(SceneBase::SCENE_ID sceneId) { retId = sceneId; }
 	std::vector<MaterialBase*> m_PtrMaterials;
 	//std::vector<ObjectBase*> m_PtrObject;
 	Camera* m_pCamera;
 	LimitTime* m_pLimitTime;
 	EnemyManager* m_pEnemyManager;
+	SceneBase::SCENE_ID retId = SceneBase::SCENE_ID::MAIN;
 };
 #endif

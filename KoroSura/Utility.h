@@ -108,5 +108,6 @@ namespace Utility {
 	float MyAtanDeg(const D3DXVECTOR2& vec);
 
 	float GetLengthOBBToPoint(const Shape::OBB& obb, const D3DXVECTOR3& pos);
+	char TransformChar(int val);
 }
 #endif

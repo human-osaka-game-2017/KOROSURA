@@ -3,7 +3,6 @@
 #include"Fonts.h"
 #include"DirectGraphics.h"
 
-
 PlayerLevel::PlayerLevel() :
 	m_Pos(D3DXVECTOR2(50.0f, 900.0f))
 {
@@ -18,7 +17,7 @@ void PlayerLevel::Update()
 }
 
 
-void PlayerLevel::Draw()
+void PlayerLevel::Draw(int level)
 {
 
 	Utility::CUSTOMVERTEX vertex[] = {
@@ -50,7 +49,7 @@ void PlayerLevel::Draw()
 	Lib::GetInstance().Draw(vertex, "Picture\\UI.png");
 	NextCharPos(vertex);
 
-	Fonts::GetUV('1', vertex);
+	Fonts::GetUV(Utility::TransformChar(level), vertex);
 	Lib::GetInstance().Draw(vertex, "Picture\\UI.png");
 	NextCharPos(vertex);
 }
