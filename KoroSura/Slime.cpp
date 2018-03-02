@@ -11,7 +11,6 @@
 #include"ColliderManager.h"
 #include"PlayerLevel.h"
 #include"StageInfo.h"
->>>>>>> 51475be2f0e4730840d07f979ac731481c23f843
 
 Slime::Slime(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level):
 	CharacterBase(pos, normalVec, level),
