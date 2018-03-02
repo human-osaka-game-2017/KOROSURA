@@ -61,19 +61,19 @@ void Loader::LoadMap(StageInfo::StageData* pStageData, std::string iniFileName, 
 
 	pStageData->terrainData = new int[pStageData->mapSize.x*pStageData->mapSize.z];
 
-	//csv読み込み
-	FILE* pFile;
+	////csv読み込み
+	//FILE* pFile;
 
-	fopen_s(&pFile, csvFileName.c_str(), "r");
-	for (int i = 0; i < pStageData->mapSize.x; i++)
-	{
-		for (int j = 0; j < pStageData->mapSize.z; j++)
-		{
-			//ポインタずらしてます
-			fscanf_s(pFile, "%d,", (pStageData->terrainData + static_cast<int>(j + i*pStageData->mapSize.x)));
-		}
-	}
-	fclose(pFile);
+	//fopen_s(&pFile, csvFileName.c_str(), "r");
+	//for (int i = 0; i < pStageData->mapSize.x; i++)
+	//{
+	//	for (int j = 0; j < pStageData->mapSize.z; j++)
+	//	{
+	//		//ポインタずらしてます
+	//		fscanf_s(pFile, "%d,", (pStageData->terrainData + static_cast<int>(j + i*pStageData->mapSize.x)));
+	//	}
+	//}
+	//fclose(pFile);
 }
 
 void Loader::LoadEnemy(StageInfo::StageData* pStageData, std::string iniFileName)

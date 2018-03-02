@@ -13,6 +13,8 @@ public:
 	virtual~GameClear();
 
 	bool GetNextStage() { return m_NextStage; }
+	bool GetSelectStage() { return m_Select; }
+
 
 	virtual void Update();
 	virtual void Draw();
@@ -21,6 +23,7 @@ public:
 	void WasSelect();
 private:
 	bool m_NextStage;
+	bool m_Select;
 
 	Selecter* m_pSelecter; 
 

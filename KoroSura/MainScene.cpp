@@ -39,8 +39,8 @@ MainScene::MainScene()
 	m_pCamera	= new Camera(pSlime->GetPos());
 
 	m_PtrMaterials.push_back(pSky);
-	m_PtrMaterials.push_back(pSlime);
 	m_PtrMaterials.push_back(pTerrain);
+	m_PtrMaterials.push_back(pSlime);
 
 	Lib::GetInstance().TransformProjection(45.0f, WINDOW_WIDTH / WINDOW_HEIGHT, 1.0f, 20000.0f);
 

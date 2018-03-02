@@ -27,7 +27,7 @@ void PlayerLevel::Draw()
 		{ m_Pos.x + Fonts::g_Width / 2,m_Pos.y + Fonts::g_Height / 2,1.0,1.0,0xffff0000,1.0f,1.0f },
 		{ m_Pos.x - Fonts::g_Width / 2,m_Pos.y + Fonts::g_Height / 2,1.0,1.0,0xffff0000,0.0f,1.0f }
 	};
-
+	Lib::GetInstance().SetRenderState2D();
 	(*DirectGraphics::GetInstance().GetDevice())->SetFVF(D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1);
 
 	Fonts::GetUV('L', vertex);

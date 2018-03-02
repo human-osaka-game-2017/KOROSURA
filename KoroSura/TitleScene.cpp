@@ -32,8 +32,6 @@ SceneBase::SCENE_ID TitleScene::Update()
 
 	Lib::GetInstance().UpdateKey();
 
-	SoundBufferManager::GetInstance().PlayBackSound("BGM\\TitleBgm.wav", true);
-
 	if (m_WasPushedKey) {
 		++m_FrCnt;
 	}
@@ -50,6 +48,7 @@ SceneBase::SCENE_ID TitleScene::Update()
 	//‘OƒtƒŒ‚Æ”äŠr
 	static bool hasBackground = m_CanPushKey;
 	if (hasBackground != m_CanPushKey) {
+		SoundBufferManager::GetInstance().PlayBackSound("BGM\\TitleBgm.wav", true);
 		m_PtrObjects.push_back(new TitleBackground);
 		m_PtrObjects.push_back(new PushEnterKeyLogo(std::bind(&TitleScene::WasPushedKey, this)));
 		hasBackground = m_CanPushKey;
@@ -57,6 +56,7 @@ SceneBase::SCENE_ID TitleScene::Update()
 
 	return retSceneId;
 }
+
 
 void TitleScene::Draw()
 {

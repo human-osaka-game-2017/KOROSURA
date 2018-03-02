@@ -4,6 +4,7 @@
 #include"MainScene.h"
 #include"GameClearScene.h"
 #include"Loading.h"
+#include"GameOverScene.h"
 
 SceneFactory::SceneFactory()
 {
@@ -39,7 +40,7 @@ SceneBase* SceneFactory::Create(SceneBase::SCENE_ID sceneID)
 		break;
 
 	case SceneBase::SCENE_ID::GAMEOVER:
-		retScene = new GameClearScene;
+		retScene = new GameOverScene;
 		break;
 	}
 

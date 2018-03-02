@@ -14,6 +14,7 @@
 
 class Physics;
 class SphereCollider;
+class PlayerLevel;
 
 class Slime :public CharacterBase{
 public:
@@ -32,6 +33,7 @@ private:
 	Physics* m_pPhysics;
 	Shape::Sphere m_Sphere;
 	SphereCollider* m_pCollider;
+	PlayerLevel* m_pPlayerLevel;
 	bool m_IsFall = true;
 };
 #endif

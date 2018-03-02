@@ -9,6 +9,7 @@
 GameClear::GameClear()
 {
 	m_NextStage = false;
+	m_Select = false;
 	Lib::GetInstance().LoadPictureFile("Picture\\StageImg.png", kPngWidth, kPngHeight);
 	Lib::GetInstance().LoadPictureFile("Picture\\GameClear.png", kBackPngWidth, kBackPngHeight);
 	m_pSelecter = new Selecter(2, std::bind(&GameClear::WasSelect, this));
@@ -26,6 +27,7 @@ GameClear::~GameClear()
 void GameClear::Update()
 {
 	m_pSelecter->Update();
+	m_selectNum = m_pSelecter->GetCurrentSelection();
 	if (m_selectNum == 0) {
 		kSlimePos.y = kStageNextPos.y;
 	}
@@ -169,5 +171,6 @@ void GameClear::WasSelect()
 	}
 	else {
 		StageInfo::GetInstance().SetSelectStage(StageInfo::GetInstance().GetCurrentStage() + 1);
+		m_Select = true;
 	}
 }

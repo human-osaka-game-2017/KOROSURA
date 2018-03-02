@@ -21,6 +21,9 @@ SceneBase::SCENE_ID GameClearScene::Update()
 	if (m_pGameClear->GetNextStage() == true) {
 		retSceneId = SCENE_ID::LOAD;
 	}
+	else if (m_pGameClear->GetSelectStage() == true) {
+		retSceneId = SCENE_ID::STAGESELECT;
+	}
 
 	return retSceneId;
 }

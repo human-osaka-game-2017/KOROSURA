@@ -15,11 +15,14 @@ GameOverScene::~GameOverScene()
 
 SceneBase::SCENE_ID GameOverScene::Update()
 {
-	SceneBase::SCENE_ID retSceneId = SCENE_ID::GAMECLEAR;
+	SceneBase::SCENE_ID retSceneId = SCENE_ID::GAMEOVER;
 	Lib::GetInstance().UpdateKey();
 	m_pGameOver->Update();
 	if (m_pGameOver->GetRetryStage() == true) {
 		retSceneId = SCENE_ID::MAIN;
+	}
+	else if (m_pGameOver->GetSelectStage() == true) {
+		retSceneId = SCENE_ID::STAGESELECT;
 	}
 
 	return retSceneId;

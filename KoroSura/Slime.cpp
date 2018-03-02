@@ -9,6 +9,7 @@
 #include"InitProperty.h"
 #include"Common.h"
 #include"ColliderManager.h"
+#include"PlayerLevel.h"
 
 Slime::Slime(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level):
 	CharacterBase(pos, normalVec, level),
@@ -17,6 +18,7 @@ Slime::Slime(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level):
 	m_Pos.y += InitProperty::GetInstance().GetInitialData().slimeInitialData.modelOffset;
 	m_Sphere.SetPos(InitProperty::GetInstance().GetInitialData().slimeInitialData.colliderOffset + m_Pos);
 	m_Sphere.SetRadius(InitProperty::GetInstance().GetInitialData().slimeInitialData.radius);
+	m_pPlayerLevel = new PlayerLevel();
 	m_pCollider = new SphereCollider("Slime", this, &m_Sphere, std::bind(&Slime::Collided, this, std::placeholders::_1),
 		CATEGORY_BITS_SLIME, FOURBITE_ALLBITS);
 	ColliderManager::GetInstance().Register(m_pCollider, 0);
@@ -31,6 +33,8 @@ Slime::~Slime()
 
 void Slime::Update()
 {
+	m_pPlayerLevel->Update();
+
 	D3DXVECTOR3 currentOnBoardPos;
 	currentOnBoardPos = m_PosXZ;
 	PhysicsManager::GetInstance().TranceformOnBoard(currentOnBoardPos, &currentOnBoardPos);
@@ -65,6 +69,9 @@ void Slime::Draw()
 	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->BeginPass(0);
 	ModelManager::GetInstance().GetFBXDate("FBX\\FBXModel\\slime.fbx").Draw();
 	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->EndPass();
+	m_pPlayerLevel->Draw();
+	DirectGraphics::GetInstance().SetRenderState3D();
+	(*DirectGraphics::GetInstance().GetDevice())->SetFVF(USERVERTEX_FVF);
 }
 
 void Slime::Collided(std::vector<ColliderBase::ObjectData*>* collidedObjects)

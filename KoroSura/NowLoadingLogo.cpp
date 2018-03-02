@@ -4,28 +4,32 @@
 
 NowLoadingLogo::NowLoadingLogo()
 {
-	Lib::GetInstance().LoadPictureFile("Picture\\UI.png", Fonts::g_PngSize, Fonts::g_PngSize);
-	Lib::GetInstance().LoadPictureFile("Picture\\TeamLogo.png", Fonts::g_PngSize, Fonts::g_PngSize);
+	Lib::GetInstance().LoadPictureFile("Picture\\StageImg.png", kPngWidth, kPngHeight);
 }
 
 NowLoadingLogo::~NowLoadingLogo()
 {
-	Lib::GetInstance().CancelTexture("Picture\\TeamLogo.png");
-	Lib::GetInstance().CancelTexture("Picture\\UI.png");
+	Lib::GetInstance().CancelTexture("Picture\\StageImg.png");
 }
 
 void NowLoadingLogo::Draw()
 {
 	m_Deg += kRotasionSpeed;
 
-	Utility::CUSTOMVERTEX drawVertex[] = {
-		{ 450 / 2 - 250 / 2,900 / 2 - 250 / 2 ,1.0f,1.0f,0xffffffff ,0.0f,0.0f },
-		{ 450 / 2 + 250 / 2,900 / 2 - 250 / 2 ,1.0f,1.0f,0xffffffff ,1.0f,0.0f },
-		{ 450 / 2 + 250 / 2,900 / 2 + 250 / 2 ,1.0f,1.0f,0xffffffff ,1.0f,1.0f },
-		{ 450 / 2 - 250 / 2,900 / 2 + 250 / 2 ,1.0f,1.0f,0xffffffff ,0.0f,1.0f }
+	//slime‰æ‘œ‚Ì•\Ž¦
+	Utility::CUSTOMVERTEX SlimeVertex[] = {
+		{ kSlimePos.x - kSlimeWidth / 2,kSlimePos.y - kSlimeHeight / 2 ,1.0f,1.0f,0xffffffff ,0.0f,0.0f },
+		{ kSlimePos.x + kSlimeWidth / 2,kSlimePos.y - kSlimeHeight / 2 ,1.0f,1.0f,0xffffffff ,1.0f,0.0f },
+		{ kSlimePos.x + kSlimeWidth / 2,kSlimePos.y + kSlimeHeight / 2 ,1.0f,1.0f,0xffffffff ,1.0f,1.0f },
+		{ kSlimePos.x - kSlimeWidth / 2,kSlimePos.y + kSlimeHeight / 2 ,1.0f,1.0f,0xffffffff ,0.0f,1.0f }
 	};
 
-	Fonts::GetSlimeUV(drawVertex);
-	Lib::GetInstance().Rotation(drawVertex, m_Deg);
-	Lib::GetInstance().Draw(drawVertex, "Picture\\TeamLogo.png");
+	Lib::GetInstance().TrimingVertex(
+		SlimeVertex,
+		4300.0f, 700.0f,
+		static_cast<float>(kSlimeWidth), static_cast<float>(kSlimeHeight),
+		static_cast<float>(kPngWidth), static_cast<float>(kPngHeight));
+
+	Lib::GetInstance().Rotation(SlimeVertex, m_Deg);
+	Lib::GetInstance().Draw(SlimeVertex, "Picture\\StageImg.png");
 }

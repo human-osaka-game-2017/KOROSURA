@@ -26,6 +26,14 @@ GameOver::~GameOver()
 
 void GameOver::Update()
 {
+	m_pSelecter->Update();
+	m_selectNum = m_pSelecter->GetCurrentSelection();
+	if (m_selectNum == 0) {
+		kSlimePos.y = kStageRetryPos.y;
+	}
+	else {
+		kSlimePos.y = kStageSelectPos.y;
+	}
 
 }
 
@@ -41,6 +49,23 @@ void GameOver::Draw()
 	};
 
 	Lib::GetInstance().Draw(BackVertex, "Picture\\GameOver.png");
+
+	//slime画像の表示
+	Utility::CUSTOMVERTEX SlimeVertex[] = {
+		{ kSlimePos.x - kSlimeWidth / 2,kSlimePos.y - kSlimeHeight / 2 ,1.0f,1.0f,0xffffffff ,0.0f,0.0f },
+		{ kSlimePos.x + kSlimeWidth / 2,kSlimePos.y - kSlimeHeight / 2 ,1.0f,1.0f,0xffffffff ,1.0f,0.0f },
+		{ kSlimePos.x + kSlimeWidth / 2,kSlimePos.y + kSlimeHeight / 2 ,1.0f,1.0f,0xffffffff ,1.0f,1.0f },
+		{ kSlimePos.x - kSlimeWidth / 2,kSlimePos.y + kSlimeHeight / 2 ,1.0f,1.0f,0xffffffff ,0.0f,1.0f }
+	};
+
+	Lib::GetInstance().TrimingVertex(
+		SlimeVertex,
+		4300.0f, 700.0f,
+		static_cast<float>(kSlimeWidth), static_cast<float>(kSlimeHeight),
+		static_cast<float>(kPngWidth), static_cast<float>(kPngHeight));
+
+
+	Lib::GetInstance().Draw(SlimeVertex, "Picture\\StageImg.png");
 
 	//over画像の表示
 	Utility::CUSTOMVERTEX OverVertex[] = {
@@ -59,38 +84,74 @@ void GameOver::Draw()
 
 
 	Lib::GetInstance().Draw(OverVertex, "Picture\\StageImg.png");
+	if (m_selectNum == 0) {
+		//retry画像の表示
+		Utility::CUSTOMVERTEX RetryVertex[] = {
+			{ kStageRetryPos.x - kStageRetryWidth / 2,kStageRetryPos.y - kStageRetryHeight / 2 ,1.0f,1.0f,0xffffffff ,0.0f,0.0f },
+			{ kStageRetryPos.x + kStageRetryWidth / 2,kStageRetryPos.y - kStageRetryHeight / 2 ,1.0f,1.0f,0xffffffff ,1.0f,0.0f },
+			{ kStageRetryPos.x + kStageRetryWidth / 2,kStageRetryPos.y + kStageRetryHeight / 2 ,1.0f,1.0f,0xffffffff ,1.0f,1.0f },
+			{ kStageRetryPos.x - kStageRetryWidth / 2,kStageRetryPos.y + kStageRetryHeight / 2 ,1.0f,1.0f,0xffffffff ,0.0f,1.0f }
+		};
 
-	//retry画像の表示
-	Utility::CUSTOMVERTEX RetryVertex[] = {
-		{ kStageRetryPos.x - kStageRetryWidth / 2,kStageRetryPos.y - kStageRetryHeight / 2 ,1.0f,1.0f,0xffffffff ,0.0f,0.0f },
-		{ kStageRetryPos.x + kStageRetryWidth / 2,kStageRetryPos.y - kStageRetryHeight / 2 ,1.0f,1.0f,0xffffffff ,1.0f,0.0f },
-		{ kStageRetryPos.x + kStageRetryWidth / 2,kStageRetryPos.y + kStageRetryHeight / 2 ,1.0f,1.0f,0xffffffff ,1.0f,1.0f },
-		{ kStageRetryPos.x - kStageRetryWidth / 2,kStageRetryPos.y + kStageRetryHeight / 2 ,1.0f,1.0f,0xffffffff ,0.0f,1.0f }
-	};
+		Lib::GetInstance().TrimingVertex(
+			RetryVertex,
+			3300.0f, 700.0f,
+			static_cast<float>(kStageRetryWidth), static_cast<float>(kStageRetryHeight),
+			static_cast<float>(kPngWidth), static_cast<float>(kPngHeight));
 
-	Lib::GetInstance().TrimingVertex(
-		RetryVertex,
-		1800.0f, 700.0f,
-		static_cast<float>(kStageRetryWidth), static_cast<float>(kStageRetryHeight),
-		static_cast<float>(kPngWidth), static_cast<float>(kPngHeight));
+		Lib::GetInstance().Draw(RetryVertex, "Picture\\StageImg.png");
+	}
+	else {
+		//retry画像の表示
+		Utility::CUSTOMVERTEX RetryVertex[] = {
+			{ kStageRetryPos.x - kStageRetryWidth / 2,kStageRetryPos.y - kStageRetryHeight / 2 ,1.0f,1.0f,0xffffffff ,0.0f,0.0f },
+			{ kStageRetryPos.x + kStageRetryWidth / 2,kStageRetryPos.y - kStageRetryHeight / 2 ,1.0f,1.0f,0xffffffff ,1.0f,0.0f },
+			{ kStageRetryPos.x + kStageRetryWidth / 2,kStageRetryPos.y + kStageRetryHeight / 2 ,1.0f,1.0f,0xffffffff ,1.0f,1.0f },
+			{ kStageRetryPos.x - kStageRetryWidth / 2,kStageRetryPos.y + kStageRetryHeight / 2 ,1.0f,1.0f,0xffffffff ,0.0f,1.0f }
+		};
 
-	Lib::GetInstance().Draw(RetryVertex, "Picture\\StageImg.png");
+		Lib::GetInstance().TrimingVertex(
+			RetryVertex,
+			1800.0f, 700.0f,
+			static_cast<float>(kStageRetryWidth), static_cast<float>(kStageRetryHeight),
+			static_cast<float>(kPngWidth), static_cast<float>(kPngHeight));
 
-	//select画像の表示
-	Utility::CUSTOMVERTEX StageSelectVertex[] = {
-		{ kStageSelectPos.x - kStageSelectWidth / 2,kStageSelectPos.y - kStageSelectHeight / 2 ,1.0f,1.0f,0xffffffff ,0.0f,0.0f },
-		{ kStageSelectPos.x + kStageSelectWidth / 2,kStageSelectPos.y - kStageSelectHeight / 2 ,1.0f,1.0f,0xffffffff ,1.0f,0.0f },
-		{ kStageSelectPos.x + kStageSelectWidth / 2,kStageSelectPos.y + kStageSelectHeight / 2 ,1.0f,1.0f,0xffffffff ,1.0f,1.0f },
-		{ kStageSelectPos.x - kStageSelectWidth / 2,kStageSelectPos.y + kStageSelectHeight / 2 ,1.0f,1.0f,0xffffffff ,0.0f,1.0f }
-	};
+		Lib::GetInstance().Draw(RetryVertex, "Picture\\StageImg.png");
+	}
+	if (m_selectNum != 0) {
+		//select画像の表示
+		Utility::CUSTOMVERTEX StageSelectVertex[] = {
+			{ kStageSelectPos.x - kStageSelectWidth / 2,kStageSelectPos.y - kStageSelectHeight / 2 ,1.0f,1.0f,0xffffffff ,0.0f,0.0f },
+			{ kStageSelectPos.x + kStageSelectWidth / 2,kStageSelectPos.y - kStageSelectHeight / 2 ,1.0f,1.0f,0xffffffff ,1.0f,0.0f },
+			{ kStageSelectPos.x + kStageSelectWidth / 2,kStageSelectPos.y + kStageSelectHeight / 2 ,1.0f,1.0f,0xffffffff ,1.0f,1.0f },
+			{ kStageSelectPos.x - kStageSelectWidth / 2,kStageSelectPos.y + kStageSelectHeight / 2 ,1.0f,1.0f,0xffffffff ,0.0f,1.0f }
+		};
 
-	Lib::GetInstance().TrimingVertex(
-		StageSelectVertex,
-		2300.0f, 700.0f,
-		static_cast<float>(kStageSelectWidth), static_cast<float>(kStageSelectHeight),
-		static_cast<float>(kPngWidth), static_cast<float>(kPngHeight));
+		Lib::GetInstance().TrimingVertex(
+			StageSelectVertex,
+			3800.0f, 700.0f,
+			static_cast<float>(kStageSelectWidth), static_cast<float>(kStageSelectHeight),
+			static_cast<float>(kPngWidth), static_cast<float>(kPngHeight));
 
-	Lib::GetInstance().Draw(StageSelectVertex, "Picture\\StageImg.png");
+		Lib::GetInstance().Draw(StageSelectVertex, "Picture\\StageImg.png");
+	}
+	else {
+		//select画像の表示
+		Utility::CUSTOMVERTEX StageSelectVertex[] = {
+			{ kStageSelectPos.x - kStageSelectWidth / 2,kStageSelectPos.y - kStageSelectHeight / 2 ,1.0f,1.0f,0xffffffff ,0.0f,0.0f },
+			{ kStageSelectPos.x + kStageSelectWidth / 2,kStageSelectPos.y - kStageSelectHeight / 2 ,1.0f,1.0f,0xffffffff ,1.0f,0.0f },
+			{ kStageSelectPos.x + kStageSelectWidth / 2,kStageSelectPos.y + kStageSelectHeight / 2 ,1.0f,1.0f,0xffffffff ,1.0f,1.0f },
+			{ kStageSelectPos.x - kStageSelectWidth / 2,kStageSelectPos.y + kStageSelectHeight / 2 ,1.0f,1.0f,0xffffffff ,0.0f,1.0f }
+		};
+
+		Lib::GetInstance().TrimingVertex(
+			StageSelectVertex,
+			2300.0f, 700.0f,
+			static_cast<float>(kStageSelectWidth), static_cast<float>(kStageSelectHeight),
+			static_cast<float>(kPngWidth), static_cast<float>(kPngHeight));
+
+		Lib::GetInstance().Draw(StageSelectVertex, "Picture\\StageImg.png");
+	}
 }
 
 void GameOver::StartMusic()
@@ -112,5 +173,6 @@ void GameOver::WasSelect()
 	}
 	else {
 		StageInfo::GetInstance().SetSelectStage(StageInfo::GetInstance().GetCurrentStage());
+		m_Select = true;
 	}
 }
