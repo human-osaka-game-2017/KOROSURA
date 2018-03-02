@@ -30,7 +30,7 @@ MainScene::MainScene()
 	GameOver* pGameOver = new GameOver();
 
 	m_pLimitTime = new LimitTime();
-	m_pCamera			= new Camera(pSlime->GetPos());
+	m_pCamera	= new Camera(pSlime->GetPos());
 
 	m_ClearFlg = false;
 
@@ -39,8 +39,6 @@ MainScene::MainScene()
 	m_PtrMaterials.push_back(pTerrain);
 
 	m_PtrObject.push_back(pGameClear);
-	m_PtrObject.push_back
-
 
 	Lib::GetInstance().TransformProjection(45.0f, WINDOW_WIDTH / WINDOW_HEIGHT, 1.0f, 20000.0f);
 

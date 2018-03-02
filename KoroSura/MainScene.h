@@ -9,6 +9,7 @@ class MaterialBase;
 class Camera;
 class LimitTime;
 class PlayerLevel;
+class ObjectBase;
 
 class MainScene :public SceneBase{
 public:
