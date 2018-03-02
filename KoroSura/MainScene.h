@@ -24,6 +24,8 @@ public:
 	virtual SceneBase::SCENE_ID Update();
 	virtual void Draw();
 
+	void Init();
+
 private:
 	void SetRetSceneId(SceneBase::SCENE_ID sceneId) { retId = sceneId; }
 	std::vector<MaterialBase*> m_PtrMaterials;

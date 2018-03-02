@@ -1,5 +1,6 @@
 #include"GameOverScene.h"
 #include"Lib.h"
+#include"StageInfo.h"
 
 GameOverScene::GameOverScene()
 {
@@ -23,6 +24,7 @@ SceneBase::SCENE_ID GameOverScene::Update()
 	}
 	else if (m_pGameOver->GetSelectStage() == true) {
 		retSceneId = SCENE_ID::STAGESELECT;
+		StageInfo::GetInstance().DeleteStageData();
 	}
 
 	return retSceneId;

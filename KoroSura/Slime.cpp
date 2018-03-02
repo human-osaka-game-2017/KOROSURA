@@ -65,6 +65,8 @@ void Slime::Update()
 		}
 	}
 
+	m_Sphere.SetPos(m_Pos);
+
 	m_PosXZ.x += acceleration.x;
 	m_PosXZ.z += acceleration.z;
 }

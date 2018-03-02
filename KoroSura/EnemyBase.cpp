@@ -50,6 +50,8 @@ void EnemyBase::Collided(std::vector<ColliderBase::ObjectData*>* collidedObjects
 void EnemyBase::Update()
 {
 	PhysicsManager::GetInstance().TranceformOnBoard(kInitPos, &m_Pos);
+	m_Pos.y += InitProperty::GetInstance().GetInitialData().enemyInitialData[static_cast<int>(kKind)].modelOffset;
+	m_OBB.SetPos(InitProperty::GetInstance().GetInitialData().enemyInitialData[static_cast<int>(kKind)].colliderOffset + m_Pos);
 }
 
 void EnemyBase::Draw()

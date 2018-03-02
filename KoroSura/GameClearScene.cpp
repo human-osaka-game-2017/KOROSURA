@@ -1,5 +1,6 @@
 #include"GameClearScene.h"
 #include"Lib.h"
+#include"StageInfo.h"
 
 GameClearScene::GameClearScene()
 {
@@ -24,7 +25,7 @@ SceneBase::SCENE_ID GameClearScene::Update()
 	else if (m_pGameClear->GetSelectStage() == true) {
 		retSceneId = SCENE_ID::STAGESELECT;
 	}
-
+	StageInfo::GetInstance().DeleteStageData();
 	return retSceneId;
 }
 

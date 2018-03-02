@@ -96,3 +96,10 @@ D3DXVECTOR3* PhysicsManager::TranceformOnBoard(const D3DXVECTOR3& in, D3DXVECTOR
 	out->z = mat.m_Mat[2][0];
 	return out;
 }
+
+void PhysicsManager::Initialize()
+{
+	m_NormalVector = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	m_SlopeDeg[0] = 0.0f;
+	m_SlopeDeg[1] = 0.0f;
+}

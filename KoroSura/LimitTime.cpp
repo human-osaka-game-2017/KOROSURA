@@ -4,8 +4,9 @@
 #include"DirectGraphics.h"
 
 
-LimitTime::LimitTime():
-  m_Pos(D3DXVECTOR2(600.0f, 50.0f))
+LimitTime::LimitTime(std::function<void(SceneBase::SCENE_ID)> function):
+  m_Pos(D3DXVECTOR2(600.0f, 50.0f)),
+m_Function(function)
 {
 }
 
@@ -13,9 +14,24 @@ LimitTime::LimitTime():
 LimitTime::~LimitTime()
 {
 }
+
 void LimitTime::Update()
 {
-	//m_pLimitTimes->Update();
+	++m_FrCnt;
+	if (m_FrCnt == 60) {
+		m_FrCnt = 0;
+		if (m_OneNum == 0) {
+			m_OneNum = 9;
+			--m_TenNum;
+		}
+		else {
+			--m_OneNum;
+		}
+	}
+
+	if (m_TenNum == 0 && m_OneNum == 0) {
+		m_Function(SceneBase::SCENE_ID::GAMEOVER);
+	}
 }
 
 
@@ -47,41 +63,12 @@ void LimitTime::Draw()
 	Lib::GetInstance().Draw(vertex, "Picture\\UI.png");
 	NextCharPos(vertex);
 
-	/*NextCharPos(vertex);
-
-	Fonts::GetUV('E', vertex);
+	Fonts::GetUV(Utility::TransformChar(m_TenNum), vertex);
 	Lib::GetInstance().Draw(vertex, "Picture\\UI.png");
 	NextCharPos(vertex);
 
-	Fonts::GetUV('n', vertex);
+	Fonts::GetUV(Utility::TransformChar(m_OneNum), vertex);
 	Lib::GetInstance().Draw(vertex, "Picture\\UI.png");
-	NextCharPos(vertex);
-
-	Fonts::GetUV('t', vertex);
-	Lib::GetInstance().Draw(vertex, "Picture\\UI.png");
-	NextCharPos(vertex);
-
-	Fonts::GetUV('e', vertex);
-	Lib::GetInstance().Draw(vertex, "Picture\\UI.png");
-	NextCharPos(vertex);
-
-	Fonts::GetUV('r', vertex);
-	Lib::GetInstance().Draw(vertex, "Picture\\UI.png");
-	NextCharPos(vertex);
-
-	NextCharPos(vertex);
-
-	Fonts::GetUV('K', vertex);
-	Lib::GetInstance().Draw(vertex, "Picture\\UI.png");
-	NextCharPos(vertex);
-
-	Fonts::GetUV('e', vertex);
-	Lib::GetInstance().Draw(vertex, "Picture\\UI.png");
-	NextCharPos(vertex);
-
-	Fonts::GetUV('y', vertex);
-	Lib::GetInstance().Draw(vertex, "Picture\\UI.png");
-	NextCharPos(vertex);*/
 }
 
 void LimitTime::NextCharPos(Utility::CUSTOMVERTEX vertex[])

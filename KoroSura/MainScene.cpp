@@ -19,6 +19,10 @@
 #include"ColliderManager.h"
 #include"EnemyManager.h"
 
+void MainScene::Init()
+{
+}
+
 MainScene::MainScene()
 {
 	ColliderManager::GetInstance().FormGroup();
@@ -35,7 +39,7 @@ MainScene::MainScene()
 	Terrain* pTerrain	= new Terrain();
 
 	m_pEnemyManager = new EnemyManager;
-	m_pLimitTime = new LimitTime();
+	m_pLimitTime = new LimitTime(std::bind(&MainScene::SetRetSceneId, this, std::placeholders::_1));
 	m_pCamera	= new Camera(pSlime->GetPos());
 
 	m_PtrMaterials.push_back(pSky);
@@ -60,6 +64,7 @@ MainScene::~MainScene()
 	delete m_pCamera;
 
 	EffectManager::GetpInstance().ReleaseEffect("Shader\\BasicShader.fx");
+	PhysicsManager::GetInstance().Initialize();
 }
 
 SceneBase::SCENE_ID MainScene::Update()
@@ -74,6 +79,7 @@ SceneBase::SCENE_ID MainScene::Update()
 	}
 
 	m_pEnemyManager->Update();
+	m_pLimitTime->Update();
 
 	PhysicsManager::GetInstance().Update();
 

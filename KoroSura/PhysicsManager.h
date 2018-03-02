@@ -46,6 +46,8 @@ public:
 	//入力で平面を傾け、法線を更新
 	void Update();
 
+	void Initialize();
+
 private:
 	PhysicsManager();
 	~PhysicsManager();
