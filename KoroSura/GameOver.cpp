@@ -75,7 +75,6 @@ void GameOver::Draw()
 		static_cast<float>(kPngWidth), static_cast<float>(kPngHeight));
 
 	Lib::GetInstance().Draw(StageSelectVertex, "Picture\\Select.png");
-
 }
 
 
