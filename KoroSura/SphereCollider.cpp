@@ -43,7 +43,8 @@ bool SphereCollider::CollideSphereToOBB(const BoxCollider& collider) const
 	return ret;
 }
 
-bool SphereCollider::CollideSphereToSphere(const SphereCollider& collider) const
+bool SphereCollider::CollideSphereToSphere(const SphereCollider&
+	collider) const
 {
 	return true;
 }

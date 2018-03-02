@@ -99,6 +99,7 @@ void Slime::Collided(std::vector<ColliderBase::ObjectData*>* collidedObjects)
 		if ((*ite)->ClassName == std::string("EnemyBase")) {
 			EnemyBase* pEnemy = dynamic_cast<EnemyBase*>((*ite)->pObject);
 
+
 			if (m_Level >= pEnemy->GetLevel()) {
 				if (m_Level - pEnemy->GetLevel() < 3) {
 					++m_Level;
