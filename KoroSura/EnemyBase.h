@@ -31,7 +31,7 @@ public:
 		MAX
 	};
 
-	EnemyBase(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level, ENEMY_KIND kind, float angleDeg);
+	EnemyBase(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level, ENEMY_KIND kind, float angleDeg, bool isBoss);
 
 	virtual ~EnemyBase() {}
 
@@ -48,5 +48,6 @@ protected:
 private:
 	const D3DXVECTOR3 kInitPos;//todo äÓíÍÉNÉâÉXÇ…éùÇΩÇπÇÈ
 	void Collided(std::vector<ColliderBase::ObjectData*>* collidedObjects);
+	bool m_IsBoss = false;
 };
 #endif

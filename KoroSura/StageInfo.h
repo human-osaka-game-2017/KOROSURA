@@ -19,6 +19,7 @@ public:
 		float	angle;
 		int		level;
 		int		kind;
+		bool	isBoss = false;
 	};
 
 	struct StageData {

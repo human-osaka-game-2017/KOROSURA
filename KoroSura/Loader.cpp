@@ -105,6 +105,26 @@ void Loader::LoadEnemy(StageInfo::StageData* pStageData, std::string iniFileName
 		pStageData->enemyData[i - 1].angle =
 			GetPrivateProfileInt(tagName.c_str(), "Angle", 0, iniFileName.c_str());
 	}
+
+	pStageData->enemyData[pStageData->enemyNum].kind =
+		GetPrivateProfileInt("BOSS", "Kind", 0, iniFileName.c_str());
+
+	pStageData->enemyData[pStageData->enemyNum].pos.x =
+		GetPrivateProfileInt("BOSS", "X", 0, iniFileName.c_str());
+
+	pStageData->enemyData[pStageData->enemyNum].pos.y =
+		GetPrivateProfileInt("BOSS", "Y", 0, iniFileName.c_str());
+
+	pStageData->enemyData[pStageData->enemyNum].pos.z =
+		GetPrivateProfileInt("BOSS", "Z", 0, iniFileName.c_str());
+
+	pStageData->enemyData[pStageData->enemyNum].level =
+		GetPrivateProfileInt("BOSS", "Level", 1, iniFileName.c_str());
+
+	pStageData->enemyData[pStageData->enemyNum].angle =
+		GetPrivateProfileInt("BOSS", "Angle", 0, iniFileName.c_str());
+
+	pStageData->enemyData[pStageData->enemyNum].isBoss = true;
 }
 
 void Loader::LoadGimmick(StageInfo::StageData* pStageData, std::string iniFileName)

@@ -11,10 +11,11 @@
 #include"EffectManager.h"
 #include"PhysicsManager.h"
 
-EnemyBase::EnemyBase(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level, ENEMY_KIND kind, float angleDeg) :
+EnemyBase::EnemyBase(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level, ENEMY_KIND kind, float angleDeg ,bool isBoss) :
 	CharacterBase(pos, normalVec, level),
 	kKind(kind),
-	kInitPos(pos)
+	kInitPos(pos),
+	m_IsBoss(isBoss)
 {
 	m_Pos.y += InitProperty::GetInstance().GetInitialData().enemyInitialData[static_cast<int>(kind)].modelOffset;
 	m_OBB.SetPos(InitProperty::GetInstance().GetInitialData().enemyInitialData[static_cast<int>(kind)].colliderOffset + m_Pos);

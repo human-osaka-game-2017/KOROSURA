@@ -40,7 +40,7 @@ MainScene::MainScene()
 	int enemyNum = pStageData->enemyNum;
 	for (int i = 0; i < enemyNum; ++i) {
 		EnemyBase* pEnemy = new EnemyBase(pStageData->enemyData[i].pos, D3DXVECTOR3(0.0f, 1.0f, 0.0f), pStageData->enemyData[i].level,
-			static_cast<EnemyBase::ENEMY_KIND>(pStageData->enemyData[i].kind), pStageData->enemyData[i].angle);
+			static_cast<EnemyBase::ENEMY_KIND>(pStageData->enemyData[i].kind), pStageData->enemyData[i].angle, pStageData->enemyData[i].isBoss);
 		m_PtrMaterials.push_back(pEnemy);
 	}
 
