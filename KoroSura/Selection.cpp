@@ -13,6 +13,7 @@ Selecter::~Selecter()
 
 void Selecter::Update()
 {
+
 	if (Lib::GetInstance().GetKeyState(Utility::KEY_KIND::DOWN) == Utility::BUTTON_STATE::PUSH) {
 
 		if (m_SelectPoint == m_MaxChoices - 1) {

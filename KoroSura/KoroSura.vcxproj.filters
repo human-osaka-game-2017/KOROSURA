@@ -155,17 +155,20 @@
     <ClCompile Include="PlayerLevel.cpp">
       <Filter>Application\Scene\Main\GameFont</Filter>
     </ClCompile>
-    <ClCompile Include="GameClear.cpp">
-      <Filter>Application\Scene\Main\ResultUI</Filter>
-    </ClCompile>
-    <ClCompile Include="GameOver.cpp">
-      <Filter>Application\Scene\Main\ResultUI</Filter>
-    </ClCompile>
     <ClCompile Include="EnemyBase.cpp">
       <Filter>Application\Scene\Main\Material\Character\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="GameClear.cpp">
+      <Filter>Application\Scene\FinishScene\ResultUI\GameClear</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOver.cpp">
+      <Filter>Application\Scene\FinishScene\ResultUI\GameOver</Filter>
+    </ClCompile>
     <ClCompile Include="GameClearScene.cpp">
-      <Filter>Application\Scene\Result</Filter>
+      <Filter>Application\Scene\FinishScene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOverScene.cpp">
+      <Filter>Application\Scene\FinishScene</Filter>
     </ClCompile>
     <ClCompile Include="EnemyManager.cpp">
       <Filter>Application\Scene\Main\Material\Character\Enemy</Filter>
@@ -301,11 +304,17 @@
     <Filter Include="Application\Scene\Main\GameFont">
       <UniqueIdentifier>{8c89ccdf-9e4d-4b0b-a04b-d7b6aa5b665b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Application\Scene\Main\GameClear">
+    <Filter Include="Application\Scene\FinishScene">
+      <UniqueIdentifier>{95085ac9-cf13-4f4e-b662-52a5f95f8211}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\FinishScene\ResultUI">
+      <UniqueIdentifier>{5f5f75e5-1a18-4cb0-8930-f1e443b69bae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\FinishScene\ResultUI\GameClear">
       <UniqueIdentifier>{ce63a233-054a-4e50-bd60-af1de85ab6b8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Application\Scene\Main\ResultUI">
-      <UniqueIdentifier>{5f5f75e5-1a18-4cb0-8930-f1e443b69bae}</UniqueIdentifier>
+    <Filter Include="Application\Scene\FinishScene\ResultUI\GameOver">
+      <UniqueIdentifier>{2db90831-bb6f-4e20-b838-d24da06d3436}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -485,13 +494,16 @@
       <Filter>Application\Scene\Main\GameFont</Filter>
     </ClInclude>
     <ClInclude Include="GameClear.h">
-      <Filter>Application\Scene\Main\ResultUI</Filter>
+      <Filter>Application\Scene\FinishScene\ResultUI\GameClear</Filter>
     </ClInclude>
     <ClInclude Include="GameOver.h">
-      <Filter>Application\Scene\Main\ResultUI</Filter>
+      <Filter>Application\Scene\FinishScene\ResultUI\GameOver</Filter>
     </ClInclude>
     <ClInclude Include="GameClearScene.h">
-      <Filter>Application\Scene\Result</Filter>
+      <Filter>Application\Scene\FinishScene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOverScene.h">
+      <Filter>Application\Scene\FinishScene</Filter>
     </ClInclude>
     <ClInclude Include="EnemyManager.h">
       <Filter>Application\Scene\Main\Material\Character\Enemy</Filter>
