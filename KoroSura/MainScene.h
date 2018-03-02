@@ -5,6 +5,9 @@
 #include<d3dx9.h>
 #include<vector>
 
+#include"GameClear.h"
+#include"GameOver.h"
+
 class MaterialBase;
 class Camera;
 class LimitTime;
@@ -25,6 +28,8 @@ private:
 	std::vector<ObjectBase*> m_PtrObject;
 	Camera* m_pCamera;
 	LimitTime* m_pLimitTime;
+	GameClear* pGameClear = new GameClear();
+	GameOver* pGameOver = new GameOver();
 
 	bool m_ClearFlg;
 };

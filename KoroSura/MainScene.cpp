@@ -13,32 +13,29 @@
 #include"LimitTime.h"
 #include"PlayerLevel.h"
 #include"SoundBufferManager.h"
-#include"GameClear.h"
-#include"GameOver.h"
+
 
 MainScene::MainScene()
 {
-	EffectManager::GetpInstance().CreateEffect("Shader\\BasicShader.fx"); 
+	EffectManager::GetpInstance().CreateEffect("Shader\\BasicShader.fx");
+
 	SoundBufferManager::GetInstance().LoadWaveFile("BGM\\MainBgm.wav");
+	SoundBufferManager::GetInstance().PlayBackSound("BGM\\MainBgm.wav", true);
 
 	StageInfo::StageData* pStageData = StageInfo::GetInstance().GetStageData();
 	Slime*	pSlime		= new Slime(pStageData->slimeData.pos, D3DXVECTOR3(0.0f, 1.0f, 0.0f), pStageData->slimeData.level);
 	Sky* pSky			= new Sky();
 	Terrain* pTerrain	= new Terrain();
 
-	GameClear* pGameClear = new GameClear();
-	GameOver* pGameOver = new GameOver();
-
 	m_pLimitTime = new LimitTime();
 	m_pCamera	= new Camera(pSlime->GetPos());
 
-	m_ClearFlg = false;
+
+	m_ClearFlg = true;
 
 	m_PtrMaterials.push_back(pSky);
 	m_PtrMaterials.push_back(pSlime);
 	m_PtrMaterials.push_back(pTerrain);
-
-	m_PtrObject.push_back(pGameClear);
 
 	Lib::GetInstance().TransformProjection(45.0f, WINDOW_WIDTH / WINDOW_HEIGHT, 1.0f, 20000.0f);
 
@@ -63,11 +60,11 @@ SceneBase::SCENE_ID MainScene::Update()
 
 	Lib::GetInstance().UpdateKey();
 	if (m_ClearFlg != false) {
-
+		m_PtrObject.push_back(pGameClear);
 	}
 	else {
+
 		Lib::GetInstance().UpdateMouse();
-		SoundBufferManager::GetInstance().PlayBackSound("BGM\\MainBgm.wav", true);
 
 		DirLightSource::GetpInstance().Update();
 

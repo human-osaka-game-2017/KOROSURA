@@ -17,8 +17,11 @@ private:
 	const int kPngHeight = 1024;
 
 	const D3DXVECTOR2 kStageClearPos = D3DXVECTOR2(800.0f, 200.0f);
-	const int kStageClearWidth = 800;
-	const int kStageClearHeight = 100;
+	const D3DXVECTOR2 kStageNextPos = D3DXVECTOR2(800.0f, 520.0f);
+	const int kStageClearWidth = 650;
+	const int kStageClearHeight = 175;
+	const int kStageNextWidth = 500;
+	const int kStageNextHeight = 150;
 };
 
 #endif 
