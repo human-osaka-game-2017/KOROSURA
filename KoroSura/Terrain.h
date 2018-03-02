@@ -2,6 +2,11 @@
 #define TERRAIN_H
 
 #include"MaterialBase.h"
+#include"Shape.h"
+#include"ColliderBase.h"
+#include<vector>
+
+class BoxCollider;
 
 class Terrain :public MaterialBase{
 public:
@@ -9,12 +14,15 @@ public:
 	virtual ~Terrain();
 
 	virtual void Update();
-	virtual void DrawPreparation();
 	virtual void Draw();
 
 private:
+	void Collided(std::vector<ColliderBase::ObjectData*>* collidedObjects);
+
 	const float kSize = 200.0f;
 
-	int* m_TerrainData;
+	Shape::OBB m_OBB;
+	BoxCollider* m_pCollider;
+	//int* m_TerrainData;
 };
 #endif

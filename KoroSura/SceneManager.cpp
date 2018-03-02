@@ -4,7 +4,7 @@
 SceneManager::SceneManager()
 {
 	m_pSceneFactory = new SceneFactory;
-	m_pScene = m_pSceneFactory->Create(SceneBase::SCENE_ID::GAMECLEAR);
+	m_pScene = m_pSceneFactory->Create(SceneBase::SCENE_ID::STAGESELECT);
 }
 
 SceneManager::~SceneManager()
