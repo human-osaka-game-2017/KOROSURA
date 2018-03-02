@@ -43,7 +43,15 @@ bool SphereCollider::CollideSphereToOBB(const BoxCollider& collider) const
 	return ret;
 }
 
-bool SphereCollider::CollideSphereToSphere(const SphereCollider& collider) const
+bool SphereCollider::CollideSphereToSphere(const SphereCollider&
+	collider) const
 {
 	return true;
 }
+/*
+Kind = 3
+X = 800
+Y = 0
+Z = 1000
+Level = 1
+angle = 180*/

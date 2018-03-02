@@ -60,6 +60,8 @@ SceneBase::SCENE_ID StageSelectScene::Update()
 	if (m_FrCnt >= kNextSceneInterval) {
 		retSceneId = SCENE_ID::LOAD;
 	}
+
+
 	return retSceneId;
 }
 

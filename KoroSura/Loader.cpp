@@ -62,7 +62,7 @@ void Loader::LoadMap(StageInfo::StageData* pStageData, std::string iniFileName, 
 	pStageData->mapSize.z=
 		GetPrivateProfileInt("Size", "Z", 1, iniFileName.c_str());
 
-	pStageData->terrainData = new int[pStageData->mapSize.x*pStageData->mapSize.z];
+	//pStageData->terrainData = new int[pStageData->mapSize.x*pStageData->mapSize.z];
 
 	////csvì«Ç›çûÇ›
 	//FILE* pFile;
