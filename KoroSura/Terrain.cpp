@@ -31,7 +31,7 @@ void Terrain::Draw()
 {
 	const float* slopeDeg = PhysicsManager::GetInstance().GetSlopeDeg();
 
-	Lib::GetInstance().TransformWorld(m_Pos, 0.0f, slopeDeg[0] + 90.0f, slopeDeg[1]);
+	Lib::GetInstance().TransformWorld(m_Pos, 0.0f, slopeDeg[0], slopeDeg[1], 10000.0f);
 
 	D3DXMATRIX WorldMatrix;
 	(*DirectGraphics::GetInstance().GetDevice())->GetTransform(D3DTS_WORLD, &WorldMatrix);

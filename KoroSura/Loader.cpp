@@ -88,41 +88,41 @@ void Loader::LoadEnemy(StageInfo::StageData* pStageData, std::string iniFileName
 		tagName += std::to_string(i);
 
 		pStageData->enemyData[i].kind =
-			GetPrivateProfileInt(tagName.c_str(), "Kind", 0, iniFileName.c_str());
+			(int)GetPrivateProfileInt(tagName.c_str(), "Kind", 0, iniFileName.c_str());
 
 		pStageData->enemyData[i].pos.x =
-			GetPrivateProfileInt(tagName.c_str(), "X", 0, iniFileName.c_str());
+			(int)GetPrivateProfileInt(tagName.c_str(), "X", 0, iniFileName.c_str());
 
 		pStageData->enemyData[i].pos.y =
-			GetPrivateProfileInt(tagName.c_str(), "Y", 0, iniFileName.c_str());
+			(int)GetPrivateProfileInt(tagName.c_str(), "Y", 0, iniFileName.c_str());
 
 		pStageData->enemyData[i].pos.z =
-			GetPrivateProfileInt(tagName.c_str(), "Z", 0, iniFileName.c_str());
+			(int)GetPrivateProfileInt(tagName.c_str(), "Z", 0, iniFileName.c_str());
 
 		pStageData->enemyData[i].level =
-			GetPrivateProfileInt(tagName.c_str(), "Level", 1, iniFileName.c_str());
+			(int)GetPrivateProfileInt(tagName.c_str(), "Level", 1, iniFileName.c_str());
 
 		pStageData->enemyData[i].angle =
-			GetPrivateProfileInt(tagName.c_str(), "angle", 0, iniFileName.c_str());
+			(int)GetPrivateProfileInt(tagName.c_str(), "angle", 0, iniFileName.c_str());
 	}
 
 	pStageData->enemyData[0].kind =
-		GetPrivateProfileInt("Boss", "Kind", 0, iniFileName.c_str());
+		(int)GetPrivateProfileInt("Boss", "Kind", 0, iniFileName.c_str());
 
 	pStageData->enemyData[0].pos.x =
-		GetPrivateProfileInt("Boss", "X", 0, iniFileName.c_str());
+		(int)GetPrivateProfileInt("Boss", "X", 0, iniFileName.c_str());
 
 	pStageData->enemyData[0].pos.y =
-		GetPrivateProfileInt("Boss", "Y", 0, iniFileName.c_str());
+		(int)GetPrivateProfileInt("Boss", "Y", 0, iniFileName.c_str());
 
 	pStageData->enemyData[0].pos.z =
-		GetPrivateProfileInt("Boss", "Z", 0, iniFileName.c_str());
+		(int)GetPrivateProfileInt("Boss", "Z", 0, iniFileName.c_str());
 
 	pStageData->enemyData[0].level =
-		GetPrivateProfileInt("Boss", "Level", 1, iniFileName.c_str());
+		(int)GetPrivateProfileInt("Boss", "Level", 1, iniFileName.c_str());
 
 	pStageData->enemyData[0].angle =
-		GetPrivateProfileInt("Boss", "angle", 0, iniFileName.c_str());
+		(int)GetPrivateProfileInt("Boss", "angle", 0, iniFileName.c_str());
 
 	pStageData->enemyData[0].isBoss = true;
 }
@@ -139,36 +139,36 @@ void Loader::LoadGimmick(StageInfo::StageData* pStageData, std::string iniFileNa
 		tagName += std::to_string(i);
 
 		pStageData->gimmickData[i - 1].kind =
-			GetPrivateProfileInt(tagName.c_str(), "Kind", 0, iniFileName.c_str());
+			(int)GetPrivateProfileInt(tagName.c_str(), "Kind", 0, iniFileName.c_str());
 
 		pStageData->gimmickData[i - 1].pos.x =
-			GetPrivateProfileInt(tagName.c_str(), "X", 0, iniFileName.c_str());
+			(int)GetPrivateProfileInt(tagName.c_str(), "X", 0, iniFileName.c_str());
 
 		pStageData->gimmickData[i - 1].pos.y =
-			GetPrivateProfileInt(tagName.c_str(), "Y", 0, iniFileName.c_str());
+			(int)GetPrivateProfileInt(tagName.c_str(), "Y", 0, iniFileName.c_str());
 
 		pStageData->gimmickData[i - 1].pos.z =
-			GetPrivateProfileInt(tagName.c_str(), "Z", 0, iniFileName.c_str());
+			(int)GetPrivateProfileInt(tagName.c_str(), "Z", 0, iniFileName.c_str());
 
 		pStageData->gimmickData[i - 1].angle =
-			GetPrivateProfileInt(tagName.c_str(), "angle", 0, iniFileName.c_str());
+			(int)GetPrivateProfileInt(tagName.c_str(), "angle", 0, iniFileName.c_str());
 	}
 }
 
 void Loader::LoadSlime(StageInfo::StageData* pStageData, std::string iniFileName)
 {
 	pStageData->slimeData.pos.x =
-		GetPrivateProfileInt("Slime", "X", 0, iniFileName.c_str());
+		(int)GetPrivateProfileInt("Slime", "X", 0, iniFileName.c_str());
 
 	pStageData->slimeData.pos.y =
-		GetPrivateProfileInt("Slime", "Y", 0, iniFileName.c_str());
+		(int)GetPrivateProfileInt("Slime", "Y", 0, iniFileName.c_str());
 
 	pStageData->slimeData.pos.z =
-		GetPrivateProfileInt("Slime", "Z", 0, iniFileName.c_str());
+		(int)GetPrivateProfileInt("Slime", "Z", 0, iniFileName.c_str());
 
 	pStageData->slimeData.level =
-		GetPrivateProfileInt("Slime", "Level", 1, iniFileName.c_str());
+		(int)GetPrivateProfileInt("Slime", "Level", 1, iniFileName.c_str());
 
 	pStageData->slimeData.angle =
-		GetPrivateProfileInt("Slime", "Angle", 0, iniFileName.c_str());
+		(int)GetPrivateProfileInt("Slime", "Angle", 0, iniFileName.c_str());
 }

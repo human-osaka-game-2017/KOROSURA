@@ -167,6 +167,9 @@
     <ClCompile Include="GameClearScene.cpp">
       <Filter>Application\Scene\Result</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyManager.cpp">
+      <Filter>Application\Scene\Main\Material\Character\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">
@@ -489,6 +492,9 @@
     </ClInclude>
     <ClInclude Include="GameClearScene.h">
       <Filter>Application\Scene\Result</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyManager.h">
+      <Filter>Application\Scene\Main\Material\Character\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

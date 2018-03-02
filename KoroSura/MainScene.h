@@ -13,6 +13,7 @@ class Camera;
 class LimitTime;
 class PlayerLevel;
 class ObjectBase;
+class EnemyManager;
 
 class MainScene :public SceneBase{
 public:
@@ -25,12 +26,9 @@ public:
 
 private:
 	std::vector<MaterialBase*> m_PtrMaterials;
-	std::vector<ObjectBase*> m_PtrObject;
+	//std::vector<ObjectBase*> m_PtrObject;
 	Camera* m_pCamera;
 	LimitTime* m_pLimitTime;
-	GameClear* m_pGameClear = new GameClear();
-	GameOver* m_pGameOver = new GameOver();
-
-	bool m_ClearFlg;
+	EnemyManager* m_pEnemyManager;
 };
 #endif

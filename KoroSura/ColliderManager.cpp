@@ -17,7 +17,7 @@ void ColliderManager::Collide()
 	for (unsigned int i = 0; i < m_PtrColliders.size(); ++i) {
 		for (unsigned int j = 0; j < m_PtrColliders[i].size(); ++j) {
 			std::vector<ColliderBase::ObjectData*> collidedObjects;
-			for (unsigned int k = 0; k < j; ++k) {
+			for (unsigned int k = 0; k < m_PtrColliders[i].size() - k; ++k) {
 
 				if ((m_PtrColliders[i][j]->GetMaskBits()&m_PtrColliders[i][k]->GetCategoryBits()) &&
 					(m_PtrColliders[i][k]->GetMaskBits()&m_PtrColliders[i][j]->GetCategoryBits())) {
