@@ -8,7 +8,8 @@ public:
 		STAGESELECT,
 		LOAD,
 		MAIN,
-		RESULT
+		GAMECLEAR,
+		GAMEOVER
 	};
 
 	SceneBase() {};

@@ -38,6 +38,9 @@ public:
 	virtual void Update();
 	virtual void Draw();
 
+	void Dead() { m_WasDead = true; }
+	bool WasDead() { return m_WasDead; }
+
 protected:
 	const ENEMY_KIND kKind;
 
@@ -49,5 +52,6 @@ private:
 	const D3DXVECTOR3 kInitPos;//todo Šî’êƒNƒ‰ƒX‚É‚½‚¹‚é
 	void Collided(std::vector<ColliderBase::ObjectData*>* collidedObjects);
 	bool m_IsBoss = false;
+	bool m_WasDead = false;
 };
 #endif

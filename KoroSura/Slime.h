@@ -32,5 +32,6 @@ private:
 	Physics* m_pPhysics;
 	Shape::Sphere m_Sphere;
 	SphereCollider* m_pCollider;
+	bool m_IsFall = true;
 };
 #endif
