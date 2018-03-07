@@ -8,16 +8,18 @@
 #include"DirectInput.h"
 #include"InitProperty.h"
 
-Camera::Camera(D3DXVECTOR3* lookatpos) : 
-	m_Pos(D3DXVECTOR3(0.0f, InitProperty::GetInstance().GetInitialData().cameraYPos,0.0f)),
+Camera::Camera(D3DXVECTOR3* lookatpos) :
+	m_Pos(D3DXVECTOR3(0.0f, InitProperty::GetInstance().GetInitialData().cameraYPos, 0.0f)),
 	m_pLookatPos(lookatpos),
-	m_MovementMouse(D3DXVECTOR3(0.0f,0.0f,0.0f)),
+	m_MovementMouse(D3DXVECTOR3(0.0f, 0.0f, 0.0f)),
 	kDistance(InitProperty::GetInstance().GetInitialData().cameraDistance),
-	kLookAtPosYOffset(InitProperty::GetInstance().GetInitialData().lookAtPosYOffset)
+	kLookAtPosYOffset(InitProperty::GetInstance().GetInitialData().lookAtPosYOffset),
+	m_FirstTime(false)
 {
 	D3DXVECTOR3 lookAtPos = *m_pLookatPos;
 	lookAtPos.y += kLookAtPosYOffset;
 	PhysicsManager::GetInstance().SetCameraVec(lookAtPos - m_Pos);
+	DirectInput::GetInstance().UpdateMouse();
 }
 
 Camera::~Camera()
@@ -28,7 +30,12 @@ void Camera::Update()
 {
 	DirectInput::GetInstance().GetMouseData();
 	D3DXVECTOR3 stateMouse;
-	stateMouse = DirectInput::GetInstance().GetMouseData()->Movement;
+	if (m_FirstTime != false) {
+		stateMouse = D3DXVECTOR3(100.0f, 100.f, 100.0f);
+	}
+	else {
+		stateMouse = DirectInput::GetInstance().GetMouseData()->Movement;
+	}
 	D3DXVECTOR3 lookAtPos = *m_pLookatPos;
 	lookAtPos.y += kLookAtPosYOffset;
 	m_MovementMouse += stateMouse;
