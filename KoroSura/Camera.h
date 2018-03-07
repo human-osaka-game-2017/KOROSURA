@@ -13,7 +13,8 @@ public:
 private:
 	const float kDistance;
 	const float kLookAtPosYOffset;
-	bool m_FirstTime;
+	bool m_FirstTime = false;
+	bool m_StopCamera = false;
 
 	D3DXVECTOR3		m_Pos;
 	D3DXVECTOR3*	m_pLookatPos;
