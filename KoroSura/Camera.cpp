@@ -30,8 +30,9 @@ void Camera::Update()
 {
 	DirectInput::GetInstance().GetMouseData();
 	D3DXVECTOR3 stateMouse;
-	if (m_FirstTime != false) {
-		stateMouse = D3DXVECTOR3(100.0f, 100.f, 100.0f);
+	if (m_FirstTime != true) {
+		stateMouse = D3DXVECTOR3(700.0f, 500.f, 500.0f);
+		m_FirstTime = true;
 	}
 	else {
 		stateMouse = DirectInput::GetInstance().GetMouseData()->Movement;
