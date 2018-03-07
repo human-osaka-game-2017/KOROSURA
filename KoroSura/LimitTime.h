@@ -25,6 +25,7 @@ private:
 	//todo rename
 	int m_TenNum = 6;
 	int m_OneNum = 0;
+	bool m_CanWatched = true;
 };
 
 #endif

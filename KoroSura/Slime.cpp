@@ -11,6 +11,7 @@
 #include"ColliderManager.h"
 #include"PlayerLevel.h"
 #include"StageInfo.h"
+#include"BoxCollider.h"
 
 Slime::Slime(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level, std::function<void(SceneBase::SCENE_ID)> function):
 	CharacterBase(pos, normalVec, level),
@@ -36,7 +37,6 @@ Slime::~Slime()
 void Slime::Update()
 {
 	m_pPlayerLevel->Update();
-	static D3DXVECTOR3 acceleration = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	D3DXVECTOR3 boardSize = StageInfo::GetInstance().GetStageData()->mapSize;
 
 	if (-boardSize.x / 2 < m_PosXZ.x&&m_PosXZ.x < boardSize.x / 2 &&
@@ -51,14 +51,14 @@ void Slime::Update()
 		float length = m_pPhysics->GetRollVelocity();
 		rollVec *= length;
 
-		if (rollVec == D3DXVECTOR3(0.0f, 0.0f, 0.0f))acceleration = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-		acceleration += rollVec;
+		if (rollVec == D3DXVECTOR3(0.0f, 0.0f, 0.0f))m_Acceleration = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+		m_Acceleration += rollVec;
 
-		m_Pos = acceleration + (currentOnBoardPos);
+		m_Pos = m_Acceleration + (currentOnBoardPos);
 	}
 	else {
-		acceleration += PhysicsManager::GetInstance().GetGravity();
-		m_Pos += acceleration;
+		m_Acceleration += PhysicsManager::GetInstance().GetGravity();
+		m_Pos += m_Acceleration;
 
 		if (m_Pos.y < -1000) {
 			m_Function(SceneBase::SCENE_ID::GAMEOVER);
@@ -67,8 +67,8 @@ void Slime::Update()
 
 	m_Sphere.SetPos(m_Pos);
 
-	m_PosXZ.x += acceleration.x;
-	m_PosXZ.z += acceleration.z;
+	m_PosXZ.x += m_Acceleration.x;
+	m_PosXZ.z += m_Acceleration.z;
 }
 
 void Slime::Draw()
@@ -99,7 +99,6 @@ void Slime::Collided(std::vector<ColliderBase::ObjectData*>* collidedObjects)
 		if ((*ite)->ClassName == std::string("EnemyBase")) {
 			EnemyBase* pEnemy = dynamic_cast<EnemyBase*>((*ite)->pObject);
 
-
 			if (m_Level >= pEnemy->GetLevel()) {
 				if (m_Level - pEnemy->GetLevel() < 3) {
 					++m_Level;
@@ -109,6 +108,23 @@ void Slime::Collided(std::vector<ColliderBase::ObjectData*>* collidedObjects)
 				}
 
 				pEnemy->Dead();
+			}
+
+			//‰Ÿ‚µo‚µˆ—
+			else {
+				D3DXVECTOR3 length;
+				Utility::VecOBBToPoint(pEnemy->GetCollider()->GetObb(), m_Pos, &length);
+
+				D3DXVECTOR3 radiusVec;
+				D3DXVec3Normalize(&radiusVec, &length);
+				radiusVec *= m_Sphere.GetRadius();
+
+				D3DXVECTOR3 distance = length - radiusVec;
+
+				m_Acceleration = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+				m_Pos -= distance;
+				m_PosXZ -= distance;
+				m_PosXZ.y = 0;
 			}
 		}
 	}
