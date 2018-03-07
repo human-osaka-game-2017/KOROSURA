@@ -39,11 +39,12 @@ bool BoxCollider::CollideOBBToSphere(const SphereCollider& collider) const
 	bool ret;
 	Shape::Sphere tmp= collider.GetSphere();
 	D3DXVECTOR3 Point = tmp.GetPos();
-	//D3DXVECTOR3 point = collider.GetSphere().GetPos();
 
-	float distance = Utility::GetLengthOBBToPoint(*m_pObb, Point);
+	D3DXVECTOR3 distance_vec;
+	Utility::VecOBBToPoint(*m_pObb, Point, &distance_vec);
+	float distance_len = D3DXVec3Length(&distance_vec);
 
-	if (distance < tmp.GetRadius()) {
+	if (distance_len < tmp.GetRadius()) {
 		ret = true;
 	}
 	else {

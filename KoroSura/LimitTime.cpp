@@ -17,20 +17,26 @@ LimitTime::~LimitTime()
 
 void LimitTime::Update()
 {
-	++m_FrCnt;
-	if (m_FrCnt == 60) {
-		m_FrCnt = 0;
-		if (m_OneNum == 0) {
-			m_OneNum = 9;
-			--m_TenNum;
-		}
-		else {
-			--m_OneNum;
-		}
+	if (Lib::GetInstance().GetKeyState(Utility::KEY_KIND::T) == Utility::BUTTON_STATE::PUSH) {
+		m_CanWatched = !m_CanWatched;
 	}
 
-	if (m_TenNum == 0 && m_OneNum == 0) {
-		m_Function(SceneBase::SCENE_ID::GAMEOVER);
+	if (m_CanWatched) {
+		++m_FrCnt;
+		if (m_FrCnt == 60) {
+			m_FrCnt = 0;
+			if (m_OneNum == 0) {
+				m_OneNum = 9;
+				--m_TenNum;
+			}
+			else {
+				--m_OneNum;
+			}
+		}
+
+		if (m_TenNum == 0 && m_OneNum == 0) {
+			m_Function(SceneBase::SCENE_ID::GAMEOVER);
+		}
 	}
 }
 

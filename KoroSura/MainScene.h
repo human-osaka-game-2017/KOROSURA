@@ -28,6 +28,7 @@ public:
 
 private:
 	void SetRetSceneId(SceneBase::SCENE_ID sceneId) { retId = sceneId; }
+
 	std::vector<MaterialBase*> m_PtrMaterials;
 	//std::vector<ObjectBase*> m_PtrObject;
 	Camera* m_pCamera;

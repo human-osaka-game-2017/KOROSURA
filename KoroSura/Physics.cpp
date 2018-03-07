@@ -61,15 +61,18 @@ D3DXVECTOR3* Physics::GetRollVec(D3DXVECTOR3* rollVec, const D3DXVECTOR3& curren
 
 float Physics::GetRollVelocity()
 {
-	//法線
-	D3DXVECTOR3 normalVec = PhysicsManager::GetInstance().GetNormalVector();
+	//速度更新
+	float rad = 0.0f;
+	{
+		//法線
+		D3DXVECTOR3 normalVec = PhysicsManager::GetInstance().GetNormalVector();
 
-	//地面のx-zの傾き
-	float tmp = acos(normalVec.y / D3DXVec3Length(&normalVec));
-	if (tmp > D3DXToRadian(90.0f)) {
-		tmp = D3DXToRadian(180.0f) - tmp;
+		float tmp = acos(normalVec.y / D3DXVec3Length(&normalVec));
+		if (tmp > D3DXToRadian(90.0f)) {
+			tmp = D3DXToRadian(180.0f) - tmp;
+		}
+		rad = tmp;
 	}
-	float rad = tmp;
 
 	//if sinθ < μcosθ
 	if (sin(rad) < PhysicsManager::GetInstance().GetStaticCoefficientOfFriction()*cos(rad)) {

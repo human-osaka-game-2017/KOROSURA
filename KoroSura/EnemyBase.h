@@ -38,6 +38,8 @@ public:
 	virtual void Update();
 	virtual void Draw();
 
+	BoxCollider* GetCollider() { return m_pCollider; }
+
 	void Dead() { m_WasDead = true; }
 	bool WasDead() { return m_WasDead; }
 

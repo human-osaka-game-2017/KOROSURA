@@ -14,7 +14,11 @@ ColliderManager::~ColliderManager()
 
 void ColliderManager::Collide()
 {
+	//すべてのグループを操作
 	for (unsigned int i = 0; i < m_PtrColliders.size(); ++i) {
+
+		//総当たり
+		//todo クラス化
 		for (unsigned int j = 0; j < m_PtrColliders[i].size(); ++j) {
 			std::vector<ColliderBase::ObjectData*> collidedObjects;
 			for (unsigned int k = 0; k < m_PtrColliders[i].size() - k; ++k) {
@@ -56,6 +60,7 @@ void ColliderManager::Remove(ColliderBase* pCollider)
 		for (auto itr2 = itr->begin(); itr2 != itr->end();) {
 			if ((*itr2) == pCollider) {
 				itr2 = itr->erase(itr2);
+				return;
 			}
 			else {
 				++itr2;

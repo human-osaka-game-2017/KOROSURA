@@ -36,6 +36,7 @@ private:
 	SphereCollider* m_pCollider;
 	PlayerLevel* m_pPlayerLevel;
 	std::function<void(SceneBase::SCENE_ID)> m_Function;
+	D3DXVECTOR3 m_Acceleration = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	bool m_IsFall = true;
 };
 #endif
