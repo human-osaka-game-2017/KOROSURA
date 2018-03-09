@@ -112,14 +112,14 @@ void Slime::Collided(std::vector<ColliderBase::ObjectData*>* collidedObjects)
 
 			//‰Ÿ‚µo‚µˆ—
 			else {
-				D3DXVECTOR3 length;
-				Utility::VecOBBToPoint(pEnemy->GetCollider()->GetObb(), m_Pos, &length);
+				D3DXVECTOR3 extrusionVec;
+				Utility::VecOBBToPoint(pEnemy->GetCollider()->GetObb(), m_Pos, &extrusionVec);
 
 				D3DXVECTOR3 radiusVec;
-				D3DXVec3Normalize(&radiusVec, &length);
+				D3DXVec3Normalize(&radiusVec, &extrusionVec);
 				radiusVec *= m_Sphere.GetRadius();
 
-				D3DXVECTOR3 distance = length - radiusVec;
+				D3DXVECTOR3 distance = radiusVec - extrusionVec;
 
 				m_Acceleration = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 				m_Pos -= distance;

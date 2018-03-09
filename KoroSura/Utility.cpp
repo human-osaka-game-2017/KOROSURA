@@ -185,12 +185,19 @@ D3DXVECTOR3* Utility::VecOBBToPoint(const Shape::OBB& obb, const D3DXVECTOR3& p,
 		FLOAT s = D3DXVec3Dot(&(p - obb.GetPos()), &obb.GetDirect(i)) / L;
 
 		// sの値から、はみ出した部分があればそのベクトルを加算
-		s = fabs(s);
-		if (s > 1)
-			*out += (1 - s)*L*obb.GetDirect(i);   // はみ出した部分のベクトル算出
+		//s = fabs(s);
+		//if (s > 1)
+		//	*out += (1 - s)*L*obb.GetDirect(i);  
+		// はみ出した部分のベクトル算出
+		if (s < -1.0f) {
+			*out += (s + 1.0f)*L*obb.GetDirect(i);
+		}
+		else if (s > 1.0f) {
+			*out += (s - 1.0f)*L*obb.GetDirect(i);
+		}
 	}
 
-	return out;   // 長さを出力
+	return out;
 }
 
 char Utility::TransformChar(int val)

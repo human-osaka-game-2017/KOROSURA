@@ -34,7 +34,7 @@ void PhysicsManager::Update()
 		//if (m_SlopeDeg[0] < 30.0f) {
 		//	m_SlopeDeg[0] += kSlopingDeg;
 		//}
-		m_SlopeDeg[0] -= kSlopingDeg*sin(rad);
+		m_SlopeDeg[0] += kSlopingDeg*sin(rad);
 		m_SlopeDeg[1] -= kSlopingDeg*cos(rad);
 	}
 
@@ -43,7 +43,7 @@ void PhysicsManager::Update()
 		//if (m_SlopeDeg[1] < 30.0f) {
 		//	m_SlopeDeg[1] += kSlopingDeg;
 		//}
-		m_SlopeDeg[0] += kSlopingDeg*cos(rad);
+		m_SlopeDeg[0] -= kSlopingDeg*cos(rad);
 		m_SlopeDeg[1] += kSlopingDeg*sin(rad);
 	}
 
@@ -52,7 +52,7 @@ void PhysicsManager::Update()
 		//if (m_SlopeDeg[0] > -30.0f) {
 		//	m_SlopeDeg[0] -= kSlopingDeg;
 		//}
-		m_SlopeDeg[0] += kSlopingDeg*sin(rad);
+		m_SlopeDeg[0] -= kSlopingDeg*sin(rad);
 		m_SlopeDeg[1] += kSlopingDeg*cos(rad);
 	}
 
@@ -61,7 +61,7 @@ void PhysicsManager::Update()
 		//if (m_SlopeDeg[1] > -30.0f) {
 		//	m_SlopeDeg[1] -= kSlopingDeg;
 		//}
-		m_SlopeDeg[0] -= kSlopingDeg*cos(rad);
+		m_SlopeDeg[0] += kSlopingDeg*cos(rad);
 		m_SlopeDeg[1] -= kSlopingDeg*sin(rad);
 	}
 
