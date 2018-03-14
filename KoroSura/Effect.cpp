@@ -11,6 +11,7 @@ Effect::Effect(std::string FxPath)
 	m_View		= m_Effect->GetParameterByName(NULL, "View");
 	m_Proj		= m_Effect->GetParameterByName(NULL, "Proj");
 	m_Light		= m_Effect->GetParameterByName(NULL, "Light");
+	m_Color		= m_Effect->GetParameterByName(NULL, "Color");
 }
 
 void Effect::LoadFxFile(std::string fxfilePath)
@@ -67,6 +68,11 @@ void Effect::SetViewMatrix(D3DXMATRIX* matrix)
 void Effect::SetProjMatrix(D3DXMATRIX* matrix)
 {
 	m_Effect->SetMatrix(m_Proj, matrix);
+}
+void Effect::SetColor(FBXLoader::Color_RGB color,float alpha)
+{
+	D3DXVECTOR4 tmp = D3DXVECTOR4(color.red, color.blue, color.green, alpha);
+	m_Effect->SetVector(m_Color, &tmp);
 }
 
 void Effect::SetLightVector()

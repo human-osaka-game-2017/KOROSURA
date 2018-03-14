@@ -165,8 +165,7 @@ void FBXLoader::GetTexture(FbxMesh* pMesh, ModelDataFBX* pMeshData)
 				//bump_.z = (float)lambert->GetBump().Get()[2];
 
 				// “§‰ß“x
-				//pMeshData->Transparency = (float)lambert->TransparentColor.Get().mData[0];
-
+				pMeshData->Transparency = (float)lambert->TransparentColor.Get().mData[0];
 			}
 			else if (material->GetClassId().Is(FbxSurfacePhong::ClassId)) {
 

@@ -7,7 +7,6 @@ SoundBufferManager& SoundBufferManager::GetInstance() {
 	if (m_pInstance == nullptr) {
 		m_pInstance = new SoundBufferManager();
 	}
-
 	return *m_pInstance;
 }
 

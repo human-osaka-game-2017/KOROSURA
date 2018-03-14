@@ -43,6 +43,7 @@ public:
 		int MaterialCount;
 		Color_RGB Ambient;
 		Color_RGB Diffuse;
+		float Transparency;
 	};
 
 	static void CreateFBXInstance();
@@ -68,7 +69,6 @@ public:
 private:
 	FBXLoader() {};
 	~FBXLoader() {};
-
 	static FBXLoader* FBXpInstance;
 };
 #endif
