@@ -122,8 +122,8 @@ void Slime::Collided(std::vector<ColliderBase::ObjectData*>* collidedObjects)
 				D3DXVECTOR3 distance = radiusVec - extrusionVec;
 
 				m_Acceleration = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-				m_Pos -= distance;
-				m_PosXZ -= distance;
+				m_Pos += distance;
+				m_PosXZ += distance;
 				m_PosXZ.y = 0;
 			}
 		}
