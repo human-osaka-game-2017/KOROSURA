@@ -21,15 +21,19 @@ void ColliderManager::Collide()
 		//todo ƒNƒ‰ƒX‰»
 		for (unsigned int j = 0; j < m_PtrColliders[i].size(); ++j) {
 			std::vector<ColliderBase::ObjectData*> collidedObjects;
-			for (unsigned int k = 0; k < m_PtrColliders[i].size() - k; ++k) {
+			for (unsigned int k = 0; k < m_PtrColliders[i].size(); ++k) {
 
-				if ((m_PtrColliders[i][j]->GetMaskBits()&m_PtrColliders[i][k]->GetCategoryBits()) &&
-					(m_PtrColliders[i][k]->GetMaskBits()&m_PtrColliders[i][j]->GetCategoryBits())) {
+				//Ž©•ªŽ©g‚Å‚È‚¢
+				if (j != k) {
+					if ((m_PtrColliders[i][j]->GetMaskBits()&m_PtrColliders[i][k]->GetCategoryBits()) &&
+						(m_PtrColliders[i][k]->GetMaskBits()&m_PtrColliders[i][j]->GetCategoryBits())) {
 
-					if (m_PtrColliders[i][j]->Collide(*m_PtrColliders[i][k])) {
-						collidedObjects.push_back(m_PtrColliders[i][k]->GetObjectData());
+						if (m_PtrColliders[i][j]->Collide(*m_PtrColliders[i][k])) {
+							collidedObjects.push_back(m_PtrColliders[i][k]->GetObjectData());
+						}
 					}
 				}
+
 			}
 
 			if (!collidedObjects.empty()) {

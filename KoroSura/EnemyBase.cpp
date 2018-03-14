@@ -17,6 +17,7 @@ EnemyBase::EnemyBase(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level, ENEMY_
 	kInitPos(pos),
 	m_IsBoss(isBoss)
 {
+
 	m_Pos.y += InitProperty::GetInstance().GetInitialData().enemyInitialData[static_cast<int>(kind)].modelOffset;
 	m_OBB.SetPos(InitProperty::GetInstance().GetInitialData().enemyInitialData[static_cast<int>(kind)].colliderOffset + m_Pos);
 
