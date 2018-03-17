@@ -15,6 +15,7 @@ class PlayerLevel;
 class ObjectBase;
 class EnemyManager;
 class GimmickManager;
+class EnemyLevel;
 
 class MainScene :public SceneBase{
 public:
@@ -36,6 +37,7 @@ private:
 	LimitTime* m_pLimitTime;
 	EnemyManager* m_pEnemyManager;
 	GimmickManager* m_pGimmickManager;
+	EnemyLevel* m_enemyLevel;
 	SceneBase::SCENE_ID retId = SceneBase::SCENE_ID::MAIN;
 };
 #endif

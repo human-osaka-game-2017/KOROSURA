@@ -43,10 +43,10 @@ void WINAPI Loader::ExecThread()
 	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\mushroom_p.fbx");
 	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\mushroom_r.fbx");
 	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\sky.fbx");
-	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\slime.fbx");
 	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\treant_mg.fbx");
 	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\treant_mp.fbx");
 	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\treant_my.fbx");
+	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\slime.fbx");
 
 	Lib::GetInstance().LoadPictureFile("Picture\\UI.png", 1024, 1024);
 

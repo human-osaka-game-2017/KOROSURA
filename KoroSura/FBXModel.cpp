@@ -1,5 +1,7 @@
-#include "FBXModel.h"
-#include "DirectGraphics.h"
+#include"FBXModel.h"
+#include"DirectGraphics.h"
+#include"FBX.h"
+#include"EffectManager.h"
 
 void FBXModel::Init(char* filepath)
 {
@@ -39,6 +41,13 @@ void FBXModel::Draw()
 		(*DirectGraphics::GetInstance().GetDevice())->
 			SetTexture(n, m_FBXModelDate.textures[n].pTexture);
 	}
+	FBXLoader::Color_RGB color;
+	float alpha = m_FBXModelDate.Transparency;
+	//ƒ}ƒeƒŠƒAƒ‹Ý’è
+	color.red = m_FBXModelDate.Diffuse.red;
+	color.blue = m_FBXModelDate.Diffuse.blue;
+	color.green = m_FBXModelDate.Diffuse.green;
+	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->SetColor(color,alpha);
 	(*DirectGraphics::GetInstance().GetDevice())->DrawPrimitiveUP(
 		D3DPT_TRIANGLELIST,
 		m_FBXModelDate.PolygonNum,

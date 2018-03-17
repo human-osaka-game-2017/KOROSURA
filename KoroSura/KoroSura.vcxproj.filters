@@ -179,6 +179,12 @@
     <ClCompile Include="GimmickManager.cpp">
       <Filter>Application\Scene\Main\Material\Gimmick</Filter>
     </ClCompile>
+    <ClCompile Include="Billboard.cpp">
+      <Filter>Application\Scene\Main\Camera\Billboard</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyLevel.cpp">
+      <Filter>Application\Scene\Main\GameFont</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">
@@ -321,6 +327,9 @@
     </Filter>
     <Filter Include="Application\Scene\FinishScene\ResultUI\GameOver">
       <UniqueIdentifier>{2db90831-bb6f-4e20-b838-d24da06d3436}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Scene\Main\Camera\Billboard">
+      <UniqueIdentifier>{21964126-0ad0-48c0-a7bf-1785f2dc1da8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -516,6 +525,12 @@
     </ClInclude>
     <ClInclude Include="GimmickManager.h">
       <Filter>Application\Scene\Main\Material\Gimmick</Filter>
+    </ClInclude>
+    <ClInclude Include="Billboard.h">
+      <Filter>Application\Scene\Main\Camera\Billboard</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyLevel.h">
+      <Filter>Application\Scene\Main\GameFont</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

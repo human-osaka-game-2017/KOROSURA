@@ -3,6 +3,7 @@
 float4x4 World;
 float4x4 View;
 float4x4 Proj;
+float4 Color;
 //float4 Diffuse;
 //float4 Ambient;
 float4 Light;
@@ -25,8 +26,9 @@ void BasicVS (
 
 	// 頂点色
 	float3 normal = normalize(mul(in_normal, (float3x3)World));
+	//out_col = max(1.0, dot(normal, -Light.xyz)) * Color;
 	out_col = max(1.0, dot(normal, -Light.xyz));
-	out_col.a = 1;
+	out_col.a = 1.0f;
 }
 
 // ピクセルシェーダ

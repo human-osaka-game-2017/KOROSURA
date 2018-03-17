@@ -4,6 +4,8 @@
 #include<d3dx9.h>
 #include<string>
 
+#include"FBX.h"
+
 class Effect {
 public:
 	//FxÉtÉ@ÉCÉãÇÃì«Ç›çûÇ›
@@ -19,6 +21,7 @@ public:
 	void SetWorldMatrix(D3DXMATRIX* matrix);
 	void SetViewMatrix(D3DXMATRIX* matrix);
 	void SetProjMatrix(D3DXMATRIX* matrix);
+	void Effect::SetColor(FBXLoader::Color_RGB Color, float alpha);
 	void SetLightVector();
 
 private:
@@ -30,5 +33,6 @@ private:
 	D3DXHANDLE m_View;
 	D3DXHANDLE m_Proj;
 	D3DXHANDLE m_Light;
+	D3DXHANDLE m_Color;
 };
 #endif
