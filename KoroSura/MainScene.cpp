@@ -18,6 +18,7 @@
 #include"InitProperty.h"
 #include"ColliderManager.h"
 #include"EnemyManager.h"
+#include"GimmickManager.h"
 
 void MainScene::Init()
 {
@@ -39,6 +40,7 @@ MainScene::MainScene()
 	Terrain* pTerrain	= new Terrain();
 
 	m_pEnemyManager = new EnemyManager;
+	m_pGimmickManager = new GimmickManager;
 	m_pLimitTime = new LimitTime(std::bind(&MainScene::SetRetSceneId, this, std::placeholders::_1));
 	m_pCamera	= new Camera(pSlime->GetPos());
 
@@ -60,6 +62,7 @@ MainScene::~MainScene()
 		delete *ite;
 	}
 	delete m_pEnemyManager;
+	delete m_pGimmickManager;
 	delete m_pLimitTime;
 	delete m_pCamera;
 
@@ -79,6 +82,7 @@ SceneBase::SCENE_ID MainScene::Update()
 	}
 
 	m_pEnemyManager->Update();
+	m_pGimmickManager->Update();
 	m_pLimitTime->Update();
 
 	PhysicsManager::GetInstance().Update();
@@ -104,6 +108,7 @@ void MainScene::Draw()
 		(*ite)->Draw();
 	}
 	m_pEnemyManager->Draw();
+	m_pGimmickManager->Draw();
 
 	Lib::GetInstance().SetRenderState2D();
 

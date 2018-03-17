@@ -92,9 +92,22 @@ void Slime::Collided(std::vector<ColliderBase::ObjectData*>* collidedObjects)
 {
 	for (auto ite = collidedObjects->begin(); ite != collidedObjects->end(); ++ite) {
 
-		//if ((*ite)->ClassName == std::string("Terrain")) {
-		//	m_IsFall = false;
-		//}
+		if ((*ite)->ClassName == std::string("GimmickBase")) {
+			GimmickBase* pGimmick = dynamic_cast<GimmickBase*>((*ite)->pObject);
+			D3DXVECTOR3 extrusionVec;
+			Utility::VecOBBToPoint(pGimmick->GetCollider()->GetObb(), m_Pos, &extrusionVec);
+
+			D3DXVECTOR3 radiusVec;
+			D3DXVec3Normalize(&radiusVec, &extrusionVec);
+			radiusVec *= m_Sphere.GetRadius();
+
+			D3DXVECTOR3 distance = radiusVec - extrusionVec;
+
+			m_Acceleration = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+			m_Pos += distance;
+			m_PosXZ += distance;
+			m_PosXZ.y = 0;
+		}
 
 		if ((*ite)->ClassName == std::string("EnemyBase")) {
 			EnemyBase* pEnemy = dynamic_cast<EnemyBase*>((*ite)->pObject);

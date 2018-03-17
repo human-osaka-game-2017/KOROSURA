@@ -15,9 +15,9 @@ EnemyBase::EnemyBase(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level, ENEMY_
 	CharacterBase(pos, normalVec, level),
 	kKind(kind),
 	kInitPos(pos),
-	m_IsBoss(isBoss)
+	m_IsBoss(isBoss),
+	m_Angle_deg(angleDeg)
 {
-
 	m_Pos.y += InitProperty::GetInstance().GetInitialData().enemyInitialData[static_cast<int>(kind)].modelOffset;
 	m_OBB.SetPos(InitProperty::GetInstance().GetInitialData().enemyInitialData[static_cast<int>(kind)].colliderOffset + m_Pos);
 
@@ -57,7 +57,8 @@ void EnemyBase::Update()
 
 void EnemyBase::Draw()
 {
-	Lib::GetInstance().TransformWorld(m_Pos);
+	const float* slope_deg = PhysicsManager::GetInstance().GetSlopeDeg();
+	Lib::GetInstance().TransformWorld(m_Pos, m_Angle_deg, -slope_deg[0], slope_deg[1]);
 
 	D3DXMATRIX WorldMatrix;
 	(*DirectGraphics::GetInstance().GetDevice())->GetTransform(D3DTS_WORLD, &WorldMatrix);
@@ -116,5 +117,4 @@ void EnemyBase::Draw()
 	}
 	
 	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->EndPass();
-	
 }
