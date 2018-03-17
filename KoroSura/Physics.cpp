@@ -59,7 +59,7 @@ D3DXVECTOR3* Physics::GetRollVec(D3DXVECTOR3* rollVec, const D3DXVECTOR3& curren
 	return rollVec;
 }
 
-float Physics::GetRollVelocity()
+float Physics::GetRollVelocity(bool isMoving)
 {
 	//速度更新
 	float rad = 0.0f;
@@ -74,15 +74,29 @@ float Physics::GetRollVelocity()
 		rad = tmp;
 	}
 
-	//if sinθ < μcosθ
-	if (sin(rad) < PhysicsManager::GetInstance().GetStaticCoefficientOfFriction()*cos(rad)) {
-		m_Velocity = 0;
+	if (isMoving) {
+		//if sinθ < μcosθ
+		if (sin(rad) < PhysicsManager::GetInstance().GetDynamicCoefficientOfFriction()*cos(rad)) {
+			m_Velocity = 0;
+		}
+		else {
+			//絶対値
+			float gravity = fabs(PhysicsManager::GetInstance().GetGravity().y);
+			m_Velocity = gravity*sin(rad) - PhysicsManager::GetInstance().GetDynamicCoefficientOfFriction()*gravity*cos(rad);
+		}
 	}
 	else {
-		//絶対値
-		float gravity = fabs(PhysicsManager::GetInstance().GetGravity().y);
-		m_Velocity = gravity*sin(rad) - PhysicsManager::GetInstance().GetDynamicCoefficientOfFriction()*gravity*cos(rad);
+		//if sinθ < μcosθ
+		if (sin(rad) < PhysicsManager::GetInstance().GetStaticCoefficientOfFriction()*cos(rad)) {
+			m_Velocity = 0;
+		}
+		else {
+			//絶対値
+			float gravity = fabs(PhysicsManager::GetInstance().GetGravity().y);
+			m_Velocity = gravity*sin(rad) - PhysicsManager::GetInstance().GetDynamicCoefficientOfFriction()*gravity*cos(rad);
+		}
 	}
+
 
 	//m_Velocity = a;
 

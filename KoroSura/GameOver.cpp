@@ -168,11 +168,11 @@ void GameOver::WasSelect()
 {
 	m_selectNum = m_pSelecter->GetCurrentSelection();
 	if (m_selectNum == 0) {
-		StageInfo::GetInstance().SetSelectStage(StageInfo::GetInstance().GetCurrentStage());
+		//StageInfo::GetInstance().SetSelectStage(StageInfo::GetInstance().GetCurrentStage());
 		m_RetryStage = true;
 	}
 	else {
-		StageInfo::GetInstance().SetSelectStage(StageInfo::GetInstance().GetCurrentStage());
+		//StageInfo::GetInstance().SetSelectStage(StageInfo::GetInstance().GetCurrentStage());
 		m_Select = true;
 	}
 }

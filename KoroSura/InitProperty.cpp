@@ -14,6 +14,7 @@ InitProperty::InitProperty()
 
 InitProperty::~InitProperty()
 {
+
 }
 
 void InitProperty::LoadSlime()

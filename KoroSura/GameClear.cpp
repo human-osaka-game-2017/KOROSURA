@@ -164,13 +164,13 @@ void GameClear::EndMusic()
 void GameClear::WasSelect()
 {
 	m_selectNum = m_pSelecter->GetCurrentSelection();
-	StageInfo::GetInstance().UnLock();
+
 	if (m_selectNum == 0) {
-		StageInfo::GetInstance().SetSelectStage(StageInfo::GetInstance().GetCurrentStage() + 1);
+		//StageInfo::GetInstance().SetSelectStage(StageInfo::GetInstance().GetCurrentStage() + 1);
 		m_NextStage = true;
 	}
 	else {
-		StageInfo::GetInstance().SetSelectStage(StageInfo::GetInstance().GetCurrentStage() + 1);
+		//StageInfo::GetInstance().SetSelectStage(StageInfo::GetInstance().GetCurrentStage() + 1);
 		m_Select = true;
 	}
 }

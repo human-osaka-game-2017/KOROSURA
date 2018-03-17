@@ -43,7 +43,7 @@ public:
 	void Dead() { m_WasDead = true; }
 	bool WasDead() { return m_WasDead; }
 
-	bool IsBoss() { return m_WasDead; }
+	bool IsBoss() { return m_IsBoss; }
 
 protected:
 	const ENEMY_KIND kKind;

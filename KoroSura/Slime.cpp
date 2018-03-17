@@ -32,6 +32,8 @@ Slime::Slime(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level, std::function<
 Slime::~Slime()
 {
 	delete m_pPhysics;
+	delete m_pPlayerLevel;
+	delete m_pCollider;
 }
 
 void Slime::Update()
@@ -48,7 +50,12 @@ void Slime::Update()
 
 		D3DXVECTOR3 rollVec;
 		m_pPhysics->GetRollVec(&rollVec);
-		float length = m_pPhysics->GetRollVelocity();
+
+		bool moving = false;
+		if (m_Acceleration) {
+			moving = true;;
+		}
+		float length = m_pPhysics->GetRollVelocity(moving);
 		rollVec *= length;
 
 		if (rollVec == D3DXVECTOR3(0.0f, 0.0f, 0.0f))m_Acceleration = D3DXVECTOR3(0.0f, 0.0f, 0.0f);

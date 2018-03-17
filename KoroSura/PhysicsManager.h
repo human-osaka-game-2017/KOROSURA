@@ -34,14 +34,14 @@ public:
 
 	const D3DXVECTOR3& GetNormalVector() {return m_NormalVector;}
 
-	//ŒX‚«‚ª‚ ‚é‚©‚Ç‚¤‚©
-	bool CanRoll()
-	{
-		if (m_NormalVector.z == 0.0) {
-			return false;
-		}
-		return true;
-	}
+	////ŒX‚«‚ª‚ ‚é‚©‚Ç‚¤‚©
+	//bool CanRoll()
+	//{
+	//	if (m_NormalVector.z == 0.0) {
+	//		return false;
+	//	}
+	//	return true;
+	//}
 
 	//“ü—Í‚Å•½–Ê‚ğŒX‚¯A–@ü‚ğXV
 	void Update();
@@ -53,6 +53,7 @@ private:
 	~PhysicsManager();
 
 	const float kSlopingDeg;
+	const float kMaxSlope = 30.0f;
 	const D3DXVECTOR3 kGravity;
 	const float kDynamicCoefficientOfFriction;//“®–€CŒW”
 	const float kStaticCoefficientOfFriction;//Ã~–€CŒW”

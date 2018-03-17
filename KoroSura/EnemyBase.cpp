@@ -58,7 +58,7 @@ void EnemyBase::Update()
 void EnemyBase::Draw()
 {
 	const float* slope_deg = PhysicsManager::GetInstance().GetSlopeDeg();
-	Lib::GetInstance().TransformWorld(m_Pos, m_Angle_deg, -slope_deg[0], slope_deg[1]);
+	Lib::GetInstance().TransformWorld(m_Pos, m_Angle_deg, slope_deg[0], slope_deg[1]);
 
 	D3DXMATRIX WorldMatrix;
 	(*DirectGraphics::GetInstance().GetDevice())->GetTransform(D3DTS_WORLD, &WorldMatrix);

@@ -67,9 +67,11 @@ MainScene::~MainScene()
 	delete m_pGimmickManager;
 	delete m_pLimitTime;
 	delete m_pCamera;
+	delete m_enemyLevel;
 
 	EffectManager::GetpInstance().ReleaseEffect("Shader\\BasicShader.fx");
 	PhysicsManager::GetInstance().Initialize();
+	ColliderManager::GetInstance().DeleteGroup(0);
 }
 
 SceneBase::SCENE_ID MainScene::Update()

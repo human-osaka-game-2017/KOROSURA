@@ -21,6 +21,7 @@ void SceneManager::Run()
 
 	if (nextSceneID != m_PrevSceneID) {
 		delete m_pScene;
+		m_pScene = nullptr;
 		m_pScene = m_pSceneFactory->Create(nextSceneID);
 		m_PrevSceneID = nextSceneID;
 	}
