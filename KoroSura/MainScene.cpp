@@ -42,7 +42,7 @@ MainScene::MainScene()
 
 	m_pEnemyManager = new EnemyManager;
 	m_pGimmickManager = new GimmickManager;
-	m_pLimitTime = new LimitTime(std::bind(&MainScene::SetRetSceneId, this, std::placeholders::_1));
+	m_pLimitTime = new LimitTime(std::bind(&MainScene::SetRetSceneId, this, std::placeholders::_1), pStageData->time_s);
 	m_pCamera	= new Camera(pSlime->GetPos());
 	m_enemyLevel = new EnemyLevel();
 

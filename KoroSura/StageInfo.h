@@ -30,6 +30,7 @@ public:
 		int		enemyNum;
 		int		gimmickNum;
 		int*	terrainData;
+		int		time_s;
 	};
 
 	/**

@@ -9,7 +9,7 @@
 class LimitTime : public ObjectBase 
 {
 public:
-	LimitTime(std::function<void(SceneBase::SCENE_ID)>);
+	LimitTime(std::function<void(SceneBase::SCENE_ID)>, int limit_s);
 	virtual ~LimitTime();
 
 	virtual void Update();
@@ -22,9 +22,8 @@ private:
 	std::function<void(SceneBase::SCENE_ID)> m_Function;
 	unsigned int m_FrCnt = 0;
 
+	int m_Limit_s = 0;
 	//todo rename
-	int m_TenNum = 6;
-	int m_OneNum = 0;
 	bool m_CanWatched = true;
 };
 
