@@ -33,7 +33,7 @@ void WINAPI Loader::ExecThread()
 
 	StageInfo::GetInstance().SetStageData(stageData);
 
-	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\board.fbx");
+	//ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\board.fbx");
 	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\Cerberus_og2.fbx");
 	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\fence.fbx");
 	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\goblin.fbx");
