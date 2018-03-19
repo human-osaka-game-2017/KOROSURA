@@ -5,7 +5,7 @@
 #include"Utility.h"
 #include"TextureManager.h"
 
-#define FVF_3D (D3DFVF_XYZ | D3DFVF_DIFFUSE)
+#define FVF_3D (D3DFVF_XYZ | D3DFVF_DIFFUSE | D3DFVF_TEX1)
 
 typedef struct
 {
