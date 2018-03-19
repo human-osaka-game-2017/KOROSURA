@@ -30,13 +30,16 @@ public:
 private:
 	void Collided(std::vector<ColliderBase::ObjectData*>* collidedObjects);
 
+	const float kRadius = 100.0f;
 	const D3DXVECTOR3 kInitialPos;
+
 	Physics* m_pPhysics;
 	Shape::Sphere m_Sphere;
 	SphereCollider* m_pCollider;
 	PlayerLevel* m_pPlayerLevel;
 	std::function<void(SceneBase::SCENE_ID)> m_Function;
 	D3DXVECTOR3 m_Acceleration = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	D3DXMATRIXA16 m_Rot_mat;
 	bool m_IsFall = true;
 };
 #endif

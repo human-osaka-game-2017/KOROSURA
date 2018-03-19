@@ -18,6 +18,7 @@ Slime::Slime(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level, std::function<
 	kInitialPos(pos),
 	m_Function(function)
 {
+	D3DXMatrixIdentity(&m_Rot_mat);
 	m_Pos.y += InitProperty::GetInstance().GetInitialData().slimeInitialData.modelOffset;
 	m_Sphere.SetPos(InitProperty::GetInstance().GetInitialData().slimeInitialData.colliderOffset + m_Pos);
 	m_Sphere.SetRadius(InitProperty::GetInstance().GetInitialData().slimeInitialData.radius);
@@ -32,6 +33,8 @@ Slime::Slime(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level, std::function<
 Slime::~Slime()
 {
 	delete m_pPhysics;
+	delete m_pPlayerLevel;
+	delete m_pCollider;
 }
 
 void Slime::Update()
@@ -48,7 +51,12 @@ void Slime::Update()
 
 		D3DXVECTOR3 rollVec;
 		m_pPhysics->GetRollVec(&rollVec);
-		float length = m_pPhysics->GetRollVelocity();
+
+		bool moving = false;
+		if (m_Acceleration) {
+			moving = true;;
+		}
+		float length = m_pPhysics->GetRollVelocity(moving);
 		rollVec *= length;
 
 		if (rollVec == D3DXVECTOR3(0.0f, 0.0f, 0.0f))m_Acceleration = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
@@ -73,11 +81,44 @@ void Slime::Update()
 
 void Slime::Draw()
 {
-	Lib::GetInstance().TransformWorld(m_Pos);
+	//最終的なワールドトランスフォーム行列
+	D3DXMATRIXA16 matWorld;
+	//平行移動用行列
+	D3DXMATRIXA16 matPosition;
+	D3DXMATRIXA16 matRot;
+	D3DXMATRIXA16 matRot2;
 
-	D3DXMATRIX WorldMatrix;
-	(*DirectGraphics::GetInstance().GetDevice())->GetTransform(D3DTS_WORLD, &WorldMatrix);
-	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->SetWorldMatrix(&WorldMatrix);
+	//行列の初期化
+	D3DXMatrixIdentity(&matWorld);
+	D3DXMatrixIdentity(&matRot);
+	D3DXMatrixIdentity(&matRot2);
+	
+	//y軸回転
+	{
+		static D3DXVECTOR2 prevMovement_xz = D3DXVECTOR2(0.0f, 0.0f);
+		float deg = Utility::MyAtanDeg(D3DXVECTOR2(m_Acceleration.x, m_Acceleration.z)) - Utility::MyAtanDeg(prevMovement_xz);
+		D3DXMATRIXA16 tmp;
+		D3DXMatrixRotationY(&tmp, D3DXToRadian(deg));
+		m_Rot_mat = m_Rot_mat*tmp;
+		prevMovement_xz = D3DXVECTOR2(m_Acceleration.x, m_Acceleration.z);
+	}
+	
+	//x軸回転
+	{
+		D3DXMATRIXA16 tmp;
+		D3DXMatrixRotationX(&tmp, D3DXVec3Length(&m_Acceleration) / kRadius);
+		m_Rot_mat = tmp*m_Rot_mat;
+	}
+	D3DXMatrixMultiply(&matWorld, &matWorld, &m_Rot_mat);
+
+	//平行移動
+	D3DXMatrixTranslation(&matPosition, m_Pos.x, m_Pos.y, m_Pos.z);
+	D3DXMatrixMultiply(&matWorld, &matWorld, &matPosition);
+
+	//レンダリング仕様の登録
+	(*DirectGraphics::GetInstance().GetDevice())->SetTransform(D3DTS_WORLD, &matWorld);
+
+	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->SetWorldMatrix(&matWorld);
 
 	// シェーダーパスの開始.
 	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->BeginPass(0);
@@ -92,9 +133,22 @@ void Slime::Collided(std::vector<ColliderBase::ObjectData*>* collidedObjects)
 {
 	for (auto ite = collidedObjects->begin(); ite != collidedObjects->end(); ++ite) {
 
-		//if ((*ite)->ClassName == std::string("Terrain")) {
-		//	m_IsFall = false;
-		//}
+		if ((*ite)->ClassName == std::string("GimmickBase")) {
+			GimmickBase* pGimmick = dynamic_cast<GimmickBase*>((*ite)->pObject);
+			D3DXVECTOR3 extrusionVec;
+			Utility::VecOBBToPoint(pGimmick->GetCollider()->GetObb(), m_Pos, &extrusionVec);
+
+			D3DXVECTOR3 radiusVec;
+			D3DXVec3Normalize(&radiusVec, &extrusionVec);
+			radiusVec *= m_Sphere.GetRadius();
+
+			D3DXVECTOR3 distance = radiusVec - extrusionVec;
+
+			m_Acceleration = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+			m_Pos += distance;
+			m_PosXZ += distance;
+			m_PosXZ.y = 0;
+		}
 
 		if ((*ite)->ClassName == std::string("EnemyBase")) {
 			EnemyBase* pEnemy = dynamic_cast<EnemyBase*>((*ite)->pObject);

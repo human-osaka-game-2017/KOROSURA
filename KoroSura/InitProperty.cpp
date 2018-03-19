@@ -14,6 +14,7 @@ InitProperty::InitProperty()
 
 InitProperty::~InitProperty()
 {
+
 }
 
 void InitProperty::LoadSlime()
@@ -204,5 +205,24 @@ void InitProperty::LoadCerberus()
 
 void InitProperty::LoadFence()
 {
+	m_InitialData.gimmickInitialData[static_cast<int>(GimmickBase::GIMMICK_KIND::FENCE)].colliderOffset.x =
+		static_cast<int>(GetPrivateProfileInt("フェンス", "ColliderOffsetX", 1, MATERIAL_FILENAME));
 
+	m_InitialData.gimmickInitialData[static_cast<int>(GimmickBase::GIMMICK_KIND::FENCE)].colliderOffset.y =
+		static_cast<int>(GetPrivateProfileInt("フェンス", "ColliderOffsetY", 1, MATERIAL_FILENAME));
+
+	m_InitialData.gimmickInitialData[static_cast<int>(GimmickBase::GIMMICK_KIND::FENCE)].colliderOffset.z =
+		static_cast<int>(GetPrivateProfileInt("フェンス", "ColliderOffsetZ", 1, MATERIAL_FILENAME));
+
+	m_InitialData.gimmickInitialData[static_cast<int>(GimmickBase::GIMMICK_KIND::FENCE)].colliderSize.x =
+		static_cast<int>(GetPrivateProfileInt("フェンス", "ColliderSizeX", 1, MATERIAL_FILENAME));
+
+	m_InitialData.gimmickInitialData[static_cast<int>(GimmickBase::GIMMICK_KIND::FENCE)].colliderSize.y =
+		static_cast<int>(GetPrivateProfileInt("フェンス", "ColliderSizeY", 1, MATERIAL_FILENAME));
+
+	m_InitialData.gimmickInitialData[static_cast<int>(GimmickBase::GIMMICK_KIND::FENCE)].colliderSize.z =
+		static_cast<int>(GetPrivateProfileInt("フェンス", "ColliderSizeZ", 1, MATERIAL_FILENAME));
+
+	m_InitialData.gimmickInitialData[static_cast<int>(GimmickBase::GIMMICK_KIND::FENCE)].modelOffset =
+		static_cast<int>(GetPrivateProfileInt("フェンス", "ModelOffset", 1, MATERIAL_FILENAME));
 }

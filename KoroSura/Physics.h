@@ -19,10 +19,11 @@ public:
 
 	/**
 	 * @brief			“]‚ª‚é‹——£‚ğæ“¾
+	 * @param			bool	isMoving	“®‚¢‚Ä‚¢‚é‚©‚Ç‚¤‚©
 	 * @return			D3DXVECTOR3*	‹——£
 	 * @details			GetRollVecŠÖ”‚Ì–ß‚è’l‚ğŠ|‚¯‚é‚Æ“]‚ª‚éˆÊ’u‚É‚È‚é
 	 */
-	float GetRollVelocity();
+	float GetRollVelocity(bool isMoving);
 
 	D3DXVECTOR3* GetRollVec(D3DXVECTOR3* rollVec);
 

@@ -30,6 +30,7 @@ public:
 		int		enemyNum;
 		int		gimmickNum;
 		int*	terrainData;
+		int		time_s;
 	};
 
 	/**
@@ -56,7 +57,7 @@ public:
 
 	/**
 	 * @brief		現在のステージ番号を設定
-	 * @param[in]	CurrentStageNum	設定したいステージ番号(０～７)
+	 * @param[in]	CurrentStageNum	設定したいステージ番号(1～8)
 	 */
 	void SetSelectStage(int selectStage)
 	{

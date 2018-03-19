@@ -25,7 +25,7 @@ public:
 	virtual void Draw();
 
 private:
-	void WasSelected();
+	void WasSelected(int selectPoint);
 
 	const int kNextSceneInterval = 120;
 

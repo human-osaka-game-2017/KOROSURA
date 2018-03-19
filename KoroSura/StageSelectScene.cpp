@@ -15,7 +15,7 @@ StageSelectScene::StageSelectScene()
 
 	SoundBufferManager::GetInstance().LoadWaveFile("BGM\\StageSelectBgm.wav");
 
-	m_pSelecter = new Selecter(StageInfo::kStageMax, std::bind(&StageSelectScene::WasSelected, this));
+	m_pSelecter = new Selecter(StageInfo::kStageMax, std::bind(&StageSelectScene::WasSelected, this, std::placeholders::_1));
 
 	StageSelectBackground* pStageSelectBackground	= new StageSelectBackground();
 	StageLogo* pStageLogo							= new StageLogo();
@@ -78,11 +78,10 @@ void StageSelectScene::Draw()
 	Lib::GetInstance().EndDraw();
 }
 
-void StageSelectScene::WasSelected()
+void StageSelectScene::WasSelected(int selectPoint)
 {
-	int selectNum = m_pSelecter->GetCurrentSelection();
-	if (selectNum <= StageInfo::GetInstance().GetUnLockingStage()) {
+	if (selectPoint + 1 <= StageInfo::GetInstance().GetUnLockingStage()) {
 		m_WasSelected = true;
-		StageInfo::GetInstance().SetSelectStage(selectNum);
+		StageInfo::GetInstance().SetSelectStage(selectPoint + 1);
 	}
 }

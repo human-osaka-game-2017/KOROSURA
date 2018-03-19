@@ -18,6 +18,7 @@
 #include"InitProperty.h"
 #include"ColliderManager.h"
 #include"EnemyManager.h"
+#include"GimmickManager.h"
 #include"EnemyLevel.h"
 
 void MainScene::Init()
@@ -37,15 +38,16 @@ MainScene::MainScene()
 	slimePos.y += InitProperty::GetInstance().GetInitialData().slimeInitialData.modelOffset;
 	Slime*	pSlime		= new Slime(slimePos, D3DXVECTOR3(0.0f, 1.0f, 0.0f), pStageData->slimeData.level, std::bind(&MainScene::SetRetSceneId, this, std::placeholders::_1));
 	Sky* pSky			= new Sky();
-	Terrain* pTerrain	= new Terrain();
+	//Terrain* pTerrain	= new Terrain();
 
 	m_pEnemyManager = new EnemyManager;
-	m_pLimitTime = new LimitTime(std::bind(&MainScene::SetRetSceneId, this, std::placeholders::_1));
+	m_pGimmickManager = new GimmickManager;
+	m_pLimitTime = new LimitTime(std::bind(&MainScene::SetRetSceneId, this, std::placeholders::_1), pStageData->time_s);
 	m_pCamera	= new Camera(pSlime->GetPos());
 	m_enemyLevel = new EnemyLevel();
 
 	m_PtrMaterials.push_back(pSky);
-	m_PtrMaterials.push_back(pTerrain);
+	//m_PtrMaterials.push_back(pTerrain);
 	m_PtrMaterials.push_back(pSlime);
 
 	Lib::GetInstance().TransformProjection(45.0f, WINDOW_WIDTH / WINDOW_HEIGHT, 1.0f, 20000.0f);
@@ -62,11 +64,14 @@ MainScene::~MainScene()
 		delete *ite;
 	}
 	delete m_pEnemyManager;
+	delete m_pGimmickManager;
 	delete m_pLimitTime;
 	delete m_pCamera;
+	delete m_enemyLevel;
 
 	EffectManager::GetpInstance().ReleaseEffect("Shader\\BasicShader.fx");
 	PhysicsManager::GetInstance().Initialize();
+	ColliderManager::GetInstance().DeleteGroup(0);
 }
 
 SceneBase::SCENE_ID MainScene::Update()
@@ -81,6 +86,7 @@ SceneBase::SCENE_ID MainScene::Update()
 	}
 
 	m_pEnemyManager->Update();
+	m_pGimmickManager->Update();
 	m_pLimitTime->Update();
 
 	PhysicsManager::GetInstance().Update();
@@ -106,6 +112,8 @@ void MainScene::Draw()
 	for (auto ite = m_PtrMaterials.begin(); ite != m_PtrMaterials.end(); ++ite) {
 		(*ite)->Draw();
 	}
+	m_pEnemyManager->Draw();
+	m_pGimmickManager->Draw();
 	m_enemyLevel->Draw();
 
 	Lib::GetInstance().SetRenderState2D();

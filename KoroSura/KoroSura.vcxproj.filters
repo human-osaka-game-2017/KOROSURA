@@ -173,6 +173,12 @@
     <ClCompile Include="EnemyManager.cpp">
       <Filter>Application\Scene\Main\Material\Character\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="GimmickBase.cpp">
+      <Filter>Application\Scene\Main\Material\Gimmick</Filter>
+    </ClCompile>
+    <ClCompile Include="GimmickManager.cpp">
+      <Filter>Application\Scene\Main\Material\Gimmick</Filter>
+    </ClCompile>
     <ClCompile Include="Billboard.cpp">
       <Filter>Application\Scene\Main\Camera\Billboard</Filter>
     </ClCompile>
@@ -516,6 +522,9 @@
     </ClInclude>
     <ClInclude Include="EnemyManager.h">
       <Filter>Application\Scene\Main\Material\Character\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="GimmickManager.h">
+      <Filter>Application\Scene\Main\Material\Gimmick</Filter>
     </ClInclude>
     <ClInclude Include="Billboard.h">
       <Filter>Application\Scene\Main\Camera\Billboard</Filter>

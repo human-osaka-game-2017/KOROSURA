@@ -4,9 +4,10 @@
 #include"DirectGraphics.h"
 
 
-LimitTime::LimitTime(std::function<void(SceneBase::SCENE_ID)> function):
-  m_Pos(D3DXVECTOR2(600.0f, 50.0f)),
-m_Function(function)
+LimitTime::LimitTime(std::function<void(SceneBase::SCENE_ID)> function, int limit_s):
+	m_Pos(D3DXVECTOR2(600.0f, 50.0f)),
+	m_Function(function),
+	m_Limit_s(limit_s)
 {
 }
 
@@ -25,16 +26,10 @@ void LimitTime::Update()
 		++m_FrCnt;
 		if (m_FrCnt == 60) {
 			m_FrCnt = 0;
-			if (m_OneNum == 0) {
-				m_OneNum = 9;
-				--m_TenNum;
-			}
-			else {
-				--m_OneNum;
-			}
+			--m_Limit_s;
 		}
 
-		if (m_TenNum == 0 && m_OneNum == 0) {
+		if (m_Limit_s == 0) {
 			m_Function(SceneBase::SCENE_ID::GAMEOVER);
 		}
 	}
@@ -69,12 +64,28 @@ void LimitTime::Draw()
 	Lib::GetInstance().Draw(vertex, "Picture\\UI.png");
 	NextCharPos(vertex);
 
-	Fonts::GetUV(Utility::TransformChar(m_TenNum), vertex);
-	Lib::GetInstance().Draw(vertex, "Picture\\UI.png");
-	NextCharPos(vertex);
+	//百の位表示
+	{
+		int hundredsPlace = m_Limit_s / 100;
+		Fonts::GetUV(Utility::TransformChar(hundredsPlace), vertex);
+		Lib::GetInstance().Draw(vertex, "Picture\\UI.png");
+		NextCharPos(vertex);
+	}
 
-	Fonts::GetUV(Utility::TransformChar(m_OneNum), vertex);
-	Lib::GetInstance().Draw(vertex, "Picture\\UI.png");
+	//十の位表示
+	{
+		int tenPlace = (m_Limit_s / 10) % 10;
+		Fonts::GetUV(Utility::TransformChar(tenPlace), vertex);
+		Lib::GetInstance().Draw(vertex, "Picture\\UI.png");
+		NextCharPos(vertex);
+	}
+
+	//一の位表示
+	{
+		int onesPlace = m_Limit_s % 10;
+		Fonts::GetUV(Utility::TransformChar(onesPlace), vertex);
+		Lib::GetInstance().Draw(vertex, "Picture\\UI.png");
+	}
 }
 
 void LimitTime::NextCharPos(Utility::CUSTOMVERTEX vertex[])

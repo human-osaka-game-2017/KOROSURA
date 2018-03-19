@@ -28,7 +28,5 @@ void StageInfo::Load()
 
 void StageInfo::Save()
 {
-	if (WritePrivateProfileString("Locking", "UnLockStage", std::to_string(m_UnLockingNum).c_str(), PROPERTY_FILENAME)) {
-		MessageBox(0, "ÉZÅ[ÉuÇ…é∏îsÇµÇ‹ÇµÇΩ", "", MB_OK);
-	}
+	WritePrivateProfileString("Locking", "UnLockStage", std::to_string(m_UnLockingNum).c_str(), PROPERTY_FILENAME);
 }

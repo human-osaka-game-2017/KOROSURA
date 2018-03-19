@@ -136,6 +136,8 @@
     <ClCompile Include="GameClear.cpp" />
     <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="GameOverScene.cpp" />
+    <ClCompile Include="GimmickBase.cpp" />
+    <ClCompile Include="GimmickManager.cpp" />
     <ClCompile Include="LimitTime.cpp" />
     <ClCompile Include="PlayerLevel.cpp" />
     <ClCompile Include="Sky.cpp" />
@@ -198,6 +200,7 @@
     <ClInclude Include="GameClear.h" />
     <ClInclude Include="GameOver.h" />
     <ClInclude Include="GameOverScene.h" />
+    <ClInclude Include="GimmickManager.h" />
     <ClInclude Include="LimitTime.h" />
     <ClInclude Include="PlayerLevel.h" />
     <ClInclude Include="Sky.h" />

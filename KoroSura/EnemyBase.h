@@ -43,7 +43,7 @@ public:
 	void Dead() { m_WasDead = true; }
 	bool WasDead() { return m_WasDead; }
 
-	bool IsBoss() { return m_WasDead; }
+	bool IsBoss() { return m_IsBoss; }
 
 protected:
 	const ENEMY_KIND kKind;
@@ -55,6 +55,8 @@ protected:
 private:
 	const D3DXVECTOR3 kInitPos;//todo Šî’êƒNƒ‰ƒX‚É‚½‚¹‚é
 	void Collided(std::vector<ColliderBase::ObjectData*>* collidedObjects);
+	//todo reaname
+	float m_Angle_deg = 0;
 	bool m_IsBoss = false;
 	bool m_WasDead = false;
 };

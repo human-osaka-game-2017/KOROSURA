@@ -23,8 +23,8 @@ void WINAPI Loader::ExecThread()
 	StageInfo::StageData stageData;
 
 	std::string tmp = "Property\\Stage";
-	std::string csvFileName = tmp + std::to_string(StageInfo::GetInstance().GetCurrentStage() + 1) + ".csv";
-	std::string iniFileName = tmp + std::to_string(StageInfo::GetInstance().GetCurrentStage() + 1) + ".ini";
+	std::string csvFileName = tmp + std::to_string(StageInfo::GetInstance().GetCurrentStage()) + ".csv";
+	std::string iniFileName = tmp + std::to_string(StageInfo::GetInstance().GetCurrentStage()) + ".ini";
 
 	LoadMap(&stageData, iniFileName, csvFileName);
 	LoadEnemy(&stageData, iniFileName);
@@ -33,7 +33,7 @@ void WINAPI Loader::ExecThread()
 
 	StageInfo::GetInstance().SetStageData(stageData);
 
-	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\board.fbx");
+	//ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\board.fbx");
 	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\Cerberus_og2.fbx");
 	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\fence.fbx");
 	ModelManager::GetInstance().LoadFBXFile("FBX\\FBXModel\\goblin.fbx");
@@ -62,6 +62,9 @@ void Loader::LoadMap(StageInfo::StageData* pStageData, std::string iniFileName, 
 	pStageData->mapSize.z=
 		GetPrivateProfileInt("Size", "Z", 1, iniFileName.c_str());
 
+	pStageData->time_s =
+		GetPrivateProfileInt("Size", "Time", 60, iniFileName.c_str());
+
 	//pStageData->terrainData = new int[pStageData->mapSize.x*pStageData->mapSize.z];
 
 	////csv“Ç‚Ýž‚Ý
@@ -86,6 +89,26 @@ void Loader::LoadEnemy(StageInfo::StageData* pStageData, std::string iniFileName
 
 	pStageData->enemyData = new StageInfo::MaterialData[pStageData->enemyNum];
 
+	pStageData->enemyData[0].kind =
+		(int)GetPrivateProfileInt("Boss", "Kind", 0, iniFileName.c_str());
+
+	pStageData->enemyData[0].pos.x =
+		(int)GetPrivateProfileInt("Boss", "X", 0, iniFileName.c_str());
+
+	pStageData->enemyData[0].pos.y =
+		(int)GetPrivateProfileInt("Boss", "Y", 0, iniFileName.c_str());
+
+	pStageData->enemyData[0].pos.z =
+		(int)GetPrivateProfileInt("Boss", "Z", 0, iniFileName.c_str());
+
+	pStageData->enemyData[0].level =
+		(int)GetPrivateProfileInt("Boss", "Level", 1, iniFileName.c_str());
+
+	pStageData->enemyData[0].angle =
+		(int)GetPrivateProfileInt("Boss", "angle", 0, iniFileName.c_str());
+
+	pStageData->enemyData[0].isBoss = true;
+
 	for (int i = 1; i < pStageData->enemyNum; ++i) {
 		std::string tagName = "Enemy";
 		tagName += std::to_string(i);
@@ -109,26 +132,6 @@ void Loader::LoadEnemy(StageInfo::StageData* pStageData, std::string iniFileName
 		pStageData->enemyData[i].angle =
 			(int)GetPrivateProfileInt(tagName.c_str(), "angle", 0, iniFileName.c_str());
 	}
-
-	pStageData->enemyData[0].kind =
-		(int)GetPrivateProfileInt("Boss", "Kind", 0, iniFileName.c_str());
-
-	pStageData->enemyData[0].pos.x =
-		(int)GetPrivateProfileInt("Boss", "X", 0, iniFileName.c_str());
-
-	pStageData->enemyData[0].pos.y =
-		(int)GetPrivateProfileInt("Boss", "Y", 0, iniFileName.c_str());
-
-	pStageData->enemyData[0].pos.z =
-		(int)GetPrivateProfileInt("Boss", "Z", 0, iniFileName.c_str());
-
-	pStageData->enemyData[0].level =
-		(int)GetPrivateProfileInt("Boss", "Level", 1, iniFileName.c_str());
-
-	pStageData->enemyData[0].angle =
-		(int)GetPrivateProfileInt("Boss", "angle", 0, iniFileName.c_str());
-
-	pStageData->enemyData[0].isBoss = true;
 }
 
 void Loader::LoadGimmick(StageInfo::StageData* pStageData, std::string iniFileName)

@@ -6,6 +6,11 @@ GameClearScene::GameClearScene()
 {
 	m_pGameClear = new GameClear();
 	m_pGameClear->StartMusic();
+
+	//ƒAƒ“ƒƒbƒN
+	if (StageInfo::GetInstance().GetCurrentStage() == StageInfo::GetInstance().GetUnLockingStage()) {
+		StageInfo::GetInstance().UnLock();
+	}
 }
 
 GameClearScene::~GameClearScene()
@@ -24,8 +29,9 @@ SceneBase::SCENE_ID GameClearScene::Update()
 	}
 	else if (m_pGameClear->GetSelectStage() == true) {
 		retSceneId = SCENE_ID::STAGESELECT;
+		StageInfo::GetInstance().DeleteStageData();
 	}
-	StageInfo::GetInstance().DeleteStageData();
+	
 	return retSceneId;
 }
 

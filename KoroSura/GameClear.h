@@ -15,7 +15,6 @@ public:
 	bool GetNextStage() { return m_NextStage; }
 	bool GetSelectStage() { return m_Select; }
 
-
 	virtual void Update();
 	virtual void Draw();
 	void StartMusic();
@@ -49,7 +48,6 @@ private:
 	const int kStageSelectWidth = 500;
 	const int kStageSelectHeight = 150;
 };
-
 #endif 
 
 

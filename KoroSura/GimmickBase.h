@@ -7,6 +7,11 @@
 #define GIMMICKBASE_H
 
 #include"MaterialBase.h"
+#include"Shape.h"
+#include"ColliderBase.h"
+
+class BoxCollider;
+class Physics;
 
 class GimmickBase :public MaterialBase {
 public:
@@ -15,17 +20,24 @@ public:
 		MAX
 	};
 
-	GimmickBase(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, GIMMICK_KIND kind):
-		MaterialBase(pos,normalVec),
-		m_Kind(kind)
-	{}
+	GimmickBase(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, GIMMICK_KIND kind, float angleDeg);
+	virtual ~GimmickBase();
 
-	virtual ~GimmickBase() {}
+	virtual void Update();
+	virtual void Draw();
 
-	virtual void Update() = 0;
-	virtual void Draw() = 0;
+	BoxCollider* GetCollider() { return m_pCollider; }
 
-protected:
-	const GIMMICK_KIND m_Kind;
+private:
+	void Collided(std::vector<ColliderBase::ObjectData*>* collidedObjects);
+
+	const GIMMICK_KIND kKind;
+	const D3DXVECTOR3 kInitPos;//todo äÓíÍÉNÉâÉXÇ…éùÇΩÇπÇÈ
+
+	Physics* m_pPhysics;
+	BoxCollider* m_pCollider;
+	Shape::OBB m_OBB;
+	//todo reaname
+	float m_Angle_deg = 0;
 };
 #endif

@@ -8,6 +8,7 @@ public:
 	Selecter(int MaxChoices, std::function<void(int selectPoint)> function);
 	~Selecter();
 
+	//0`‚Ì”Ô†
 	int GetCurrentSelection() {
 		return m_SelectPoint;
 	}

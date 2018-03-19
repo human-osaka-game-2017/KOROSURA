@@ -420,7 +420,6 @@ void FBXLoader::FBXLoad(ModelDataFBX* pMeshData, char* filePath) {
 					result = importer->Import(scene);
 					FbxGeometryConverter GeometryConverter(manager);
 					GeometryConverter.Triangulate(scene, true);
-					std::cout << "€”õŠ®—¹I" << std::endl;
 				}
 			}
 		}
