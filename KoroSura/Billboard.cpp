@@ -14,7 +14,7 @@ Billboard& Billboard::GetInstans() {
 
 void Billboard::BillboardingTransform(D3DXVECTOR3 pos, float scale)
 {
-	//平行移動用行列
+	//最終的なワールドトランスフォーム行列
 	D3DXMATRIXA16 matWorld;
 	//平行移動用行列
 	D3DXMATRIXA16 matPosition;
