@@ -105,7 +105,7 @@ namespace Utility {
 	//min<= random <= max
 	int Random(int min, int max);
 
-	float MyAtanDeg(const D3DXVECTOR2& vec);
+	float AtanDeg(const D3DXVECTOR2& vec);
 
 	D3DXVECTOR3* VecOBBToPoint(const Shape::OBB& obb, const D3DXVECTOR3& p, D3DXVECTOR3* out);
 	char TransformChar(int val);

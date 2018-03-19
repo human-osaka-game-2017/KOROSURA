@@ -37,7 +37,6 @@ private:
 	Physics* m_pPhysics;
 	BoxCollider* m_pCollider;
 	Shape::OBB m_OBB;
-	//todo reaname
 	float m_Angle_deg = 0;
 };
 #endif

@@ -36,9 +36,9 @@ MainScene::MainScene()
 
 	D3DXVECTOR3 slimePos = pStageData->slimeData.pos;
 	slimePos.y += InitProperty::GetInstance().GetInitialData().slimeInitialData.modelOffset;
-	Slime*	pSlime		= new Slime(slimePos, D3DXVECTOR3(0.0f, 1.0f, 0.0f), pStageData->slimeData.level, std::bind(&MainScene::SetRetSceneId, this, std::placeholders::_1));
+	Slime*	pSlime		= new Slime(slimePos, D3DXVECTOR3(0.0f, 1.0f, 0.0f), pStageData->slimeData.level, pStageData->slimeData.angle, std::bind(&MainScene::SetRetSceneId, this, std::placeholders::_1));
 	Sky* pSky			= new Sky();
-	//Terrain* pTerrain	= new Terrain();
+	Terrain* pTerrain	= new Terrain();
 
 	m_pEnemyManager = new EnemyManager;
 	m_pGimmickManager = new GimmickManager;
@@ -47,7 +47,7 @@ MainScene::MainScene()
 	m_enemyLevel = new EnemyLevel();
 
 	m_PtrMaterials.push_back(pSky);
-	//m_PtrMaterials.push_back(pTerrain);
+	m_PtrMaterials.push_back(pTerrain);
 	m_PtrMaterials.push_back(pSlime);
 
 	Lib::GetInstance().TransformProjection(45.0f, WINDOW_WIDTH / WINDOW_HEIGHT, 1.0f, 20000.0f);

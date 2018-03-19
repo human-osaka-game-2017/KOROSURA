@@ -19,7 +19,7 @@ class PlayerLevel;
 
 class Slime :public CharacterBase{
 public:
-	Slime(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level, std::function<void(SceneBase::SCENE_ID)> function);
+	Slime(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level, float angle, std::function<void(SceneBase::SCENE_ID)> function);
 	virtual ~Slime();
 
 	D3DXVECTOR3* GetPos() { return &m_Pos; }
@@ -30,7 +30,7 @@ public:
 private:
 	void Collided(std::vector<ColliderBase::ObjectData*>* collidedObjects);
 
-	const float kRadius = 100.0f;
+	const float kRadius = 50.0f;
 	const D3DXVECTOR3 kInitialPos;
 
 	Physics* m_pPhysics;

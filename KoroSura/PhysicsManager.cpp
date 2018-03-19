@@ -26,7 +26,7 @@ void PhysicsManager::Update()
 	D3DXVECTOR2 cameraXZ = D3DXVECTOR2(m_CameraVec.x, m_CameraVec.z);
 
 	//ƒJƒƒ‰‚Ìy²’†S‚Ì‰ñ“]Šp“x
-	float deg = Utility::MyAtanDeg(cameraXZ);
+	float deg = Utility::AtanDeg(cameraXZ);
 	const float rad = D3DXToRadian(deg);
 
 	if (Lib::GetInstance().GetKeyState(Utility::KEY_KIND::W) == Utility::BUTTON_STATE::ON ||
