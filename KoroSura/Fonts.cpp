@@ -280,8 +280,12 @@ Utility::CUSTOMVERTEX* Fonts::GetUV(const char ch, Utility::CUSTOMVERTEX* vertex
 		Renderer::GetInstance().TrimingVertex(vertex, g_Width * 13, g_Height * 4, g_Width, g_Height, g_PngSize, g_PngSize);
 		break;
 
-	case '-':
+	case ':':
 		Renderer::GetInstance().TrimingVertex(vertex, g_Width * 14, g_Height * 4, g_Width, g_Height, g_PngSize, g_PngSize);
+		break;
+
+	case '/':
+		Renderer::GetInstance().TrimingVertex(vertex, g_Width * 15, g_Height * 4, g_Width, g_Height, g_PngSize, g_PngSize);
 		break;
 
 	}

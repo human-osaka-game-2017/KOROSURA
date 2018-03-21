@@ -19,7 +19,6 @@
 #include"ColliderManager.h"
 #include"EnemyManager.h"
 #include"GimmickManager.h"
-#include"EnemyLevel.h"
 
 void MainScene::Init()
 {
@@ -44,7 +43,6 @@ MainScene::MainScene()
 	m_pGimmickManager = new GimmickManager;
 	m_pLimitTime = new LimitTime(std::bind(&MainScene::SetRetSceneId, this, std::placeholders::_1), pStageData->time_s);
 	m_pCamera	= new Camera(pSlime->GetPos());
-	m_enemyLevel = new EnemyLevel();
 
 	m_PtrMaterials.push_back(pSky);
 	//m_PtrMaterials.push_back(pTerrain);
@@ -67,7 +65,6 @@ MainScene::~MainScene()
 	delete m_pGimmickManager;
 	delete m_pLimitTime;
 	delete m_pCamera;
-	delete m_enemyLevel;
 
 	EffectManager::GetpInstance().ReleaseEffect("Shader\\BasicShader.fx");
 	PhysicsManager::GetInstance().Initialize();
@@ -114,7 +111,6 @@ void MainScene::Draw()
 	}
 	m_pEnemyManager->Draw();
 	m_pGimmickManager->Draw();
-	m_enemyLevel->Draw();
 
 	Lib::GetInstance().SetRenderState2D();
 

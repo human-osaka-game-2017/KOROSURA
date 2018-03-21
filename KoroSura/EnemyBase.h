@@ -12,6 +12,7 @@
 
 class BoxCollider;
 class Physics;
+class EnemyLevel;
 
 class EnemyBase :public CharacterBase {
 public:
@@ -51,6 +52,7 @@ protected:
 	Physics* m_pPhysics;
 	Shape::OBB m_OBB;
 	BoxCollider* m_pCollider;
+	EnemyLevel* m_EnemyLevel;
 
 private:
 	const D3DXVECTOR3 kInitPos;//todo Šî’êƒNƒ‰ƒX‚É‚½‚¹‚é

@@ -5,7 +5,7 @@
 #include"Renderer.h"
 #include"Billboard.h"
 
-EnemyLevel::EnemyLevel() :m_Pos(D3DXVECTOR3(100.f, 50.f, 100.f))
+EnemyLevel::EnemyLevel(D3DXVECTOR3 pos) : m_Pos(pos)
 {
 }
 
@@ -33,27 +33,17 @@ void EnemyLevel::Draw()
 	NextCharPos(vertex);
 
 	Billboard::GetInstans().BillboardingTransform(m_Pos, 1.0f);
-	EnemyLevel::GetUV3D('e', vertex);
-	EnemyLevel::Draw3D(vertex, "Picture\\UI.png");
-	NextCharPos(vertex);
-
-	Billboard::GetInstans().BillboardingTransform(m_Pos, 1.0f);
 	EnemyLevel::GetUV3D('v', vertex);
 	EnemyLevel::Draw3D(vertex, "Picture\\UI.png");
 	NextCharPos(vertex);
-	
+
 	Billboard::GetInstans().BillboardingTransform(m_Pos, 1.0f);
-	EnemyLevel::GetUV3D('e', vertex);
+	EnemyLevel::GetUV3D('/', vertex);
 	EnemyLevel::Draw3D(vertex, "Picture\\UI.png");
 	NextCharPos(vertex);
 
 	Billboard::GetInstans().BillboardingTransform(m_Pos, 1.0f);
-	EnemyLevel::GetUV3D('l', vertex);
-	EnemyLevel::Draw3D(vertex, "Picture\\UI.png");
-	NextCharPos(vertex);
-
-	Billboard::GetInstans().BillboardingTransform(m_Pos, 1.0f);
-	EnemyLevel::GetUV3D('1', vertex);
+	EnemyLevel::GetUV3D(m_Level, vertex);
 	EnemyLevel::Draw3D(vertex, "Picture\\UI.png");
 }
 
@@ -343,6 +333,9 @@ VERTEX_3D* EnemyLevel::GetUV3D(const char ch, VERTEX_3D* vertex)
 		EnemyLevel::TrimingVertex(vertex, Fonts::g_Width * 14, Fonts::g_Height * 4, Fonts::g_Width, Fonts::g_Height, Fonts::g_PngSize, Fonts::g_PngSize);
 		break;
 
+	case '/':
+		EnemyLevel::TrimingVertex(vertex, Fonts::g_Width * 15, Fonts::g_Height * 4, Fonts::g_Width, Fonts::g_Height, Fonts::g_PngSize, Fonts::g_PngSize);
+		break;
 	}
 	return vertex;
 }

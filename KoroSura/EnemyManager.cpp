@@ -1,12 +1,13 @@
 #include"EnemyManager.h"
 #include"EnemyBase.h"
 #include"StageInfo.h"
+#include"EnemyLevel.h"
 
 EnemyManager::EnemyManager()
 {
 	StageInfo::StageData* pStageData = StageInfo::GetInstance().GetStageData();
 
-	int enemyNum = pStageData->enemyNum;
+	int enemyNum = 1;
 	for (int i = 0; i < enemyNum; ++i) {
 		EnemyBase* pEnemy = new EnemyBase(pStageData->enemyData[i].pos, D3DXVECTOR3(0.0f, 1.0f, 0.0f), pStageData->enemyData[i].level,
 			static_cast<EnemyBase::ENEMY_KIND>(pStageData->enemyData[i].kind), pStageData->enemyData[i].angle, pStageData->enemyData[i].isBoss);

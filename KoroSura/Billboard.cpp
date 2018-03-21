@@ -32,17 +32,13 @@ void Billboard::BillboardingTransform(D3DXVECTOR3 pos, float scale)
 	D3DXMatrixMultiply(&matWorld, &matWorld, &matScale);
 
 	D3DXMATRIX ViewMatrix;
-
 	//現在のビュー行列を得る
 	(*DirectGraphics::GetInstance().GetDevice())->GetTransform(D3DTS_VIEW, &ViewMatrix);
 	//もらったビューの行列変換をおこなう
 	D3DXMatrixInverse(&ViewMatrix, NULL, &ViewMatrix);
-	ViewMatrix._41 = 0;
-	ViewMatrix._42 = 0;
-	ViewMatrix._43 = 0;
+
 
 	D3DXMatrixMultiply(&matWorld, &matWorld, &ViewMatrix);
-
 	//平行移動
 	D3DXMatrixTranslation(&matPosition, pos.x, pos.y, pos.z);
 	D3DXMatrixMultiply(&matWorld, &matWorld, &matPosition);

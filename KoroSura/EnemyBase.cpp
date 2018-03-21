@@ -10,6 +10,7 @@
 #include"DirectGraphics.h"
 #include"EffectManager.h"
 #include"PhysicsManager.h"
+#include"EnemyLevel.h"
 
 EnemyBase::EnemyBase(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level, ENEMY_KIND kind, float angleDeg ,bool isBoss) :
 	CharacterBase(pos, normalVec, level),
@@ -19,8 +20,10 @@ EnemyBase::EnemyBase(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level, ENEMY_
 	m_Angle_deg(angleDeg)
 {
 	m_Pos.y += InitProperty::GetInstance().GetInitialData().enemyInitialData[static_cast<int>(kind)].modelOffset;
+	m_EnemyLevel = new EnemyLevel(m_Pos);
+	m_EnemyLevel->GetPos().y + 100.f;
+	m_EnemyLevel->SetLevel(level);
 	m_OBB.SetPos(InitProperty::GetInstance().GetInitialData().enemyInitialData[static_cast<int>(kind)].colliderOffset + m_Pos);
-
 	m_OBB.SetDirect(0, D3DXVECTOR3(cos(D3DXToRadian(angleDeg)), 0.0f, sin(D3DXToRadian(angleDeg))));
 	m_OBB.SetDirect(1, D3DXVECTOR3(0.0f, 1.0f, 0.0f));
 	m_OBB.SetDirect(2, D3DXVECTOR3(cos(D3DXToRadian(angleDeg + 90.0f)), 0.0f, sin(D3DXToRadian(angleDeg + 90.0f))));
@@ -115,6 +118,6 @@ void EnemyBase::Draw()
 		ModelManager::GetInstance().GetFBXDate("FBX\\FBXModel\\minotaur.fbx").Draw();
 		break;
 	}
-	
 	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->EndPass();
+	m_EnemyLevel->Draw();
 }

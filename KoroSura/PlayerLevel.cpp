@@ -4,7 +4,7 @@
 #include"DirectGraphics.h"
 
 PlayerLevel::PlayerLevel() :
-	m_Pos(D3DXVECTOR2(50.0f, 900.0f))
+	m_Pos(D3DXVECTOR2(70.0f, 810.0f))
 {
 }
 
@@ -21,10 +21,10 @@ void PlayerLevel::Draw(int level)
 {
 
 	Utility::CUSTOMVERTEX vertex[] = {
-		{ m_Pos.x - Fonts::g_Width / 2,m_Pos.y - Fonts::g_Height / 2,1.0,1.0,0xffff0000,0.0f,0.0f },
-		{ m_Pos.x + Fonts::g_Width / 2,m_Pos.y - Fonts::g_Height / 2,1.0,1.0,0xffff0000,1.0f,0.0f },
-		{ m_Pos.x + Fonts::g_Width / 2,m_Pos.y + Fonts::g_Height / 2,1.0,1.0,0xffff0000,1.0f,1.0f },
-		{ m_Pos.x - Fonts::g_Width / 2,m_Pos.y + Fonts::g_Height / 2,1.0,1.0,0xffff0000,0.0f,1.0f }
+		{ m_Pos.x - Fonts::g_Width / 2,m_Pos.y - Fonts::g_Height / 2,1.0,1.0,0xffffffff,0.0f,0.0f },
+		{ m_Pos.x + Fonts::g_Width / 2,m_Pos.y - Fonts::g_Height / 2,1.0,1.0,0xffffffff,1.0f,0.0f },
+		{ m_Pos.x + Fonts::g_Width / 2,m_Pos.y + Fonts::g_Height / 2,1.0,1.0,0xffffffff,1.0f,1.0f },
+		{ m_Pos.x - Fonts::g_Width / 2,m_Pos.y + Fonts::g_Height / 2,1.0,1.0,0xffffffff,0.0f,1.0f }
 	};
 	Lib::GetInstance().SetRenderState2D();
 	(*DirectGraphics::GetInstance().GetDevice())->SetFVF(D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1);
@@ -33,19 +33,11 @@ void PlayerLevel::Draw(int level)
 	Lib::GetInstance().Draw(vertex, "Picture\\UI.png");
 	NextCharPos(vertex);
 
-	Fonts::GetUV('e', vertex);
-	Lib::GetInstance().Draw(vertex, "Picture\\UI.png");
-	NextCharPos(vertex);
-
 	Fonts::GetUV('v', vertex);
 	Lib::GetInstance().Draw(vertex, "Picture\\UI.png");
 	NextCharPos(vertex);
 
-	Fonts::GetUV('e', vertex);
-	Lib::GetInstance().Draw(vertex, "Picture\\UI.png");
-	NextCharPos(vertex);
-
-	Fonts::GetUV('l', vertex);
+	Fonts::GetUV('/', vertex);
 	Lib::GetInstance().Draw(vertex, "Picture\\UI.png");
 	NextCharPos(vertex);
 
