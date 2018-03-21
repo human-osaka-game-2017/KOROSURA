@@ -5,7 +5,6 @@
 #include"Selection.h"
 #include"StageInfo.h"
 
-
 GameClear::GameClear()
 {
 	m_NextStage = false;
@@ -166,11 +165,11 @@ void GameClear::WasSelect()
 	m_selectNum = m_pSelecter->GetCurrentSelection();
 
 	if (m_selectNum == 0) {
-		//StageInfo::GetInstance().SetSelectStage(StageInfo::GetInstance().GetCurrentStage() + 1);
+		//次のステージへ
+		StageInfo::GetInstance().SetSelectStage(StageInfo::GetInstance().GetCurrentStage() + 1);
 		m_NextStage = true;
 	}
 	else {
-		//StageInfo::GetInstance().SetSelectStage(StageInfo::GetInstance().GetCurrentStage() + 1);
 		m_Select = true;
 	}
 }

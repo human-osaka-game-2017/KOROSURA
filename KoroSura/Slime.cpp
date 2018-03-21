@@ -13,12 +13,17 @@
 #include"StageInfo.h"
 #include"BoxCollider.h"
 
-Slime::Slime(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level, std::function<void(SceneBase::SCENE_ID)> function):
+Slime::Slime(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level, float angle, std::function<void(SceneBase::SCENE_ID)> function):
 	CharacterBase(pos, normalVec, level),
 	kInitialPos(pos),
 	m_Function(function)
 {
-	D3DXMatrixIdentity(&m_Rot_mat);
+	{
+		D3DXMatrixIdentity(&m_Rot_mat);
+		D3DXMATRIXA16 tmp;
+		D3DXMatrixRotationY(&tmp, D3DXToRadian(angle + 90));
+		m_Rot_mat = m_Rot_mat*tmp;
+	}
 	m_Pos.y += InitProperty::GetInstance().GetInitialData().slimeInitialData.modelOffset;
 	m_Sphere.SetPos(InitProperty::GetInstance().GetInitialData().slimeInitialData.colliderOffset + m_Pos);
 	m_Sphere.SetRadius(InitProperty::GetInstance().GetInitialData().slimeInitialData.radius);
@@ -93,23 +98,16 @@ void Slime::Draw()
 	D3DXMatrixIdentity(&matRot);
 	D3DXMatrixIdentity(&matRot2);
 	
-	//yé≤âÒì]
+	//âÒì]
 	{
-		static D3DXVECTOR2 prevMovement_xz = D3DXVECTOR2(0.0f, 0.0f);
-		float deg = Utility::MyAtanDeg(D3DXVECTOR2(m_Acceleration.x, m_Acceleration.z)) - Utility::MyAtanDeg(prevMovement_xz);
+		D3DXVECTOR3 axis = D3DXVECTOR3(m_Acceleration.z, 0.0f, -m_Acceleration.x);
+		D3DXQUATERNION quaternion;
+		D3DXQuaternionRotationAxis(&quaternion, &axis, D3DXVec3Length(&m_Acceleration) / kRadius);
 		D3DXMATRIXA16 tmp;
-		D3DXMatrixRotationY(&tmp, D3DXToRadian(deg));
+		D3DXMatrixRotationQuaternion(&tmp, &quaternion);
 		m_Rot_mat = m_Rot_mat*tmp;
-		prevMovement_xz = D3DXVECTOR2(m_Acceleration.x, m_Acceleration.z);
+		D3DXMatrixMultiply(&matWorld, &matWorld, &m_Rot_mat);
 	}
-	
-	//xé≤âÒì]
-	{
-		D3DXMATRIXA16 tmp;
-		D3DXMatrixRotationX(&tmp, D3DXVec3Length(&m_Acceleration) / kRadius);
-		m_Rot_mat = tmp*m_Rot_mat;
-	}
-	D3DXMatrixMultiply(&matWorld, &matWorld, &m_Rot_mat);
 
 	//ïΩçsà⁄ìÆ
 	D3DXMatrixTranslation(&matPosition, m_Pos.x, m_Pos.y, m_Pos.z);

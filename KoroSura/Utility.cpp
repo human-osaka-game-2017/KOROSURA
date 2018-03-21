@@ -64,10 +64,10 @@ double Utility::CalculateDegree(float x1, float y1, float x2, float y2)
 {
 	D3DXVECTOR2 tmp = D3DXVECTOR2(x2 - x1, y2 - y1);
 
-	return MyAtanDeg(tmp);
+	return AtanDeg(tmp);
 }
 
-float Utility::MyAtanDeg(const D3DXVECTOR2& vec)
+float Utility::AtanDeg(const D3DXVECTOR2& vec)
 {
 	float rad;
 
@@ -87,7 +87,7 @@ float Utility::MyAtanDeg(const D3DXVECTOR2& vec)
 		rad = atan(vec.y / vec.x) + D3DX_PI;
 	}
 	else if (vec.x == 0) {
-		if (vec.y < 0) {
+		if (vec.y > 0) {
 			rad = D3DX_PI / 2;
 		}
 		else {

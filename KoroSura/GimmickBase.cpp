@@ -57,11 +57,35 @@ void GimmickBase::Update()
 void GimmickBase::Draw()
 {
 	const float* slope_deg = PhysicsManager::GetInstance().GetSlopeDeg();
-	Lib::GetInstance().TransformWorld(m_Pos, m_Angle_deg, slope_deg[0], slope_deg[1]);
 
-	D3DXMATRIX WorldMatrix;
-	(*DirectGraphics::GetInstance().GetDevice())->GetTransform(D3DTS_WORLD, &WorldMatrix);
-	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->SetWorldMatrix(&WorldMatrix);
+	//最終的なワールドトランスフォーム行列
+	D3DXMATRIXA16 matWorld;
+	//平行移動用行列
+	D3DXMATRIXA16 matPosition;
+	//回転用行列
+	D3DXMATRIXA16 matRotation;
+
+	//行列の初期化
+	D3DXMatrixIdentity(&matWorld);
+	D3DXMatrixIdentity(&matRotation);
+
+	//ワールドトランスフォーム（絶対座標変換）
+	//回転
+	D3DXMatrixRotationY(&matRotation, D3DXToRadian(m_Angle_deg));
+	D3DXMatrixMultiply(&matWorld, &matWorld, &matRotation);
+	D3DXMatrixRotationX(&matRotation, D3DXToRadian(slope_deg[0]));
+	D3DXMatrixMultiply(&matWorld, &matWorld, &matRotation);
+	D3DXMatrixRotationZ(&matRotation, D3DXToRadian(slope_deg[1]));
+	D3DXMatrixMultiply(&matWorld, &matWorld, &matRotation);
+
+	//平行移動
+	D3DXMatrixTranslation(&matPosition, m_Pos.x, m_Pos.y, m_Pos.z);
+	D3DXMatrixMultiply(&matWorld, &matWorld, &matPosition);
+
+	//レンダリング仕様の登録
+	(*DirectGraphics::GetInstance().GetDevice())->SetTransform(D3DTS_WORLD, &matWorld);
+
+	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->SetWorldMatrix(&matWorld);
 
 	// シェーダーパスの開始.
 	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->BeginPass(0);
