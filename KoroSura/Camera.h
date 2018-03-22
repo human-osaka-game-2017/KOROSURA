@@ -9,6 +9,7 @@ public:
 	~Camera();
 
 	void Update();
+	D3DXVECTOR3 GetPos() { return m_Pos; }
 
 private:
 	const float kDistance;

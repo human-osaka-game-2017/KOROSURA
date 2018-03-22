@@ -185,6 +185,9 @@
     <ClCompile Include="EnemyLevel.cpp">
       <Filter>Application\Scene\Main\GameFont</Filter>
     </ClCompile>
+    <ClCompile Include="CameraIvent.cpp">
+      <Filter>Application\Scene\Main\Camera\Billboard</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Application">
@@ -531,6 +534,9 @@
     </ClInclude>
     <ClInclude Include="EnemyLevel.h">
       <Filter>Application\Scene\Main\GameFont</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraIvent.h">
+      <Filter>Application\Scene\Main\Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

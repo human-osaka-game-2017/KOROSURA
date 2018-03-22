@@ -12,6 +12,7 @@
 #include"PlayerLevel.h"
 #include"StageInfo.h"
 #include"BoxCollider.h"
+#include"SoundBufferManager.h"
 
 Slime::Slime(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level, float angle, std::function<void(SceneBase::SCENE_ID)> function):
 	CharacterBase(pos, normalVec, level),
@@ -24,6 +25,7 @@ Slime::Slime(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level, float angle, s
 		D3DXMatrixRotationY(&tmp, D3DXToRadian(angle + 90));
 		m_Rot_mat = m_Rot_mat*tmp;
 	}
+	SoundBufferManager::GetInstance().LoadWaveFile("BGM\\LevelUpSe.wav");
 	m_Pos.y += InitProperty::GetInstance().GetInitialData().slimeInitialData.modelOffset;
 	m_Sphere.SetPos(InitProperty::GetInstance().GetInitialData().slimeInitialData.colliderOffset + m_Pos);
 	m_Sphere.SetRadius(InitProperty::GetInstance().GetInitialData().slimeInitialData.radius);
@@ -40,6 +42,7 @@ Slime::~Slime()
 	delete m_pPhysics;
 	delete m_pPlayerLevel;
 	delete m_pCollider;
+	SoundBufferManager::GetInstance().CancelSound("BGM\\LevelUpSe.wav");
 }
 
 void Slime::Update()
@@ -153,6 +156,7 @@ void Slime::Collided(std::vector<ColliderBase::ObjectData*>* collidedObjects)
 
 			if (m_Level >= pEnemy->GetLevel()) {
 				if (m_Level - pEnemy->GetLevel() < 3) {
+					SoundBufferManager::GetInstance().PlayBackSound("BGM\\LevelUpSe.wav", false);
 					++m_Level;
 				}
 				if (pEnemy->IsBoss()) {

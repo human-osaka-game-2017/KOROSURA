@@ -2,6 +2,8 @@
 #include"Camera.h"
 #include"Lib.h"
 #include"DirectGraphics.h"
+#include"Camera.h"
+#include"CameraIvent.h"
 
 Billboard* Billboard::pInstance = nullptr;
 
@@ -32,12 +34,8 @@ void Billboard::BillboardingTransform(D3DXVECTOR3 pos, float scale)
 	D3DXMatrixMultiply(&matWorld, &matWorld, &matScale);
 
 	D3DXMATRIX ViewMatrix;
-	//現在のビュー行列を得る
-	(*DirectGraphics::GetInstance().GetDevice())->GetTransform(D3DTS_VIEW, &ViewMatrix);
-	//もらったビューの行列変換をおこなう
-	D3DXMatrixInverse(&ViewMatrix, NULL, &ViewMatrix);
-
-
+	
+	CreateBillBoardMatrix(&pos, &CameraIvent::GetInstance().GetCameraPos(), &ViewMatrix);
 	D3DXMatrixMultiply(&matWorld, &matWorld, &ViewMatrix);
 	//平行移動
 	D3DXMatrixTranslation(&matPosition, pos.x, pos.y, pos.z);
@@ -47,3 +45,13 @@ void Billboard::BillboardingTransform(D3DXVECTOR3 pos, float scale)
 	(*DirectGraphics::GetInstance().GetDevice())->SetTransform(D3DTS_WORLD, &matWorld);
 }
 
+
+void Billboard::CreateBillBoardMatrix(D3DXVECTOR3* _pEnemyUIPos, D3DXVECTOR3* _pCameraPos, D3DXMATRIX* _pOutMatrix)
+{
+	D3DXMatrixIdentity(_pOutMatrix);
+	D3DXMatrixLookAtLH(_pOutMatrix, _pCameraPos, _pEnemyUIPos, &D3DXVECTOR3(0, 1, 0));
+	D3DXMatrixInverse(_pOutMatrix, NULL, _pOutMatrix);
+	_pOutMatrix->_41 = 0.0f;
+	_pOutMatrix->_42 = 0.0f;
+	_pOutMatrix->_43 = 0.0f;
+}

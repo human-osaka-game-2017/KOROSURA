@@ -41,5 +41,6 @@ public:
 private:
 	int m_Level;
 	 D3DXVECTOR3 m_Pos;
+
 };
 #endif 

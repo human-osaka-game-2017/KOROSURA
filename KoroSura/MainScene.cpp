@@ -19,6 +19,7 @@
 #include"ColliderManager.h"
 #include"EnemyManager.h"
 #include"GimmickManager.h"
+#include"CameraIvent.h"
 
 void MainScene::Init()
 {
@@ -99,6 +100,8 @@ void MainScene::Draw()
 	DirectGraphics::GetInstance().SetRenderState3D();
 
 	m_pCamera->Update();
+	CameraIvent::GetInstance().SetCameraPos(m_pCamera->GetPos());
+
 	D3DXMATRIX ViewMatrix;
 	(*DirectGraphics::GetInstance().GetDevice())->GetTransform(D3DTS_VIEW, &ViewMatrix);
 	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->SetViewMatrix(&ViewMatrix);

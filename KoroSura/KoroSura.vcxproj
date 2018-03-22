@@ -129,6 +129,7 @@
     <ClCompile Include="Billboard.cpp" />
     <ClCompile Include="BoxCollider.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CameraIvent.cpp" />
     <ClCompile Include="EnemyBase.cpp" />
     <ClCompile Include="EnemyLevel.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
@@ -193,6 +194,7 @@
     <ClInclude Include="Billboard.h" />
     <ClInclude Include="BoxCollider.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CameraIvent.h" />
     <ClInclude Include="CharacterBase.h" />
     <ClInclude Include="EnemyLevel.h" />
     <ClInclude Include="EnemyManager.h" />

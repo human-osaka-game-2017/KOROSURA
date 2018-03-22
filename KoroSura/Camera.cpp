@@ -44,7 +44,7 @@ void Camera::Update()
 	if (m_StopCamera != true) {
 		lookAtPos.y += kLookAtPosYOffset;
 		m_MovementMouse += stateMouse;
-		m_MovementMouse.y = /*1500.0f*/ min(max(m_MovementMouse.y, 1000.f), 1500.f);
+		m_MovementMouse.y = /*1500.0f*/ min(max(m_MovementMouse.y, 1200.f), 1500.f);
 		m_Pos.x = kDistance  * sin(m_MovementMouse.y * 0.0005f * D3DX_PI)
 			* cos(m_MovementMouse.x * 0.0005f * D3DX_PI) + lookAtPos.x;
 		m_Pos.y = -kDistance * cos(m_MovementMouse.y * 0.0005f * D3DX_PI) + lookAtPos.y;
