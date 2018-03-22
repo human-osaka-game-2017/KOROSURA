@@ -39,7 +39,7 @@ private:
 	PlayerLevel* m_pPlayerLevel;
 	std::function<void(SceneBase::SCENE_ID)> m_Function;
 	D3DXVECTOR3 m_Acceleration = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	D3DXMATRIXA16 m_Rot_mat;
+	D3DXMATRIXA16* m_pRot_mat;
 	bool m_IsFall = true;
 };
 #endif

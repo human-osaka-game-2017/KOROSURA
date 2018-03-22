@@ -56,8 +56,6 @@ void GimmickBase::Update()
 
 void GimmickBase::Draw()
 {
-	const float* slope_deg = PhysicsManager::GetInstance().GetSlopeDeg();
-
 	//最終的なワールドトランスフォーム行列
 	D3DXMATRIXA16 matWorld;
 	//平行移動用行列
@@ -73,10 +71,7 @@ void GimmickBase::Draw()
 	//回転
 	D3DXMatrixRotationY(&matRotation, D3DXToRadian(m_Angle_deg));
 	D3DXMatrixMultiply(&matWorld, &matWorld, &matRotation);
-	D3DXMatrixRotationX(&matRotation, D3DXToRadian(slope_deg[0]));
-	D3DXMatrixMultiply(&matWorld, &matWorld, &matRotation);
-	D3DXMatrixRotationZ(&matRotation, D3DXToRadian(slope_deg[1]));
-	D3DXMatrixMultiply(&matWorld, &matWorld, &matRotation);
+	D3DXMatrixMultiply(&matWorld, &matWorld, PhysicsManager::GetInstance().GetRotMatrix());
 
 	//平行移動
 	D3DXMatrixTranslation(&matPosition, m_Pos.x, m_Pos.y, m_Pos.z);

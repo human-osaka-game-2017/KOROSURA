@@ -37,10 +37,10 @@ void PlayerLevel::Draw(int level)
 		{ m_BackGroundPos.x - BackGround_W / 2,m_BackGroundPos.y + BackGround_H  / 2,1.0,1.0,0xffffffff,0.0f,0.634f }
 	};
 	Utility::CUSTOMVERTEX MinSlimeVertex[] = {
-		{ m_MinslimePos.x - SLIME_W / 2,m_MinslimePos.y - SLIME_H / 2,1.0,1.0,0xffffffff,0.524f,0.683f },
-		{ m_MinslimePos.x + SLIME_W / 2,m_MinslimePos.y - SLIME_H / 2,1.0,1.0,0xffffffff,0.543f,0.683f },
-		{ m_MinslimePos.x + SLIME_W / 2,m_MinslimePos.y + SLIME_H / 2,1.0,1.0,0xffffffff,0.543f,0.830f },
-		{ m_MinslimePos.x - SLIME_W / 2,m_MinslimePos.y + SLIME_H / 2,1.0,1.0,0xffffffff,0.524f,0.830f }
+		{ m_MinslimePos.x - SLIME_W / 2,m_MinslimePos.y - SLIME_HEIGHT / 2,1.0,1.0,0xffffffff,0.524f,0.683f },
+		{ m_MinslimePos.x + SLIME_W / 2,m_MinslimePos.y - SLIME_HEIGHT / 2,1.0,1.0,0xffffffff,0.543f,0.683f },
+		{ m_MinslimePos.x + SLIME_W / 2,m_MinslimePos.y + SLIME_HEIGHT / 2,1.0,1.0,0xffffffff,0.543f,0.830f },
+		{ m_MinslimePos.x - SLIME_W / 2,m_MinslimePos.y + SLIME_HEIGHT / 2,1.0,1.0,0xffffffff,0.524f,0.830f }
 	};
 	Lib::GetInstance().SetRenderState2D();
 

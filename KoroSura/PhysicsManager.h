@@ -30,7 +30,9 @@ public:
 
 	float GetStaticCoefficientOfFriction() {return kStaticCoefficientOfFriction;}
 
-	const float* GetSlopeDeg() {return m_SlopeDeg;}
+	//const float* GetSlopeDeg() {return m_SlopeDeg;}
+
+	const D3DXMATRIXA16* GetRotMatrix() { return m_pRot_mat; }
 
 	const D3DXVECTOR3& GetNormalVector() {return m_NormalVector;}
 
@@ -51,6 +53,7 @@ public:
 private:
 	PhysicsManager();
 	~PhysicsManager();
+	void RotTerrain(const D3DXVECTOR3& axis);
 
 	const float kSlopingDeg;
 	const float kMaxSlope = 30.0f;
@@ -59,8 +62,9 @@ private:
 	const float kStaticCoefficientOfFriction;//Ã~–€CŒW”
 
 	static PhysicsManager* m_pInstance;
+	D3DXMATRIXA16* m_pRot_mat;
 	D3DXVECTOR3 m_NormalVector;
 	D3DXVECTOR3 m_CameraVec;//ƒJƒƒ‰‚ÌŒü‚¢‚Ä‚¢‚éŒü‚«
-	float m_SlopeDeg[2];
+	//float m_SlopeDeg[2];
 };
 #endif

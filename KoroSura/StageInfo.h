@@ -93,7 +93,7 @@ public:
 	{
 		delete[] m_StageData.enemyData;
 		delete[] m_StageData.gimmickData;
-		delete[] m_StageData.terrainData;
+		//delete[] m_StageData.terrainData;
 	}
 
 	static const int kStageMax = 8;

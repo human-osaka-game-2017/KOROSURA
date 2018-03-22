@@ -19,11 +19,12 @@ Slime::Slime(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level, float angle, s
 	kInitialPos(pos),
 	m_Function(function)
 {
+	m_pRot_mat = new D3DXMATRIXA16;
 	{
-		D3DXMatrixIdentity(&m_Rot_mat);
+		D3DXMatrixIdentity(m_pRot_mat);
 		D3DXMATRIXA16 tmp;
 		D3DXMatrixRotationY(&tmp, D3DXToRadian(angle + 90));
-		m_Rot_mat = m_Rot_mat*tmp;
+		*m_pRot_mat = (*m_pRot_mat) *tmp;
 	}
 	SoundBufferManager::GetInstance().LoadWaveFile("BGM\\LevelUpSe.wav");
 	m_Pos.y += InitProperty::GetInstance().GetInitialData().slimeInitialData.modelOffset;
@@ -42,6 +43,7 @@ Slime::~Slime()
 	delete m_pPhysics;
 	delete m_pPlayerLevel;
 	delete m_pCollider;
+	delete m_pRot_mat;
 	SoundBufferManager::GetInstance().CancelSound("BGM\\LevelUpSe.wav");
 }
 
@@ -108,8 +110,8 @@ void Slime::Draw()
 		D3DXQuaternionRotationAxis(&quaternion, &axis, D3DXVec3Length(&m_Acceleration) / kRadius);
 		D3DXMATRIXA16 tmp;
 		D3DXMatrixRotationQuaternion(&tmp, &quaternion);
-		m_Rot_mat = m_Rot_mat*tmp;
-		D3DXMatrixMultiply(&matWorld, &matWorld, &m_Rot_mat);
+		*m_pRot_mat = (*m_pRot_mat) * tmp;
+		D3DXMatrixMultiply(&matWorld, &matWorld, m_pRot_mat);
 	}
 
 	//ïΩçsà⁄ìÆ

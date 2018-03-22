@@ -69,15 +69,27 @@ void Terrain::Update()
 
 void Terrain::Draw()
 {
+	//最終的なワールドトランスフォーム行列
+	D3DXMATRIXA16 matWorld;
+	//平行移動用行列
+	D3DXMATRIXA16 matPosition;
 
+	//行列の初期化
+	D3DXMatrixIdentity(&matWorld);
 
-	const float* slopeDeg = PhysicsManager::GetInstance().GetSlopeDeg();
+	//ワールドトランスフォーム（絶対座標変換）
+	//回転
 
-	Lib::GetInstance().TransformWorld(m_Pos, 0.0f, slopeDeg[0], slopeDeg[1], 1.0f);
+	D3DXMatrixMultiply(&matWorld, &matWorld, PhysicsManager::GetInstance().GetRotMatrix());
 
-	D3DXMATRIX WorldMatrix;
-	(*DirectGraphics::GetInstance().GetDevice())->GetTransform(D3DTS_WORLD, &WorldMatrix);
-	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->SetWorldMatrix(&WorldMatrix);
+	//平行移動
+	D3DXMatrixTranslation(&matPosition, m_Pos.x, m_Pos.y, m_Pos.z);
+	D3DXMatrixMultiply(&matWorld, &matWorld, &matPosition);
+
+	//レンダリング仕様の登録
+	(*DirectGraphics::GetInstance().GetDevice())->SetTransform(D3DTS_WORLD, &matWorld);
+
+	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->SetWorldMatrix(&matWorld);
 
 	// シェーダーパスの開始.%
 	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->BeginPass(0);

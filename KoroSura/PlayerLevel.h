@@ -7,7 +7,7 @@
 #define BackGround_W 460
 #define BackGround_H 170
 #define SLIME_W 150
-#define SLIME_H 150
+#define SLIME_HEIGHT 150
 
 class PlayerLevel : public ObjectBase{
 public:
