@@ -109,11 +109,10 @@ void MainScene::Draw()
 	EffectManager::GetpInstance().GetEffect("Shader\\BasicShader.fx")->SetLightVector();
 
 	m_pEnemyManager->Draw();
+	m_pGimmickManager->Draw();
 	for (auto ite = m_PtrMaterials.begin(); ite != m_PtrMaterials.end(); ++ite) {
 		(*ite)->Draw();
 	}
-	m_pEnemyManager->Draw();
-	m_pGimmickManager->Draw();
 
 	Lib::GetInstance().SetRenderState2D();
 

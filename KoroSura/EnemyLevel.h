@@ -18,8 +18,10 @@ typedef struct
 
 class EnemyLevel : public ObjectBase {
 public:
-	EnemyLevel(D3DXVECTOR3 pos);
+	EnemyLevel(D3DXVECTOR3 pos, int level);
 	virtual ~EnemyLevel();
+
+	void SetPos(const D3DXVECTOR3& pos) { m_Pos = pos; }
 
 	virtual void Update();
 
@@ -34,10 +36,9 @@ public:
 
 	void NextCharPos(VERTEX_3D vertex[]);
 
-	void SetPos(D3DXVECTOR3 pos) { m_Pos = pos; }
-	D3DXVECTOR3 GetPos() { return m_Pos; }
-	void SetLevel(int level) {m_Level = level; }
-	int GetLevel() { return m_Level; }
+	//D3DXVECTOR3 GetPos() { return m_Pos; }
+	//void SetLevel(int level) {m_Level = level; }
+	//int GetLevel() { return m_Level; }
 private:
 	int m_Level;
 	 D3DXVECTOR3 m_Pos;

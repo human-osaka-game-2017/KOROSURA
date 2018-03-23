@@ -1,7 +1,7 @@
 #ifndef ENEMYMANAGER_H
 #define ENEMYMANAGER_H
 
-#include<vector>
+#include<list>
 #include"ObjectBase.h"
 
 class EnemyBase;
@@ -15,6 +15,6 @@ public:
 	virtual void Draw();
 
 private:
-	std::vector<EnemyBase*> m_PtrEnemys;
+	std::list<EnemyBase*> m_PtrEnemys;
 };
 #endif

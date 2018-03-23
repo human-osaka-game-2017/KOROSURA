@@ -7,6 +7,7 @@ EnemyManager::EnemyManager()
 {
 	StageInfo::StageData* pStageData = StageInfo::GetInstance().GetStageData();
 
+	//todo pushbackじゃなくまとめて要素数ぶん確保する
 	int enemyNum = pStageData->enemyNum;
 	for (int i = 0; i < enemyNum; ++i) {
 		EnemyBase* pEnemy = new EnemyBase(pStageData->enemyData[i].pos, D3DXVECTOR3(0.0f, 1.0f, 0.0f), pStageData->enemyData[i].level,
@@ -38,6 +39,16 @@ void EnemyManager::Update()
 
 void EnemyManager::Draw()
 {
+
+	//enemyのレベル表示のため距離でソート
+	{
+		for (auto ite = m_PtrEnemys.begin(); ite != m_PtrEnemys.end(); ++ite) {
+			(*ite)->UpdateDistance();
+		}
+		m_PtrEnemys.sort(EnemyBase::cmp);
+	}
+
+
 	for (auto ite = m_PtrEnemys.begin(); ite != m_PtrEnemys.end(); ++ite) {
 		(*ite)->Draw();
 	}

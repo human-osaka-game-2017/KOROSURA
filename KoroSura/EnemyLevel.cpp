@@ -5,7 +5,9 @@
 #include"Renderer.h"
 #include"Billboard.h"
 
-EnemyLevel::EnemyLevel(D3DXVECTOR3 pos) : m_Pos(pos)
+EnemyLevel::EnemyLevel(D3DXVECTOR3 pos, int level) :
+	m_Pos(pos),
+	m_Level(level)
 {
 }
 
@@ -19,31 +21,40 @@ void EnemyLevel::Update()
 void EnemyLevel::Draw()
 {
 	VERTEX_3D vertex[] = {
-		{ m_Pos.x - Fonts::g_Width / 2,m_Pos.y + Fonts::g_Height / 2,0.0,0xffffffff,0.0f,0.0f },
-		{ m_Pos.x + Fonts::g_Width / 2,m_Pos.y + Fonts::g_Height / 2,0.0,0xffffffff,1.0f,0.0f },
-		{ m_Pos.x + Fonts::g_Width / 2,m_Pos.y - Fonts::g_Height / 2,0.0,0xffffffff,1.0f,1.0f },
-		{ m_Pos.x - Fonts::g_Width / 2,m_Pos.y - Fonts::g_Height / 2,0.0,0xffffffff,0.0f,1.0f }
+		{- Fonts::g_Width / 2 , + Fonts::g_Height / 2, 0.0f ,0xffffffff,0.0f,0.0f },
+		{+ Fonts::g_Width / 2 , + Fonts::g_Height / 2, 0.0f ,0xffffffff,1.0f,0.0f },
+		{+ Fonts::g_Width / 2 , - Fonts::g_Height / 2, 0.0f ,0xffffffff,1.0f,1.0f },
+		{- Fonts::g_Width / 2 , - Fonts::g_Height / 2, 0.0f ,0xffffffff,0.0f,1.0f }
 	};
 	Lib::GetInstance().SetRenderState3D();
 	(*DirectGraphics::GetInstance().GetDevice())->SetFVF(FVF_3D);
 
-	Billboard::GetInstans().BillboardingTransform(m_Pos, 1.0f);
+	//todo ‘‚«’¼‚·
+	//•¶š‚ğ’†‰›‚¼‚ë‚¦‚É‚·‚é
+	for (int i = 0; i < 2; ++i) {
+		for (int j = 0; j < 4; ++j) {
+			vertex[j].x -= Fonts::g_Width;
+		}
+	}
+
+	Billboard::GetInstans().BillboardingTransform(m_Pos, 0.5f);
 	EnemyLevel::GetUV3D('L', vertex);
 	EnemyLevel::Draw3D(vertex, "Picture\\UI.png");
 	NextCharPos(vertex);
 
-	Billboard::GetInstans().BillboardingTransform(m_Pos, 1.0f);
 	EnemyLevel::GetUV3D('v', vertex);
 	EnemyLevel::Draw3D(vertex, "Picture\\UI.png");
 	NextCharPos(vertex);
 
-	Billboard::GetInstans().BillboardingTransform(m_Pos, 1.0f);
 	EnemyLevel::GetUV3D('/', vertex);
 	EnemyLevel::Draw3D(vertex, "Picture\\UI.png");
 	NextCharPos(vertex);
 
-	Billboard::GetInstans().BillboardingTransform(m_Pos, 1.0f);
-	EnemyLevel::GetUV3D(m_Level, vertex);
+	EnemyLevel::GetUV3D(Utility::TransformChar(m_Level / 10), vertex);
+	EnemyLevel::Draw3D(vertex, "Picture\\UI.png");
+	NextCharPos(vertex);
+
+	EnemyLevel::GetUV3D(Utility::TransformChar(m_Level % 10), vertex);
 	EnemyLevel::Draw3D(vertex, "Picture\\UI.png");
 }
 

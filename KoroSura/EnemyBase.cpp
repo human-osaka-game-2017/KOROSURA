@@ -20,9 +20,8 @@ EnemyBase::EnemyBase(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level, ENEMY_
 	m_Angle_deg(angleDeg)
 {
 	m_Pos.y += InitProperty::GetInstance().GetInitialData().enemyInitialData[static_cast<int>(kind)].modelOffset;
-	m_EnemyLevel = new EnemyLevel(m_Pos);
-	m_EnemyLevel->GetPos().y + 100.f;
-	m_EnemyLevel->SetLevel(level);
+	m_EnemyLevel = new EnemyLevel(m_Pos, level);
+
 	m_OBB.SetPos(InitProperty::GetInstance().GetInitialData().enemyInitialData[static_cast<int>(kind)].colliderOffset + m_Pos);
 	m_OBB.SetDirect(0, D3DXVECTOR3(cos(D3DXToRadian(angleDeg)), 0.0f, sin(D3DXToRadian(angleDeg))));
 	m_OBB.SetDirect(1, D3DXVECTOR3(0.0f, 1.0f, 0.0f));
@@ -43,6 +42,7 @@ EnemyBase::EnemyBase(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level, ENEMY_
 EnemyBase::~EnemyBase()
 {
 	ColliderManager::GetInstance().Remove(m_pCollider);
+	delete m_EnemyLevel;
 	delete m_pCollider;
 }
 
@@ -56,6 +56,11 @@ void EnemyBase::Update()
 	PhysicsManager::GetInstance().TranceformOnBoard(kInitPos, &m_Pos);
 	m_Pos.y += InitProperty::GetInstance().GetInitialData().enemyInitialData[static_cast<int>(kKind)].modelOffset;
 	m_OBB.SetPos(InitProperty::GetInstance().GetInitialData().enemyInitialData[static_cast<int>(kKind)].colliderOffset + m_Pos);
+
+	{
+		D3DXVECTOR3 levelFontPos = D3DXVECTOR3(m_Pos.x, m_Pos.y + kLevelFontOffset, m_Pos.z);
+		m_EnemyLevel->SetPos(levelFontPos);
+	}
 }
 
 void EnemyBase::Draw()
