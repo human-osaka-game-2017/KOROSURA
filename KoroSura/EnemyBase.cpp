@@ -21,7 +21,15 @@ EnemyBase::EnemyBase(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level, ENEMY_
 {
 	m_Pos.y += InitProperty::GetInstance().GetInitialData().enemyInitialData[static_cast<int>(kKind)].modelOffset;
 
-	m_EnemyLevel = new EnemyLevel(m_Pos, level);
+	//ƒgƒŒƒ“ƒg‚¾‚¯‘å‚«‚·‚¬‚é‚Ì‚Å—áŠOˆ—
+	if (kKind == ENEMY_KIND::TRENT_GREEN ||
+		kKind == ENEMY_KIND::TRENT_PINK ||
+		kKind == ENEMY_KIND::TRENT_YELLOW) {
+
+		(int)kLevelFontOffset += 200;
+	}
+
+	m_EnemyLevel = new EnemyLevel(m_Pos + kLevelFontOffset, level);
 
 	//OBB‚Ìİ’è
 	{

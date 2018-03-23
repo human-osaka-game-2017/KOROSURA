@@ -70,7 +70,7 @@ protected:
 
 private:
 	const D3DXVECTOR3 kInitPos;//todo Šî’êƒNƒ‰ƒX‚É‚½‚¹‚é
-	const int kLevelFontOffset = 300;
+	const int kLevelFontOffset = 200;
 	void Collided(std::vector<ColliderBase::ObjectData*>* collidedObjects);
 	//todo reaname
 	float m_Angle_deg = 0;
