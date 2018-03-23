@@ -5,9 +5,9 @@
 #include"Utility.h"
 
 #define BackGround_W 460
-#define BackGround_H 170
-#define SLIME_W 150
-#define SLIME_HEIGHT 150
+#define BackGround_H 200
+#define SLIME_WEIGHT 100
+#define SLIME_HEIGHT 100
 
 class PlayerLevel : public ObjectBase{
 public:

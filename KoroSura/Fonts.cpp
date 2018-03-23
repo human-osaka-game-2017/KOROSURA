@@ -9,7 +9,7 @@ namespace Fonts {
 
 Utility::CUSTOMVERTEX* Fonts::GetSlimeUV(Utility::CUSTOMVERTEX* vertex)
 {
-	Renderer::GetInstance().TrimingVertex(vertex, 0.0f,490.0f, g_Width, g_Height, g_PngSize, g_PngSize);
+	Renderer::GetInstance().TrimingVertex(vertex, 461.0f,490.0f, 100.0f, 100.0f, g_PngSize, g_PngSize);
 	return vertex;
 }
 

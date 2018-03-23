@@ -19,24 +19,41 @@ EnemyBase::EnemyBase(D3DXVECTOR3& pos, D3DXVECTOR3& normalVec, int level, ENEMY_
 	m_IsBoss(isBoss),
 	m_Angle_deg(angleDeg)
 {
-	m_Pos.y += InitProperty::GetInstance().GetInitialData().enemyInitialData[static_cast<int>(kind)].modelOffset;
+	m_Pos.y += InitProperty::GetInstance().GetInitialData().enemyInitialData[static_cast<int>(kKind)].modelOffset;
+
 	m_EnemyLevel = new EnemyLevel(m_Pos, level);
 
-	m_OBB.SetPos(InitProperty::GetInstance().GetInitialData().enemyInitialData[static_cast<int>(kind)].colliderOffset + m_Pos);
-	m_OBB.SetDirect(0, D3DXVECTOR3(cos(D3DXToRadian(angleDeg)), 0.0f, sin(D3DXToRadian(angleDeg))));
-	m_OBB.SetDirect(1, D3DXVECTOR3(0.0f, 1.0f, 0.0f));
-	m_OBB.SetDirect(2, D3DXVECTOR3(cos(D3DXToRadian(angleDeg + 90.0f)), 0.0f, sin(D3DXToRadian(angleDeg + 90.0f))));
-	//m_OBB.SetDirect(0, D3DXVECTOR3(1.0f, 0.0f, 0.0f));
-	//m_OBB.SetDirect(1, D3DXVECTOR3(0.0f, 1.0f, 0.0f));
-	//m_OBB.SetDirect(2, D3DXVECTOR3(0.0f, 0.0f, 1.0f));
-	m_OBB.SetLength(0,InitProperty::GetInstance().GetInitialData().enemyInitialData[static_cast<int>(kind)].colliderSize.x);
-	m_OBB.SetLength(1,InitProperty::GetInstance().GetInitialData().enemyInitialData[static_cast<int>(kind)].colliderSize.y);
-	m_OBB.SetLength(2,InitProperty::GetInstance().GetInitialData().enemyInitialData[static_cast<int>(kind)].colliderSize.z);
+	//OBBの設定
+	{
+		{
+			D3DXVECTOR3 obbPos = InitProperty::GetInstance().GetInitialData().enemyInitialData[static_cast<int>(kKind)].colliderOffset;
 
-	m_pCollider = new BoxCollider("EnemyBase", this, &m_OBB, std::bind(&EnemyBase::Collided, this, std::placeholders::_1),
-		CATEGORY_BITS_ENEMY, CATEGORY_BITS_SLIME);
+			D3DXMATRIXA16 matRotation;
+			D3DXMatrixRotationY(&matRotation, D3DXToRadian(m_Angle_deg));
 
-	ColliderManager::GetInstance().Register(m_pCollider, 0);
+			D3DXVec3TransformCoord(&obbPos, &obbPos, &matRotation);
+
+			obbPos += m_Pos;
+
+			m_OBB.SetPos(obbPos);
+		}
+
+		m_OBB.SetDirect(0, D3DXVECTOR3(cos(D3DXToRadian(angleDeg)), 0.0f, sin(D3DXToRadian(angleDeg))));
+		m_OBB.SetDirect(1, D3DXVECTOR3(0.0f, 1.0f, 0.0f));
+		m_OBB.SetDirect(2, D3DXVECTOR3(cos(D3DXToRadian(angleDeg + 90.0f)), 0.0f, sin(D3DXToRadian(angleDeg + 90.0f))));
+
+		m_OBB.SetLength(0, InitProperty::GetInstance().GetInitialData().enemyInitialData[static_cast<int>(kKind)].colliderSize.x);
+		m_OBB.SetLength(1, InitProperty::GetInstance().GetInitialData().enemyInitialData[static_cast<int>(kKind)].colliderSize.y);
+		m_OBB.SetLength(2, InitProperty::GetInstance().GetInitialData().enemyInitialData[static_cast<int>(kKind)].colliderSize.z);
+	}
+
+	//コライダー生成
+	{
+		m_pCollider = new BoxCollider("EnemyBase", this, &m_OBB, std::bind(&EnemyBase::Collided, this, std::placeholders::_1),
+			CATEGORY_BITS_ENEMY, CATEGORY_BITS_SLIME);
+
+		ColliderManager::GetInstance().Register(m_pCollider, 0);
+	}
 }
 
 EnemyBase::~EnemyBase()
@@ -55,7 +72,19 @@ void EnemyBase::Update()
 {
 	PhysicsManager::GetInstance().TranceformOnBoard(kInitPos, &m_Pos);
 	m_Pos.y += InitProperty::GetInstance().GetInitialData().enemyInitialData[static_cast<int>(kKind)].modelOffset;
-	m_OBB.SetPos(InitProperty::GetInstance().GetInitialData().enemyInitialData[static_cast<int>(kKind)].colliderOffset + m_Pos);
+
+	{
+		D3DXVECTOR3 obbPos = InitProperty::GetInstance().GetInitialData().enemyInitialData[static_cast<int>(kKind)].colliderOffset;
+
+		D3DXMATRIXA16 matRotation;
+		D3DXMatrixRotationY(&matRotation, D3DXToRadian(m_Angle_deg));
+
+		D3DXVec3TransformCoord(&obbPos, &obbPos, &matRotation);
+
+		obbPos += m_Pos;
+
+		m_OBB.SetPos(obbPos);
+	}
 
 	{
 		D3DXVECTOR3 levelFontPos = D3DXVECTOR3(m_Pos.x, m_Pos.y + kLevelFontOffset, m_Pos.z);

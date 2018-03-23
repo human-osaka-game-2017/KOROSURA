@@ -96,7 +96,7 @@ public:
 		//delete[] m_StageData.terrainData;
 	}
 
-	static const int kStageMax = 8;
+	static const int kStageMax = 6;
 
 private:
 	StageInfo();
